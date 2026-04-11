@@ -1,0 +1,1242 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Priyanka & Shubham Wedding 🌼</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --gold: #C8820A;
+      --gold-deep: #8B5500;
+      --gold-rich: #E5A020;
+      --gold-light: #F5C842;
+      --gold-pale: #FFF3D0;
+      --gold-soft: #FEE9A0;
+      --orange: #D4560A;
+      --orange-soft: #FFE8D6;
+      --royal: #1A0A00;
+      --royal-mid: #2E1500;
+      --cream: #FDFAF0;
+      --warm-white: #FFFEF5;
+      --text: #1A0E00;
+      --muted: #7A5C30;
+      --line: #EDD9A0;
+      --shadow: 0 8px 32px rgba(200,130,10,0.12);
+    }
+
+```
+* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+
+body {
+  font-family: 'Outfit', sans-serif;
+  background: var(--cream);
+  color: var(--text);
+  min-height: 100vh;
+}
+
+/* ── HERO ── */
+.hero {
+  min-height: 100vh;
+  background:
+    radial-gradient(ellipse at 15% 85%, rgba(200,130,10,0.3) 0%, transparent 50%),
+    radial-gradient(ellipse at 85% 15%, rgba(212,86,10,0.2) 0%, transparent 45%),
+    radial-gradient(ellipse at 50% 50%, rgba(139,85,0,0.15) 0%, transparent 60%),
+    linear-gradient(160deg, #1A0800 0%, #2E1200 30%, #1A0A00 65%, #0A0500 100%);
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  text-align: center; padding: 40px 24px;
+  position: relative; overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-image:
+    radial-gradient(circle, rgba(200,130,10,0.08) 1px, transparent 1px),
+    radial-gradient(circle, rgba(245,200,66,0.04) 1px, transparent 1px);
+  background-size: 40px 40px, 20px 20px;
+  background-position: 0 0, 10px 10px;
+  pointer-events: none;
+}
+
+/* Decorative border top/bottom */
+.hero::after {
+  content: '✦  ◆  ✦  ◆  ✦  ◆  ✦  ◆  ✦  ◆  ✦  ◆  ✦';
+  position: absolute; bottom: 60px; left: 50%;
+  transform: translateX(-50%);
+  font-size: 10px; letter-spacing: 6px;
+  color: rgba(200,130,10,0.3);
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.petal {
+  position: absolute; pointer-events: none;
+  animation: floatPetal 9s ease-in-out infinite;
+  opacity: 0.1;
+}
+.petal:nth-child(1) { top: 8%; left: 7%; font-size: 44px; animation-delay: 0s; }
+.petal:nth-child(2) { top: 15%; right: 9%; font-size: 28px; animation-delay: 1.8s; }
+.petal:nth-child(3) { bottom: 20%; left: 5%; font-size: 36px; animation-delay: 3.2s; }
+.petal:nth-child(4) { bottom: 12%; right: 7%; font-size: 40px; animation-delay: 5s; }
+.petal:nth-child(5) { top: 48%; left: 2%; font-size: 22px; animation-delay: 2.4s; }
+.petal:nth-child(6) { top: 32%; right: 3%; font-size: 26px; animation-delay: 6.5s; }
+
+@keyframes floatPetal {
+  0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0.1; }
+  50% { transform: translateY(-20px) rotate(15deg); opacity: 0.18; }
+}
+
+.hero-tag {
+  font-size: 10px; font-weight: 600;
+  letter-spacing: 0.3em; text-transform: uppercase;
+  color: var(--gold-light); opacity: 0.85; margin-bottom: 20px;
+  animation: fadeUp 0.8s ease both;
+}
+
+.hero-names {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(54px, 14vw, 112px);
+  font-weight: 300; line-height: 0.92;
+  animation: fadeUp 0.9s 0.1s ease both;
+}
+
+.bride { color: var(--gold-light); }
+.groom { color: #FFE8C0; }
+
+.hero-amp {
+  display: block;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(32px, 8vw, 64px);
+  color: var(--gold-rich); font-style: italic; margin: 4px 0;
+}
+
+.hero-ornament {
+  display: flex; align-items: center; gap: 12px;
+  margin: 20px 0; animation: fadeUp 1s 0.2s ease both;
+}
+
+.orn-line {
+  height: 1px; width: 55px;
+  background: linear-gradient(90deg, transparent, var(--gold-rich));
+}
+.orn-line.r { background: linear-gradient(90deg, var(--gold-rich), transparent); }
+.orn-gem { font-size: 16px; color: var(--gold-rich); }
+
+.hero-date {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 18px; color: var(--gold-light);
+  letter-spacing: 0.08em; font-style: italic;
+  animation: fadeUp 1s 0.3s ease both;
+}
+
+.hero-location {
+  font-size: 11px; color: rgba(255,220,120,0.5);
+  margin-top: 8px; letter-spacing: 0.18em; text-transform: uppercase;
+  animation: fadeUp 1s 0.4s ease both;
+}
+
+.hero-scroll {
+  position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%);
+  display: flex; flex-direction: column; align-items: center; gap: 6px;
+  color: rgba(200,130,10,0.4); font-size: 10px;
+  letter-spacing: 0.14em; text-transform: uppercase; cursor: pointer;
+  animation: fadeUp 1s 0.6s ease both;
+}
+
+.scroll-line {
+  width: 1px; height: 34px;
+  background: linear-gradient(180deg, var(--gold-rich), transparent);
+  animation: pulse 2s ease infinite;
+}
+
+@keyframes pulse { 0%,100%{opacity:0.4;} 50%{opacity:1;} }
+
+/* ── NAV ── */
+.nav {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(26,8,0,0.97); backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(200,130,10,0.25);
+  padding: 0 16px; display: flex;
+  align-items: center; justify-content: space-between; height: 54px;
+}
+
+.nav-brand {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 20px; color: var(--gold-light); font-style: italic;
+  white-space: nowrap;
+}
+
+.nav-links { display: flex; gap: 2px; }
+
+.nav-links button {
+  background: none; border: none;
+  color: rgba(255,220,120,0.45);
+  font-family: 'Outfit', sans-serif; font-size: 11px; font-weight: 500;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  padding: 7px 9px; border-radius: 8px; cursor: pointer;
+  transition: color 0.2s, background 0.2s;
+}
+
+.nav-links button:hover, .nav-links button.active {
+  color: var(--gold-light); background: rgba(200,130,10,0.15);
+}
+
+/* ── SECTIONS ── */
+.section {
+  display: none; animation: fadeUp 0.4s ease both;
+  max-width: 720px; margin: 0 auto; padding: 32px 18px 90px;
+}
+.section.visible { display: block; }
+
+.sec-tag {
+  font-size: 10px; font-weight: 600;
+  letter-spacing: 0.24em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 8px;
+}
+
+.sec-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(30px, 7vw, 48px); font-weight: 300;
+  line-height: 1.1; margin-bottom: 6px;
+}
+.sec-title em { font-style: italic; color: var(--orange); }
+
+.sec-sub { color: var(--muted); font-size: 13px; line-height: 1.65; margin-bottom: 24px; }
+
+/* ── TIMELINE ── */
+.timeline { display: flex; flex-direction: column; position: relative; }
+
+.timeline::before {
+  content: ''; position: absolute; left: 21px; top: 0; bottom: 0; width: 1px;
+  background: linear-gradient(180deg, var(--gold-rich), var(--gold), rgba(200,130,10,0.1));
+}
+
+.t-item { display: flex; gap: 16px; padding-bottom: 22px; position: relative; }
+
+.t-dot {
+  width: 42px; height: 42px; border-radius: 50%;
+  background: var(--warm-white); border: 2px solid var(--gold-rich);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 17px; flex-shrink: 0; position: relative; z-index: 1;
+  box-shadow: 0 0 0 4px var(--cream), 0 0 12px rgba(200,130,10,0.2);
+}
+
+.t-body {
+  background: var(--warm-white); border: 1px solid var(--line);
+  border-left: 3px solid var(--gold-soft);
+  border-radius: 18px; padding: 14px 16px; flex: 1;
+  box-shadow: var(--shadow);
+}
+
+.t-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 20px; font-weight: 600; margin-bottom: 6px; color: var(--royal-mid);
+}
+
+.t-meta { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 8px; }
+
+.t-pill {
+  font-size: 11px; padding: 4px 10px; border-radius: 999px;
+  background: var(--gold-pale); color: var(--gold-deep);
+  font-weight: 600; letter-spacing: 0.03em; border: 1px solid var(--gold-soft);
+}
+
+.t-pill.orange {
+  background: var(--orange-soft); color: var(--orange);
+  border-color: #F5C0A0;
+}
+
+.t-pill.coming {
+  background: #F0F0F0; color: #888; border-color: #DDD;
+  font-style: italic;
+}
+
+.t-desc { font-size: 13px; color: var(--muted); line-height: 1.55; }
+
+/* ── ROLES INTRO ── */
+.roles-intro {
+  background: linear-gradient(135deg, var(--royal) 0%, var(--royal-mid) 100%);
+  border-radius: 22px; padding: 22px; color: white;
+  margin-bottom: 22px; position: relative; overflow: hidden;
+  border: 1px solid rgba(200,130,10,0.3);
+}
+
+.roles-intro::before {
+  content: '◆'; position: absolute; right: 16px; top: 50%;
+  transform: translateY(-50%); font-size: 80px;
+  opacity: 0.06; color: var(--gold-light);
+}
+
+.roles-intro h3 {
+  font-family: 'Cormorant Garamond', serif; font-size: 24px;
+  font-weight: 400; font-style: italic; margin-bottom: 5px;
+  color: var(--gold-light);
+}
+
+.roles-intro p { font-size: 13px; opacity: 0.7; line-height: 1.6; }
+
+/* ── ROLE CARDS ── */
+.role-category { margin-bottom: 22px; }
+
+.role-cat-title {
+  font-size: 10px; font-weight: 600;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--gold); padding: 0 2px; margin-bottom: 10px;
+}
+
+.role-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+@media (max-width: 460px) { .role-grid { grid-template-columns: 1fr; } }
+
+.role-card {
+  background: var(--warm-white); border: 2px solid var(--line);
+  border-radius: 16px; padding: 13px 15px; cursor: pointer;
+  transition: border-color 0.2s, background 0.2s, transform 0.15s, box-shadow 0.2s;
+  position: relative; user-select: none;
+}
+
+.role-card:hover { box-shadow: 0 4px 16px rgba(200,130,10,0.1); }
+.role-card:active { transform: scale(0.98); }
+
+.role-card.selected {
+  border-color: var(--gold-rich);
+  background: var(--gold-pale);
+  box-shadow: 0 4px 16px rgba(200,130,10,0.18);
+}
+
+.role-card.taken { opacity: 0.4; cursor: not-allowed; pointer-events: none; }
+
+.role-check {
+  position: absolute; top: 10px; right: 11px;
+  width: 21px; height: 21px; border-radius: 50%;
+  border: 2px solid var(--line);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 10px; transition: all 0.2s;
+}
+
+.role-card.selected .role-check {
+  background: var(--gold-rich); border-color: var(--gold-rich); color: white;
+}
+
+.role-icon { font-size: 21px; margin-bottom: 7px; }
+
+.role-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 16px; font-weight: 600;
+  margin-bottom: 3px; padding-right: 24px; color: var(--royal-mid);
+}
+
+.role-desc { font-size: 11px; color: var(--muted); line-height: 1.45; }
+
+.role-taken-badge {
+  font-size: 10px; color: var(--gold-deep); font-weight: 600; margin-top: 5px;
+}
+
+/* ── CUSTOM ROLE ADD ── */
+.add-role-box {
+  background: var(--warm-white); border: 2px dashed var(--line);
+  border-radius: 18px; padding: 18px; margin-bottom: 24px;
+}
+
+.add-role-box h4 {
+  font-family: 'Cormorant Garamond', serif; font-size: 20px;
+  font-weight: 400; color: var(--royal-mid); margin-bottom: 4px;
+}
+
+.add-role-box p { font-size: 12px; color: var(--muted); margin-bottom: 14px; }
+
+.add-role-row { display: flex; gap: 8px; flex-wrap: wrap; }
+
+.add-role-input {
+  flex: 1; min-width: 120px;
+  border: 1.5px solid var(--line); background: var(--cream);
+  border-radius: 12px; padding: 10px 12px; font-size: 13px;
+  font-family: 'Outfit', sans-serif; color: var(--text); outline: none;
+  transition: border-color 0.2s;
+}
+
+.add-role-input:focus { border-color: var(--gold-rich); }
+
+.btn-add {
+  background: linear-gradient(135deg, var(--gold-deep), var(--gold));
+  color: white; border: none; border-radius: 12px;
+  padding: 10px 16px; font-family: 'Outfit', sans-serif;
+  font-size: 13px; font-weight: 600; cursor: pointer;
+  white-space: nowrap; transition: opacity 0.2s;
+}
+
+.btn-add:hover { opacity: 0.9; }
+
+/* ── CLAIM FORM ── */
+.claim-form {
+  background: var(--warm-white); border: 1px solid var(--line);
+  border-top: 3px solid var(--gold-rich); border-radius: 22px;
+  padding: 20px; margin-top: 24px;
+  box-shadow: var(--shadow);
+}
+
+.claim-form h3 {
+  font-family: 'Cormorant Garamond', serif; font-size: 22px;
+  font-weight: 400; font-style: italic; margin-bottom: 5px; color: var(--royal-mid);
+}
+
+.claim-form p { font-size: 13px; color: var(--muted); margin-bottom: 16px; line-height: 1.5; }
+
+.form-input {
+  width: 100%; border: 1.5px solid var(--line); background: var(--cream);
+  border-radius: 12px; padding: 11px 13px; font-size: 13px;
+  font-family: 'Outfit', sans-serif; color: var(--text); outline: none;
+  margin-bottom: 10px; transition: border-color 0.2s;
+}
+
+.form-input:focus { border-color: var(--gold-rich); box-shadow: 0 0 0 3px rgba(200,130,10,0.1); }
+
+.selected-preview {
+  background: var(--gold-pale); border: 1px solid var(--gold-soft);
+  border-radius: 12px; padding: 11px 13px; margin-bottom: 12px;
+  font-size: 12px; color: var(--gold-deep); min-height: 42px;
+  font-weight: 500; line-height: 1.5;
+}
+
+.btn-primary {
+  width: 100%;
+  background: linear-gradient(135deg, var(--royal-mid), var(--gold-deep));
+  color: var(--gold-light); border: none; border-radius: 12px; padding: 13px;
+  font-family: 'Outfit', sans-serif; font-size: 13px; font-weight: 600;
+  letter-spacing: 0.06em; text-transform: uppercase; cursor: pointer;
+  transition: opacity 0.2s, transform 0.15s;
+  box-shadow: 0 8px 20px rgba(26,8,0,0.3);
+}
+
+.btn-primary:hover { opacity: 0.92; }
+.btn-primary:active { transform: scale(0.99); }
+
+/* ── RESULTS / ASSIGNED ── */
+.results-section {
+  margin-top: 32px;
+}
+
+.results-header {
+  background: linear-gradient(135deg, var(--royal), var(--royal-mid));
+  border-radius: 18px; padding: 18px 20px; margin-bottom: 16px;
+  border: 1px solid rgba(200,130,10,0.2);
+}
+
+.results-header h3 {
+  font-family: 'Cormorant Garamond', serif; font-size: 22px;
+  font-weight: 400; color: var(--gold-light); font-style: italic; margin-bottom: 3px;
+}
+
+.results-header p { font-size: 12px; color: rgba(255,220,120,0.5); }
+
+.assigned-list { display: flex; flex-direction: column; gap: 10px; }
+
+.assigned-item {
+  background: var(--warm-white); border: 1px solid var(--line);
+  border-radius: 14px; padding: 13px 15px;
+  display: flex; align-items: center; gap: 13px;
+  box-shadow: 0 2px 8px rgba(200,130,10,0.06);
+}
+
+.assigned-avatar {
+  width: 40px; height: 40px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--gold-deep), var(--gold-rich));
+  color: white; display: flex; align-items: center; justify-content: center;
+  font-family: 'Cormorant Garamond', serif; font-size: 18px; font-weight: 700;
+  flex-shrink: 0; border: 2px solid var(--gold-soft);
+}
+
+.assigned-info { flex: 1; }
+.assigned-name { font-weight: 600; font-size: 14px; margin-bottom: 2px; color: var(--royal-mid); }
+.assigned-role { font-size: 11px; color: var(--muted); line-height: 1.4; }
+
+.assigned-custom-badge {
+  font-size: 10px; background: var(--gold-pale); color: var(--gold-deep);
+  padding: 2px 8px; border-radius: 999px; font-weight: 600;
+  border: 1px solid var(--gold-soft);
+}
+
+/* ── SUCCESS ── */
+.success-box {
+  background: linear-gradient(135deg, var(--royal), #3A1800);
+  border-radius: 18px; padding: 24px 20px; color: white;
+  text-align: center; margin-top: 14px; display: none;
+  border: 1px solid rgba(200,130,10,0.3);
+}
+
+.success-box.show { display: block; animation: fadeUp 0.4s ease; }
+
+.success-box h3 {
+  font-family: 'Cormorant Garamond', serif; font-size: 28px;
+  font-weight: 300; font-style: italic; margin: 8px 0 6px;
+  color: var(--gold-light);
+}
+
+.success-box p { font-size: 13px; opacity: 0.75; line-height: 1.6; }
+
+/* ── INFO ── */
+.info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 11px; margin-bottom: 14px; }
+@media (max-width: 460px) { .info-grid { grid-template-columns: 1fr; } }
+
+.info-card {
+  background: var(--warm-white); border: 1px solid var(--line);
+  border-radius: 18px; padding: 16px;
+  box-shadow: 0 2px 8px rgba(200,130,10,0.06);
+}
+
+.info-card-icon { font-size: 24px; margin-bottom: 8px; }
+.info-card-label {
+  font-size: 10px; font-weight: 600; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--gold); margin-bottom: 3px;
+}
+.info-card-value {
+  font-family: 'Cormorant Garamond', serif; font-size: 19px; font-weight: 600;
+  margin-bottom: 3px; color: var(--royal-mid);
+}
+.info-card-sub { font-size: 12px; color: var(--muted); line-height: 1.5; }
+
+.dress-card {
+  background: linear-gradient(135deg, var(--royal) 0%, #3A1200 100%);
+  border-radius: 18px; padding: 20px; margin-bottom: 14px;
+  border: 1px solid rgba(200,130,10,0.25);
+  position: relative; overflow: hidden;
+}
+
+.dress-card::after {
+  content: '🌼✦'; position: absolute; right: 14px; top: 50%;
+  transform: translateY(-50%); font-size: 34px; opacity: 0.15; letter-spacing: 4px;
+}
+
+.dress-card .info-card-label { color: var(--gold-light); }
+.dress-card .info-card-value { color: var(--gold-light); font-size: 20px; }
+.dress-card .info-card-sub { color: rgba(255,220,120,0.55); }
+
+.checklist-card {
+  background: var(--warm-white); border: 1px solid var(--line);
+  border-left: 3px solid var(--gold-rich); border-radius: 18px; padding: 18px;
+}
+
+.checklist-card .info-card-label { color: var(--gold); }
+.checklist-card .info-card-value { font-size: 16px; margin-bottom: 10px; color: var(--royal-mid); }
+.checklist-card .info-card-sub { line-height: 2.1; }
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ── BOTTOM NAV ── */
+.bottom-nav {
+  position: fixed; bottom: 0; left: 0; right: 0; z-index: 100;
+  background: rgba(26,8,0,0.97); backdrop-filter: blur(20px);
+  border-top: 1px solid rgba(200,130,10,0.2);
+  display: flex; padding: 8px 8px 14px; gap: 4px;
+}
+
+.bottom-nav button {
+  flex: 1; background: none; border: none;
+  color: rgba(255,220,120,0.35);
+  font-family: 'Outfit', sans-serif; font-size: 10px; font-weight: 500;
+  padding: 8px 4px; border-radius: 12px; cursor: pointer;
+  display: flex; flex-direction: column; align-items: center; gap: 3px;
+  transition: color 0.2s, background 0.2s;
+  letter-spacing: 0.08em; text-transform: uppercase;
+}
+
+.bottom-nav button .bn-icon { font-size: 18px; }
+
+.bottom-nav button.active {
+  color: var(--gold-light); background: rgba(200,130,10,0.16);
+}
+
+.content-wrap { padding-bottom: 72px; }
+
+.divider {
+  text-align: center; font-size: 14px;
+  letter-spacing: 12px; opacity: 0.25; margin: 24px 0 18px;
+  color: var(--gold);
+}
+
+.empty-state {
+  text-align: center; padding: 28px 16px;
+  background: var(--warm-white); border: 1px dashed var(--line);
+  border-radius: 16px; color: var(--muted); font-size: 13px;
+}
+```
+
+  </style>
+</head>
+<body>
+
+<!-- HERO -->
+
+<div class="hero" id="heroSection">
+  <div class="petal">🌼</div>
+  <div class="petal">✦</div>
+  <div class="petal">🌸</div>
+  <div class="petal">✦</div>
+  <div class="petal">🌼</div>
+  <div class="petal">◆</div>
+
+  <div class="hero-tag">A Royal Wedding Celebration</div>
+
+  <div class="hero-names">
+    <span class="bride">Priyanka</span>
+    <span class="hero-amp">&amp;</span>
+    <span class="groom">Shubham</span>
+  </div>
+
+  <div class="hero-ornament">
+    <div class="orn-line"></div>
+    <div class="orn-gem">◆</div>
+    <div class="orn-line r"></div>
+  </div>
+
+  <div class="hero-date">1st – 3rd July 2025 · Raipur</div>
+  <div class="hero-location">✦ Royal Club, Chhattisgarh ✦</div>
+
+  <div class="hero-scroll" onclick="showSection('events')">
+    <div class="scroll-line"></div>
+    <span>Explore</span>
+  </div>
+</div>
+
+<!-- NAV -->
+
+<div class="nav" id="mainNav" style="display:none;">
+  <div class="nav-brand">Priyanka & Shubham</div>
+  <div class="nav-links">
+    <button onclick="showSection('events')" id="nav-events">Events</button>
+    <button onclick="showSection('roles')" id="nav-roles">Roles</button>
+    <button onclick="showSection('results')" id="nav-results">Squad</button>
+    <button onclick="showSection('info')" id="nav-info">Info</button>
+  </div>
+</div>
+
+<div class="content-wrap">
+
+  <!-- EVENTS -->
+
+  <div class="section" id="sec-events">
+    <div class="sec-tag">The Celebrations</div>
+    <div class="sec-title">Wedding <em>Functions</em></div>
+    <div class="sec-sub">Seven beautiful celebrations across three days in Raipur, Chhattisgarh.</div>
+
+```
+<div class="timeline">
+
+  <!-- Engagement -->
+  <div class="t-item">
+    <div class="t-dot">💍</div>
+    <div class="t-body">
+      <div class="t-name">Engagement</div>
+      <div class="t-meta">
+        <div class="t-pill coming">🕐 Coming Soon</div>
+      </div>
+      <div class="t-desc">The beginning of their forever. Date to be announced soon — stay tuned! 💍</div>
+    </div>
+  </div>
+
+  <!-- Mehndi -->
+  <div class="t-item">
+    <div class="t-dot">🌸</div>
+    <div class="t-body">
+      <div class="t-name">Mehndi Night</div>
+      <div class="t-meta">
+        <div class="t-pill">📅 1st July</div>
+        <div class="t-pill">🕖 7 – 11 PM</div>
+        <div class="t-pill orange">📍 Shubham's Home</div>
+      </div>
+      <div class="t-desc">A beautiful henna evening with music, laughter and dance. The ladies' favourite night of the week!</div>
+    </div>
+  </div>
+
+  <!-- Haldi -->
+  <div class="t-item">
+    <div class="t-dot">🌿</div>
+    <div class="t-body">
+      <div class="t-name">Haldi Ceremony</div>
+      <div class="t-meta">
+        <div class="t-pill">📅 2nd July</div>
+        <div class="t-pill">🕚 11 AM – 2 PM</div>
+        <div class="t-pill orange">📍 Royal Club, Raipur</div>
+      </div>
+      <div class="t-desc">Sacred turmeric ceremony — cousins help apply haldi and keep the energy warm and joyful!</div>
+    </div>
+  </div>
+
+  <!-- Sangeet -->
+  <div class="t-item">
+    <div class="t-dot">🎉</div>
+    <div class="t-body">
+      <div class="t-name">Sangeet</div>
+      <div class="t-meta">
+        <div class="t-pill">📅 2nd July</div>
+        <div class="t-pill">🕔 5 – 8 PM</div>
+        <div class="t-pill orange">📍 Royal Club, Raipur</div>
+      </div>
+      <div class="t-desc">Grand night of dance performances & celebration. Cousins — this is YOUR night to shine on stage! 🎤</div>
+    </div>
+  </div>
+
+  <!-- Baraat -->
+  <div class="t-item">
+    <div class="t-dot">🐎</div>
+    <div class="t-body">
+      <div class="t-name">Baraat</div>
+      <div class="t-meta">
+        <div class="t-pill">📅 3rd July</div>
+        <div class="t-pill">🕓 4 – 6 PM</div>
+        <div class="t-pill orange">📍 Royal Club, Raipur</div>
+      </div>
+      <div class="t-desc">The grand baraat procession — dance, dhol and full energy all the way!</div>
+    </div>
+  </div>
+
+  <!-- Marriage -->
+  <div class="t-item">
+    <div class="t-dot">🔥</div>
+    <div class="t-body">
+      <div class="t-name">Marriage Ceremony</div>
+      <div class="t-meta">
+        <div class="t-pill">📅 3rd July</div>
+        <div class="t-pill">🕖 7 – 11 PM</div>
+        <div class="t-pill orange">📍 Royal Club, Raipur</div>
+      </div>
+      <div class="t-desc">The sacred pheras and rituals — the heart of the wedding. A moment to cherish forever. ✨</div>
+    </div>
+  </div>
+
+  <!-- Reception -->
+  <div class="t-item">
+    <div class="t-dot">🥂</div>
+    <div class="t-body">
+      <div class="t-name">Reception</div>
+      <div class="t-meta">
+        <div class="t-pill">📅 3rd July</div>
+        <div class="t-pill">🕖 7 – 11 PM</div>
+        <div class="t-pill orange">📍 Royal Club, Raipur</div>
+      </div>
+      <div class="t-desc">Grand reception with 1000+ guests. All cousins on full duty — welcoming, hosting and celebrating! 🎊</div>
+    </div>
+  </div>
+
+</div>
+```
+
+  </div>
+
+  <!-- ROLES -->
+
+  <div class="section" id="sec-roles">
+    <div class="sec-tag">Cousin Squad</div>
+    <div class="sec-title">Pick Your <em>Role</em></div>
+    <div class="sec-sub">Select your role(s) below. You can also add a custom role. First come, first served!</div>
+
+```
+<div class="roles-intro">
+  <h3>You make this wedding royal ✦</h3>
+  <p>With 1000+ guests at Royal Club Raipur, every cousin plays a vital part. Pick what matches your energy!</p>
+</div>
+
+<!-- Ceremony -->
+<div class="role-category">
+  <div class="role-cat-title">🎊 Ceremony & Procession</div>
+  <div class="role-grid" id="grid-ceremony">
+    <div class="role-card" id="role-baraat1" onclick="toggleRole('baraat1')">
+      <div class="role-check">✓</div>
+      <div class="role-icon">🐎</div>
+      <div class="role-name">Baraat Leader</div>
+      <div class="role-desc">Lead the procession with full energy — dance, dhol & hype!</div>
+      <div class="role-taken-badge" id="taken-baraat1"></div>
+    </div>
+    <div class="role-card" id="role-baraat2" onclick="toggleRole('baraat2')">
+      <div class="role-check">✓</div>
+      <div class="role-icon">💃</div>
+      <div class="role-name">Baraat Dancer</div>
+      <div class="role-desc">Keep the baraat dancing and energetic the whole way through.</div>
+      <div class="role-taken-badge" id="taken-baraat2"></div>
+    </div>
+    <div class="role-card" id="role-pheras" onclick="toggleRole('pheras')">
+      <div class="role-check">✓</div>
+      <div class="role-icon">🌼</div>
+      <div class="role-name">Ritual Helper</div>
+      <div class="role-desc">Stay near the pandit, keep all pooja samagri ready on time.</div>
+      <div class="role-taken-badge" id="taken-pheras"></div>
+    </div>
+    <div class="role-card" id="role-groom" onclick="toggleRole('groom')">
+      <div class="role-check">✓</div>
+      <div class="role-icon">🤵</div>
+      <div class="role-name">Groom's Shadow</div>
+      <div class="role-desc">Stay close to Shubham for anything he needs on the big day.</div>
+      <div class="role-taken-badge" id="taken-groom"></div>
+    </div>
+  </div>
+</div>
+
+<!-- Guest -->
+<div class="role-category">
+  <div class="role-cat-title">🚪 Guest Management</div>
+  <div class="role-grid">
+    <div class="role-card" id="role-welcome1" onclick="toggleRole('welcome1')">
+      <div class="role-check">✓</div>
+      <div class="role-icon">🙏</div>
+      <div class="role-name">Entry Welcomer</div>
+      <div class="role-desc">Greet guests at the gate, hand out garlands and gifts warmly.</div>
+      <div class="role-taken-badge" id="taken-welcome1"></div>
+    </div>
+    <div class="role-card" id="role-welcome2" onclick="toggleRole('welcome2')">
+      <div class="role-check">✓</div>
+      <div class="role-icon">👴</div>
+      <div class="role-name">VIP Host</div>
+      <div class="role-desc">Personally escort and attend to elders and special guests.</div>
+      <div class="role-taken-badge" id="taken-welcome2"></div>
+    </div>
+    <div class="role-card" id="role-seating" onclick="toggleRole('seating')">
+      <div class="role-check">✓</div>
+      <div class="role-icon">🪑</div>
+      <div class="role-name">Seating Guide</div>
+      <div class="role-desc">Direct 1000+ guests to the right seating and dining areas.</div>
+      <div class="role-taken-badge" id="taken-seating"></div>
+    </div>
+    <div class="role-card" id="role-kids" onclick="toggleRole('kids')">
+      <div class="role-check">✓</div>
+      <div class="role-icon">👶</div>
+      <div class="role-name">Kids Wrangler</div>
+      <div class="role-desc">Keep the little ones entertained, safe and out of trouble!</div>
+      <div class="role-taken-badge" id="taken-kids"></div>
+    </div>
+  </div>
+</div>
+
+<!-- Food -->
+<div class="role-category">
+  <div class="role-cat-title">🍽️ Food & Logistics</div>
+  <div class="role-grid">
+    <div class="role-card" id="role-catering" onclick="toggleRole('catering')">
+      <div class="role-check">✓</div>
+      <div class="role-icon">🍛</div>
+      <div class="role-name">Catering Supervisor</div>
+      <div class="role-desc">Liaise with the catering team, keep food counters stocked.</div>
+      <div class="role-taken-badge" id="taken-catering"></div>
+    </div>
+    <div class="role-card" id="role-vendor" onclick="toggleRole('vendor')">
+      <div class="role-check">✓</div>
+      <div class="role-icon">📋</div>
+      <div class="role-name">Vendor Liaison</div>
+      <div class="role-desc">Point of contact for photographer, DJ, decorators & caterers.</div>
+      <div class="role-taken-badge" id="taken-vendor"></div>
+    </div>
+    <div class="role-card" id="role-gifts" onclick="toggleRole('gifts')">
+      <div class="role-check">✓</div>
+      <div class="role-icon">🎁</div>
+      <div class="role-name">Gift Manager</div>
+      <div class="role-desc">Collect, organise and safely store all gifts and envelopes.</div>
+      <div class="role-taken-badge" id="taken-gifts"></div>
+    </div>
+    <div class="role-card" id="role-float" onclick="toggleRole('float')">
+      <div class="role-check">✓</div>
+      <div class="role-icon">⚡</div>
+      <div class="role-name">Floating Helper</div>
+      <div class="role-desc">No fixed role — jump in wherever help is needed instantly.</div>
+      <div class="role-taken-badge" id="taken-float"></div>
+    </div>
+  </div>
+</div>
+
+<!-- Entertainment -->
+<div class="role-category">
+  <div class="role-cat-title">🎉 Entertainment & Media</div>
+  <div class="role-grid">
+    <div class="role-card" id="role-mc" onclick="toggleRole('mc')">
+      <div class="role-check">✓</div>
+      <div class="role-icon">🎤</div>
+      <div class="role-name">MC / Anchor</div>
+      <div class="role-desc">Host the reception & sangeet — funny, charming, confident.</div>
+      <div class="role-taken-badge" id="taken-mc"></div>
+    </div>
+    <div class="role-card" id="role-dance" onclick="toggleRole('dance')">
+      <div class="role-check">✓</div>
+      <div class="role-icon">🕺</div>
+      <div class="role-name">Dance Lead</div>
+      <div class="role-desc">Organise and lead the cousin dance performance at sangeet.</div>
+      <div class="role-taken-badge" id="taken-dance"></div>
+    </div>
+    <div class="role-card" id="role-dj" onclick="toggleRole('dj')">
+      <div class="role-check">✓</div>
+      <div class="role-icon">🎵</div>
+      <div class="role-name">DJ Liaison</div>
+      <div class="role-desc">Coordinate song requests, cue key songs at the right moments.</div>
+      <div class="role-taken-badge" id="taken-dj"></div>
+    </div>
+    <div class="role-card" id="role-reels" onclick="toggleRole('reels')">
+      <div class="role-check">✓</div>
+      <div class="role-icon">📸</div>
+      <div class="role-name">Reels & Photos</div>
+      <div class="role-desc">Capture candid moments and reels for family WhatsApp & Instagram.</div>
+      <div class="role-taken-badge" id="taken-reels"></div>
+    </div>
+  </div>
+</div>
+
+<!-- Custom Roles Section -->
+<div class="role-category" id="customRoleCategory" style="display:none;">
+  <div class="role-cat-title">✦ Custom Roles Added by Cousins</div>
+  <div class="role-grid" id="customRoleGrid"></div>
+</div>
+
+<!-- Add Custom Role -->
+<div class="add-role-box">
+  <h4>✦ Add a Custom Role</h4>
+  <p>Don't see your role? Add it here and others can claim it too!</p>
+  <div class="add-role-row">
+    <input class="add-role-input" id="customRoleName" placeholder="Role name (e.g. Fireworks Coordinator)" />
+    <input class="add-role-input" id="customRoleDesc" placeholder="Short description" />
+    <button class="btn-add" onclick="addCustomRole()">+ Add</button>
+  </div>
+</div>
+
+<!-- Claim Form -->
+<div class="claim-form" id="claimForm">
+  <h3>Claim your role 🌼</h3>
+  <p>Tap your roles above, then enter your name to confirm. Roles are locked once claimed!</p>
+  <div class="selected-preview" id="selectedPreview">No roles selected yet…</div>
+  <input class="form-input" id="cousinName" placeholder="Your full name" />
+  <input class="form-input" id="cousinPhone" placeholder="WhatsApp number (optional)" />
+  <button class="btn-primary" onclick="claimRoles()">✦ &nbsp; Confirm My Roles</button>
+</div>
+
+<div class="success-box" id="successBox">
+  <div style="font-size:38px;">🌼✦🎉</div>
+  <h3>You're all set!</h3>
+  <p id="successMsg">Your roles have been confirmed. See you at the wedding!</p>
+</div>
+```
+
+  </div>
+
+  <!-- RESULTS / SQUAD -->
+
+  <div class="section" id="sec-results">
+    <div class="sec-tag">Cousin Squad</div>
+    <div class="sec-title">Role <em>Assignments</em></div>
+    <div class="sec-sub">See who has claimed which role for Priyanka & Shubham's wedding!</div>
+
+```
+<div class="results-section">
+  <div class="results-header">
+    <h3>✦ The Wedding Squad</h3>
+    <p id="squadCount">Loading…</p>
+  </div>
+  <div class="assigned-list" id="assignedList"></div>
+</div>
+
+<div class="divider">✦ ◆ ✦</div>
+
+<!-- Unclaimed roles -->
+<div class="sec-tag" style="margin-top:8px;">Still Available</div>
+<div style="font-size:13px; color:var(--muted); margin-bottom:14px;">These roles are still up for grabs!</div>
+<div id="unclaimedList" class="assigned-list"></div>
+```
+
+  </div>
+
+  <!-- INFO -->
+
+  <div class="section" id="sec-info">
+    <div class="sec-tag">Need to Know</div>
+    <div class="sec-title">Wedding <em>Details</em></div>
+    <div class="sec-sub">Everything your cousins need before arriving in Raipur.</div>
+
+```
+<div class="dress-card">
+  <div class="info-card-icon">👗</div>
+  <div class="info-card-label">Dress Code</div>
+  <div class="info-card-value">Traditional Indian Attire</div>
+  <div class="info-card-sub">Lehenga / Saree for ladies &nbsp;·&nbsp; Sherwani / Kurta for gents<br/>Cousins: Coordinate colours in the WhatsApp group! 🌼</div>
+</div>
+
+<div class="info-grid">
+  <div class="info-card">
+    <div class="info-card-icon">📍</div>
+    <div class="info-card-label">Main Venue</div>
+    <div class="info-card-value">Royal Club</div>
+    <div class="info-card-sub">Raipur, Chhattisgarh<br/>Exact address on WhatsApp</div>
+  </div>
+  <div class="info-card">
+    <div class="info-card-icon">👥</div>
+    <div class="info-card-label">Guests</div>
+    <div class="info-card-value">~1000</div>
+    <div class="info-card-sub">Grand traditional wedding — all hands on deck!</div>
+  </div>
+  <div class="info-card">
+    <div class="info-card-icon">📅</div>
+    <div class="info-card-label">Dates</div>
+    <div class="info-card-value">1–3 July</div>
+    <div class="info-card-sub">2025<br/>Three days of celebrations</div>
+  </div>
+  <div class="info-card">
+    <div class="info-card-icon">🌼</div>
+    <div class="info-card-label">Functions</div>
+    <div class="info-card-value">7 Events</div>
+    <div class="info-card-sub">Engagement · Mehndi · Haldi · Sangeet · Baraat · Marriage · Reception</div>
+  </div>
+</div>
+
+<div class="checklist-card">
+  <div class="info-card-icon">✅</div>
+  <div class="info-card-label">Cousin Checklist</div>
+  <div class="info-card-value">Day-of Tips</div>
+  <div class="info-card-sub">
+    🌼 &nbsp;Claim your role on this website now<br/>
+    ✦ &nbsp;Arrive 1 hour before your function starts<br/>
+    🌼 &nbsp;Keep your phone fully charged all day<br/>
+    ✦ &nbsp;Attend the family briefing the night before<br/>
+    🌼 &nbsp;Coordinate outfit colour with your sub-team<br/>
+    ✦ &nbsp;Most importantly — enjoy every moment! 🎊
+  </div>
+</div>
+```
+
+  </div>
+
+</div>
+
+<!-- BOTTOM NAV -->
+
+<div class="bottom-nav" id="bottomNav" style="display:none;">
+  <button id="bn-events" onclick="showSection('events')">
+    <span class="bn-icon">🗓️</span>Events
+  </button>
+  <button id="bn-roles" onclick="showSection('roles')">
+    <span class="bn-icon">✋</span>Roles
+  </button>
+  <button id="bn-results" onclick="showSection('results')">
+    <span class="bn-icon">👑</span>Squad
+  </button>
+  <button id="bn-info" onclick="showSection('info')">
+    <span class="bn-icon">ℹ️</span>Info
+  </button>
+</div>
+
+<script>
+  const STORAGE_KEY = 'prishubh_v3';
+  let selectedRoles = [];
+  let data = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{"assignments":[],"customRoles":[]}');
+
+  const builtinRoles = {
+    baraat1: 'Baraat Leader', baraat2: 'Baraat Dancer',
+    pheras: 'Ritual Helper', groom: "Groom's Shadow",
+    welcome1: 'Entry Welcomer', welcome2: 'VIP Host',
+    seating: 'Seating Guide', kids: 'Kids Wrangler',
+    catering: 'Catering Supervisor', vendor: 'Vendor Liaison',
+    gifts: 'Gift Manager', float: 'Floating Helper',
+    mc: 'MC / Anchor', dance: 'Dance Lead',
+    dj: 'DJ Liaison', reels: 'Reels & Photos'
+  };
+
+  function getAllRoleNames() {
+    const all = { ...builtinRoles };
+    data.customRoles.forEach(r => { all[r.id] = r.name; });
+    return all;
+  }
+
+  function saveData() {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+  }
+
+  function getTakenRoles() {
+    const taken = {};
+    data.assignments.forEach(a => { a.roles.forEach(r => { taken[r] = a.name; }); });
+    return taken;
+  }
+
+  function toggleRole(roleId) {
+    const taken = getTakenRoles();
+    if (taken[roleId]) return;
+    const card = document.getElementById('role-' + roleId);
+    if (!card) return;
+    const idx = selectedRoles.indexOf(roleId);
+    if (idx === -1) { selectedRoles.push(roleId); card.classList.add('selected'); }
+    else { selectedRoles.splice(idx, 1); card.classList.remove('selected'); }
+    updatePreview();
+  }
+
+  function updatePreview() {
+    const p = document.getElementById('selectedPreview');
+    const allNames = getAllRoleNames();
+    p.textContent = selectedRoles.length
+      ? '✓ ' + selectedRoles.map(r => allNames[r] || r).join(' · ')
+      : 'No roles selected yet…';
+  }
+
+  function addCustomRole() {
+    const name = document.getElementById('customRoleName').value.trim();
+    const desc = document.getElementById('customRoleDesc').value.trim();
+    if (!name) { alert('Please enter a role name!'); return; }
+
+    const id = 'custom_' + Date.now();
+    data.customRoles.push({ id, name, desc: desc || 'Custom role added by cousin' });
+    saveData();
+
+    document.getElementById('customRoleName').value = '';
+    document.getElementById('customRoleDesc').value = '';
+
+    renderCustomRoles();
+    renderTakenBadges();
+    alert('✦ Role "' + name + '" added! Others can now claim it too.');
+  }
+
+  function renderCustomRoles() {
+    const grid = document.getElementById('customRoleGrid');
+    const cat = document.getElementById('customRoleCategory');
+
+    if (!data.customRoles.length) {
+      cat.style.display = 'none';
+      return;
+    }
+
+    cat.style.display = 'block';
+    const taken = getTakenRoles();
+
+    grid.innerHTML = data.customRoles.map(r => `
+      <div class="role-card ${taken[r.id] ? 'taken' : ''} ${selectedRoles.includes(r.id) ? 'selected' : ''}"
+           id="role-${r.id}" onclick="toggleRole('${r.id}')">
+        <div class="role-check">✓</div>
+        <div class="role-icon">✦</div>
+        <div class="role-name">${escHtml(r.name)}</div>
+        <div class="role-desc">${escHtml(r.desc)}</div>
+        <div class="role-taken-badge" id="taken-${r.id}">${taken[r.id] ? '✓ Taken by ' + taken[r.id] : ''}</div>
+      </div>
+    `).join('');
+  }
+
+  function renderTakenBadges() {
+    const taken = getTakenRoles();
+    const allRoles = { ...builtinRoles };
+    data.customRoles.forEach(r => { allRoles[r.id] = r.name; });
+
+    Object.keys(allRoles).forEach(id => {
+      const card = document.getElementById('role-' + id);
+      const badge = document.getElementById('taken-' + id);
+      if (!card || !badge) return;
+      if (taken[id]) {
+        card.classList.add('taken'); card.classList.remove('selected');
+        badge.textContent = '✓ Taken by ' + taken[id];
+      } else {
+        card.classList.remove('taken'); badge.textContent = '';
+      }
+    });
+  }
+
+  function renderResults() {
+    const allNames = getAllRoleNames();
+    const taken = getTakenRoles();
+    const list = document.getElementById('assignedList');
+    const countEl = document.getElementById('squadCount');
+    const unclaimedList = document.getElementById('unclaimedList');
+
+    // Assigned
+    if (!data.assignments.length) {
+      list.innerHTML = '<div class="empty-state">No roles claimed yet — be the first! 🌼</div>';
+      countEl.textContent = '0 cousins have claimed roles so far';
+    } else {
+      countEl.textContent = data.assignments.length + ' cousin' + (data.assignments.length > 1 ? 's' : '') + ' have claimed roles';
+      list.innerHTML = data.assignments.map(a => `
+        <div class="assigned-item">
+          <div class="assigned-avatar">${a.name.charAt(0).toUpperCase()}</div>
+          <div class="assigned-info">
+            <div class="assigned-name">${escHtml(a.name)}</div>
+            <div class="assigned-role">${a.roles.map(r => allNames[r] || r).join(' · ')}</div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // Unclaimed
+    const unclaimed = Object.keys(allNames).filter(id => !taken[id]);
+    if (!unclaimed.length) {
+      unclaimedList.innerHTML = '<div class="empty-state">All roles have been claimed! 🎉</div>';
+    } else {
+      unclaimedList.innerHTML = unclaimed.map(id => `
+        <div class="assigned-item" style="opacity:0.65;">
+          <div class="assigned-avatar" style="background:linear-gradient(135deg,#C8A060,#E5C080); font-size:14px;">?</div>
+          <div class="assigned-info">
+            <div class="assigned-name">${escHtml(allNames[id])}</div>
+            <div class="assigned-role" style="color:var(--gold);">Available — go claim it!</div>
+          </div>
+        </div>
+      `).join('');
+    }
+  }
+
+  function claimRoles() {
+    const name = document.getElementById('cousinName').value.trim();
+    if (!name) { alert('Please enter your name!'); return; }
+    if (!selectedRoles.length) { alert('Please select at least one role!'); return; }
+
+    const taken = getTakenRoles();
+    const conflict = selectedRoles.find(r => taken[r]);
+    if (conflict) {
+      const allNames = getAllRoleNames();
+      alert((allNames[conflict] || conflict) + ' is already taken by ' + taken[conflict] + '. Please deselect it.');
+      return;
+    }
+
+    data.assignments.push({
+      name,
+      roles: [...selectedRoles],
+      phone: document.getElementById('cousinPhone').value.trim()
+    });
+    saveData();
+
+    const allNames = getAllRoleNames();
+    document.getElementById('successMsg').textContent =
+      name + ', you\'ve claimed: ' + selectedRoles.map(r => allNames[r] || r).join(', ') + '. See you at Priyanka & Shubham\'s wedding! 🌼';
+    document.getElementById('successBox').classList.add('show');
+    document.getElementById('claimForm').style.display = 'none';
+
+    selectedRoles = [];
+    renderTakenBadges();
+    renderCustomRoles();
+  }
+
+  function escHtml(t) {
+    return String(t ?? '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  }
+
+  function showSection(name) {
+    document.getElementById('heroSection').style.display = 'none';
+    document.getElementById('mainNav').style.display = 'flex';
+    document.getElementById('bottomNav').style.display = 'flex';
+
+    ['events','roles','results','info'].forEach(s => {
+      document.getElementById('sec-' + s).classList.remove('visible');
+      const bn = document.getElementById('bn-' + s);
+      const nv = document.getElementById('nav-' + s);
+      if (bn) bn.classList.remove('active');
+      if (nv) nv.classList.remove('active');
+    });
+
+    document.getElementById('sec-' + name).classList.add('visible');
+    const bn = document.getElementById('bn-' + name);
+    const nv = document.getElementById('nav-' + name);
+    if (bn) bn.classList.add('active');
+    if (nv) nv.classList.add('active');
+
+    if (name === 'roles') { renderCustomRoles(); renderTakenBadges(); }
+    if (name === 'results') { renderResults(); }
+
+    window.scrollTo(0, 0);
+  }
+
+  // Init
+  renderCustomRoles();
+  renderTakenBadges();
+</script>
+
+</body>
+</html>
