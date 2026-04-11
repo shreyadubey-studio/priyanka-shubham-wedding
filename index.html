@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Priyanka & Shubham Wedding 🌼</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --marigold: #E8860A;
+      --marigold-deep: #B5620A;
+      --marigold-light: #F5B043;
+      --marigold-soft: #FEF0D6;
+      --emerald: #1A6B3C;
+      --emerald-deep: #0F4526;
+      --emerald-light: #2E9B5A;
+      --emerald-soft: #D6F0E2;
+      --cream: #FDFAF3;
+      --warm-white: #FFFEF9;
+      --text: #1A1A0E;
+      --muted: #5A6B50;
+      --line: #DDE8D0;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+
+    body {
+      font-family: 'Jost', sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    .hero {
+      min-height: 100vh;
+      background:
+        radial-gradient(ellipse at 10% 90%, rgba(232,134,10,0.22) 0%, transparent 45%),
+        radial-gradient(ellipse at 90% 10%, rgba(26,107,60,0.25) 0%, transparent 45%),
+        linear-gradient(160deg, #0C2E18 0%, #163D22 35%, #1A2E0A 70%, #0A1C10 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 40px 24px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(circle at 50% 50%, rgba(232,134,10,0.07) 1px, transparent 1px);
+      background-size: 36px 36px;
+      pointer-events: none;
+    }
+
+    .petal {
+      position: absolute;
+      font-size: 28px;
+      opacity: 0.09;
+      pointer-events: none;
+      animation: floatPetal 8s ease-in-out infinite;
+    }
+    .petal:nth-child(1) { top: 10%; left: 8%; animation-delay: 0s; font-size: 42px; }
+    .petal:nth-child(2) { top: 18%; right: 10%; animation-delay: 1.5s; font-size: 26px; }
+    .petal:nth-child(3) { bottom: 22%; left: 6%; animation-delay: 3s; font-size: 34px; }
+    .petal:nth-child(4) { bottom: 14%; right: 8%; animation-delay: 4.5s; font-size: 38px; }
+    .petal:nth-child(5) { top: 50%; left: 3%; animation-delay: 2s; font-size: 22px; }
+    .petal:nth-child(6) { top: 35%; right: 4%; animation-delay: 6s; font-size: 24px; }
+
+    @keyframes floatPetal {
+      0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0.09; }
+      50% { transform: translateY(-18px) rotate(14deg); opacity: 0.16; }
+    }
+
+    .hero-tag {
+      font-size: 11px; font-weight: 600;
+      letter-spacing: 0.28em; text-transform: uppercase;
+      color: var(--marigold-light); opacity: 0.9;
+      margin-bottom: 22px;
+      animation: fadeUp 0.8s ease both;
+    }
+
+    .hero-names {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(50px, 13vw, 104px);
+      font-weight: 400;
+      color: #FFFEF5;
+      line-height: 0.95;
+      animation: fadeUp 0.9s 0.1s ease both;
+    }
+
+    .hero-names .bride { color: var(--marigold-light); }
+    .hero-names .groom { color: #C8EDD8; }
+
+    .hero-amp {
+      display: block;
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(30px, 7vw, 56px);
+      color: var(--marigold);
+      font-style: italic;
+      margin: 8px 0;
+    }
+
+    .hero-ornament {
+      display: flex; align-items: center; gap: 14px;
+      margin: 22px 0;
+      animation: fadeUp 1s 0.2s ease both;
+    }
+
+    .ornament-line {
+      width: 60px; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--marigold-light));
+    }
+    .ornament-line.right { background: linear-gradient(90deg, var(--marigold-light), transparent); }
+    .ornament-flower { font-size: 22px; }
+
+    .hero-date {
+      font-family: 'Playfair Display', serif;
+      font-size: 19px; color: var(--marigold-light);
+      letter-spacing: 0.06em; font-style: italic;
+      animation: fadeUp 1s 0.3s ease both;
+    }
+
+    .hero-location {
+      font-size: 12px; color: rgba(200,237,216,0.5);
+      margin-top: 8px; letter-spacing: 0.16em; text-transform: uppercase;
+      animation: fadeUp 1s 0.4s ease both;
+    }
+
+    .hero-scroll {
+      position: absolute; bottom: 28px; left: 50%; transform: translateX(-50%);
+      display: flex; flex-direction: column; align-items: center; gap: 6px;
+      color: rgba(200,237,216,0.35); font-size: 10px;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      animation: fadeUp 1s 0.6s ease both; cursor: pointer;
+    }
+
+    .scroll-line {
+      width: 1px; height: 36px;
+      background: linear-gradient(180deg, rgba(232,134,10,0.7), transparent);
+      animation: scrollPulse 2.2s ease infinite;
+    }
+
+    @keyframes scrollPulse {
+      0%, 100% { opacity: 0.4; } 50% { opacity: 1; }
+    }
+
+    .nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(12,46,24,0.97); backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(232,134,10,0.2);
+      padding: 0 20px; display: flex;
+      align-items: center; justify-content: space-between; height: 56px;
+    }
+
+    .nav-brand {
+      font-family: 'Playfair Display', serif;
+      font-size: 19px; color: var(--marigold-light); font-style: italic;
+    }
+
+    .nav-links { display: flex; gap: 4px; }
+
+    .nav-links button {
+      background: none; border: none;
+      color: rgba(200,237,216,0.5);
+      font-family: 'Jost', sans-serif; font-size: 12px; font-weight: 500;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      padding: 8px 10px; border-radius: 8px; cursor: pointer;
+      transition: color 0.2s, background 0.2s;
+    }
+
+    .nav-links button:hover, .nav-links button.active {
+      color: var(--marigold-light); background: rgba(232,134,10,0.12);
+    }
+
+    .section {
+      display: none; animation: fadeUp 0.4s ease both;
+      max-width: 720px; margin: 0 auto; padding: 36px 20px 80px;
+    }
+    .section.visible { display: block; }
+
+    .sec-tag {
+      font-size: 11px; font-weight: 600;
+      letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--marigold); margin-bottom: 10px;
+    }
+
+    .sec-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(32px, 7vw, 50px); font-weight: 400;
+      line-height: 1.1; margin-bottom: 8px;
+    }
+    .sec-title em { font-style: italic; color: var(--emerald); }
+
+    .sec-sub { color: var(--muted); font-size: 14px; line-height: 1.65; margin-bottom: 28px; }
+
+    .timeline { display: flex; flex-direction: column; position: relative; }
+
+    .timeline::before {
+      content: ''; position: absolute; left: 22px; top: 0; bottom: 0; width: 1px;
+      background: linear-gradient(180deg, var(--marigold), var(--emerald-light), transparent);
+    }
+
+    .t-item { display: flex; gap: 18px; padding-bottom: 26px; position: relative; }
+
+    .t-dot {
+      width: 44px; height: 44px; border-radius: 50%;
+      background: var(--warm-white); border: 2px solid var(--marigold);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px; flex-shrink: 0; position: relative; z-index: 1;
+      box-shadow: 0 0 0 4px var(--cream);
+    }
+
+    .t-body {
+      background: var(--warm-white); border: 1px solid var(--line);
+      border-left: 3px solid var(--marigold-soft);
+      border-radius: 20px; padding: 15px 18px; flex: 1;
+    }
+
+    .t-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 21px; font-weight: 700; margin-bottom: 6px; color: var(--emerald-deep);
+    }
+
+    .t-meta { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 8px; }
+
+    .t-pill {
+      font-size: 11px; padding: 4px 10px; border-radius: 999px;
+      background: var(--marigold-soft); color: var(--marigold-deep);
+      font-weight: 600; letter-spacing: 0.04em;
+    }
+    .t-pill.green { background: var(--emerald-soft); color: var(--emerald-deep); }
+
+    .t-desc { font-size: 13px; color: var(--muted); line-height: 1.55; }
+
+    .roles-intro {
+      background: linear-gradient(135deg, var(--emerald-deep), var(--emerald));
+      border-radius: 24px; padding: 24px; color: white;
+      margin-bottom: 24px; position: relative; overflow: hidden;
+    }
+    .roles-intro::before {
+      content: '🌼'; position: absolute; right: -10px; top: 50%;
+      transform: translateY(-50%); font-size: 90px; opacity: 0.13;
+    }
+    .roles-intro h3 {
+      font-family: 'Playfair Display', serif; font-size: 26px;
+      font-weight: 400; font-style: italic; margin-bottom: 6px;
+      color: var(--marigold-light);
+    }
+    .roles-intro p { font-size: 13px; opacity: 0.75; line-height: 1.6; }
+
+    .role-category { margin-bottom: 24px; }
+
+    .role-cat-title {
+      font-size: 11px; font-weight: 600;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--emerald); padding: 0 4px; margin-bottom: 10px;
+    }
+
+    .role-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    @media (max-width: 480px) { .role-grid { grid-template-columns: 1fr; } }
+
+    .role-card {
+      background: var(--warm-white); border: 2px solid var(--line);
+      border-radius: 18px; padding: 14px 16px; cursor: pointer;
+      transition: border-color 0.2s, background 0.2s, transform 0.15s;
+      position: relative; user-select: none;
+    }
+    .role-card:active { transform: scale(0.98); }
+    .role-card.selected { border-color: var(--marigold); background: #FFFBF0; }
+    .role-card.taken { opacity: 0.42; cursor: not-allowed; pointer-events: none; }
+
+    .role-check {
+      position: absolute; top: 10px; right: 12px;
+      width: 22px; height: 22px; border-radius: 50%;
+      border: 2px solid var(--line);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 11px; transition: all 0.2s;
+    }
+    .role-card.selected .role-check {
+      background: var(--marigold); border-color: var(--marigold); color: white;
+    }
+
+    .role-icon { font-size: 22px; margin-bottom: 8px; }
+    .role-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 17px; font-weight: 700;
+      margin-bottom: 3px; padding-right: 26px; color: var(--emerald-deep);
+    }
+    .role-desc { font-size: 12px; color: var(--muted); line-height: 1.45; }
+    .role-taken-badge { font-size: 10px; color: var(--emerald); font-weight: 600; margin-top: 6px; }
+
+    .claim-form {
+      background: var(--warm-white); border: 1px solid var(--line);
+      border-top: 3px solid var(--marigold); border-radius: 24px;
+      padding: 22px; margin-top: 28px;
+    }
+    .claim-form h3 {
+      font-family: 'Playfair Display', serif; font-size: 24px;
+      font-weight: 400; font-style: italic; margin-bottom: 6px; color: var(--emerald-deep);
+    }
+    .claim-form p { font-size: 13px; color: var(--muted); margin-bottom: 18px; line-height: 1.5; }
+
+    .form-input {
+      width: 100%; border: 1.5px solid var(--line); background: var(--cream);
+      border-radius: 14px; padding: 12px 14px; font-size: 14px;
+      font-family: 'Jost', sans-serif; color: var(--text); outline: none;
+      margin-bottom: 12px; transition: border-color 0.2s;
+    }
+    .form-input:focus { border-color: var(--marigold); box-shadow: 0 0 0 3px rgba(232,134,10,0.1); }
+
+    .selected-preview {
+      background: var(--marigold-soft); border: 1px solid #F5D9A0;
+      border-radius: 14px; padding: 12px 14px; margin-bottom: 14px;
+      font-size: 13px; color: var(--marigold-deep); min-height: 44px; font-weight: 500;
+    }
+
+    .btn-primary {
+      width: 100%;
+      background: linear-gradient(135deg, var(--emerald-deep), var(--emerald));
+      color: white; border: none; border-radius: 14px; padding: 14px;
+      font-family: 'Jost', sans-serif; font-size: 14px; font-weight: 600;
+      letter-spacing: 0.06em; text-transform: uppercase; cursor: pointer;
+      transition: opacity 0.2s, transform 0.15s;
+      box-shadow: 0 8px 20px rgba(15,69,38,0.28);
+    }
+    .btn-primary:hover { opacity: 0.92; }
+    .btn-primary:active { transform: scale(0.99); }
+
+    .assigned-list { display: flex; flex-direction: column; gap: 10px; margin-top: 20px; }
+
+    .assigned-item {
+      background: var(--warm-white); border: 1px solid var(--line);
+      border-radius: 16px; padding: 14px 16px;
+      display: flex; align-items: center; gap: 14px;
+    }
+
+    .assigned-avatar {
+      width: 42px; height: 42px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--marigold), var(--emerald));
+      color: white; display: flex; align-items: center; justify-content: center;
+      font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 700; flex-shrink: 0;
+    }
+
+    .assigned-info { flex: 1; }
+    .assigned-name { font-weight: 600; font-size: 15px; margin-bottom: 2px; color: var(--emerald-deep); }
+    .assigned-role { font-size: 12px; color: var(--muted); }
+
+    .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px; }
+    @media (max-width: 480px) { .info-grid { grid-template-columns: 1fr; } }
+
+    .info-card {
+      background: var(--warm-white); border: 1px solid var(--line);
+      border-radius: 20px; padding: 18px;
+    }
+    .info-card-icon { font-size: 26px; margin-bottom: 10px; }
+    .info-card-label {
+      font-size: 10px; font-weight: 600; letter-spacing: 0.16em;
+      text-transform: uppercase; color: var(--marigold); margin-bottom: 4px;
+    }
+    .info-card-value {
+      font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700;
+      margin-bottom: 4px; color: var(--emerald-deep);
+    }
+    .info-card-sub { font-size: 12px; color: var(--muted); line-height: 1.5; }
+
+    .dress-card {
+      background: linear-gradient(135deg, var(--emerald-deep) 0%, #1A5C35 100%);
+      border-radius: 20px; padding: 22px; margin-bottom: 16px;
+      position: relative; overflow: hidden;
+    }
+    .dress-card::after {
+      content: '🌼🌿'; position: absolute; right: 16px; top: 50%;
+      transform: translateY(-50%); font-size: 38px; opacity: 0.18; letter-spacing: 4px;
+    }
+    .dress-card .info-card-label { color: var(--marigold-light); }
+    .dress-card .info-card-value { color: var(--marigold-light); font-size: 22px; }
+    .dress-card .info-card-sub { color: rgba(255,255,255,0.6); }
+
+    .checklist-card {
+      background: var(--warm-white); border: 1px solid var(--line);
+      border-left: 3px solid var(--emerald); border-radius: 20px; padding: 20px;
+    }
+    .checklist-card .info-card-label { color: var(--emerald); }
+    .checklist-card .info-card-value { font-size: 17px; margin-bottom: 10px; color: var(--emerald-deep); }
+    .checklist-card .info-card-sub { line-height: 2.1; }
+
+    .success-box {
+      background: linear-gradient(135deg, var(--emerald-deep), var(--emerald));
+      border-radius: 20px; padding: 26px 22px; color: white;
+      text-align: center; margin-top: 16px; display: none;
+    }
+    .success-box.show { display: block; animation: fadeUp 0.4s ease; }
+    .success-box h3 {
+      font-family: 'Playfair Display', serif; font-size: 30px;
+      font-weight: 400; font-style: italic; margin: 10px 0 8px;
+      color: var(--marigold-light);
+    }
+    .success-box p { font-size: 13px; opacity: 0.8; line-height: 1.6; }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .bottom-nav {
+      position: fixed; bottom: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(12,46,24,0.97); backdrop-filter: blur(18px);
+      border-top: 1px solid rgba(232,134,10,0.18);
+      display: flex; padding: 8px 8px 14px; gap: 4px;
+    }
+
+    .bottom-nav button {
+      flex: 1; background: none; border: none;
+      color: rgba(200,237,216,0.4);
+      font-family: 'Jost', sans-serif; font-size: 11px; font-weight: 500;
+      padding: 8px 4px; border-radius: 12px; cursor: pointer;
+      display: flex; flex-direction: column; align-items: center; gap: 4px;
+      transition: color 0.2s, background 0.2s;
+      letter-spacing: 0.08em; text-transform: uppercase;
+    }
+    .bottom-nav button .bn-icon { font-size: 19px; }
+    .bottom-nav button.active {
+      color: var(--marigold-light); background: rgba(232,134,10,0.14);
+    }
+
+    .content-wrap { padding-bottom: 74px; }
+    .flower-divider {
+      text-align: center; font-size: 20px;
+      letter-spacing: 10px; opacity: 0.3; margin: 24px 0 20px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="hero" id="heroSection">
+  <div class="petal">🌼</div>
+  <div class="petal">🌿</div>
+  <div class="petal">🌼</div>
+  <div class="petal">🌿</div>
+  <div class="petal">🌼</div>
+  <div class="petal">🌿</div>
+
+  <div class="hero-tag">A Grand Wedding Celebration</div>
+
+  <div class="hero-names">
+    <span class="bride">Priyanka</span>
+    <span class="hero-amp">&amp;</span>
+    <span class="groom">Shubham</span>
+  </div>
+
+  <div class="hero-ornament">
+    <div class="ornament-line"></div>
+    <div class="ornament-flower">🌼</div>
+    <div class="ornament-line right"></div>
+  </div>
+
+  <div class="hero-date">Raipur, Chhattisgarh · 2025</div>
+  <div class="hero-location">🌿 With love, blessings & family 🌿</div>
+
+  <div class="hero-scroll" onclick="showSection('events')">
+    <div class="scroll-line"></div>
+    <span>Explore</span>
+  </div>
+</div>
+
+<div class="nav" id="mainNav" style="display:none;">
+  <div class="nav-brand">Priyanka & Shubham</div>
+  <div class="nav-links">
+    <button onclick="showSection('events')" id="nav-events">Events</button>
+    <button onclick="showSection('roles')" id="nav-roles">Roles</button>
+    <button onclick="showSection('info')" id="nav-info">Info</button>
+  </div>
+</div>
+
+<div class="content-wrap">
+
+  <div class="section" id="sec-events">
+    <div class="sec-tag">The Celebrations</div>
+    <div class="sec-title">Wedding <em>Functions</em></div>
+    <div class="sec-sub">Five beautiful days of rituals, dance, joy and togetherness in Raipur, Chhattisgarh.</div>
+
+    <div class="timeline">
+      <div class="t-item">
+        <div class="t-dot">🌿</div>
+        <div class="t-body">
+          <div class="t-name">Haldi Ceremony</div>
+          <div class="t-meta">
+            <div class="t-pill">📅 Day 1 · Morning</div>
+            <div class="t-pill green">👨‍👩‍👧 Close Family</div>
+          </div>
+          <div class="t-desc">A sacred turmeric ceremony at home. Cousins help apply haldi and keep the energy warm and joyful!</div>
+        </div>
+      </div>
+      <div class="t-item">
+        <div class="t-dot">🌼</div>
+        <div class="t-body">
+          <div class="t-name">Mehndi Night</div>
+          <div class="t-meta">
+            <div class="t-pill">📅 Day 1 · Evening</div>
+            <div class="t-pill green">🎶 Music & Dance</div>
+          </div>
+          <div class="t-desc">Beautiful henna evening with music, laughter and dance. The ladies' favourite night of the week!</div>
+        </div>
+      </div>
+      <div class="t-item">
+        <div class="t-dot">🎉</div>
+        <div class="t-body">
+          <div class="t-name">Sangeet</div>
+          <div class="t-meta">
+            <div class="t-pill">📅 Day 2 · Evening</div>
+            <div class="t-pill green">🎤 Performances</div>
+          </div>
+          <div class="t-desc">Grand night of dance performances, games and celebration. Cousins — this is YOUR night to shine!</div>
+        </div>
+      </div>
+      <div class="t-item">
+        <div class="t-dot">🐎</div>
+        <div class="t-body">
+          <div class="t-name">Baraat & Wedding</div>
+          <div class="t-meta">
+            <div class="t-pill">📅 Day 3 · Morning</div>
+            <div class="t-pill green">✨ Main Ceremony</div>
+          </div>
+          <div class="t-desc">The grand baraat procession followed by the wedding ceremony with pheras and all sacred rituals.</div>
+        </div>
+      </div>
+      <div class="t-item">
+        <div class="t-dot">🥂</div>
+        <div class="t-body">
+          <div class="t-name">Reception</div>
+          <div class="t-meta">
+            <div class="t-pill">📅 Day 3 · Evening</div>
+            <div class="t-pill green">👥 1000+ Guests</div>
+          </div>
+          <div class="t-desc">Grand reception in Raipur. All cousins on full duty — welcoming, hosting and celebrating!</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="sec-roles">
+    <div class="sec-tag">Cousin Squad</div>
+    <div class="sec-title">Pick Your <em>Role</em></div>
+    <div class="sec-sub">Select the role(s) you'd love to take on. Roles are locked once claimed — first come, first served!</div>
+
+    <div class="roles-intro">
+      <h3>You make this wedding magical ✨</h3>
+      <p>With 1000+ guests in Raipur, every cousin plays a vital part. Pick what matches your energy and personality.</p>
+    </div>
+
+    <div class="role-category">
+      <div class="role-cat-title">🎊 Ceremony & Procession</div>
+      <div class="role-grid">
+        <div class="role-card" id="role-baraat1" onclick="toggleRole('baraat1')">
+          <div class="role-check">✓</div>
+          <div class="role-icon">🐎</div>
+          <div class="role-name">Baraat Leader</div>
+          <div class="role-desc">Lead the procession with full energy — dance, dhol & hype!</div>
+          <div class="role-taken-badge" id="taken-baraat1"></div>
+        </div>
+        <div class="role-card" id="role-baraat2" onclick="toggleRole('baraat2')">
+          <div class="role-check">✓</div>
+          <div class="role-icon">💃</div>
+          <div class="role-name">Baraat Dancer</div>
+          <div class="role-desc">Keep the baraat dancing and energetic the whole way through.</div>
+          <div class="role-taken-badge" id="taken-baraat2"></div>
+        </div>
+        <div class="role-card" id="role-pheras" onclick="toggleRole('pheras')">
+          <div class="role-check">✓</div>
+          <div class="role-icon">🌼</div>
+          <div class="role-name">Ritual Helper</div>
+          <div class="role-desc">Stay near the pandit, keep all pooja samagri ready on time.</div>
+          <div class="role-taken-badge" id="taken-pheras"></div>
+        </div>
+        <div class="role-card" id="role-groom" onclick="toggleRole('groom')">
+          <div class="role-check">✓</div>
+          <div class="role-icon">🤵</div>
+          <div class="role-name">Groom's Shadow</div>
+          <div class="role-desc">Stay close to Shubham for anything he needs on the big day.</div>
+          <div class="role-taken-badge" id="taken-groom"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="role-category">
+      <div class="role-cat-title">🚪 Guest Management</div>
+      <div class="role-grid">
+        <div class="role-card" id="role-welcome1" onclick="toggleRole('welcome1')">
+          <div class="role-check">✓</div>
+          <div class="role-icon">🙏</div>
+          <div class="role-name">Entry Welcomer</div>
+          <div class="role-desc">Greet guests at the gate, hand out garlands and gifts warmly.</div>
+          <div class="role-taken-badge" id="taken-welcome1"></div>
+        </div>
+        <div class="role-card" id="role-welcome2" onclick="toggleRole('welcome2')">
+          <div class="role-check">✓</div>
+          <div class="role-icon">👴</div>
+          <div class="role-name">VIP Host</div>
+          <div class="role-desc">Personally escort and attend to elders and special guests.</div>
+          <div class="role-taken-badge" id="taken-welcome2"></div>
+        </div>
+        <div class="role-card" id="role-seating" onclick="toggleRole('seating')">
+          <div class="role-check">✓</div>
+          <div class="role-icon">🪑</div>
+          <div class="role-name">Seating Guide</div>
+          <div class="role-desc">Direct 1000+ guests to the right seating and dining areas.</div>
+          <div class="role-taken-badge" id="taken-seating"></div>
+        </div>
+        <div class="role-card" id="role-kids" onclick="toggleRole('kids')">
+          <div class="role-check">✓</div>
+          <div class="role-icon">👶</div>
+          <div class="role-name">Kids Wrangler</div>
+          <div class="role-desc">Keep the little ones entertained, safe and out of trouble!</div>
+          <div class="role-taken-badge" id="taken-kids"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="role-category">
+      <div class="role-cat-title">🍽️ Food & Logistics</div>
+      <div class="role-grid">
+        <div class="role-card" id="role-catering" onclick="toggleRole('catering')">
+          <div class="role-check">✓</div>
+          <div class="role-icon">🍛</div>
+          <div class="role-name">Catering Supervisor</div>
+          <div class="role-desc">Liaise with the catering team, keep food counters stocked.</div>
+          <div class="role-taken-badge" id="taken-catering"></div>
+        </div>
+        <div class="role-card" id="role-vendor" onclick="toggleRole('vendor')">
+          <div class="role-check">✓</div>
+          <div class="role-icon">📋</div>
+          <div class="role-name">Vendor Liaison</div>
+          <div class="role-desc">Point of contact for photographer, DJ, decorators & caterers.</div>
+          <div class="role-taken-badge" id="taken-vendor"></div>
+        </div>
+        <div class="role-card" id="role-gifts" onclick="toggleRole('gifts')">
+          <div class="role-check">✓</div>
+          <div class="role-icon">🎁</div>
+          <div class="role-name">Gift Manager</div>
+          <div class="role-desc">Collect, organise and safely store all gifts and envelopes.</div>
+          <div class="role-taken-badge" id="taken-gifts"></div>
+        </div>
+        <div class="role-card" id="role-float" onclick="toggleRole('float')">
+          <div class="role-check">✓</div>
+          <div class="role-icon">⚡</div>
+          <div class="role-name">Floating Helper</div>
+          <div class="role-desc">No fixed role — jump in wherever help is needed instantly.</div>
+          <div class="role-taken-badge" id="taken-float"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="role-category">
+      <div class="role-cat-title">🎉 Entertainment & Media</div>
+      <div class="role-grid">
+        <div class="role-card" id="role-mc" onclick="toggleRole('mc')">
+          <div class="role-check">✓</div>
+          <div class="role-icon">🎤</div>
+          <div class="role-name">MC / Anchor</div>
+          <div class="role-desc">Host the reception & sangeet — funny, charming, confident.</div>
+          <div class="role-taken-badge" id="taken-mc"></div>
+        </div>
+        <div class="role-card" id="role-dance" onclick="toggleRole('dance')">
+          <div class="role-check">✓</div>
+          <div class="role-icon">🕺</div>
+          <div class="role-name">Dance Lead</div>
+          <div class="role-desc">Organise and lead the cousin dance performance at sangeet.</div>
+          <div class="role-taken-badge" id="taken-dance"></div>
+        </div>
+        <div class="role-card" id="role-dj" onclick="toggleRole('dj')">
+          <div class="role-check">✓</div>
+          <div class="role-icon">🎵</div>
+          <div class="role-name">DJ Liaison</div>
+          <div class="role-desc">Coordinate song requests, cue key songs at the right moments.</div>
+          <div class="role-taken-badge" id="taken-dj"></div>
+        </div>
+        <div class="role-card" id="role-reels" onclick="toggleRole('reels')">
+          <div class="role-check">✓</div>
+          <div class="role-icon">📸</div>
+          <div class="role-name">Reels & Photos</div>
+          <div class="role-desc">Capture candid moments and reels for family WhatsApp & Instagram.</div>
+          <div class="role-taken-badge" id="taken-reels"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="claim-form" id="claimForm">
+      <h3>Claim your role 🌼</h3>
+      <p>Tap your roles above, then enter your name to confirm. Roles are locked once claimed!</p>
+      <div class="selected-preview" id="selectedPreview">No roles selected yet…</div>
+      <input class="form-input" id="cousinName" placeholder="Your full name" />
+      <input class="form-input" id="cousinPhone" placeholder="WhatsApp number (optional)" />
+      <button class="btn-primary" onclick="claimRoles()">✓ &nbsp; Confirm My Roles</button>
+    </div>
+
+    <div class="success-box" id="successBox">
+      <div style="font-size:40px;">🌼🎉🌿</div>
+      <h3>You're all set!</h3>
+      <p id="successMsg">Your roles have been confirmed. See you at the wedding!</p>
+    </div>
+
+    <div id="assignedSection">
+      <div class="flower-divider">🌼 🌿 🌼</div>
+      <div class="sec-tag">Already Claimed</div>
+      <div class="assigned-list" id="assignedList"></div>
+    </div>
+  </div>
+
+  <div class="section" id="sec-info">
+    <div class="sec-tag">Need to Know</div>
+    <div class="sec-title">Wedding <em>Details</em></div>
+    <div class="sec-sub">Everything your cousins need before arriving in Raipur for Priyanka & Shubham's wedding.</div>
+
+    <div class="dress-card">
+      <div class="info-card-icon">👗</div>
+      <div class="info-card-label">Dress Code</div>
+      <div class="info-card-value">Traditional Indian Attire</div>
+      <div class="info-card-sub">Lehenga / Saree for ladies &nbsp;·&nbsp; Sherwani / Kurta for gents<br/>Cousins: Coordinate colours in the WhatsApp group! 🌼</div>
+    </div>
+
+    <div class="info-grid">
+      <div class="info-card">
+        <div class="info-card-icon">📍</div>
+        <div class="info-card-label">Venue</div>
+        <div class="info-card-value">Raipur</div>
+        <div class="info-card-sub">Chhattisgarh<br/>Exact address on WhatsApp</div>
+      </div>
+      <div class="info-card">
+        <div class="info-card-icon">👥</div>
+        <div class="info-card-label">Guests</div>
+        <div class="info-card-value">~1000</div>
+        <div class="info-card-sub">Grand traditional wedding — all hands on deck!</div>
+      </div>
+      <div class="info-card">
+        <div class="info-card-icon">📱</div>
+        <div class="info-card-label">Coordination</div>
+        <div class="info-card-value">WhatsApp Group</div>
+        <div class="info-card-sub">All cousins briefed the night before</div>
+      </div>
+      <div class="info-card">
+        <div class="info-card-icon">🌼</div>
+        <div class="info-card-label">Functions</div>
+        <div class="info-card-value">5 Celebrations</div>
+        <div class="info-card-sub">Haldi · Mehndi · Sangeet · Baraat · Reception</div>
+      </div>
+    </div>
+
+    <div class="checklist-card">
+      <div class="info-card-icon">✅</div>
+      <div class="info-card-label">Cousin Checklist</div>
+      <div class="info-card-value">Day-of Tips</div>
+      <div class="info-card-sub">
+        🌼 &nbsp;Claim your role on this website now<br/>
+        🌿 &nbsp;Arrive 1 hour before your function starts<br/>
+        🌼 &nbsp;Keep your phone fully charged all day<br/>
+        🌿 &nbsp;Attend the family briefing the night before<br/>
+        🌼 &nbsp;Coordinate outfit colour with your sub-team<br/>
+        🌿 &nbsp;Most importantly — enjoy every moment! 🎊
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="bottom-nav" id="bottomNav" style="display:none;">
+  <button id="bn-events" onclick="showSection('events')">
+    <span class="bn-icon">🗓️</span>Events
+  </button>
+  <button id="bn-roles" onclick="showSection('roles')">
+    <span class="bn-icon">✋</span>Roles
+  </button>
+  <button id="bn-info" onclick="showSection('info')">
+    <span class="bn-icon">ℹ️</span>Info
+  </button>
+</div>
+
+<script>
+  const STORAGE_KEY = 'prishubh_roles_v2';
+  let selectedRoles = [];
+  let assignments = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+
+  const roleNames = {
+    baraat1: 'Baraat Leader', baraat2: 'Baraat Dancer',
+    pheras: 'Ritual Helper', groom: "Groom's Shadow",
+    welcome1: 'Entry Welcomer', welcome2: 'VIP Host',
+    seating: 'Seating Guide', kids: 'Kids Wrangler',
+    catering: 'Catering Supervisor', vendor: 'Vendor Liaison',
+    gifts: 'Gift Manager', float: 'Floating Helper',
+    mc: 'MC / Anchor', dance: 'Dance Lead',
+    dj: 'DJ Liaison', reels: 'Reels & Photos'
+  };
+
+  function getTakenRoles() {
+    const taken = {};
+    assignments.forEach(a => { a.roles.forEach(r => { taken[r] = a.name; }); });
+    return taken;
+  }
+
+  function toggleRole(roleId) {
+    const taken = getTakenRoles();
+    if (taken[roleId]) return;
+    const card = document.getElementById('role-' + roleId);
+    const idx = selectedRoles.indexOf(roleId);
+    if (idx === -1) { selectedRoles.push(roleId); card.classList.add('selected'); }
+    else { selectedRoles.splice(idx, 1); card.classList.remove('selected'); }
+    updatePreview();
+  }
+
+  function updatePreview() {
+    const p = document.getElementById('selectedPreview');
+    p.textContent = selectedRoles.length
+      ? '✓ ' + selectedRoles.map(r => roleNames[r]).join(' · ')
+      : 'No roles selected yet…';
+  }
+
+  function renderTakenBadges() {
+    const taken = getTakenRoles();
+    Object.keys(roleNames).forEach(id => {
+      const card = document.getElementById('role-' + id);
+      const badge = document.getElementById('taken-' + id);
+      if (!card || !badge) return;
+      if (taken[id]) {
+        card.classList.add('taken'); card.classList.remove('selected');
+        badge.textContent = '✓ Taken by ' + taken[id];
+      } else {
+        card.classList.remove('taken'); badge.textContent = '';
+      }
+    });
+  }
+
+  function renderAssigned() {
+    const list = document.getElementById('assignedList');
+    if (!assignments.length) {
+      list.innerHTML = '<div style="color:var(--muted);font-size:13px;padding:8px 0;">No roles claimed yet — be the first! 🌼</div>';
+      return;
+    }
+    list.innerHTML = assignments.map(a => `
+      <div class="assigned-item">
+        <div class="assigned-avatar">${a.name.charAt(0).toUpperCase()}</div>
+        <div class="assigned-info">
+          <div class="assigned-name">${escHtml(a.name)}</div>
+          <div class="assigned-role">${a.roles.map(r => roleNames[r] || r).join(' · ')}</div>
+        </div>
+      </div>`).join('');
+  }
+
+  function claimRoles() {
+    const name = document.getElementById('cousinName').value.trim();
+    if (!name) { alert('Please enter your name!'); return; }
+    if (!selectedRoles.length) { alert('Please select at least one role!'); return; }
+    const taken = getTakenRoles();
+    const conflict = selectedRoles.find(r => taken[r]);
+    if (conflict) { alert(roleNames[conflict] + ' is already taken by ' + taken[conflict] + '. Please deselect it.'); return; }
+
+    assignments.push({ name, roles: [...selectedRoles], phone: document.getElementById('cousinPhone').value.trim() });
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(assignments));
+
+    document.getElementById('successMsg').textContent =
+      name + ', you\'ve claimed: ' + selectedRoles.map(r => roleNames[r]).join(', ') + '. See you at Priyanka & Shubham\'s wedding! 🌼';
+    document.getElementById('successBox').classList.add('show');
+    document.getElementById('claimForm').style.display = 'none';
+
+    selectedRoles = [];
+    renderTakenBadges();
+    renderAssigned();
+  }
+
+  function escHtml(t) {
+    return String(t ?? '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  }
+
+  function showSection(name) {
+    document.getElementById('heroSection').style.display = 'none';
+    document.getElementById('mainNav').style.display = 'flex';
+    document.getElementById('bottomNav').style.display = 'flex';
+
+    ['events','roles','info'].forEach(s => {
+      document.getElementById('sec-' + s).classList.remove('visible');
+      const bn = document.getElementById('bn-' + s);
+      const nv = document.getElementById('nav-' + s);
+      if (bn) bn.classList.remove('active');
+      if (nv) nv.classList.remove('active');
+    });
+
+    document.getElementById('sec-' + name).classList.add('visible');
+    const bn = document.getElementById('bn-' + name);
+    const nv = document.getElementById('nav-' + name);
+    if (bn) bn.classList.add('active');
+    if (nv) nv.classList.add('active');
+
+    if (name === 'roles') { renderTakenBadges(); renderAssigned(); }
+    window.scrollTo(0, 0);
+  }
+
+  renderTakenBadges();
+  renderAssigned();
+</script>
+</body>
+</html>
