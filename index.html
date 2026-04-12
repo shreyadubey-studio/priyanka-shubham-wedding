@@ -1,0 +1,1365 @@
+<!DOCTYPE html>
+
+<html lang="hi">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Priyanka & Shubham Vivah 🌼</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Outfit:wght@300;400;500;600&family=Noto+Sans+Devanagari:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    :root{
+      --gold:#C8820A;--gold-deep:#8B5500;--gold-rich:#E0A020;
+      --gold-light:#F5C842;--gold-pale:#FFF8E0;--gold-soft:#FAEAA0;
+      --amber:#D4560A;--amber-soft:#FFE8D0;
+      --dark:#18080A;--dark-mid:#2E1408;
+      --cream:#FDFAF0;--warm-white:#FFFEF5;
+      --text:#1A0E00;--muted:#7A5C30;--line:#EDD9A0;
+      --shadow:0 8px 32px rgba(200,130,10,0.10);
+      --green:#1A5C2A;--green-soft:#D4EDDA;
+    }
+    *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
+    body{font-family:'Outfit',sans-serif;background:#18080A;color:var(--text);min-height:100vh;}
+
+```
+/* ── LOGIN ── */
+.login-screen{
+  min-height:100vh;
+  background:
+    radial-gradient(ellipse at 20% 80%,rgba(200,130,10,0.32) 0%,transparent 50%),
+    radial-gradient(ellipse at 80% 20%,rgba(212,86,10,0.22) 0%,transparent 45%),
+    linear-gradient(160deg,#18080A 0%,#2E1408 35%,#1A0A00 70%,#0A0400 100%);
+  display:flex;align-items:center;justify-content:center;padding:24px;
+  position:relative;overflow:hidden;
+}
+.login-screen::before{
+  content:'';position:absolute;inset:0;
+  background-image:radial-gradient(circle,rgba(200,130,10,0.06) 1px,transparent 1px);
+  background-size:38px 38px;pointer-events:none;
+}
+.login-petal{position:absolute;pointer-events:none;animation:floatPetal 9s ease-in-out infinite;opacity:0.08;font-size:36px;}
+.login-petal:nth-child(1){top:8%;left:6%;animation-delay:0s;}
+.login-petal:nth-child(2){top:14%;right:8%;animation-delay:2s;font-size:24px;}
+.login-petal:nth-child(3){bottom:20%;left:4%;animation-delay:4s;font-size:28px;}
+.login-petal:nth-child(4){bottom:12%;right:6%;animation-delay:1.5s;font-size:32px;}
+
+.login-card{
+  background:rgba(30,12,4,0.75);border:1px solid rgba(200,130,10,0.35);
+  border-radius:28px;padding:36px 26px 28px;width:100%;max-width:360px;
+  backdrop-filter:blur(24px);text-align:center;position:relative;z-index:1;
+  box-shadow:0 32px 80px rgba(0,0,0,0.5),0 0 0 1px rgba(200,130,10,0.08);
+}
+.login-card::before{
+  content:'';position:absolute;top:0;left:20%;right:20%;height:2px;
+  background:linear-gradient(90deg,transparent,var(--gold-rich),transparent);border-radius:999px;
+}
+.login-ornament{display:flex;align-items:center;gap:10px;justify-content:center;margin-bottom:16px;}
+.l-orn-line{height:1px;width:40px;background:linear-gradient(90deg,transparent,rgba(200,130,10,0.5));}
+.l-orn-line.r{background:linear-gradient(90deg,rgba(200,130,10,0.5),transparent);}
+.l-orn-gem{font-size:12px;color:rgba(200,130,10,0.6);}
+.login-logo{font-family:'Cormorant Garamond',serif;font-size:46px;font-weight:300;color:var(--gold-light);line-height:0.95;margin-bottom:6px;text-shadow:0 0 40px rgba(200,130,10,0.3);}
+.login-logo .amp{display:block;font-style:italic;color:var(--gold-rich);font-size:32px;margin:2px 0;}
+.login-sub{font-size:10px;color:rgba(255,220,120,0.4);letter-spacing:0.24em;text-transform:uppercase;margin-bottom:4px;}
+.login-date{font-family:'Cormorant Garamond',serif;font-size:14px;color:rgba(255,220,120,0.35);font-style:italic;margin-bottom:28px;}
+
+/* Two big login buttons */
+.login-choice{display:flex;flex-direction:column;gap:12px;margin-bottom:16px;}
+.login-choice-btn{
+  width:100%;border:1px solid rgba(200,130,10,0.3);border-radius:16px;
+  padding:18px 20px;cursor:pointer;text-align:left;
+  display:flex;align-items:center;gap:14px;
+  transition:all 0.2s;background:rgba(255,248,224,0.04);
+}
+.login-choice-btn:hover{background:rgba(200,130,10,0.12);border-color:rgba(200,130,10,0.5);}
+.login-choice-btn.active{background:rgba(200,130,10,0.15);border-color:var(--gold-rich);}
+.lcb-icon{font-size:28px;flex-shrink:0;}
+.lcb-info{}
+.lcb-title{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:600;color:var(--gold-light);}
+.lcb-sub{font-size:11px;color:rgba(255,220,120,0.4);margin-top:2px;}
+
+/* Management form */
+.mgmt-form{display:none;animation:fadeUp 0.3s ease;}
+.mgmt-form.show{display:block;}
+.login-divider{display:flex;align-items:center;gap:10px;margin:16px 0;}
+.login-divider-line{flex:1;height:1px;background:rgba(200,130,10,0.2);}
+.login-divider-text{font-size:10px;color:rgba(255,220,120,0.3);letter-spacing:0.1em;white-space:nowrap;}
+.login-input{
+  width:100%;background:rgba(255,248,224,0.05);border:1px solid rgba(200,130,10,0.25);
+  border-radius:12px;padding:13px 15px;font-size:14px;
+  font-family:'Outfit',sans-serif;color:rgba(255,240,200,0.9);outline:none;
+  margin-bottom:10px;transition:border-color 0.2s,background 0.2s;
+}
+.login-input::placeholder{color:rgba(255,220,120,0.25);}
+.login-input:focus{border-color:var(--gold-rich);background:rgba(255,248,224,0.08);}
+.login-btn{
+  width:100%;background:linear-gradient(135deg,var(--gold-deep),var(--gold-rich));
+  color:white;border:none;border-radius:12px;padding:14px;
+  font-family:'Outfit',sans-serif;font-size:14px;font-weight:600;
+  cursor:pointer;transition:opacity 0.2s,transform 0.15s;letter-spacing:0.06em;
+  box-shadow:0 8px 24px rgba(139,85,0,0.35);margin-bottom:8px;
+}
+.login-btn:active{transform:scale(0.99);}
+.login-back{background:none;border:none;color:rgba(255,220,120,0.4);font-size:12px;cursor:pointer;padding:8px;font-family:'Outfit',sans-serif;}
+.login-error{font-size:12px;color:#F5A0A0;margin-top:8px;display:none;background:rgba(200,50,50,0.1);border-radius:8px;padding:8px;}
+.login-error.show{display:block;}
+
+/* ── MAIN APP ── */
+.app-bg{background:var(--cream);}
+
+/* ── HERO ── */
+.hero{
+  min-height:100vh;
+  background:
+    radial-gradient(ellipse at 15% 85%,rgba(200,130,10,0.28) 0%,transparent 50%),
+    radial-gradient(ellipse at 85% 15%,rgba(212,86,10,0.18) 0%,transparent 45%),
+    linear-gradient(160deg,#18080A 0%,#2E1408 30%,#1A0A00 65%,#0A0400 100%);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;padding:40px 24px 120px;position:relative;overflow:hidden;
+}
+.hero::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle,rgba(200,130,10,0.07) 1px,transparent 1px);background-size:40px 40px;pointer-events:none;}
+.petal{position:absolute;pointer-events:none;animation:floatPetal 9s ease-in-out infinite;opacity:0.09;}
+.petal:nth-child(1){top:8%;left:7%;font-size:44px;animation-delay:0s;}
+.petal:nth-child(2){top:15%;right:9%;font-size:28px;animation-delay:1.8s;}
+.petal:nth-child(3){bottom:25%;left:5%;font-size:36px;animation-delay:3.2s;}
+.petal:nth-child(4){bottom:18%;right:7%;font-size:40px;animation-delay:5s;}
+.petal:nth-child(5){top:48%;left:2%;font-size:22px;animation-delay:2.4s;}
+.petal:nth-child(6){top:32%;right:3%;font-size:26px;animation-delay:6.5s;}
+@keyframes floatPetal{0%,100%{transform:translateY(0) rotate(0deg);opacity:0.09;}50%{transform:translateY(-18px) rotate(14deg);opacity:0.17;}}
+.hero-tag{font-size:10px;font-weight:600;letter-spacing:0.28em;text-transform:uppercase;color:var(--gold-light);opacity:0.85;margin-bottom:18px;animation:fadeUp 0.8s ease both;}
+.hero-names{font-family:'Cormorant Garamond',serif;font-size:clamp(52px,14vw,110px);font-weight:300;line-height:0.92;animation:fadeUp 0.9s 0.1s ease both;}
+.bride{color:var(--gold-light);}
+.groom{color:#FFE8C0;}
+.hero-amp{display:block;font-family:'Cormorant Garamond',serif;font-size:clamp(30px,8vw,62px);color:var(--gold-rich);font-style:italic;margin:4px 0;}
+.hero-ornament{display:flex;align-items:center;gap:12px;margin:18px 0;animation:fadeUp 1s 0.2s ease both;}
+.orn-line{height:1px;width:50px;background:linear-gradient(90deg,transparent,var(--gold-rich));}
+.orn-line.r{background:linear-gradient(90deg,var(--gold-rich),transparent);}
+.orn-gem{font-size:15px;color:var(--gold-rich);}
+.hero-date{font-family:'Cormorant Garamond',serif;font-size:17px;color:var(--gold-light);letter-spacing:0.08em;font-style:italic;animation:fadeUp 1s 0.3s ease both;}
+.hero-location{font-size:11px;color:rgba(255,220,120,0.45);margin-top:7px;letter-spacing:0.16em;text-transform:uppercase;animation:fadeUp 1s 0.4s ease both;}
+.hero-explore{
+  position:absolute;bottom:52px;left:50%;transform:translateX(-50%);
+  display:flex;flex-direction:column;align-items:center;gap:6px;
+  animation:fadeUp 1s 0.6s ease both;cursor:pointer;
+  background:rgba(200,130,10,0.15);border:1px solid rgba(200,130,10,0.4);
+  border-radius:50px;padding:12px 24px;backdrop-filter:blur(8px);transition:background 0.2s;
+}
+.hero-explore:hover{background:rgba(200,130,10,0.25);}
+.hero-explore-text{font-size:12px;color:var(--gold-light);font-weight:500;letter-spacing:0.06em;}
+.hero-explore-hint{font-size:11px;color:rgba(255,220,120,0.55);font-family:'Noto Sans Devanagari',sans-serif;}
+.scroll-arrow{font-size:16px;color:var(--gold-rich);animation:bounce 2s ease infinite;}
+@keyframes bounce{0%,100%{transform:translateY(0);}50%{transform:translateY(4px);}}
+
+/* ── NAV ── */
+.nav{position:sticky;top:0;z-index:100;background:rgba(24,8,10,0.97);backdrop-filter:blur(20px);border-bottom:1px solid rgba(200,130,10,0.22);padding:0 12px;display:flex;align-items:center;justify-content:space-between;height:52px;}
+.nav-brand{font-family:'Cormorant Garamond',serif;font-size:18px;color:var(--gold-light);font-style:italic;white-space:nowrap;}
+.nav-right{display:flex;align-items:center;gap:8px;}
+.nav-user{font-size:11px;color:rgba(255,220,120,0.5);white-space:nowrap;}
+.nav-logout{font-size:11px;background:rgba(200,130,10,0.15);border:1px solid rgba(200,130,10,0.2);color:var(--gold-light);border-radius:8px;padding:5px 9px;cursor:pointer;font-family:'Outfit',sans-serif;}
+.nav-links-bar{position:sticky;top:52px;z-index:99;background:rgba(24,8,10,0.97);backdrop-filter:blur(20px);border-bottom:1px solid rgba(200,130,10,0.12);display:flex;padding:0 8px;overflow-x:auto;}
+.nav-links-bar button{background:none;border:none;color:rgba(255,220,120,0.4);font-family:'Noto Sans Devanagari',sans-serif;font-size:11px;font-weight:500;padding:10px 10px;white-space:nowrap;cursor:pointer;transition:color 0.2s;border-bottom:2px solid transparent;}
+.nav-links-bar button:hover,.nav-links-bar button.active{color:var(--gold-light);border-bottom-color:var(--gold-rich);}
+
+/* ── SECTIONS ── */
+.section{display:none;animation:fadeUp 0.4s ease both;max-width:720px;margin:0 auto;padding:24px 16px 90px;}
+.section.visible{display:block;}
+.sec-tag{font-size:10px;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;color:var(--gold);margin-bottom:6px;}
+.sec-title{font-family:'Cormorant Garamond',serif;font-size:clamp(28px,7vw,46px);font-weight:300;line-height:1.1;margin-bottom:5px;}
+.sec-title em{font-style:italic;color:var(--amber);}
+.sec-sub{color:var(--muted);font-size:13px;line-height:1.65;margin-bottom:22px;}
+
+/* ── EVENT CARDS ── */
+.event-card{background:var(--warm-white);border:1px solid var(--line);border-radius:20px;margin-bottom:14px;overflow:hidden;box-shadow:var(--shadow);}
+.event-card-header{padding:16px 18px;cursor:pointer;display:flex;align-items:center;gap:14px;transition:background 0.2s;}
+.event-card-header:hover{background:var(--gold-pale);}
+.event-dot{width:44px;height:44px;border-radius:50%;flex-shrink:0;background:linear-gradient(135deg,var(--dark),var(--dark-mid));border:2px solid var(--gold-rich);display:flex;align-items:center;justify-content:center;font-size:18px;}
+.event-header-info{flex:1;}
+.event-header-hindi{font-size:12px;color:var(--muted);margin-bottom:2px;font-family:'Noto Sans Devanagari',sans-serif;}
+.event-header-name{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:600;color:var(--dark-mid);}
+.event-header-meta{display:flex;flex-wrap:wrap;gap:5px;margin-top:4px;}
+.e-pill{font-size:10px;padding:3px 8px;border-radius:999px;background:var(--gold-pale);color:var(--gold-deep);font-weight:600;border:1px solid var(--gold-soft);}
+.e-pill.amber{background:var(--amber-soft);color:var(--amber);border-color:#F5C0A0;}
+.e-pill.coming{background:#F5F5F5;color:#999;border-color:#DDD;}
+.event-toggle{font-size:18px;color:var(--gold-rich);transition:transform 0.2s;flex-shrink:0;}
+.event-toggle.open{transform:rotate(180deg);}
+.event-body{display:none;border-top:1px solid var(--line);padding:16px 18px;}
+.event-body.open{display:block;}
+.event-desc{font-size:13px;color:var(--muted);line-height:1.6;margin-bottom:14px;}
+.steps-title{font-size:10px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;}
+.step-item{display:flex;gap:12px;padding:10px 0;border-bottom:1px solid rgba(237,217,160,0.4);}
+.step-item:last-child{border-bottom:none;}
+.step-num{width:26px;height:26px;border-radius:50%;flex-shrink:0;background:var(--gold-pale);border:1px solid var(--gold-soft);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:var(--gold-deep);}
+.step-info{flex:1;}
+.step-name{font-weight:600;font-size:13px;color:var(--dark-mid);margin-bottom:2px;}
+.step-detail{font-size:12px;color:var(--muted);}
+
+/* ── PERF CARDS ── */
+.perf-section{margin-top:16px;}
+.perf-section-title{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:600;color:var(--dark-mid);margin-bottom:10px;}
+.perf-card{background:var(--cream);border:1px solid var(--line);border-radius:14px;padding:14px;margin-bottom:10px;position:relative;}
+.perf-seq{position:absolute;top:12px;right:12px;width:24px;height:24px;border-radius:50%;background:var(--dark);color:var(--gold-light);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;}
+.perf-song{font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:600;color:var(--dark-mid);margin-bottom:3px;padding-right:30px;}
+.perf-category{font-size:11px;color:var(--amber);font-weight:600;margin-bottom:8px;letter-spacing:0.04em;}
+.perf-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px;}
+@media(max-width:460px){.perf-grid{grid-template-columns:1fr;}}
+.perf-field{background:var(--warm-white);border:1px solid var(--line);border-radius:10px;padding:8px 10px;}
+.perf-field-label{font-size:9px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold);margin-bottom:2px;}
+.perf-field-value{font-size:12px;color:var(--text);line-height:1.4;}
+.perf-field-value.tbu{color:var(--muted);font-style:italic;}
+.perf-dancers{background:var(--warm-white);border:1px solid var(--line);border-radius:10px;padding:8px 10px;margin-bottom:8px;}
+.perf-links{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px;}
+.perf-link{display:inline-flex;align-items:center;gap:4px;font-size:11px;padding:5px 10px;border-radius:999px;background:var(--dark);color:var(--gold-light);text-decoration:none;font-weight:500;border:1px solid rgba(200,130,10,0.3);}
+.perf-status{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:600;padding:4px 10px;border-radius:999px;}
+.status-ready{background:var(--green-soft);color:var(--green);}
+.status-progress{background:#FFF3CD;color:#856404;}
+.status-notstarted{background:#F5F5F5;color:#666;}
+.status-tbu{background:var(--gold-pale);color:var(--gold-deep);}
+
+.edit-btn{background:var(--gold-pale);border:1px solid var(--gold-soft);color:var(--gold-deep);border-radius:8px;padding:6px 12px;font-size:11px;font-weight:600;cursor:pointer;margin-top:8px;font-family:'Outfit',sans-serif;}
+.edit-form{background:var(--warm-white);border:1px solid var(--line);border-top:3px solid var(--gold-rich);border-radius:12px;padding:14px;margin-top:10px;display:none;}
+.edit-form.open{display:block;animation:fadeUp 0.3s ease;}
+.edit-row{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px;}
+@media(max-width:460px){.edit-row{grid-template-columns:1fr;}}
+.edit-input{width:100%;border:1.5px solid var(--line);background:var(--cream);border-radius:10px;padding:9px 11px;font-size:12px;font-family:'Outfit',sans-serif;color:var(--text);outline:none;transition:border-color 0.2s;}
+.edit-input:focus{border-color:var(--gold-rich);}
+.edit-label{font-size:10px;font-weight:600;color:var(--muted);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:3px;}
+.btn-save{background:linear-gradient(135deg,var(--dark-mid),var(--gold-deep));color:var(--gold-light);border:none;border-radius:10px;padding:10px 16px;font-family:'Outfit',sans-serif;font-size:12px;font-weight:600;cursor:pointer;margin-right:8px;}
+.btn-cancel{background:var(--cream);color:var(--muted);border:1px solid var(--line);border-radius:10px;padding:10px 14px;font-family:'Outfit',sans-serif;font-size:12px;cursor:pointer;}
+.btn-add{background:linear-gradient(135deg,var(--gold-deep),var(--gold));color:white;border:none;border-radius:10px;padding:9px 14px;font-family:'Outfit',sans-serif;font-size:13px;font-weight:600;cursor:pointer;white-space:nowrap;}
+
+/* ── ROLES ── */
+.roles-intro{background:linear-gradient(135deg,var(--dark) 0%,var(--dark-mid) 100%);border-radius:20px;padding:20px;color:white;margin-bottom:20px;position:relative;overflow:hidden;border:1px solid rgba(200,130,10,0.28);}
+.roles-intro::before{content:'◆';position:absolute;right:14px;top:50%;transform:translateY(-50%);font-size:75px;opacity:0.06;color:var(--gold-light);}
+.roles-intro h3{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:400;font-style:italic;margin-bottom:4px;color:var(--gold-light);}
+.roles-intro p{font-size:12px;opacity:0.7;line-height:1.6;}
+
+.role-category{margin-bottom:20px;}
+.role-cat-title{font-size:10px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);padding:0 2px;margin-bottom:8px;}
+.role-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px;}
+@media(max-width:460px){.role-grid{grid-template-columns:1fr;}}
+
+.role-card{background:var(--warm-white);border:2px solid var(--line);border-radius:14px;padding:12px 14px;position:relative;transition:border-color 0.2s,box-shadow 0.2s;}
+
+.role-card-top{display:flex;gap:10px;align-items:flex-start;margin-bottom:8px;}
+.role-icon-big{font-size:24px;flex-shrink:0;margin-top:2px;}
+.role-card-info{flex:1;}
+.role-name{font-family:'Cormorant Garamond',serif;font-size:16px;font-weight:600;color:var(--dark-mid);margin-bottom:2px;}
+.role-tagline{font-size:11px;color:var(--muted);line-height:1.4;}
+
+/* Role details expandable */
+.role-details-toggle{font-size:10px;color:var(--gold);font-weight:600;cursor:pointer;letter-spacing:0.06em;margin-bottom:8px;display:inline-flex;align-items:center;gap:4px;}
+.role-details{display:none;background:var(--gold-pale);border-radius:10px;padding:10px 12px;margin-bottom:10px;}
+.role-details.open{display:block;animation:fadeUp 0.2s ease;}
+.role-detail-item{font-size:11px;color:var(--dark-mid);line-height:1.6;padding:2px 0;}
+.role-detail-item::before{content:'◆ ';color:var(--gold);font-size:8px;}
+
+/* Interest / voting */
+.role-interest-bar{display:flex;align-items:center;justify-content:space-between;gap:8px;}
+.interested-count{font-size:11px;color:var(--muted);}
+.btn-interested{
+  font-size:11px;font-weight:600;padding:6px 14px;border-radius:999px;
+  border:1.5px solid var(--gold-soft);background:var(--gold-pale);
+  color:var(--gold-deep);cursor:pointer;transition:all 0.2s;
+  font-family:'Outfit',sans-serif;
+}
+.btn-interested:hover{background:var(--gold-soft);}
+.btn-interested.active{background:var(--gold-rich);color:white;border-color:var(--gold-rich);}
+.btn-interested.mine{background:var(--dark);color:var(--gold-light);border-color:var(--dark);}
+
+/* Interested people chips */
+.interested-people{display:flex;flex-wrap:wrap;gap:4px;margin-top:8px;}
+.interested-chip{font-size:10px;padding:3px 8px;border-radius:999px;background:var(--cream);border:1px solid var(--line);color:var(--muted);}
+.interested-chip.me{background:var(--dark);color:var(--gold-light);border-color:var(--dark);}
+
+/* Suggestions on role */
+.role-suggestions{margin-top:8px;}
+.role-suggestion-item{font-size:11px;color:var(--muted);padding:5px 8px;background:var(--cream);border-radius:8px;margin-top:4px;border:1px solid var(--line);}
+.suggest-for-role-btn{font-size:10px;color:var(--gold);font-weight:600;cursor:pointer;margin-top:6px;background:none;border:none;font-family:'Outfit',sans-serif;padding:0;}
+
+/* suggest input */
+.suggest-input-wrap{margin-top:6px;display:none;}
+.suggest-input-wrap.open{display:flex;gap:6px;}
+.suggest-mini-input{flex:1;border:1px solid var(--line);background:var(--cream);border-radius:8px;padding:7px 10px;font-size:12px;font-family:'Outfit',sans-serif;color:var(--text);outline:none;}
+.suggest-mini-btn{background:var(--gold-deep);color:white;border:none;border-radius:8px;padding:7px 12px;font-size:12px;cursor:pointer;font-family:'Outfit',sans-serif;}
+
+/* Custom role add */
+.add-role-box{background:var(--warm-white);border:2px dashed var(--line);border-radius:16px;padding:16px;margin-bottom:20px;}
+.add-role-box h4{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:400;color:var(--dark-mid);margin-bottom:3px;}
+.add-role-box p{font-size:12px;color:var(--muted);margin-bottom:12px;}
+.add-role-row{display:flex;gap:7px;flex-wrap:wrap;}
+.add-role-input{flex:1;min-width:110px;border:1.5px solid var(--line);background:var(--cream);border-radius:10px;padding:9px 11px;font-size:13px;font-family:'Outfit',sans-serif;color:var(--text);outline:none;}
+.add-role-input:focus{border-color:var(--gold-rich);}
+
+/* ── TEAM SECTION ── */
+.team-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px;}
+@media(max-width:460px){.team-grid{grid-template-columns:1fr;}}
+
+.team-card{background:var(--warm-white);border:1px solid var(--line);border-radius:18px;padding:16px;text-align:center;box-shadow:var(--shadow);}
+.team-photo{width:72px;height:72px;border-radius:50%;margin:0 auto 10px;overflow:hidden;border:3px solid var(--gold-soft);background:linear-gradient(135deg,var(--gold-deep),var(--gold-rich));display:flex;align-items:center;justify-content:center;cursor:pointer;position:relative;}
+.team-photo img{width:100%;height:100%;object-fit:cover;}
+.team-photo-placeholder{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:700;color:white;}
+.team-photo-edit{position:absolute;bottom:0;right:0;background:var(--gold-rich);border-radius:50%;width:20px;height:20px;display:flex;align-items:center;justify-content:center;font-size:10px;}
+.team-name{font-family:'Cormorant Garamond',serif;font-size:16px;font-weight:600;color:var(--dark-mid);margin-bottom:3px;}
+.team-phone{font-size:11px;color:var(--muted);margin-bottom:8px;}
+.team-role-status{display:inline-flex;align-items:center;gap:4px;font-size:10px;font-weight:600;padding:3px 8px;border-radius:999px;background:var(--gold-pale);color:var(--gold-deep);border:1px solid var(--gold-soft);}
+.team-role-status.confirmed{background:var(--green-soft);color:var(--green);}
+.team-roles-list{margin-top:6px;font-size:11px;color:var(--muted);line-height:1.5;}
+
+/* ── SUGGESTIONS SECTION ── */
+.suggestion-form{background:var(--warm-white);border:1px solid var(--line);border-top:3px solid var(--gold-rich);border-radius:16px;padding:16px;margin-bottom:16px;}
+.suggestion-form h4{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:400;color:var(--dark-mid);margin-bottom:3px;}
+.suggestion-form p{font-size:12px;color:var(--muted);margin-bottom:12px;}
+.form-input{width:100%;border:1.5px solid var(--line);background:var(--cream);border-radius:12px;padding:11px 13px;font-size:13px;font-family:'Outfit',sans-serif;color:var(--text);outline:none;margin-bottom:9px;transition:border-color 0.2s;}
+.form-input:focus{border-color:var(--gold-rich);}
+.btn-primary{width:100%;background:linear-gradient(135deg,var(--dark-mid),var(--gold-deep));color:var(--gold-light);border:none;border-radius:12px;padding:13px;font-family:'Outfit',sans-serif;font-size:13px;font-weight:600;cursor:pointer;box-shadow:0 8px 18px rgba(24,8,10,0.28);}
+
+.suggestion-card{background:var(--warm-white);border:1px solid var(--line);border-radius:14px;padding:14px;margin-bottom:10px;}
+.suggestion-header{display:flex;align-items:center;gap:10px;margin-bottom:8px;}
+.suggestion-avatar{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,var(--gold-deep),var(--gold-rich));color:white;display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:16px;font-weight:700;flex-shrink:0;}
+.suggestion-meta{flex:1;}
+.suggestion-author{font-weight:600;font-size:13px;color:var(--dark-mid);}
+.suggestion-time{font-size:10px;color:var(--muted);}
+.suggestion-text{font-size:13px;color:var(--text);line-height:1.55;margin-bottom:8px;}
+.suggestion-tags{display:flex;flex-wrap:wrap;gap:5px;}
+.tag-pill{font-size:11px;padding:3px 8px;border-radius:999px;background:var(--gold-pale);color:var(--gold-deep);border:1px solid var(--gold-soft);font-weight:600;}
+.added-tags{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:9px;min-height:10px;}
+.added-tag{font-size:11px;padding:4px 9px;border-radius:999px;background:var(--dark);color:var(--gold-light);font-weight:500;display:flex;align-items:center;gap:4px;cursor:pointer;}
+.tag-input-wrap{position:relative;margin-bottom:9px;}
+.tag-suggestions{position:absolute;top:100%;left:0;right:0;z-index:50;background:white;border:1px solid var(--line);border-radius:10px;box-shadow:0 8px 20px rgba(0,0,0,0.1);display:none;}
+.tag-suggestions.show{display:block;}
+.tag-suggestion-item{padding:9px 12px;font-size:13px;cursor:pointer;border-bottom:1px solid #F5F0E8;}
+.tag-suggestion-item:hover{background:var(--gold-pale);}
+
+/* ── INFO ── */
+.info-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px;}
+@media(max-width:460px){.info-grid{grid-template-columns:1fr;}}
+.info-card{background:var(--warm-white);border:1px solid var(--line);border-radius:16px;padding:14px;}
+.info-card-icon{font-size:22px;margin-bottom:7px;}
+.info-card-label{font-size:10px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold);margin-bottom:3px;}
+.info-card-value{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:600;margin-bottom:3px;color:var(--dark-mid);}
+.info-card-sub{font-size:12px;color:var(--muted);line-height:1.5;}
+.dress-card{background:linear-gradient(135deg,var(--dark) 0%,#3A1200 100%);border-radius:16px;padding:18px;margin-bottom:12px;border:1px solid rgba(200,130,10,0.22);position:relative;overflow:hidden;}
+.dress-card::after{content:'🌼✦';position:absolute;right:12px;top:50%;transform:translateY(-50%);font-size:32px;opacity:0.13;letter-spacing:4px;}
+.dress-card .info-card-label{color:var(--gold-light);}
+.dress-card .info-card-value{color:var(--gold-light);font-size:19px;}
+.dress-card .info-card-sub{color:rgba(255,220,120,0.5);}
+.checklist-card{background:var(--warm-white);border:1px solid var(--line);border-left:3px solid var(--gold-rich);border-radius:16px;padding:16px;margin-bottom:12px;}
+.checklist-card .info-card-label{color:var(--gold);}
+.checklist-card .info-card-value{font-size:15px;margin-bottom:9px;color:var(--dark-mid);}
+.checklist-card .info-card-sub{line-height:2.1;}
+.link-card{background:linear-gradient(135deg,var(--dark),var(--dark-mid));border-radius:16px;padding:16px;margin-bottom:12px;border:1px solid rgba(200,130,10,0.2);}
+.link-card .info-card-label{color:var(--gold-light);}
+.link-card .info-card-value{color:var(--gold-light);font-size:16px;margin-bottom:8px;}
+.link-card .link-url{font-size:12px;color:var(--gold-rich);word-break:break-all;line-height:1.5;}
+.copy-btn{display:inline-block;margin-top:8px;padding:6px 14px;background:rgba(200,130,10,0.2);color:var(--gold-light);border:1px solid rgba(200,130,10,0.35);border-radius:8px;font-size:11px;font-weight:600;cursor:pointer;}
+
+/* ── MISC ── */
+.empty-state{text-align:center;padding:24px 14px;background:var(--warm-white);border:1px dashed var(--line);border-radius:14px;color:var(--muted);font-size:13px;}
+.divider{text-align:center;font-size:13px;letter-spacing:12px;opacity:0.2;margin:20px 0 16px;color:var(--gold);}
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px);}to{opacity:1;transform:translateY(0);}}
+
+.bottom-nav{position:fixed;bottom:0;left:0;right:0;z-index:100;background:rgba(24,8,10,0.97);backdrop-filter:blur(20px);border-top:1px solid rgba(200,130,10,0.18);display:flex;padding:6px 6px 14px;gap:2px;}
+.bottom-nav button{flex:1;background:none;border:none;color:rgba(255,220,120,0.32);font-family:'Noto Sans Devanagari',sans-serif;font-size:9px;font-weight:500;padding:7px 3px;border-radius:10px;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:3px;transition:color 0.2s,background 0.2s;}
+.bottom-nav button .bn-icon{font-size:17px;}
+.bottom-nav button.active{color:var(--gold-light);background:rgba(200,130,10,0.15);}
+.content-wrap{padding-bottom:70px;background:var(--cream);min-height:60vh;}
+
+/* hidden file input */
+#photoInput{display:none;}
+```
+
+  </style>
+</head>
+<body>
+
+<!-- ══ LOGIN SCREEN ══ -->
+
+<div id="loginScreen" class="login-screen" style="display:none;">
+  <div class="login-petal">🌼</div>
+  <div class="login-petal">✦</div>
+  <div class="login-petal">🌸</div>
+  <div class="login-petal">◆</div>
+
+  <div class="login-card">
+    <div class="login-ornament">
+      <div class="l-orn-line"></div>
+      <div class="l-orn-gem">◆</div>
+      <div class="l-orn-line r"></div>
+    </div>
+    <div class="login-logo">
+      Priyanka
+      <span class="amp">&amp;</span>
+      Shubham
+    </div>
+    <div class="login-sub">विवाह उत्सव</div>
+    <div class="login-date">१ – ३ जुलाई २०२५ · रायपुर</div>
+
+```
+<!-- Two choices -->
+<div class="login-choice" id="loginChoice">
+  <div class="login-choice-btn" onclick="selectLoginType('guest')">
+    <div class="lcb-icon">👁</div>
+    <div class="lcb-info">
+      <div class="lcb-title">Guest</div>
+      <div class="lcb-sub">बिना password — सिर्फ देखें</div>
+    </div>
+  </div>
+  <div class="login-choice-btn" onclick="selectLoginType('mgmt')">
+    <div class="lcb-icon">✋</div>
+    <div class="lcb-info">
+      <div class="lcb-title">Management Team</div>
+      <div class="lcb-sub">भूमिका लें, टीम में शामिल हों</div>
+    </div>
+  </div>
+</div>
+
+<!-- Management form -->
+<div class="mgmt-form" id="mgmtForm">
+  <div class="login-divider">
+    <div class="login-divider-line"></div>
+    <div class="login-divider-text">अपना परिचय दें</div>
+    <div class="login-divider-line"></div>
+  </div>
+  <input class="login-input" id="mgmtName" placeholder="आपका पूरा नाम"/>
+  <input class="login-input" id="mgmtPhone" placeholder="WhatsApp नंबर" type="tel"/>
+  <input class="login-input" id="mgmtPass" type="password" placeholder="Password"/>
+  <button class="login-btn" onclick="doMgmtLogin()">✦ &nbsp;टीम में शामिल हों</button>
+  <button class="login-back" onclick="backToChoice()">← वापस जाएँ</button>
+  <div class="login-error" id="loginError">गलत password! सही password डालें।</div>
+</div>
+```
+
+  </div>
+</div>
+<input type="file" id="photoInput" accept="image/*" onchange="handlePhotoUpload(event)"/>
+
+<!-- ══ MAIN APP ══ -->
+
+<div id="mainApp" style="display:none;" class="app-bg">
+
+<div class="hero" id="heroSection">
+  <div class="petal">🌼</div><div class="petal">✦</div><div class="petal">🌸</div>
+  <div class="petal">✦</div><div class="petal">🌼</div><div class="petal">◆</div>
+  <div class="hero-tag">एक यादगार विवाह उत्सव</div>
+  <div class="hero-names">
+    <span class="bride">Priyanka</span>
+    <span class="hero-amp">&amp;</span>
+    <span class="groom">Shubham</span>
+  </div>
+  <div class="hero-ornament"><div class="orn-line"></div><div class="orn-gem">◆</div><div class="orn-line r"></div></div>
+  <div class="hero-date">१ – ३ जुलाई २०२५ · रायपुर</div>
+  <div class="hero-location">✦ Royal Club, छत्तीसगढ़ ✦</div>
+  <div class="hero-explore" onclick="showSection('events')">
+    <div class="scroll-arrow">▾</div>
+    <div class="hero-explore-text">Explore the Wedding</div>
+    <div class="hero-explore-hint">विवरण के लिए यहाँ क्लिक करें</div>
+  </div>
+</div>
+
+<div class="nav" id="mainNav" style="display:none;">
+  <div class="nav-brand">Priyanka & Shubham</div>
+  <div class="nav-right">
+    <span class="nav-user" id="navUser"></span>
+    <button class="nav-logout" onclick="doLogout()">बाहर</button>
+  </div>
+</div>
+<div class="nav-links-bar" id="navLinksBar" style="display:none;">
+  <button onclick="showSection('events')" id="nav-events">🗓 कार्यक्रम</button>
+  <button onclick="showSection('roles')" id="nav-roles">✋ भूमिका</button>
+  <button onclick="showSection('team')" id="nav-team">👥 टीम</button>
+  <button onclick="showSection('suggest')" id="nav-suggest">💡 सुझाव</button>
+  <button onclick="showSection('info')" id="nav-info">ℹ जानकारी</button>
+</div>
+
+<div class="content-wrap">
+
+<!-- ══ EVENTS ══ -->
+
+<div class="section" id="sec-events">
+  <div class="sec-tag">विवाह उत्सव</div>
+  <div class="sec-title">सभी <em>कार्यक्रम</em></div>
+  <div class="sec-sub">हर कार्यक्रम पर क्लिक करके विस्तृत जानकारी देखें।</div>
+
+  <div class="event-card">
+    <div class="event-card-header" onclick="toggleEvent('engagement')">
+      <div class="event-dot">💍</div>
+      <div class="event-header-info">
+        <div class="event-header-hindi">सगाई</div>
+        <div class="event-header-name">Engagement</div>
+        <div class="event-header-meta"><div class="e-pill coming">🕐 जल्द आ रहा है</div></div>
+      </div>
+      <div class="event-toggle" id="toggle-engagement">▾</div>
+    </div>
+    <div class="event-body" id="body-engagement">
+      <div class="event-desc">उनके हमेशा की शुरुआत। तारीख जल्द घोषित होगी। 💍</div>
+      <div class="steps-title">रूपरेखा</div>
+      <div class="step-item"><div class="step-num">1</div><div class="step-info"><div class="step-name">तारीख व स्थान</div><div class="step-detail">जल्द घोषित होगा</div></div></div>
+      <div class="step-item"><div class="step-num">2</div><div class="step-info"><div class="step-name">अंगूठी की रस्म</div><div class="step-detail">फोटोग्राफी, परिवार</div></div></div>
+    </div>
+  </div>
+
+  <div class="event-card">
+    <div class="event-card-header" onclick="toggleEvent('mehndi')">
+      <div class="event-dot">🌸</div>
+      <div class="event-header-info">
+        <div class="event-header-hindi">मेहंदी की शाम</div>
+        <div class="event-header-name">Mehndi Night</div>
+        <div class="event-header-meta">
+          <div class="e-pill">📅 १ जुलाई</div>
+          <div class="e-pill">🕖 शाम ७ – रात ११</div>
+          <div class="e-pill amber">📍 शुभम के घर</div>
+        </div>
+      </div>
+      <div class="event-toggle" id="toggle-mehndi">▾</div>
+    </div>
+    <div class="event-body" id="body-mehndi">
+      <div class="event-desc">संगीत, हँसी और नृत्य से भरी मेहंदी की सुहानी शाम।</div>
+      <div class="steps-title">रूपरेखा</div>
+      <div class="step-item"><div class="step-num">1</div><div class="step-info"><div class="step-name">मेहंदी लगाना</div><div class="step-detail">महिलाएँ बारी-बारी से</div></div></div>
+      <div class="step-item"><div class="step-num">2</div><div class="step-info"><div class="step-name">संगीत व नृत्य</div><div class="step-detail">DJ, गाने, डांस</div></div></div>
+      <div class="step-item"><div class="step-num">3</div><div class="step-info"><div class="step-name">फोटोग्राफी</div><div class="step-detail">रील्स टीम तैयार रहें</div></div></div>
+    </div>
+  </div>
+
+  <div class="event-card">
+    <div class="event-card-header" onclick="toggleEvent('haldi')">
+      <div class="event-dot">🌿</div>
+      <div class="event-header-info">
+        <div class="event-header-hindi">हल्दी रस्म</div>
+        <div class="event-header-name">Haldi</div>
+        <div class="event-header-meta">
+          <div class="e-pill">📅 २ जुलाई</div>
+          <div class="e-pill">🕚 ११ AM – २ PM</div>
+          <div class="e-pill amber">📍 Royal Club</div>
+        </div>
+      </div>
+      <div class="event-toggle" id="toggle-haldi">▾</div>
+    </div>
+    <div class="event-body" id="body-haldi">
+      <div class="event-desc">पवित्र हल्दी की रस्म — परिवार के साथ खुशी का पल।</div>
+      <div class="steps-title">रूपरेखा</div>
+      <div class="step-item"><div class="step-num">1</div><div class="step-info"><div class="step-name">सजावट व तैयारी</div><div class="step-detail">१ घंटे पहले पहुँचें</div></div></div>
+      <div class="step-item"><div class="step-num">2</div><div class="step-info"><div class="step-name">हल्दी रस्म</div><div class="step-detail">परिवार बारी-बारी</div></div></div>
+      <div class="step-item"><div class="step-num">3</div><div class="step-info"><div class="step-name">बारात गाने</div><div class="step-detail">Ghodi Chadh Gaya sequence</div></div></div>
+      <div class="perf-section"><div class="perf-section-title">🎵 गाने</div><div id="perfs-haldi"></div></div>
+    </div>
+  </div>
+
+  <div class="event-card">
+    <div class="event-card-header" onclick="toggleEvent('sangeet')">
+      <div class="event-dot">🎉</div>
+      <div class="event-header-info">
+        <div class="event-header-hindi">संगीत समारोह</div>
+        <div class="event-header-name">Sangeet</div>
+        <div class="event-header-meta">
+          <div class="e-pill">📅 २ जुलाई</div>
+          <div class="e-pill">🕔 शाम ५ – रात ८</div>
+          <div class="e-pill amber">📍 Royal Club</div>
+        </div>
+      </div>
+      <div class="event-toggle" id="toggle-sangeet">▾</div>
+    </div>
+    <div class="event-body" id="body-sangeet">
+      <div class="event-desc">नृत्य प्रदर्शन और उत्सव की भव्य शाम। भाई-बहनों, यह आपकी रात है! 🎤</div>
+      <div class="steps-title">रूपरेखा</div>
+      <div class="step-item"><div class="step-num">1</div><div class="step-info"><div class="step-name">साउंड चेक</div><div class="step-detail">२ घंटे पहले DJ, माइक, लाइट</div></div></div>
+      <div class="step-item"><div class="step-num">2</div><div class="step-info"><div class="step-name">परफॉर्मेंस</div><div class="step-detail">नीचे दिए sequence के अनुसार</div></div></div>
+      <div class="step-item"><div class="step-num">3</div><div class="step-info"><div class="step-name">Sangeet Ending</div><div class="step-detail">Tere Dware Pe Aayi Barat — सभी मिलकर</div></div></div>
+      <div class="perf-section">
+        <div class="perf-section-title">🎵 परफॉर्मेंस <span id="editorBadge" style="display:none;font-size:11px;background:var(--dark);color:var(--gold-light);border-radius:999px;padding:2px 8px;margin-left:6px;">✏️ Editor</span></div>
+        <div id="perfs-sangeet"></div>
+        <div id="addPerfBtn" style="display:none;margin-top:10px;"><button class="btn-add" onclick="showAddPerf('sangeet')">+ नई परफॉर्मेंस जोड़ें</button></div>
+        <div id="addPerfForm-sangeet" class="edit-form" style="margin-top:10px;">
+          <div class="edit-row"><div><div class="edit-label">Song Name</div><input class="edit-input" id="new-song-sangeet" placeholder="गाने का नाम"/></div><div><div class="edit-label">Category</div><input class="edit-input" id="new-cat-sangeet" placeholder="e.g. Siblings Love"/></div></div>
+          <div class="edit-row"><div><div class="edit-label">Sequence #</div><input class="edit-input" id="new-seq-sangeet" placeholder="1"/></div><div><div class="edit-label">Duration</div><input class="edit-input" id="new-dur-sangeet" placeholder="3 mins"/></div></div>
+          <div class="edit-row"><div><div class="edit-label">Dance Lead</div><input class="edit-input" id="new-lead-sangeet" placeholder="नाम"/></div><div><div class="edit-label">Status</div><select class="edit-input" id="new-status-sangeet"><option value="tbu">To be updated</option><option value="notstarted">Not Started</option><option value="progress">In Progress</option><option value="ready">Ready</option></select></div></div>
+          <div style="margin-bottom:8px;"><div class="edit-label">Dancers</div><input class="edit-input" id="new-dancers-sangeet" placeholder="Shreni, Shreya, Pratham"/></div>
+          <div style="margin-bottom:8px;"><div class="edit-label">Choreo Link</div><input class="edit-input" id="new-link-sangeet" placeholder="https://instagram.com/..."/></div>
+          <div style="margin-bottom:8px;"><div class="edit-label">Outfit Theme</div><input class="edit-input" id="new-outfit-sangeet" placeholder="e.g. Pink & Gold"/></div>
+          <div style="margin-bottom:12px;"><div class="edit-label">Special Notes</div><input class="edit-input" id="new-notes-sangeet" placeholder="e.g. Surprise entry"/></div>
+          <button class="btn-save" onclick="saveNewPerf('sangeet')">✓ सेव करें</button>
+          <button class="btn-cancel" onclick="hideAddPerf('sangeet')">रद्द</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="event-card">
+    <div class="event-card-header" onclick="toggleEvent('baraat')">
+      <div class="event-dot">🐎</div>
+      <div class="event-header-info">
+        <div class="event-header-hindi">बारात</div>
+        <div class="event-header-name">Baraat</div>
+        <div class="event-header-meta"><div class="e-pill">📅 ३ जुलाई</div><div class="e-pill">🕓 शाम ४ – ६</div><div class="e-pill amber">📍 Royal Club</div></div>
+      </div>
+      <div class="event-toggle" id="toggle-baraat">▾</div>
+    </div>
+    <div class="event-body" id="body-baraat">
+      <div class="event-desc">भव्य बारात — ढोल, नृत्य और पूरी ऊर्जा के साथ!</div>
+      <div class="steps-title">रूपरेखा</div>
+      <div class="step-item"><div class="step-num">1</div><div class="step-info"><div class="step-name">शुरुआत</div><div class="step-detail">Hum Ladke Hain से बारात शुरू</div></div></div>
+      <div class="step-item"><div class="step-num">2</div><div class="step-info"><div class="step-name">घोड़ी पर दूल्हा</div><div class="step-detail">Ghodi Chadh Gaya</div></div></div>
+      <div class="perf-section"><div class="perf-section-title">🎵 बारात के गाने</div><div id="perfs-baraat"></div></div>
+    </div>
+  </div>
+
+  <div class="event-card">
+    <div class="event-card-header" onclick="toggleEvent('vivah')">
+      <div class="event-dot">🔥</div>
+      <div class="event-header-info">
+        <div class="event-header-hindi">विवाह संस्कार</div>
+        <div class="event-header-name">Vivah</div>
+        <div class="event-header-meta"><div class="e-pill">📅 ३ जुलाई</div><div class="e-pill">🕖 रात ७ – ११</div><div class="e-pill amber">📍 Royal Club</div></div>
+      </div>
+      <div class="event-toggle" id="toggle-vivah">▾</div>
+    </div>
+    <div class="event-body" id="body-vivah">
+      <div class="event-desc">सात फेरों की पावन रस्म — जीवन भर का यादगार पल। ✨</div>
+      <div class="steps-title">रूपरेखा</div>
+      <div class="step-item"><div class="step-num">1</div><div class="step-info"><div class="step-name">जयमाल</div><div class="step-detail">वरमाला, फोटोग्राफी</div></div></div>
+      <div class="step-item"><div class="step-num">2</div><div class="step-info"><div class="step-name">सात फेरे</div><div class="step-detail">पंडित जी के साथ पवित्र अग्नि</div></div></div>
+      <div class="step-item"><div class="step-num">3</div><div class="step-info"><div class="step-name">विदाई</div><div class="step-detail">भावभीनी विदाई</div></div></div>
+    </div>
+  </div>
+
+  <div class="event-card">
+    <div class="event-card-header" onclick="toggleEvent('reception')">
+      <div class="event-dot">🥂</div>
+      <div class="event-header-info">
+        <div class="event-header-hindi">स्वागत समारोह</div>
+        <div class="event-header-name">Reception</div>
+        <div class="event-header-meta"><div class="e-pill">📅 ३ जुलाई</div><div class="e-pill">🕖 रात ७ – ११</div><div class="e-pill amber">📍 Royal Club</div></div>
+      </div>
+      <div class="event-toggle" id="toggle-reception">▾</div>
+    </div>
+    <div class="event-body" id="body-reception">
+      <div class="event-desc">१०००+ मेहमानों के साथ भव्य स्वागत! 🎊</div>
+      <div class="steps-title">रूपरेखा</div>
+      <div class="step-item"><div class="step-num">1</div><div class="step-info"><div class="step-name">मेहमानों का स्वागत</div><div class="step-detail">दरवाजे पर स्वागत टीम</div></div></div>
+      <div class="step-item"><div class="step-num">2</div><div class="step-info"><div class="step-name">खाना-पीना</div><div class="step-detail">कैटरिंग इंचार्ज काउंटर पर</div></div></div>
+      <div class="step-item"><div class="step-num">3</div><div class="step-info"><div class="step-name">फोटो & रील्स</div><div class="step-detail">मीडिया टीम सक्रिय</div></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ ROLES ══ -->
+
+<div class="section" id="sec-roles">
+  <div class="sec-tag">भूमिका</div>
+  <div class="sec-title">अपनी <em>भूमिका</em> चुनें</div>
+  <div class="sec-sub">जो भूमिका आप लेना चाहते हैं, उसमें रुचि दिखाएँ। बाद में पक्की होगी।</div>
+
+  <div class="roles-intro">
+    <h3>आप इस विवाह को यादगार बनाते हैं ✦</h3>
+    <p>भूमिका चुनें, विवरण पढ़ें। दूसरे सुझाव भी दे सकते हैं। अंतिम निर्णय बाद में होगा।</p>
+  </div>
+
+  <div id="rolesContainer"></div>
+
+  <div class="add-role-box">
+    <h4>✦ नई भूमिका जोड़ें</h4>
+    <p>कोई भूमिका नहीं दिखी? यहाँ जोड़ें!</p>
+    <div class="add-role-row">
+      <input class="add-role-input" id="customRoleName" placeholder="भूमिका का नाम"/>
+      <input class="add-role-input" id="customRoleDesc" placeholder="छोटा विवरण"/>
+      <button class="btn-add" onclick="addCustomRole()">+ जोड़ें</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══ TEAM ══ -->
+
+<div class="section" id="sec-team">
+  <div class="sec-tag">विवाह टीम</div>
+  <div class="sec-title">हमारी <em>टीम</em></div>
+  <div class="sec-sub">Management team के सभी सदस्य — उनकी भूमिका और फोटो के साथ।</div>
+  <div class="team-grid" id="teamGrid"></div>
+  <div class="empty-state" id="teamEmpty" style="display:none;">अभी कोई Management member नहीं जुड़ा।</div>
+</div>
+
+<!-- ══ SUGGESTIONS ══ -->
+
+<div class="section" id="sec-suggest">
+  <div class="sec-tag">सुझाव</div>
+  <div class="sec-title">आपके <em>सुझाव</em></div>
+  <div class="sec-sub">कोई भी विचार, आइडिया यहाँ लिखें। @नाम से किसी को टैग करें!</div>
+  <div class="suggestion-form">
+    <h4>✦ अपना सुझाव लिखें</h4>
+    <p>@नाम लिखकर टैग करें।</p>
+    <input class="form-input" id="suggName" placeholder="आपका नाम"/>
+    <textarea class="form-input" id="suggText" rows="3" placeholder="आपका सुझाव…"></textarea>
+    <div class="tag-input-wrap">
+      <input class="form-input" style="margin:0;" id="tagInput" placeholder="@किसी को टैग करें" oninput="showTagSuggestions()" onblur="hideTagSugg()"/>
+      <div class="tag-suggestions" id="tagSuggestions"></div>
+    </div>
+    <div class="added-tags" id="addedTags"></div>
+    <button class="btn-primary" onclick="submitSuggestion()">✦ सुझाव भेजें</button>
+  </div>
+  <div id="suggestionsList"></div>
+</div>
+
+<!-- ══ INFO ══ -->
+
+<div class="section" id="sec-info">
+  <div class="sec-tag">जानकारी</div>
+  <div class="sec-title">विवाह का <em>विवरण</em></div>
+  <div class="sec-sub">रायपुर पहुँचने से पहले यह सब जान लें।</div>
+  <div class="dress-card">
+    <div class="info-card-icon">👗</div>
+    <div class="info-card-label">पोशाक संहिता</div>
+    <div class="info-card-value">पारंपरिक भारतीय वेशभूषा</div>
+    <div class="info-card-sub">महिलाएँ: लहंगा / साड़ी &nbsp;·&nbsp; पुरुष: शेरवानी / कुर्ता<br/>WhatsApp ग्रुप में रंग समन्वय करें! 🌼</div>
+  </div>
+  <div class="info-grid">
+    <div class="info-card"><div class="info-card-icon">📍</div><div class="info-card-label">मुख्य स्थल</div><div class="info-card-value">Royal Club</div><div class="info-card-sub">रायपुर, छत्तीसगढ़</div></div>
+    <div class="info-card"><div class="info-card-icon">👥</div><div class="info-card-label">मेहमान</div><div class="info-card-value">~१०००</div><div class="info-card-sub">भव्य पारंपरिक विवाह</div></div>
+    <div class="info-card"><div class="info-card-icon">📅</div><div class="info-card-label">तारीखें</div><div class="info-card-value">१–३ जुलाई</div><div class="info-card-sub">२०२५ · तीन दिन</div></div>
+    <div class="info-card"><div class="info-card-icon">🌼</div><div class="info-card-label">कार्यक्रम</div><div class="info-card-value">७ आयोजन</div><div class="info-card-sub">सगाई · मेहंदी · हल्दी · संगीत · बारात · विवाह · स्वागत</div></div>
+  </div>
+  <div class="link-card">
+    <div class="info-card-icon">🔗</div>
+    <div class="info-card-label">वेबसाइट लिंक</div>
+    <div class="info-card-value">शेयर करें</div>
+    <div class="link-url" id="siteUrl">https://shreyadubey-studio.github.io/priyanka-shubham-wedding</div>
+    <div class="copy-btn" onclick="copyLink()">📋 लिंक कॉपी करें</div>
+  </div>
+  <div class="checklist-card">
+    <div class="info-card-icon">✅</div>
+    <div class="info-card-label">भाई-बहनों की सूची</div>
+    <div class="info-card-value">दिन की तैयारी</div>
+    <div class="info-card-sub">
+      🌼 &nbsp;अभी भूमिका के लिए रुचि दिखाएँ<br/>
+      ✦ &nbsp;कार्यक्रम से १ घंटे पहले पहुँचें<br/>
+      🌼 &nbsp;फोन पूरा चार्ज रखें<br/>
+      ✦ &nbsp;शादी से एक रात पहले परिवार मीटिंग<br/>
+      🌼 &nbsp;टीम से पोशाक रंग तय करें<br/>
+      ✦ &nbsp;खूब मज़े करें! 🎊
+    </div>
+  </div>
+</div>
+
+</div><!-- content-wrap -->
+
+<div class="bottom-nav" id="bottomNav" style="display:none;">
+  <button id="bn-events" onclick="showSection('events')"><span class="bn-icon">🗓️</span>कार्यक्रम</button>
+  <button id="bn-roles" onclick="showSection('roles')"><span class="bn-icon">✋</span>भूमिका</button>
+  <button id="bn-team" onclick="showSection('team')"><span class="bn-icon">👥</span>टीम</button>
+  <button id="bn-suggest" onclick="showSection('suggest')"><span class="bn-icon">💡</span>सुझाव</button>
+  <button id="bn-info" onclick="showSection('info')"><span class="bn-icon">ℹ️</span>जानकारी</button>
+</div>
+
+</div><!-- mainApp -->
+
+<script>
+const SK = 'prishubh_v6';
+const MGMT_PASS = '4567';
+const SESSION_KEY = 'prishubh_session';
+
+let currentUser = null; // { type:'guest'|'mgmt', name, phone, photo }
+let taggedPeople = [];
+
+// ── ROLE DEFINITIONS ──
+const ROLES = [
+  {
+    id:'gm1', icon:'🤵', name:'Groomsman 1', cat:'👑 Groomsmen & Groomswomen',
+    tagline:'दूल्हे का पहला साथी',
+    details:['हर रस्म में शुभम के साथ रहें','शादी के दिन एक घंटे पहले पहुँचें','Sherwani / coordinated outfit ज़रूरी','फोटोग्राफर के साथ group shots के लिए उपलब्ध रहें']
+  },
+  {
+    id:'gm2', icon:'🤵', name:'Groomsman 2', cat:'👑 Groomsmen & Groomswomen',
+    tagline:'दूल्हे का दूसरा साथी',
+    details:['मंच पर हमेशा मौजूद रहें','जयमाल और फेरों के दौरान साथ','Sherwani / coordinated outfit','किसी भी जरूरत में तुरंत मदद']
+  },
+  {
+    id:'gm3', icon:'🤵', name:'Groomsman 3', cat:'👑 Groomsmen & Groomswomen',
+    tagline:'दूल्हे का तीसरा साथी',
+    details:['खास रस्मों में शुभम को support करें','Sherwani / coordinated outfit','बारात में साथ चलें','Reception में मेहमानों से मिलें']
+  },
+  {
+    id:'gw1', icon:'💃', name:'Groomswoman 1', cat:'👑 Groomsmen & Groomswomen',
+    tagline:'दुल्हन की पहली सहेली',
+    details:['हर रस्म में प्रियंका के पास रहें','Lehenga / coordinated outfit','मेहंदी और हल्दी में खास भूमिका','जरूरत में तुरंत उपलब्ध रहें']
+  },
+  {
+    id:'gw2', icon:'💃', name:'Groomswoman 2', cat:'👑 Groomsmen & Groomswomen',
+    tagline:'दुल्हन की दूसरी सहेली',
+    details:['Lehenga / coordinated outfit','संगीत में dance performance','फोटोग्राफी में मदद करें','Reception में guests का स्वागत']
+  },
+  {
+    id:'gw3', icon:'💃', name:'Groomswoman 3', cat:'👑 Groomsmen & Groomswomen',
+    tagline:'दुल्हन की तीसरी सहेली',
+    details:['Lehenga / coordinated outfit','विदाई में भावनात्मक support','Reception में दुल्हन के साथ','Photos और reels में मदद']
+  },
+  {
+    id:'baraat1', icon:'🐎', name:'बारात लीडर', cat:'🎊 बारात व रस्में',
+    tagline:'बारात में सबसे आगे',
+    details:['बारात में सबसे आगे चलें — ऊर्जा बनाए रखें','ढोल के साथ नृत्य करें, सबको उत्साहित करें','Traditional / शेरवानी outfit','बारात से कम से कम ३० मिनट पहले तैयार हों']
+  },
+  {
+    id:'baraat2', icon:'💃', name:'बारात डांसर', cat:'🎊 बारात व रस्में',
+    tagline:'बारात में नृत्य ऊर्जा',
+    details:['पूरी बारात में नृत्य की ऊर्जा बनाए रखें','गानों पर coordinate करें','Comfortable dancing outfit','अच्छे जूते पहनें — बहुत चलना होगा!']
+  },
+  {
+    id:'pheras', icon:'🌼', name:'रस्म सहयोगी', cat:'🎊 बारात व रस्में',
+    tagline:'पूजा सामग्री तैयार रखें',
+    details:['पंडित जी से पहले ही पूजा सामग्री list लें','हर रस्म से पहले सामग्री तैयार रखें','शांत और organized रहें','रस्मों की timing track करें']
+  },
+  {
+    id:'groom_shadow', icon:'🤵', name:'दूल्हे का साया', cat:'🎊 बारात व रस्में',
+    tagline:'शुभम के साथ हर पल',
+    details:['पूरे दिन शुभम के साथ रहें','पानी, कपड़े, जरूरी सामान हमेशा पास रखें','गर्मी में पंखा / ठंडा पानी','किसी भी emergency में तुरंत action लें']
+  },
+  {
+    id:'welcome1', icon:'🙏', name:'स्वागत करता', cat:'🚪 मेहमान प्रबंधन',
+    tagline:'दरवाजे पर गर्मजोशी से',
+    details:['Main gate पर मेहमानों का स्वागत करें','माला / मिठाई / gift देने की व्यवस्था','मुस्कुराहट और विनम्रता सबसे जरूरी','Venue का map / direction देने में मदद']
+  },
+  {
+    id:'welcome2', icon:'👴', name:'VIP होस्ट', cat:'🚪 मेहमान प्रबंधन',
+    tagline:'बुजुर्गों का व्यक्तिगत ध्यान',
+    details:['बड़े-बुजुर्गों को personally escort करें','उनके बैठने / खाने का विशेष ध्यान','Wheelchair / walking stick की जरूरत पूछें','VIP guests की एक list पहले से बना लें']
+  },
+  {
+    id:'seating', icon:'🪑', name:'बैठक व्यवस्था', cat:'🚪 मेहमान प्रबंधन',
+    tagline:'१०००+ मेहमान मार्गदर्शन',
+    details:['Venue का seating plan पहले से समझें','मेहमानों को सही table / area पर ले जाएँ','Family और guests के zones अलग रखें','किसी confusion में venue manager से संपर्क करें']
+  },
+  {
+    id:'kids', icon:'👶', name:'बच्चों की देखभाल', cat:'🚪 मेहमान प्रबंधन',
+    tagline:'बच्चों को सुरक्षित रखें',
+    details:['छोटे बच्चों को खेलने की जगह बताएँ','रस्मों के दौरान stage से दूर रखें','बच्चों के खाने-पीने का ध्यान','किसी बच्चे के खो जाने पर तुरंत alert करें']
+  },
+  {
+    id:'catering', icon:'🍛', name:'खाना इंचार्ज', cat:'🍽️ खाना व लॉजिस्टिक्स',
+    tagline:'कैटरर समन्वय',
+    details:['Catering team के साथ हमेशा संपर्क में रहें','Food counters भरे रहें — regular check करें','Guest complaints तुरंत resolve करें','खाने की quality और hygiene check करते रहें']
+  },
+  {
+    id:'vendor', icon:'📋', name:'वेंडर समन्वयक', cat:'🍽️ खाना व लॉजिस्टिक्स',
+    tagline:'सभी वेंडर से संपर्क',
+    details:['Photographer, DJ, decorator का contact save रखें','हर vendor की timing और जरूरतें confirm करें','Payment और receipts track करें','कोई problem हो तो तुरंत inform करें']
+  },
+  {
+    id:'gifts', icon:'🎁', name:'उपहार प्रबंधक', cat:'🍽️ खाना व लॉजिस्टिक्स',
+    tagline:'उपहार एकत्र व सुरक्षित',
+    details:['Gift table पर हमेशा कोई मौजूद रहे','सभी gifts और envelopes count और record करें','Cash envelopes safe box में रखें','कोई gift unattended न छोड़ें']
+  },
+  {
+    id:'float', icon:'⚡', name:'फ्लोटिंग हेल्पर', cat:'🍽️ खाना व लॉजिस्टिक्स',
+    tagline:'जहाँ जरूरत, वहाँ दौड़ें',
+    details:['कोई fixed role नहीं — सबसे flexible','जहाँ कमी दिखे, वहाँ तुरंत मदद करें','सभी team members का number save रखें','पूरा venue घूमते रहें — alert रहें']
+  },
+  {
+    id:'mc', icon:'🎤', name:'MC / एंकर', cat:'🎉 मनोरंजन व मीडिया',
+    tagline:'संगीत व रिसेप्शन होस्ट',
+    details:['संगीत और reception की hosting करें','Script और cues पहले से तैयार करें','Mic test और sound check करें','Energetic और funny — crowd को engage रखें']
+  },
+  {
+    id:'dance', icon:'🕺', name:'डांस लीड', cat:'🎉 मनोरंजन व मीडिया',
+    tagline:'नृत्य प्रस्तुति आयोजन',
+    details:['सभी dance groups को coordinate करें','Practice sessions schedule करें','DJ को songs sequence पहले दे दें','Costume और prop coordination करें']
+  },
+  {
+    id:'dj_coord', icon:'🎵', name:'DJ समन्वयक', cat:'🎉 मनोरंजन व मीडिया',
+    tagline:'सही वक्त पर सही गाना',
+    details:['DJ को complete song list और sequence दें','हर event के लिए playlist अलग बनाएँ','Key moments (entry, pheras) के लिए special songs','Sound level check करते रहें']
+  },
+  {
+    id:'reels', icon:'📸', name:'रील्स & फोटो', cat:'🎉 मनोरंजन व मीडिया',
+    tagline:'यादगार पलों को कैद करें',
+    details:['Phone / camera पूरा charged रखें','Candid moments capture करें — staged नहीं','Family WhatsApp group पर regular updates','Hired photographer के साथ coordinate करें']
+  }
+];
+
+// ── DATA STORE ──
+let data = JSON.parse(localStorage.getItem(SK) || JSON.stringify({
+  members: [], // management team members
+  roleInterests: {}, // roleId -> [{name, phone, time}]
+  roleSuggestions: {}, // roleId -> [{suggester, suggested, text, time, votes:[name]}]
+  customRoles: [],
+  suggestions: [],
+  performances: {
+    sangeet:[
+      {id:'s1',seq:1,song:'Mere Brother Ki Dulhan',category:"Sibling's Love",dancers:'Shreni, Shreya, Pratham',lead:'Shreni',duration:'5',outfit:'To be updated',link:'',link2:'',practiceStatus:'progress',practiceplan:'Flexible',trackReady:'Yes',songFinalized:'Yes',notes:'Energetic Performance',entryStyle:'Energetic'},
+      {id:'s2',seq:2,song:'Tere Ishq Ki Diwanagi Sir Pe Chadhke Bole',category:"Bride's Side",dancers:'Shubh, Shreya, Shreni',lead:'Priyanka',duration:'',outfit:'Bride theme',link:'https://www.instagram.com/reel/DWUOnupksM0/?igsh=MW5pcXZ1bXk2ZTUyNg==',link2:'',practiceStatus:'tbu',practiceplan:'',trackReady:'',songFinalized:'',notes:'',entryStyle:''},
+      {id:'s3',seq:3,song:'Ek Kuwara Fir Gaya Mara',category:"Groom's Fun",dancers:'',lead:'',duration:'',outfit:'',link:'',link2:'',practiceStatus:'tbu',practiceplan:'',trackReady:'',songFinalized:'',notes:'',entryStyle:''},
+      {id:'s4',seq:4,song:'Hum Kya Purane Zamaane Ki Saas Hain',category:"Mother's Love",dancers:'Saas Group',lead:'',duration:'',outfit:'',link:'',link2:'',practiceStatus:'tbu',practiceplan:'',trackReady:'',songFinalized:'',notes:'',entryStyle:''},
+      {id:'s5',seq:5,song:'Biwi Number One',category:'Dee & Jiju Group',dancers:'Dee, Jiju Group',lead:'',duration:'',outfit:'',link:'',link2:'',practiceStatus:'tbu',practiceplan:'',trackReady:'',songFinalized:'',notes:'',entryStyle:''},
+      {id:'s6',seq:6,song:'Main To Raste Se Jaa Raha Tha',category:'Siblings Fun',dancers:'Siblings',lead:'',duration:'',outfit:'',link:'',link2:'',practiceStatus:'tbu',practiceplan:'',trackReady:'',songFinalized:'',notes:'',entryStyle:''},
+      {id:'s7',seq:7,song:'Tu Mera Hero Number 1',category:'Dee & Jiju Group',dancers:'Dee, Jiju Group',lead:'',duration:'',outfit:'',link:'',link2:'',practiceStatus:'tbu',practiceplan:'',trackReady:'',songFinalized:'',notes:'',entryStyle:''},
+      {id:'s8',seq:8,song:'Maya Maya Mola Maya Hoge',category:'Dee & Jiju Group',dancers:'Dee, Jiju Group',lead:'',duration:'',outfit:'',link:'',link2:'',practiceStatus:'tbu',practiceplan:'',trackReady:'',songFinalized:'',notes:'',entryStyle:''},
+      {id:'s9',seq:9,song:'Naatu Naatu',category:'Kids',dancers:'Kids Group',lead:'',duration:'',outfit:'',link:'',link2:'',practiceStatus:'tbu',practiceplan:'',trackReady:'',songFinalized:'',notes:'',entryStyle:''},
+      {id:'s10',seq:10,song:'Veere Di Wedding Songs',category:'Ladies',dancers:'Ladies Group',lead:'',duration:'',outfit:'',link:'',link2:'',practiceStatus:'tbu',practiceplan:'',trackReady:'',songFinalized:'',notes:'',entryStyle:''},
+      {id:'s11',seq:11,song:'Zhingaat',category:'Group Dance',dancers:'',lead:'',duration:'',outfit:'',link:'',link2:'',practiceStatus:'tbu',practiceplan:'',trackReady:'',songFinalized:'',notes:'',entryStyle:''},
+      {id:'s12',seq:12,song:'Ek Garam Chai Ki Pyaali Ho',category:"Groom's Side",dancers:'Groom Side',lead:'',duration:'',outfit:'',link:'',link2:'',practiceStatus:'tbu',practiceplan:'',trackReady:'',songFinalized:'',notes:'',entryStyle:''},
+      {id:'s13',seq:13,song:'Chanda Meri Chanda',category:"Mother's Love",dancers:'Saas Group',lead:'',duration:'',outfit:'',link:'',link2:'',practiceStatus:'tbu',practiceplan:'',trackReady:'',songFinalized:'',notes:'',entryStyle:''},
+      {id:'s14',seq:14,song:'Mere Husband Mujhse Pyar Nahi Karte',category:'Dee & Jiju Group',dancers:'Dee, Jiju Group',lead:'',duration:'',outfit:'',link:'',link2:'',practiceStatus:'tbu',practiceplan:'',trackReady:'',songFinalized:'',notes:'',entryStyle:''},
+      {id:'s15',seq:15,song:'Mere Khwabon Mein Jo Aaye',category:'Romantic',dancers:'Shreni, Kritu',lead:'Shreni',duration:'',outfit:'',link:'',link2:'',practiceStatus:'tbu',practiceplan:'',trackReady:'',songFinalized:'',notes:'',entryStyle:''},
+      {id:'s16',seq:16,song:'Andekha Anjaana Sa',category:'Romantic',dancers:'Shreni, Kritu',lead:'Shreni',duration:'',outfit:'',link:'',link2:'',practiceStatus:'tbu',practiceplan:'',trackReady:'',songFinalized:'',notes:'',entryStyle:''},
+      {id:'s17',seq:17,song:'Laal Chunariya Waali Koi Ghar Mere Bhi Laao',category:'Unmarried Siblings',dancers:'Unmarried Siblings',lead:'',duration:'',outfit:'',link:'',link2:'',practiceStatus:'tbu',practiceplan:'',trackReady:'',songFinalized:'',notes:'',entryStyle:''},
+      {id:'s18',seq:18,song:'Meri Shaadi Karwao',category:'Unmarried Siblings',dancers:'Unmarried Siblings',lead:'',duration:'',outfit:'',link:'',link2:'',practiceStatus:'tbu',practiceplan:'',trackReady:'',songFinalized:'',notes:'',entryStyle:''},
+      {id:'s19',seq:19,song:'Yaad Aa Rahi Hain',category:'Unmarried Siblings',dancers:'Unmarried Siblings',lead:'',duration:'',outfit:'',link:'',link2:'',practiceStatus:'tbu',practiceplan:'',trackReady:'',songFinalized:'',notes:'',entryStyle:''},
+      {id:'s20',seq:20,song:'Rangila Maaro Dhholna',category:'Ladies',dancers:'Ladies',lead:'',duration:'',outfit:'',link:'',link2:'',practiceStatus:'tbu',practiceplan:'',trackReady:'',songFinalized:'',notes:'',entryStyle:''},
+      {id:'s21',seq:21,song:'Tere Dware Pe Aayi Barat',category:'Sangeet Ending',dancers:'Everyone',lead:'',duration:'',outfit:'',link:'',link2:'',practiceStatus:'tbu',practiceplan:'',trackReady:'',songFinalized:'',notes:'Sangeet Ending — सभी मिलकर',entryStyle:''}
+    ],
+    baraat:[
+      {id:'b1',seq:1,song:'Hum Ladke Hain Baraat Leke Jaenge',category:'Baraat Opening',dancers:'',lead:'',duration:'',outfit:'',link:'',link2:'',practiceStatus:'tbu',practiceplan:'',trackReady:'',songFinalized:'',notes:'Baraat Starting',entryStyle:''},
+      {id:'b2',seq:2,song:'Pyara Bhaiya Mera Dulha Raja Ban Ke Aagya',category:"Brother's Love",dancers:'',lead:'',duration:'',outfit:'',link:'',link2:'',practiceStatus:'tbu',practiceplan:'',trackReady:'',songFinalized:'',notes:'',entryStyle:''},
+      {id:'b3',seq:3,song:'Chhote Chhote Bhaiyyon Ke Bade Bhaiya',category:"Brother's Love",dancers:'',lead:'',duration:'',outfit:'',link:'',link2:'',practiceStatus:'tbu',practiceplan:'',trackReady:'',songFinalized:'',notes:'',entryStyle:''},
+      {id:'b4',seq:4,song:'Oh Balle Balle Soniyo Ke Rang Dekhlo',category:'Baraat Dance',dancers:'',lead:'',duration:'',outfit:'',link:'',link2:'',practiceStatus:'tbu',practiceplan:'',trackReady:'',songFinalized:'',notes:'',entryStyle:''}
+    ],
+    haldi:[
+      {id:'h1',seq:1,song:'Ghodi Chadh Gaya We Sadda Barkhurdar',category:'Haldi / Baraat Sequence',dancers:'',lead:'',duration:'',outfit:'',link:'',link2:'',practiceStatus:'tbu',practiceplan:'',trackReady:'',songFinalized:'',notes:'Haldi + Baraat sequence',entryStyle:''}
+    ]
+  }
+}));
+
+function saveData(){ localStorage.setItem(SK, JSON.stringify(data)); }
+
+// ── LOGIN ──
+function selectLoginType(type){
+  if(type === 'guest'){
+    currentUser = { type:'guest', name:'Guest', phone:'' };
+    localStorage.setItem(SESSION_KEY, JSON.stringify(currentUser));
+    startApp();
+  } else {
+    document.getElementById('loginChoice').style.display='none';
+    document.getElementById('mgmtForm').classList.add('show');
+  }
+}
+
+function backToChoice(){
+  document.getElementById('loginChoice').style.display='flex';
+  document.getElementById('mgmtForm').classList.remove('show');
+  document.getElementById('loginError').classList.remove('show');
+}
+
+function doMgmtLogin(){
+  const name = document.getElementById('mgmtName').value.trim();
+  const phone = document.getElementById('mgmtPhone').value.trim();
+  const pass = document.getElementById('mgmtPass').value;
+  const err = document.getElementById('loginError');
+
+  if(!name){ err.textContent='कृपया अपना नाम लिखें।'; err.classList.add('show'); return; }
+  if(!phone){ err.textContent='कृपया WhatsApp नंबर लिखें।'; err.classList.add('show'); return; }
+  if(pass !== MGMT_PASS){ err.textContent='गलत password! सही password डालें।'; err.classList.add('show'); return; }
+
+  err.classList.remove('show');
+
+  // Register member if not exists
+  let member = data.members.find(m => m.phone === phone);
+  if(!member){
+    member = { name, phone, photo:'', roles:[], time:Date.now() };
+    data.members.push(member);
+    saveData();
+  } else {
+    member.name = name; // update name if changed
+    saveData();
+  }
+
+  currentUser = { type:'mgmt', name, phone, photo: member.photo || '' };
+  localStorage.setItem(SESSION_KEY, JSON.stringify(currentUser));
+  startApp();
+}
+
+function doLogout(){
+  currentUser = null;
+  localStorage.removeItem(SESSION_KEY);
+  document.getElementById('loginScreen').style.display='flex';
+  document.getElementById('mainApp').style.display='none';
+  document.getElementById('loginChoice').style.display='flex';
+  document.getElementById('mgmtForm').classList.remove('show');
+  document.getElementById('mgmtName').value='';
+  document.getElementById('mgmtPhone').value='';
+  document.getElementById('mgmtPass').value='';
+}
+
+function startApp(){
+  document.getElementById('loginScreen').style.display='none';
+  document.getElementById('mainApp').style.display='block';
+  document.getElementById('navUser').textContent = currentUser.name + (currentUser.type==='guest' ? ' (Guest)' : '');
+
+  const isMgmt = currentUser.type === 'mgmt';
+  const badge = document.getElementById('editorBadge');
+  const addBtn = document.getElementById('addPerfBtn');
+  if(badge) badge.style.display = isMgmt ? 'inline-flex' : 'none';
+  if(addBtn) addBtn.style.display = isMgmt ? 'block' : 'none';
+
+  renderAllPerfs();
+  renderRoles();
+}
+
+// ── EVENT TOGGLE ──
+function toggleEvent(name){
+  const body = document.getElementById('body-'+name);
+  const tog = document.getElementById('toggle-'+name);
+  body.classList.toggle('open');
+  tog.classList.toggle('open', body.classList.contains('open'));
+}
+
+// ── PERFORMANCES ──
+const statusLabels={ready:'✅ Ready',progress:'⏳ In Progress',notstarted:'🔴 Not Started',tbu:'📝 To be updated'};
+const statusClasses={ready:'status-ready',progress:'status-progress',notstarted:'status-notstarted',tbu:'status-tbu'};
+
+function renderAllPerfs(){ ['sangeet','baraat','haldi'].forEach(e=>renderPerfs(e)); }
+
+function renderPerfs(event){
+  const el = document.getElementById('perfs-'+event); if(!el) return;
+  const perfs = data.performances[event]||[];
+  if(!perfs.length){ el.innerHTML='<div class="empty-state">अभी कोई परफॉर्मेंस नहीं।</div>'; return; }
+  const sorted = [...perfs].sort((a,b)=>(a.seq||99)-(b.seq||99));
+  const canEdit = currentUser && currentUser.type==='mgmt';
+  el.innerHTML = sorted.map(p=>`
+    <div class="perf-card">
+      <div class="perf-seq">${p.seq||'?'}</div>
+      <div class="perf-song">${escHtml(p.song)}</div>
+      <div class="perf-category">${escHtml(p.category||'')}</div>
+      <div class="perf-grid">
+        <div class="perf-field"><div class="perf-field-label">Dance Lead</div><div class="perf-field-value ${!p.lead?'tbu':''}">${escHtml(p.lead)||'To be updated'}</div></div>
+        <div class="perf-field"><div class="perf-field-label">Duration</div><div class="perf-field-value ${!p.duration?'tbu':''}">${p.duration?p.duration+' mins':'To be updated'}</div></div>
+        <div class="perf-field"><div class="perf-field-label">Track Ready</div><div class="perf-field-value ${!p.trackReady?'tbu':''}">${escHtml(p.trackReady)||'To be updated'}</div></div>
+        <div class="perf-field"><div class="perf-field-label">Song Finalized</div><div class="perf-field-value ${!p.songFinalized?'tbu':''}">${escHtml(p.songFinalized)||'To be updated'}</div></div>
+      </div>
+      <div class="perf-dancers"><div class="perf-field-label">Dancers</div><div class="perf-field-value ${!p.dancers?'tbu':''}">${escHtml(p.dancers)||'To be updated'}</div></div>
+      ${(p.outfit||p.notes)?`<div class="perf-grid">${p.outfit?`<div class="perf-field"><div class="perf-field-label">Outfit</div><div class="perf-field-value">${escHtml(p.outfit)}</div></div>`:''}${p.notes?`<div class="perf-field"><div class="perf-field-label">Notes</div><div class="perf-field-value">${escHtml(p.notes)}</div></div>`:''}</div>`:''}
+      ${(p.link||p.link2)?`<div class="perf-links">${p.link?`<a class="perf-link" href="${escHtml(p.link)}" target="_blank">🎬 Choreo Ref 1</a>`:''}${p.link2?`<a class="perf-link" href="${escHtml(p.link2)}" target="_blank">🎬 Choreo Ref 2</a>`:''}</div>`:''}
+      <span class="perf-status ${statusClasses[p.practiceStatus]||'status-tbu'}">${statusLabels[p.practiceStatus]||'📝 To be updated'}</span>
+      ${canEdit?`<button class="edit-btn" onclick="toggleEditForm('${p.id}','${event}')">✏️ Edit</button>`:''}
+      <div class="edit-form" id="eform-${p.id}">
+        <div class="edit-row"><div><div class="edit-label">Song</div><input class="edit-input" id="ef-song-${p.id}" value="${escHtml(p.song)}"/></div><div><div class="edit-label">Category</div><input class="edit-input" id="ef-cat-${p.id}" value="${escHtml(p.category||'')}"/></div></div>
+        <div class="edit-row"><div><div class="edit-label">Seq #</div><input class="edit-input" id="ef-seq-${p.id}" value="${p.seq||''}"/></div><div><div class="edit-label">Duration</div><input class="edit-input" id="ef-dur-${p.id}" value="${p.duration||''}"/></div></div>
+        <div class="edit-row"><div><div class="edit-label">Dance Lead</div><input class="edit-input" id="ef-lead-${p.id}" value="${escHtml(p.lead||'')}"/></div><div><div class="edit-label">Status</div><select class="edit-input" id="ef-status-${p.id}"><option value="tbu" ${p.practiceStatus==='tbu'?'selected':''}>To be updated</option><option value="notstarted" ${p.practiceStatus==='notstarted'?'selected':''}>Not Started</option><option value="progress" ${p.practiceStatus==='progress'?'selected':''}>In Progress</option><option value="ready" ${p.practiceStatus==='ready'?'selected':''}>Ready</option></select></div></div>
+        <div style="margin-bottom:8px;"><div class="edit-label">Dancers</div><input class="edit-input" id="ef-dancers-${p.id}" value="${escHtml(p.dancers||'')}"/></div>
+        <div class="edit-row"><div><div class="edit-label">Outfit</div><input class="edit-input" id="ef-outfit-${p.id}" value="${escHtml(p.outfit||'')}"/></div><div><div class="edit-label">Track Ready</div><select class="edit-input" id="ef-track-${p.id}"><option value="" ${!p.trackReady?'selected':''}>TBU</option><option value="Yes" ${p.trackReady==='Yes'?'selected':''}>Yes</option><option value="No" ${p.trackReady==='No'?'selected':''}>No</option></select></div></div>
+        <div class="edit-row"><div><div class="edit-label">Song Finalized</div><select class="edit-input" id="ef-fin-${p.id}"><option value="" ${!p.songFinalized?'selected':''}>TBU</option><option value="Yes" ${p.songFinalized==='Yes'?'selected':''}>Yes</option><option value="No" ${p.songFinalized==='No'?'selected':''}>No</option></select></div><div><div class="edit-label">Practice Plan</div><input class="edit-input" id="ef-prac-${p.id}" value="${escHtml(p.practiceplan||'')}"/></div></div>
+        <div style="margin-bottom:8px;"><div class="edit-label">Choreo Link 1</div><input class="edit-input" id="ef-link-${p.id}" value="${escHtml(p.link||'')}"/></div>
+        <div style="margin-bottom:8px;"><div class="edit-label">Choreo Link 2</div><input class="edit-input" id="ef-link2-${p.id}" value="${escHtml(p.link2||'')}"/></div>
+        <div style="margin-bottom:12px;"><div class="edit-label">Notes</div><input class="edit-input" id="ef-notes-${p.id}" value="${escHtml(p.notes||'')}"/></div>
+        <button class="btn-save" onclick="saveEdit('${p.id}','${event}')">✓ सेव</button>
+        <button class="btn-cancel" onclick="toggleEditForm('${p.id}','${event}')">रद्द</button>
+      </div>
+    </div>`).join('');
+}
+
+function toggleEditForm(id,event){ document.getElementById('eform-'+id).classList.toggle('open'); }
+
+function saveEdit(id,event){
+  const idx = data.performances[event].findIndex(p=>p.id===id); if(idx===-1) return;
+  const p = data.performances[event][idx];
+  p.song=document.getElementById('ef-song-'+id).value.trim();
+  p.category=document.getElementById('ef-cat-'+id).value.trim();
+  p.seq=parseInt(document.getElementById('ef-seq-'+id).value)||p.seq;
+  p.duration=document.getElementById('ef-dur-'+id).value.trim();
+  p.lead=document.getElementById('ef-lead-'+id).value.trim();
+  p.practiceStatus=document.getElementById('ef-status-'+id).value;
+  p.dancers=document.getElementById('ef-dancers-'+id).value.trim();
+  p.outfit=document.getElementById('ef-outfit-'+id).value.trim();
+  p.trackReady=document.getElementById('ef-track-'+id).value;
+  p.songFinalized=document.getElementById('ef-fin-'+id).value;
+  p.practiceplan=document.getElementById('ef-prac-'+id).value.trim();
+  p.link=document.getElementById('ef-link-'+id).value.trim();
+  p.link2=document.getElementById('ef-link2-'+id).value.trim();
+  p.notes=document.getElementById('ef-notes-'+id).value.trim();
+  saveData(); renderPerfs(event); alert('✓ सेव हो गया!');
+}
+
+function showAddPerf(e){ document.getElementById('addPerfForm-'+e).classList.add('open'); }
+function hideAddPerf(e){ document.getElementById('addPerfForm-'+e).classList.remove('open'); }
+
+function saveNewPerf(event){
+  const song=document.getElementById('new-song-'+event).value.trim();
+  if(!song){ alert('गाने का नाम लिखें!'); return; }
+  data.performances[event].push({
+    id:event[0]+Date.now(),
+    seq:parseInt(document.getElementById('new-seq-'+event).value)||data.performances[event].length+1,
+    song,category:document.getElementById('new-cat-'+event).value.trim(),
+    duration:document.getElementById('new-dur-'+event).value.trim(),
+    lead:document.getElementById('new-lead-'+event).value.trim(),
+    practiceStatus:document.getElementById('new-status-'+event).value,
+    dancers:document.getElementById('new-dancers-'+event).value.trim(),
+    link:document.getElementById('new-link-'+event).value.trim(),
+    link2:'',outfit:document.getElementById('new-outfit-'+event).value.trim(),
+    notes:document.getElementById('new-notes-'+event).value.trim(),
+    entryStyle:'',practiceplan:'',trackReady:'',songFinalized:''
+  });
+  saveData(); hideAddPerf(event); renderPerfs(event);
+  ['new-song-','new-cat-','new-seq-','new-dur-','new-lead-','new-dancers-','new-link-','new-outfit-','new-notes-'].forEach(f=>{ const el=document.getElementById(f+event); if(el) el.value=''; });
+  alert('✓ जोड़ दी गई!');
+}
+
+// ── ROLES ──
+function getAllRoles(){
+  const base = ROLES.map(r=>({...r, isCustom:false}));
+  const custom = data.customRoles.map(r=>({...r, icon:'✦', cat:'✦ परिवार द्वारा जोड़ी', isCustom:true, details:[r.desc||'परिवार द्वारा जोड़ी गई भूमिका']}));
+  return [...base, ...custom];
+}
+
+function getMyInterests(){
+  if(!currentUser || currentUser.type==='guest') return [];
+  return Object.keys(data.roleInterests).filter(rid=>{
+    return (data.roleInterests[rid]||[]).some(i=>i.phone===currentUser.phone);
+  });
+}
+
+function renderRoles(){
+  const container = document.getElementById('rolesContainer'); if(!container) return;
+  const allRoles = getAllRoles();
+  const myInterests = getMyInterests();
+  const isMgmt = currentUser && currentUser.type==='mgmt';
+
+  // Group by category
+  const cats = {};
+  allRoles.forEach(r=>{ if(!cats[r.cat]) cats[r.cat]=[]; cats[r.cat].push(r); });
+
+  let html = '';
+  Object.entries(cats).forEach(([cat, roles])=>{
+    html += `<div class="role-category"><div class="role-cat-title">${escHtml(cat)}</div><div class="role-grid">`;
+    roles.forEach(r=>{
+      const interests = data.roleInterests[r.id]||[];
+      const iMine = myInterests.includes(r.id);
+      const suggestions = data.roleSuggestions[r.id]||[];
+
+      html += `<div class="role-card" id="rcard-${r.id}">
+        <div class="role-card-top">
+          <div class="role-icon-big">${r.icon}</div>
+          <div class="role-card-info">
+            <div class="role-name">${escHtml(r.name)}</div>
+            <div class="role-tagline">${escHtml(r.tagline||'')}</div>
+          </div>
+        </div>
+
+        <div class="role-details-toggle" onclick="toggleRoleDetails('${r.id}')">
+          📋 भूमिका विवरण देखें ▾
+        </div>
+        <div class="role-details" id="rdetails-${r.id}">
+          ${r.details.map(d=>`<div class="role-detail-item">${escHtml(d)}</div>`).join('')}
+        </div>
+
+        <div class="role-interest-bar">
+          <div class="interested-count">${interests.length} रुचि</div>
+          ${isMgmt ? `<button class="btn-interested ${iMine?'mine':''}" onclick="toggleInterest('${r.id}')">${iMine?'✓ मेरी रुचि':'+ रुचि दिखाएँ'}</button>` : `<span style="font-size:10px;color:var(--muted);">Login करें</span>`}
+        </div>
+
+        ${interests.length ? `<div class="interested-people">${interests.map(i=>`<span class="interested-chip ${i.phone===currentUser?.phone?'me':''}">${escHtml(i.name)}</span>`).join('')}</div>` : ''}
+
+        ${suggestions.length ? `<div class="role-suggestions">${suggestions.map(s=>`<div class="role-suggestion-item">💬 <b>${escHtml(s.suggester)}</b> ने सुझाया: <b>${escHtml(s.suggested)}</b>${s.text?' — '+escHtml(s.text):''} <span style="color:var(--gold);">👍 ${s.votes?s.votes.length:0}</span> ${isMgmt&&!s.votes?.includes(currentUser.phone)?`<span style="cursor:pointer;color:var(--gold);" onclick="voteRoleSuggestion('${r.id}','${escJs(s.id)}')">+1</span>`:''}</div>`).join('')}</div>` : ''}
+
+        ${isMgmt ? `
+          <button class="suggest-for-role-btn" onclick="toggleSuggestInput('${r.id}')">💡 किसी और को सुझाएँ</button>
+          <div class="suggest-input-wrap" id="sugg-input-${r.id}">
+            <input class="suggest-mini-input" id="sugg-name-${r.id}" placeholder="किसका नाम?"/>
+            <button class="suggest-mini-btn" onclick="submitRoleSuggestion('${r.id}')">सुझाएँ</button>
+          </div>
+        ` : ''}
+      </div>`;
+    });
+    html += `</div></div>`;
+  });
+
+  container.innerHTML = html;
+}
+
+function toggleRoleDetails(id){
+  const el = document.getElementById('rdetails-'+id);
+  el.classList.toggle('open');
+}
+
+function toggleInterest(roleId){
+  if(!currentUser || currentUser.type==='guest') return;
+  if(!data.roleInterests[roleId]) data.roleInterests[roleId]=[];
+  const arr = data.roleInterests[roleId];
+  const idx = arr.findIndex(i=>i.phone===currentUser.phone);
+  if(idx===-1){
+    arr.push({name:currentUser.name, phone:currentUser.phone, time:Date.now()});
+  } else {
+    arr.splice(idx,1);
+  }
+  // Update member's roles list
+  const member = data.members.find(m=>m.phone===currentUser.phone);
+  if(member){
+    if(idx===-1){ if(!member.roles) member.roles=[]; if(!member.roles.includes(roleId)) member.roles.push(roleId); }
+    else { member.roles = (member.roles||[]).filter(r=>r!==roleId); }
+  }
+  saveData(); renderRoles(); renderTeam();
+}
+
+function toggleSuggestInput(roleId){
+  const el = document.getElementById('sugg-input-'+roleId);
+  el.classList.toggle('open');
+}
+
+function submitRoleSuggestion(roleId){
+  const nameEl = document.getElementById('sugg-name-'+roleId);
+  const suggested = nameEl.value.trim();
+  if(!suggested){ alert('नाम लिखें!'); return; }
+  if(!data.roleSuggestions[roleId]) data.roleSuggestions[roleId]=[];
+  data.roleSuggestions[roleId].push({
+    id:'rs'+Date.now(), suggester:currentUser.name,
+    suggested, text:'', votes:[], time:Date.now()
+  });
+  nameEl.value='';
+  document.getElementById('sugg-input-'+roleId).classList.remove('open');
+  saveData(); renderRoles();
+  alert('✦ सुझाव दे दिया!');
+}
+
+function voteRoleSuggestion(roleId, suggId){
+  const arr = data.roleSuggestions[roleId]||[];
+  const s = arr.find(x=>x.id===suggId);
+  if(!s) return;
+  if(!s.votes) s.votes=[];
+  if(!s.votes.includes(currentUser.phone)){ s.votes.push(currentUser.phone); saveData(); renderRoles(); }
+}
+
+function addCustomRole(){
+  const name=document.getElementById('customRoleName').value.trim();
+  const desc=document.getElementById('customRoleDesc').value.trim();
+  if(!name){ alert('भूमिका का नाम लिखें!'); return; }
+  data.customRoles.push({id:'custom_'+Date.now(),name,desc:desc||'परिवार द्वारा जोड़ी गई भूमिका',tagline:desc||''});
+  saveData(); renderRoles();
+  document.getElementById('customRoleName').value='';
+  document.getElementById('customRoleDesc').value='';
+}
+
+// ── TEAM ──
+function renderTeam(){
+  const grid = document.getElementById('teamGrid');
+  const empty = document.getElementById('teamEmpty');
+  if(!grid) return;
+  if(!data.members.length){ grid.innerHTML=''; empty.style.display='block'; return; }
+  empty.style.display='none';
+  const allRoles = getAllRoles();
+
+  grid.innerHTML = data.members.map(m=>{
+    const myRoleNames = (m.roles||[]).map(rid=>{ const r=allRoles.find(x=>x.id===rid); return r?r.name:null; }).filter(Boolean);
+    const isMe = currentUser && currentUser.phone===m.phone;
+    return `<div class="team-card">
+      <div class="team-photo" onclick="${isMe?'triggerPhotoUpload()':''}">
+        ${m.photo ? `<img src="${m.photo}" alt="${escHtml(m.name)}"/>` : `<div class="team-photo-placeholder">${m.name.charAt(0).toUpperCase()}</div>`}
+        ${isMe ? `<div class="team-photo-edit">📷</div>` : ''}
+      </div>
+      <div class="team-name">${escHtml(m.name)}</div>
+      <div class="team-phone">${escHtml(m.phone)}</div>
+      ${myRoleNames.length ? `<div class="team-role-status">✋ ${myRoleNames.length} भूमिका में रुचि</div><div class="team-roles-list">${myRoleNames.join(' · ')}</div>` : `<div class="team-role-status" style="background:#F5F5F5;color:#999;">भूमिका बाकी</div>`}
+    </div>`;
+  }).join('');
+}
+
+function triggerPhotoUpload(){
+  document.getElementById('photoInput').click();
+}
+
+function handlePhotoUpload(event){
+  const file = event.target.files[0]; if(!file) return;
+  const reader = new FileReader();
+  reader.onload = function(e){
+    const member = data.members.find(m=>m.phone===currentUser.phone);
+    if(member){
+      member.photo = e.target.result;
+      currentUser.photo = e.target.result;
+      saveData(); renderTeam();
+    }
+  };
+  reader.readAsDataURL(file);
+}
+
+// ── SUGGESTIONS ──
+function getAllPersonNames(){
+  const names=new Set();
+  data.members.forEach(m=>names.add(m.name));
+  data.suggestions.forEach(s=>names.add(s.author));
+  return [...names];
+}
+
+function showTagSuggestions(){
+  const input=document.getElementById('tagInput').value.trim();
+  const sugg=document.getElementById('tagSuggestions');
+  if(!input){ sugg.classList.remove('show'); return; }
+  const names=getAllPersonNames().filter(n=>n.toLowerCase().includes(input.toLowerCase())&&!taggedPeople.includes(n));
+  if(!names.length){ sugg.classList.remove('show'); return; }
+  sugg.innerHTML=names.slice(0,5).map(n=>`<div class="tag-suggestion-item" onmousedown="addTag('${escJs(n)}')">${escHtml(n)}</div>`).join('');
+  sugg.classList.add('show');
+}
+
+function hideTagSugg(){ setTimeout(()=>document.getElementById('tagSuggestions').classList.remove('show'),200); }
+function addTag(n){ if(taggedPeople.includes(n)) return; taggedPeople.push(n); document.getElementById('tagInput').value=''; document.getElementById('tagSuggestions').classList.remove('show'); renderAddedTags(); }
+function removeTag(n){ taggedPeople=taggedPeople.filter(t=>t!==n); renderAddedTags(); }
+function renderAddedTags(){ document.getElementById('addedTags').innerHTML=taggedPeople.map(t=>`<div class="added-tag" onclick="removeTag('${escJs(t)}')">@${escHtml(t)} ✕</div>`).join(''); }
+
+function submitSuggestion(){
+  const author=document.getElementById('suggName').value.trim();
+  const text=document.getElementById('suggText').value.trim();
+  if(!author||!text){ alert('नाम और सुझाव लिखें!'); return; }
+  data.suggestions.unshift({author,text,tags:[...taggedPeople],time:Date.now()});
+  saveData();
+  document.getElementById('suggName').value=''; document.getElementById('suggText').value='';
+  taggedPeople=[]; renderAddedTags(); renderSuggestions();
+  alert('✦ सुझाव भेज दिया!');
+}
+
+function renderSuggestions(){
+  const el=document.getElementById('suggestionsList'); if(!el) return;
+  if(!data.suggestions.length){ el.innerHTML='<div class="empty-state">अभी कोई सुझाव नहीं — पहले आप लिखें! 💡</div>'; return; }
+  el.innerHTML=data.suggestions.map(s=>{
+    const d=new Date(s.time);
+    const t=d.toLocaleDateString('hi-IN')+' '+d.toLocaleTimeString('hi-IN',{hour:'2-digit',minute:'2-digit'});
+    return `<div class="suggestion-card"><div class="suggestion-header"><div class="suggestion-avatar">${s.author.charAt(0).toUpperCase()}</div><div class="suggestion-meta"><div class="suggestion-author">${escHtml(s.author)}</div><div class="suggestion-time">${t}</div></div></div><div class="suggestion-text">${escHtml(s.text)}</div>${s.tags.length?`<div class="suggestion-tags">${s.tags.map(t=>`<span class="tag-pill">@${escHtml(t)}</span>`).join('')}</div>`:''}</div>`;
+  }).join('');
+}
+
+// ── SECTION NAV ──
+function showSection(name){
+  document.getElementById('heroSection').style.display='none';
+  document.getElementById('mainNav').style.display='flex';
+  document.getElementById('navLinksBar').style.display='flex';
+  document.getElementById('bottomNav').style.display='flex';
+
+  ['events','roles','team','suggest','info'].forEach(s=>{
+    document.getElementById('sec-'+s).classList.remove('visible');
+    const bn=document.getElementById('bn-'+s); const nv=document.getElementById('nav-'+s);
+    if(bn) bn.classList.remove('active'); if(nv) nv.classList.remove('active');
+  });
+
+  document.getElementById('sec-'+name).classList.add('visible');
+  const bn=document.getElementById('bn-'+name); const nv=document.getElementById('nav-'+name);
+  if(bn) bn.classList.add('active'); if(nv) nv.classList.add('active');
+
+  if(name==='roles') renderRoles();
+  if(name==='team') renderTeam();
+  if(name==='suggest') renderSuggestions();
+  window.scrollTo(0,0);
+}
+
+function copyLink(){
+  const url=document.getElementById('siteUrl').textContent;
+  navigator.clipboard.writeText(url).then(()=>alert('✦ लिंक कॉपी हो गया!')).catch(()=>alert('लिंक: '+url));
+}
+
+function escHtml(t){ return String(t??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+function escJs(t){ return String(t??'').replace(/'/g,"\'").replace(/"/g,'\"'); }
+
+// ── AUTO RESTORE SESSION ──
+(function(){
+  const saved = localStorage.getItem(SESSION_KEY);
+  if(saved){
+    try {
+      const session = JSON.parse(saved);
+      if(session && session.type){
+        // For mgmt, refresh photo from members
+        if(session.type === 'mgmt'){
+          const member = data.members.find(m=>m.phone===session.phone);
+          if(member){ session.photo = member.photo||''; session.name = member.name||session.name; }
+          else { localStorage.removeItem(SESSION_KEY); return; } // member not found, force relogin
+        }
+        currentUser = session;
+        startApp();
+        return;
+      }
+    } catch(e){}
+  }
+  // No session — show login
+  document.getElementById('loginScreen').style.display='flex';
+})();
+</script>
+
+</body>
+</html>
