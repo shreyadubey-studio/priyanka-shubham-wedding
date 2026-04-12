@@ -1,0 +1,1474 @@
+<!DOCTYPE html>
+
+<html lang="hi">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Priyanka & Shubham Vivah 🌼</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Outfit:wght@300;400;500;600&family=Noto+Sans+Devanagari:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --gold:#C8820A; --gold-deep:#8B5500; --gold-rich:#E0A020;
+      --gold-light:#F5C842; --gold-pale:#FFF8E0; --gold-soft:#FAEAA0;
+      --amber:#D4560A; --amber-soft:#FFE8D0;
+      --dark:#18080A; --dark-mid:#2E1408;
+      --cream:#FDFAF0; --warm-white:#FFFEF5;
+      --text:#1A0E00; --muted:#7A5C30; --line:#EDD9A0;
+      --shadow:0 8px 32px rgba(200,130,10,0.10);
+      --green:#1A5C2A; --green-soft:#D4EDDA;
+      --red:#7A1A1A; --red-soft:#F8D7DA;
+      --blue:#1A3A6B; --blue-soft:#D4E0F0;
+    }
+    * { box-sizing:border-box; margin:0; padding:0; -webkit-tap-highlight-color:transparent; }
+    body { font-family:'Outfit',sans-serif; background:var(--cream); color:var(--text); min-height:100vh; }
+
+```
+/* ── LOGIN SCREEN ── */
+.login-screen {
+  min-height:100vh;
+  background:radial-gradient(ellipse at 15% 85%, rgba(200,130,10,0.28) 0%, transparent 50%),
+    radial-gradient(ellipse at 85% 15%, rgba(212,86,10,0.18) 0%, transparent 45%),
+    linear-gradient(160deg,#18080A 0%,#2E1408 30%,#1A0A00 65%,#0A0400 100%);
+  display:flex; align-items:center; justify-content:center; padding:24px;
+}
+
+.login-card {
+  background:rgba(255,248,224,0.06); border:1px solid rgba(200,130,10,0.3);
+  border-radius:28px; padding:32px 24px; width:100%; max-width:380px;
+  backdrop-filter:blur(20px); text-align:center;
+}
+
+.login-logo {
+  font-family:'Cormorant Garamond',serif;
+  font-size:42px; font-weight:300; color:var(--gold-light);
+  line-height:1; margin-bottom:4px;
+}
+
+.login-sub {
+  font-size:11px; color:rgba(255,220,120,0.5);
+  letter-spacing:0.2em; text-transform:uppercase;
+  margin-bottom:28px; font-family:'Outfit',sans-serif;
+}
+
+.login-input {
+  width:100%; background:rgba(255,248,224,0.08);
+  border:1px solid rgba(200,130,10,0.3); border-radius:12px;
+  padding:12px 14px; font-size:14px;
+  font-family:'Outfit',sans-serif; color:white; outline:none;
+  margin-bottom:10px; transition:border-color 0.2s;
+}
+
+.login-input::placeholder { color:rgba(255,220,120,0.35); }
+.login-input:focus { border-color:var(--gold-rich); }
+
+.login-btn {
+  width:100%; background:linear-gradient(135deg,var(--gold-deep),var(--gold-rich));
+  color:white; border:none; border-radius:12px; padding:13px;
+  font-family:'Outfit',sans-serif; font-size:14px; font-weight:600;
+  cursor:pointer; margin-bottom:10px; transition:opacity 0.2s;
+}
+
+.login-btn:hover { opacity:0.9; }
+
+.login-guest {
+  background:rgba(255,248,224,0.06); color:rgba(255,220,120,0.6);
+  border:1px solid rgba(200,130,10,0.2);
+}
+
+.login-error {
+  font-size:12px; color:#F5A0A0; margin-top:8px;
+  display:none;
+}
+
+.login-error.show { display:block; }
+
+.login-accounts {
+  margin-top:20px; padding-top:16px;
+  border-top:1px solid rgba(200,130,10,0.15);
+}
+
+.login-accounts p {
+  font-size:11px; color:rgba(255,220,120,0.35);
+  margin-bottom:8px; letter-spacing:0.08em;
+}
+
+.login-account-chip {
+  display:inline-block; margin:3px;
+  background:rgba(200,130,10,0.12); border:1px solid rgba(200,130,10,0.2);
+  border-radius:999px; padding:4px 10px;
+  font-size:11px; color:rgba(255,220,120,0.5);
+  cursor:pointer; transition:background 0.2s;
+}
+
+.login-account-chip:hover {
+  background:rgba(200,130,10,0.22);
+  color:var(--gold-light);
+}
+
+/* ── HERO ── */
+.hero {
+  min-height:100vh;
+  background:radial-gradient(ellipse at 15% 85%, rgba(200,130,10,0.28) 0%, transparent 50%),
+    radial-gradient(ellipse at 85% 15%, rgba(212,86,10,0.18) 0%, transparent 45%),
+    linear-gradient(160deg,#18080A 0%,#2E1408 30%,#1A0A00 65%,#0A0400 100%);
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  text-align:center; padding:40px 24px 120px; position:relative; overflow:hidden;
+}
+
+.hero::before {
+  content:''; position:absolute; inset:0;
+  background-image:radial-gradient(circle,rgba(200,130,10,0.07) 1px,transparent 1px);
+  background-size:40px 40px; pointer-events:none;
+}
+
+.petal { position:absolute; pointer-events:none; animation:floatPetal 9s ease-in-out infinite; opacity:0.09; }
+.petal:nth-child(1){top:8%;left:7%;font-size:44px;animation-delay:0s;}
+.petal:nth-child(2){top:15%;right:9%;font-size:28px;animation-delay:1.8s;}
+.petal:nth-child(3){bottom:25%;left:5%;font-size:36px;animation-delay:3.2s;}
+.petal:nth-child(4){bottom:18%;right:7%;font-size:40px;animation-delay:5s;}
+.petal:nth-child(5){top:48%;left:2%;font-size:22px;animation-delay:2.4s;}
+.petal:nth-child(6){top:32%;right:3%;font-size:26px;animation-delay:6.5s;}
+
+@keyframes floatPetal{0%,100%{transform:translateY(0) rotate(0deg);opacity:0.09;}50%{transform:translateY(-18px) rotate(14deg);opacity:0.17;}}
+
+.hero-tag{font-size:10px;font-weight:600;letter-spacing:0.28em;text-transform:uppercase;color:var(--gold-light);opacity:0.85;margin-bottom:18px;animation:fadeUp 0.8s ease both;}
+.hero-names{font-family:'Cormorant Garamond',serif;font-size:clamp(52px,14vw,110px);font-weight:300;line-height:0.92;animation:fadeUp 0.9s 0.1s ease both;}
+.bride{color:var(--gold-light);}
+.groom{color:#FFE8C0;}
+.hero-amp{display:block;font-family:'Cormorant Garamond',serif;font-size:clamp(30px,8vw,62px);color:var(--gold-rich);font-style:italic;margin:4px 0;}
+.hero-ornament{display:flex;align-items:center;gap:12px;margin:18px 0;animation:fadeUp 1s 0.2s ease both;}
+.orn-line{height:1px;width:50px;background:linear-gradient(90deg,transparent,var(--gold-rich));}
+.orn-line.r{background:linear-gradient(90deg,var(--gold-rich),transparent);}
+.orn-gem{font-size:15px;color:var(--gold-rich);}
+.hero-date{font-family:'Cormorant Garamond',serif;font-size:17px;color:var(--gold-light);letter-spacing:0.08em;font-style:italic;animation:fadeUp 1s 0.3s ease both;}
+.hero-location{font-size:11px;color:rgba(255,220,120,0.45);margin-top:7px;letter-spacing:0.16em;text-transform:uppercase;animation:fadeUp 1s 0.4s ease both;}
+
+.hero-explore{
+  position:absolute;bottom:52px;left:50%;transform:translateX(-50%);
+  display:flex;flex-direction:column;align-items:center;gap:6px;
+  animation:fadeUp 1s 0.6s ease both;cursor:pointer;
+  background:rgba(200,130,10,0.15);border:1px solid rgba(200,130,10,0.4);
+  border-radius:50px;padding:12px 24px;backdrop-filter:blur(8px);
+  transition:background 0.2s;
+}
+.hero-explore:hover{background:rgba(200,130,10,0.25);}
+.hero-explore-text{font-size:12px;color:var(--gold-light);font-weight:500;letter-spacing:0.06em;}
+.hero-explore-hint{font-size:11px;color:rgba(255,220,120,0.55);font-family:'Noto Sans Devanagari',sans-serif;}
+.scroll-arrow{font-size:16px;color:var(--gold-rich);animation:bounce 2s ease infinite;}
+@keyframes bounce{0%,100%{transform:translateY(0);}50%{transform:translateY(4px);}}
+
+/* ── NAV ── */
+.nav{
+  position:sticky;top:0;z-index:100;
+  background:rgba(24,8,10,0.97);backdrop-filter:blur(20px);
+  border-bottom:1px solid rgba(200,130,10,0.22);
+  padding:0 12px;display:flex;align-items:center;justify-content:space-between;height:52px;
+}
+.nav-brand{font-family:'Cormorant Garamond',serif;font-size:18px;color:var(--gold-light);font-style:italic;white-space:nowrap;}
+.nav-right{display:flex;align-items:center;gap:8px;}
+.nav-user{font-size:11px;color:rgba(255,220,120,0.5);white-space:nowrap;}
+.nav-logout{font-size:11px;background:rgba(200,130,10,0.15);border:1px solid rgba(200,130,10,0.2);color:var(--gold-light);border-radius:8px;padding:5px 9px;cursor:pointer;}
+
+.nav-links{display:flex;gap:2px;}
+.nav-links button{background:none;border:none;color:rgba(255,220,120,0.4);font-family:'Noto Sans Devanagari',sans-serif;font-size:11px;font-weight:500;padding:6px 8px;border-radius:8px;cursor:pointer;transition:color 0.2s,background 0.2s;}
+.nav-links button:hover,.nav-links button.active{color:var(--gold-light);background:rgba(200,130,10,0.15);}
+
+/* ── SECTIONS ── */
+.section{display:none;animation:fadeUp 0.4s ease both;max-width:720px;margin:0 auto;padding:28px 16px 90px;}
+.section.visible{display:block;}
+.sec-tag{font-size:10px;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;color:var(--gold);margin-bottom:6px;}
+.sec-title{font-family:'Cormorant Garamond',serif;font-size:clamp(28px,7vw,46px);font-weight:300;line-height:1.1;margin-bottom:5px;}
+.sec-title em{font-style:italic;color:var(--amber);}
+.sec-sub{color:var(--muted);font-size:13px;line-height:1.65;margin-bottom:22px;}
+
+/* ── EVENT CARD ── */
+.event-card{
+  background:var(--warm-white);border:1px solid var(--line);
+  border-radius:20px;margin-bottom:14px;overflow:hidden;
+  box-shadow:var(--shadow);
+}
+
+.event-card-header{
+  padding:16px 18px;cursor:pointer;
+  display:flex;align-items:center;gap:14px;
+  transition:background 0.2s;
+}
+.event-card-header:hover{background:var(--gold-pale);}
+
+.event-dot{
+  width:44px;height:44px;border-radius:50%;flex-shrink:0;
+  background:linear-gradient(135deg,var(--dark),var(--dark-mid));
+  border:2px solid var(--gold-rich);
+  display:flex;align-items:center;justify-content:center;font-size:18px;
+}
+
+.event-header-info{flex:1;}
+.event-header-name{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:600;color:var(--dark-mid);}
+.event-header-hindi{font-size:12px;color:var(--muted);margin-bottom:4px;font-family:'Noto Sans Devanagari',sans-serif;}
+.event-header-meta{display:flex;flex-wrap:wrap;gap:5px;margin-top:4px;}
+
+.e-pill{font-size:10px;padding:3px 8px;border-radius:999px;background:var(--gold-pale);color:var(--gold-deep);font-weight:600;border:1px solid var(--gold-soft);}
+.e-pill.amber{background:var(--amber-soft);color:var(--amber);border-color:#F5C0A0;}
+.e-pill.coming{background:#F5F5F5;color:#999;border-color:#DDD;}
+
+.event-toggle{font-size:18px;color:var(--gold-rich);transition:transform 0.2s;flex-shrink:0;}
+.event-toggle.open{transform:rotate(180deg);}
+
+.event-body{display:none;border-top:1px solid var(--line);padding:16px 18px;}
+.event-body.open{display:block;}
+
+.event-desc{font-size:13px;color:var(--muted);line-height:1.6;margin-bottom:14px;}
+
+/* ── STEPS / TASKS ── */
+.steps-title{font-size:10px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;}
+
+.step-item{
+  display:flex;gap:12px;padding:10px 0;
+  border-bottom:1px solid rgba(237,217,160,0.4);
+}
+.step-item:last-child{border-bottom:none;}
+
+.step-num{
+  width:26px;height:26px;border-radius:50%;flex-shrink:0;
+  background:var(--gold-pale);border:1px solid var(--gold-soft);
+  display:flex;align-items:center;justify-content:center;
+  font-size:11px;font-weight:700;color:var(--gold-deep);
+}
+
+.step-info{flex:1;}
+.step-name{font-weight:600;font-size:13px;color:var(--dark-mid);margin-bottom:2px;}
+.step-detail{font-size:12px;color:var(--muted);}
+
+/* ── PERFORMANCE CARDS ── */
+.perf-section{margin-top:16px;}
+.perf-section-title{
+  font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:600;
+  color:var(--dark-mid);margin-bottom:10px;
+  display:flex;align-items:center;gap:8px;
+}
+
+.perf-card{
+  background:var(--cream);border:1px solid var(--line);
+  border-radius:14px;padding:14px;margin-bottom:10px;
+  position:relative;
+}
+
+.perf-seq{
+  position:absolute;top:12px;right:12px;
+  width:24px;height:24px;border-radius:50%;
+  background:var(--dark);color:var(--gold-light);
+  display:flex;align-items:center;justify-content:center;
+  font-size:11px;font-weight:700;
+}
+
+.perf-song{font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:600;color:var(--dark-mid);margin-bottom:3px;padding-right:30px;}
+.perf-category{font-size:11px;color:var(--amber);font-weight:600;margin-bottom:8px;letter-spacing:0.04em;}
+
+.perf-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px;}
+@media(max-width:460px){.perf-grid{grid-template-columns:1fr;}}
+
+.perf-field{background:var(--warm-white);border:1px solid var(--line);border-radius:10px;padding:8px 10px;}
+.perf-field-label{font-size:9px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold);margin-bottom:2px;}
+.perf-field-value{font-size:12px;color:var(--text);line-height:1.4;}
+.perf-field-value.tbu{color:var(--muted);font-style:italic;}
+
+.perf-dancers{background:var(--warm-white);border:1px solid var(--line);border-radius:10px;padding:8px 10px;margin-bottom:8px;}
+
+.perf-links{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px;}
+.perf-link{
+  display:inline-flex;align-items:center;gap:4px;
+  font-size:11px;padding:5px 10px;border-radius:999px;
+  background:var(--dark);color:var(--gold-light);
+  text-decoration:none;font-weight:500;
+  border:1px solid rgba(200,130,10,0.3);
+}
+
+.perf-status{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:600;padding:4px 10px;border-radius:999px;}
+.status-ready{background:var(--green-soft);color:var(--green);}
+.status-progress{background:#FFF3CD;color:#856404;}
+.status-notstarted{background:#F5F5F5;color:#666;}
+.status-tbu{background:var(--gold-pale);color:var(--gold-deep);}
+
+/* ── EDIT MODE ── */
+.edit-btn{
+  background:var(--gold-pale);border:1px solid var(--gold-soft);
+  color:var(--gold-deep);border-radius:8px;padding:6px 12px;
+  font-size:11px;font-weight:600;cursor:pointer;margin-top:8px;
+  font-family:'Outfit',sans-serif;
+}
+
+.edit-form{
+  background:var(--warm-white);border:1px solid var(--line);
+  border-top:3px solid var(--gold-rich);border-radius:12px;
+  padding:14px;margin-top:10px;display:none;
+}
+
+.edit-form.open{display:block;animation:fadeUp 0.3s ease;}
+
+.edit-row{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px;}
+@media(max-width:460px){.edit-row{grid-template-columns:1fr;}}
+
+.edit-input{
+  width:100%;border:1.5px solid var(--line);background:var(--cream);
+  border-radius:10px;padding:9px 11px;font-size:12px;
+  font-family:'Outfit',sans-serif;color:var(--text);outline:none;
+  transition:border-color 0.2s;
+}
+.edit-input:focus{border-color:var(--gold-rich);}
+
+.edit-label{font-size:10px;font-weight:600;color:var(--muted);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:3px;}
+
+.btn-save{
+  background:linear-gradient(135deg,var(--dark-mid),var(--gold-deep));
+  color:var(--gold-light);border:none;border-radius:10px;padding:10px 16px;
+  font-family:'Outfit',sans-serif;font-size:12px;font-weight:600;cursor:pointer;
+  margin-right:8px;
+}
+
+.btn-cancel{
+  background:var(--cream);color:var(--muted);
+  border:1px solid var(--line);border-radius:10px;padding:10px 14px;
+  font-family:'Outfit',sans-serif;font-size:12px;cursor:pointer;
+}
+
+/* ── ROLES ── */
+.roles-intro{background:linear-gradient(135deg,var(--dark) 0%,var(--dark-mid) 100%);border-radius:20px;padding:20px;color:white;margin-bottom:20px;position:relative;overflow:hidden;border:1px solid rgba(200,130,10,0.28);}
+.roles-intro::before{content:'◆';position:absolute;right:14px;top:50%;transform:translateY(-50%);font-size:75px;opacity:0.06;color:var(--gold-light);}
+.roles-intro h3{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:400;font-style:italic;margin-bottom:4px;color:var(--gold-light);}
+.roles-intro p{font-size:12px;opacity:0.7;line-height:1.6;}
+
+.role-category{margin-bottom:20px;}
+.role-cat-title{font-size:10px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);padding:0 2px;margin-bottom:8px;}
+.role-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px;}
+@media(max-width:460px){.role-grid{grid-template-columns:1fr;}}
+
+.role-card{background:var(--warm-white);border:2px solid var(--line);border-radius:14px;padding:12px 14px;cursor:pointer;transition:border-color 0.2s,background 0.2s,transform 0.15s;position:relative;user-select:none;}
+.role-card:active{transform:scale(0.98);}
+.role-card.selected{border-color:var(--gold-rich);background:var(--gold-pale);}
+.role-card.taken{opacity:0.38;cursor:not-allowed;pointer-events:none;}
+.role-check{position:absolute;top:9px;right:10px;width:20px;height:20px;border-radius:50%;border:2px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:10px;transition:all 0.2s;}
+.role-card.selected .role-check{background:var(--gold-rich);border-color:var(--gold-rich);color:white;}
+.role-icon{font-size:20px;margin-bottom:6px;}
+.role-name{font-family:'Cormorant Garamond',serif;font-size:15px;font-weight:600;margin-bottom:2px;padding-right:22px;color:var(--dark-mid);}
+.role-desc{font-size:11px;color:var(--muted);line-height:1.4;}
+.role-taken-badge{font-size:10px;color:var(--gold-deep);font-weight:600;margin-top:4px;}
+
+.add-role-box{background:var(--warm-white);border:2px dashed var(--line);border-radius:16px;padding:16px;margin-bottom:20px;}
+.add-role-box h4{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:400;color:var(--dark-mid);margin-bottom:3px;}
+.add-role-box p{font-size:12px;color:var(--muted);margin-bottom:12px;}
+.add-role-row{display:flex;gap:7px;flex-wrap:wrap;}
+.add-role-input{flex:1;min-width:110px;border:1.5px solid var(--line);background:var(--cream);border-radius:10px;padding:9px 11px;font-size:13px;font-family:'Outfit',sans-serif;color:var(--text);outline:none;transition:border-color 0.2s;}
+.add-role-input:focus{border-color:var(--gold-rich);}
+.btn-add{background:linear-gradient(135deg,var(--gold-deep),var(--gold));color:white;border:none;border-radius:10px;padding:9px 14px;font-family:'Outfit',sans-serif;font-size:13px;font-weight:600;cursor:pointer;white-space:nowrap;}
+
+.claim-form{background:var(--warm-white);border:1px solid var(--line);border-top:3px solid var(--gold-rich);border-radius:20px;padding:18px;margin-top:20px;box-shadow:var(--shadow);}
+.claim-form h3{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:400;font-style:italic;margin-bottom:4px;color:var(--dark-mid);}
+.claim-form p{font-size:12px;color:var(--muted);margin-bottom:14px;line-height:1.5;}
+.form-input{width:100%;border:1.5px solid var(--line);background:var(--cream);border-radius:12px;padding:11px 13px;font-size:13px;font-family:'Outfit',sans-serif;color:var(--text);outline:none;margin-bottom:9px;transition:border-color 0.2s;}
+.form-input:focus{border-color:var(--gold-rich);}
+.selected-preview{background:var(--gold-pale);border:1px solid var(--gold-soft);border-radius:12px;padding:11px 13px;margin-bottom:12px;font-size:12px;color:var(--gold-deep);min-height:40px;font-weight:500;line-height:1.5;}
+
+.btn-primary{width:100%;background:linear-gradient(135deg,var(--dark-mid),var(--gold-deep));color:var(--gold-light);border:none;border-radius:12px;padding:13px;font-family:'Outfit',sans-serif;font-size:13px;font-weight:600;cursor:pointer;transition:opacity 0.2s,transform 0.15s;box-shadow:0 8px 18px rgba(24,8,10,0.28);}
+.btn-primary:hover{opacity:0.92;}
+.btn-primary:active{transform:scale(0.99);}
+
+/* ── SQUAD ── */
+.results-header{background:linear-gradient(135deg,var(--dark),var(--dark-mid));border-radius:16px;padding:16px 18px;margin-bottom:14px;border:1px solid rgba(200,130,10,0.2);}
+.results-header h3{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:400;color:var(--gold-light);font-style:italic;margin-bottom:2px;}
+.results-header p{font-size:12px;color:rgba(255,220,120,0.45);}
+
+.assigned-list{display:flex;flex-direction:column;gap:9px;}
+.assigned-item{background:var(--warm-white);border:1px solid var(--line);border-radius:13px;padding:12px 14px;display:flex;align-items:flex-start;gap:12px;}
+.assigned-avatar{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,var(--gold-deep),var(--gold-rich));color:white;display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:700;flex-shrink:0;border:2px solid var(--gold-soft);}
+.assigned-info{flex:1;}
+.assigned-name{font-weight:600;font-size:14px;margin-bottom:2px;color:var(--dark-mid);}
+.assigned-role{font-size:11px;color:var(--muted);line-height:1.4;margin-bottom:4px;}
+
+.status-badge{display:inline-flex;align-items:center;gap:4px;font-size:10px;font-weight:600;padding:3px 8px;border-radius:999px;}
+.status-pending{background:#FFF3CD;color:#856404;border:1px solid #FFE08A;}
+.status-approved{background:var(--green-soft);color:var(--green);border:1px solid #B8DEC5;}
+
+.admin-section{background:var(--warm-white);border:1px solid var(--line);border-top:3px solid var(--amber);border-radius:16px;padding:16px;margin-top:20px;}
+.admin-section h4{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:600;color:var(--dark-mid);margin-bottom:4px;}
+.admin-section p{font-size:12px;color:var(--muted);margin-bottom:12px;}
+.approval-item{background:var(--cream);border:1px solid var(--line);border-radius:12px;padding:12px;margin-bottom:8px;}
+.approval-name{font-weight:600;font-size:13px;color:var(--dark-mid);margin-bottom:2px;}
+.approval-roles{font-size:11px;color:var(--muted);margin-bottom:8px;}
+.approval-btns{display:flex;gap:8px;}
+.btn-approve{flex:1;background:linear-gradient(135deg,#1A5C2A,#2A7A3A);color:white;border:none;border-radius:9px;padding:9px;font-family:'Outfit',sans-serif;font-size:12px;font-weight:600;cursor:pointer;}
+.btn-reject{flex:1;background:linear-gradient(135deg,#6B1A1A,#8B2A2A);color:white;border:none;border-radius:9px;padding:9px;font-family:'Outfit',sans-serif;font-size:12px;font-weight:600;cursor:pointer;}
+
+/* ── SEARCH ── */
+.search-box{background:var(--warm-white);border:1px solid var(--line);border-radius:16px;padding:16px;margin-bottom:16px;}
+.search-box h4{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:400;color:var(--dark-mid);margin-bottom:3px;}
+.search-box p{font-size:12px;color:var(--muted);margin-bottom:10px;}
+.search-results{margin-top:12px;}
+
+/* ── SUGGESTIONS ── */
+.suggestion-card{background:var(--warm-white);border:1px solid var(--line);border-radius:14px;padding:14px;margin-bottom:10px;}
+.suggestion-header{display:flex;align-items:center;gap:10px;margin-bottom:8px;}
+.suggestion-avatar{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,var(--gold-deep),var(--gold-rich));color:white;display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:16px;font-weight:700;flex-shrink:0;}
+.suggestion-meta{flex:1;}
+.suggestion-author{font-weight:600;font-size:13px;color:var(--dark-mid);}
+.suggestion-time{font-size:10px;color:var(--muted);}
+.suggestion-text{font-size:13px;color:var(--text);line-height:1.55;margin-bottom:8px;}
+.suggestion-tags{display:flex;flex-wrap:wrap;gap:5px;}
+.tag-pill{font-size:11px;padding:3px 8px;border-radius:999px;background:var(--gold-pale);color:var(--gold-deep);border:1px solid var(--gold-soft);font-weight:600;}
+.suggestion-form{background:var(--warm-white);border:1px solid var(--line);border-top:3px solid var(--gold-rich);border-radius:16px;padding:16px;margin-bottom:16px;}
+.suggestion-form h4{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:400;color:var(--dark-mid);margin-bottom:3px;}
+.suggestion-form p{font-size:12px;color:var(--muted);margin-bottom:12px;}
+.added-tags{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:9px;min-height:10px;}
+.added-tag{font-size:11px;padding:4px 9px;border-radius:999px;background:var(--dark);color:var(--gold-light);font-weight:500;display:flex;align-items:center;gap:4px;cursor:pointer;}
+.tag-input-wrap{position:relative;margin-bottom:9px;}
+.tag-suggestions{position:absolute;top:100%;left:0;right:0;z-index:50;background:white;border:1px solid var(--line);border-radius:10px;box-shadow:0 8px 20px rgba(0,0,0,0.1);display:none;}
+.tag-suggestions.show{display:block;}
+.tag-suggestion-item{padding:9px 12px;font-size:13px;cursor:pointer;border-bottom:1px solid #F5F0E8;transition:background 0.15s;}
+.tag-suggestion-item:hover{background:var(--gold-pale);}
+.tag-suggestion-item:last-child{border-bottom:none;}
+
+/* ── INFO ── */
+.info-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px;}
+@media(max-width:460px){.info-grid{grid-template-columns:1fr;}}
+.info-card{background:var(--warm-white);border:1px solid var(--line);border-radius:16px;padding:14px;}
+.info-card-icon{font-size:22px;margin-bottom:7px;}
+.info-card-label{font-size:10px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold);margin-bottom:3px;}
+.info-card-value{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:600;margin-bottom:3px;color:var(--dark-mid);}
+.info-card-sub{font-size:12px;color:var(--muted);line-height:1.5;}
+.dress-card{background:linear-gradient(135deg,var(--dark) 0%,#3A1200 100%);border-radius:16px;padding:18px;margin-bottom:12px;border:1px solid rgba(200,130,10,0.22);position:relative;overflow:hidden;}
+.dress-card::after{content:'🌼✦';position:absolute;right:12px;top:50%;transform:translateY(-50%);font-size:32px;opacity:0.13;letter-spacing:4px;}
+.dress-card .info-card-label{color:var(--gold-light);}
+.dress-card .info-card-value{color:var(--gold-light);font-size:19px;}
+.dress-card .info-card-sub{color:rgba(255,220,120,0.5);}
+.checklist-card{background:var(--warm-white);border:1px solid var(--line);border-left:3px solid var(--gold-rich);border-radius:16px;padding:16px;margin-bottom:12px;}
+.checklist-card .info-card-label{color:var(--gold);}
+.checklist-card .info-card-value{font-size:15px;margin-bottom:9px;color:var(--dark-mid);}
+.checklist-card .info-card-sub{line-height:2.1;}
+.link-card{background:linear-gradient(135deg,var(--dark),var(--dark-mid));border-radius:16px;padding:16px;margin-bottom:12px;border:1px solid rgba(200,130,10,0.2);}
+.link-card .info-card-label{color:var(--gold-light);}
+.link-card .info-card-value{color:var(--gold-light);font-size:16px;margin-bottom:8px;}
+.link-card .link-url{font-size:12px;color:var(--gold-rich);word-break:break-all;line-height:1.5;}
+.copy-btn{display:inline-block;margin-top:8px;padding:6px 14px;background:rgba(200,130,10,0.2);color:var(--gold-light);border:1px solid rgba(200,130,10,0.35);border-radius:8px;font-size:11px;font-weight:600;cursor:pointer;transition:background 0.2s;}
+.copy-btn:hover{background:rgba(200,130,10,0.35);}
+
+/* ── SUCCESS / MISC ── */
+.success-box{background:linear-gradient(135deg,var(--dark),#3A1800);border-radius:16px;padding:22px 18px;color:white;text-align:center;margin-top:12px;display:none;border:1px solid rgba(200,130,10,0.28);}
+.success-box.show{display:block;animation:fadeUp 0.4s ease;}
+.success-box h3{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:300;font-style:italic;margin:8px 0 5px;color:var(--gold-light);}
+.success-box p{font-size:13px;opacity:0.75;line-height:1.6;}
+
+.empty-state{text-align:center;padding:24px 14px;background:var(--warm-white);border:1px dashed var(--line);border-radius:14px;color:var(--muted);font-size:13px;}
+.divider{text-align:center;font-size:13px;letter-spacing:12px;opacity:0.2;margin:20px 0 16px;color:var(--gold);}
+.editor-badge{display:inline-flex;align-items:center;gap:4px;font-size:10px;background:var(--dark);color:var(--gold-light);border-radius:999px;padding:3px 8px;margin-left:6px;vertical-align:middle;}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px);}to{opacity:1;transform:translateY(0);}}
+
+/* ── BOTTOM NAV ── */
+.bottom-nav{position:fixed;bottom:0;left:0;right:0;z-index:100;background:rgba(24,8,10,0.97);backdrop-filter:blur(20px);border-top:1px solid rgba(200,130,10,0.18);display:flex;padding:6px 6px 14px;gap:2px;}
+.bottom-nav button{flex:1;background:none;border:none;color:rgba(255,220,120,0.32);font-family:'Noto Sans Devanagari',sans-serif;font-size:9px;font-weight:500;padding:7px 3px;border-radius:10px;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:3px;transition:color 0.2s,background 0.2s;}
+.bottom-nav button .bn-icon{font-size:17px;}
+.bottom-nav button.active{color:var(--gold-light);background:rgba(200,130,10,0.15);}
+.content-wrap{padding-bottom:70px;}
+```
+
+  </style>
+</head>
+<body>
+
+<!-- ══ LOGIN SCREEN ══ -->
+
+<div id="loginScreen" class="login-screen">
+  <div class="login-card">
+    <div class="login-logo">Priyanka<br/>&amp; Shubham</div>
+    <div class="login-sub">विवाह उत्सव · १–३ जुलाई २०२५</div>
+
+```
+<input class="login-input" id="loginUser" placeholder="Username"/>
+<input class="login-input" id="loginPass" type="password" placeholder="Password"/>
+<button class="login-btn" onclick="doLogin()">✦ प्रवेश करें</button>
+<button class="login-btn login-guest" onclick="doGuestLogin()">👁 Guest के रूप में देखें</button>
+<div class="login-error" id="loginError">गलत username या password!</div>
+
+<div class="login-accounts">
+  <p>Quick Login</p>
+  <span class="login-account-chip" onclick="fillLogin('sneha','sneha2025')">Sneha</span>
+  <span class="login-account-chip" onclick="fillLogin('shreya','shreya2025')">Shreya</span>
+  <span class="login-account-chip" onclick="fillLogin('shubham','shubham2025')">Shubham</span>
+  <span class="login-account-chip" onclick="doGuestLogin()">Guest</span>
+</div>
+```
+
+  </div>
+</div>
+
+<!-- ══ MAIN APP ══ -->
+
+<div id="mainApp" style="display:none;">
+
+<!-- HERO -->
+
+<div class="hero" id="heroSection">
+  <div class="petal">🌼</div><div class="petal">✦</div><div class="petal">🌸</div>
+  <div class="petal">✦</div><div class="petal">🌼</div><div class="petal">◆</div>
+  <div class="hero-tag">एक यादगार विवाह उत्सव</div>
+  <div class="hero-names">
+    <span class="bride">Priyanka</span>
+    <span class="hero-amp">&amp;</span>
+    <span class="groom">Shubham</span>
+  </div>
+  <div class="hero-ornament"><div class="orn-line"></div><div class="orn-gem">◆</div><div class="orn-line r"></div></div>
+  <div class="hero-date">१ – ३ जुलाई २०२५ · रायपुर</div>
+  <div class="hero-location">✦ Royal Club, छत्तीसगढ़ ✦</div>
+  <div class="hero-explore" onclick="showSection('events')">
+    <div class="scroll-arrow">▾</div>
+    <div class="hero-explore-text">Explore the Wedding</div>
+    <div class="hero-explore-hint">विवरण के लिए यहाँ क्लिक करें</div>
+  </div>
+</div>
+
+<!-- NAV -->
+
+<div class="nav" id="mainNav" style="display:none;">
+  <div class="nav-brand">Priyanka & Shubham</div>
+  <div class="nav-right">
+    <span class="nav-user" id="navUser"></span>
+    <button class="nav-logout" onclick="doLogout()">बाहर</button>
+  </div>
+</div>
+
+<div class="nav" id="mainNav2" style="display:none; justify-content:center;">
+  <div class="nav-links">
+    <button onclick="showSection('events')" id="nav-events">कार्यक्रम</button>
+    <button onclick="showSection('roles')" id="nav-roles">भूमिका</button>
+    <button onclick="showSection('squad')" id="nav-squad">टीम</button>
+    <button onclick="showSection('suggest')" id="nav-suggest">सुझाव</button>
+    <button onclick="showSection('info')" id="nav-info">जानकारी</button>
+  </div>
+</div>
+
+<div class="content-wrap">
+
+  <!-- ══ EVENTS ══ -->
+
+  <div class="section" id="sec-events">
+    <div class="sec-tag">विवाह उत्सव</div>
+    <div class="sec-title">सभी <em>कार्यक्रम</em></div>
+    <div class="sec-sub">हर कार्यक्रम पर क्लिक करके विस्तृत जानकारी और प्रदर्शन देखें।</div>
+
+```
+<!-- ENGAGEMENT -->
+<div class="event-card">
+  <div class="event-card-header" onclick="toggleEvent('engagement')">
+    <div class="event-dot">💍</div>
+    <div class="event-header-info">
+      <div class="event-header-hindi">सगाई</div>
+      <div class="event-header-name">Engagement</div>
+      <div class="event-header-meta">
+        <div class="e-pill coming">🕐 जल्द आ रहा है</div>
+      </div>
+    </div>
+    <div class="event-toggle" id="toggle-engagement">▾</div>
+  </div>
+  <div class="event-body" id="body-engagement">
+    <div class="event-desc">उनके हमेशा की शुरुआत। तारीख जल्द घोषित होगी — नज़र रखें! 💍</div>
+    <div class="steps-title">कार्यक्रम की रूपरेखा</div>
+    <div class="step-item"><div class="step-num">1</div><div class="step-info"><div class="step-name">तारीख व स्थान</div><div class="step-detail">जल्द घोषित होगा</div></div></div>
+    <div class="step-item"><div class="step-num">2</div><div class="step-info"><div class="step-name">रस्में</div><div class="step-detail">अंगूठी की रस्म, फोटोग्राफी</div></div></div>
+  </div>
+</div>
+
+<!-- MEHNDI -->
+<div class="event-card">
+  <div class="event-card-header" onclick="toggleEvent('mehndi')">
+    <div class="event-dot">🌸</div>
+    <div class="event-header-info">
+      <div class="event-header-hindi">मेहंदी की शाम</div>
+      <div class="event-header-name">Mehndi Night</div>
+      <div class="event-header-meta">
+        <div class="e-pill">📅 १ जुलाई</div>
+        <div class="e-pill">🕖 शाम ७ – रात ११</div>
+        <div class="e-pill amber">📍 शुभम के घर</div>
+      </div>
+    </div>
+    <div class="event-toggle" id="toggle-mehndi">▾</div>
+  </div>
+  <div class="event-body" id="body-mehndi">
+    <div class="event-desc">संगीत, हँसी और नृत्य से भरी मेहंदी की सुहानी शाम।</div>
+    <div class="steps-title">कार्यक्रम की रूपरेखा</div>
+    <div class="step-item"><div class="step-num">1</div><div class="step-info"><div class="step-name">मेहंदी लगाना</div><div class="step-detail">मेहंदी वाले का इंतज़ाम, सभी महिलाएँ बारी-बारी से</div></div></div>
+    <div class="step-item"><div class="step-num">2</div><div class="step-info"><div class="step-name">संगीत व नृत्य</div><div class="step-detail">DJ, गाने, डांस — माहौल गर्म रखें</div></div></div>
+    <div class="step-item"><div class="step-num">3</div><div class="step-info"><div class="step-name">फोटोग्राफी</div><div class="step-detail">रील्स वाले भाई-बहन तैयार रहें</div></div></div>
+    <div class="step-item"><div class="step-num">4</div><div class="step-info"><div class="step-name">खाना-पीना</div><div class="step-detail">स्नैक्स व चाय का इंतज़ाम</div></div></div>
+  </div>
+</div>
+
+<!-- HALDI -->
+<div class="event-card">
+  <div class="event-card-header" onclick="toggleEvent('haldi')">
+    <div class="event-dot">🌿</div>
+    <div class="event-header-info">
+      <div class="event-header-hindi">हल्दी रस्म</div>
+      <div class="event-header-name">Haldi</div>
+      <div class="event-header-meta">
+        <div class="e-pill">📅 २ जुलाई</div>
+        <div class="e-pill">🕚 सुबह ११ – दोपहर २</div>
+        <div class="e-pill amber">📍 Royal Club</div>
+      </div>
+    </div>
+    <div class="event-toggle" id="toggle-haldi">▾</div>
+  </div>
+  <div class="event-body" id="body-haldi">
+    <div class="event-desc">पवित्र हल्दी की रस्म — परिवार के साथ खुशी का पल।</div>
+    <div class="steps-title">कार्यक्रम की रूपरेखा</div>
+    <div class="step-item"><div class="step-num">1</div><div class="step-info"><div class="step-name">सजावट व तैयारी</div><div class="step-detail">१ घंटे पहले पहुँचें, फूलों की सजावट</div></div></div>
+    <div class="step-item"><div class="step-num">2</div><div class="step-info"><div class="step-name">हल्दी रस्म</div><div class="step-detail">परिवार बारी-बारी से हल्दी लगाएं</div></div></div>
+    <div class="step-item"><div class="step-num">3</div><div class="step-info"><div class="step-name">बारात गाने</div><div class="step-detail">हल्दी के बाद बारात sequence के गाने</div></div></div>
+    <div class="perf-section">
+      <div class="perf-section-title">🎵 गाने</div>
+      <div id="perfs-haldi"></div>
+    </div>
+  </div>
+</div>
+
+<!-- SANGEET -->
+<div class="event-card">
+  <div class="event-card-header" onclick="toggleEvent('sangeet')">
+    <div class="event-dot">🎉</div>
+    <div class="event-header-info">
+      <div class="event-header-hindi">संगीत समारोह</div>
+      <div class="event-header-name">Sangeet</div>
+      <div class="event-header-meta">
+        <div class="e-pill">📅 २ जुलाई</div>
+        <div class="e-pill">🕔 शाम ५ – रात ८</div>
+        <div class="e-pill amber">📍 Royal Club</div>
+      </div>
+    </div>
+    <div class="event-toggle" id="toggle-sangeet">▾</div>
+  </div>
+  <div class="event-body" id="body-sangeet">
+    <div class="event-desc">नृत्य प्रदर्शन और उत्सव की भव्य शाम। भाई-बहनों, यह आपकी रात है! 🎤</div>
+    <div class="steps-title">कार्यक्रम की रूपरेखा</div>
+    <div class="step-item"><div class="step-num">1</div><div class="step-info"><div class="step-name">मंच सजावट व साउंड चेक</div><div class="step-detail">२ घंटे पहले — DJ, माइक, लाइट तैयार</div></div></div>
+    <div class="step-item"><div class="step-num">2</div><div class="step-info"><div class="step-name">परफॉर्मेंस</div><div class="step-detail">नीचे दिए sequence के अनुसार</div></div></div>
+    <div class="step-item"><div class="step-num">3</div><div class="step-info"><div class="step-name">Sangeet Ending</div><div class="step-detail">Tere Dware Pe Aayi Barat — सभी मिलकर</div></div></div>
+    <div class="perf-section">
+      <div class="perf-section-title">
+        🎵 परफॉर्मेंस लिस्ट
+        <span id="editorBadge" class="editor-badge" style="display:none;">✏️ Editor</span>
+      </div>
+      <div id="perfs-sangeet"></div>
+      <div id="addPerfBtn" style="display:none; margin-top:10px;">
+        <button class="btn-add" onclick="showAddPerf('sangeet')">+ नई परफॉर्मेंस जोड़ें</button>
+      </div>
+      <div id="addPerfForm-sangeet" class="edit-form">
+        <div class="edit-row">
+          <div><div class="edit-label">Song Name</div><input class="edit-input" id="new-song-sangeet" placeholder="गाने का नाम"/></div>
+          <div><div class="edit-label">Category</div><input class="edit-input" id="new-cat-sangeet" placeholder="e.g. Siblings Love"/></div>
+        </div>
+        <div class="edit-row">
+          <div><div class="edit-label">Sequence #</div><input class="edit-input" id="new-seq-sangeet" placeholder="1"/></div>
+          <div><div class="edit-label">Duration (mins)</div><input class="edit-input" id="new-dur-sangeet" placeholder="3"/></div>
+        </div>
+        <div class="edit-row">
+          <div><div class="edit-label">Dance Lead</div><input class="edit-input" id="new-lead-sangeet" placeholder="नाम"/></div>
+          <div><div class="edit-label">Status</div>
+            <select class="edit-input" id="new-status-sangeet">
+              <option value="tbu">To be updated</option>
+              <option value="notstarted">Not Started</option>
+              <option value="progress">In Progress</option>
+              <option value="ready">Ready</option>
+            </select>
+          </div>
+        </div>
+        <div style="margin-bottom:8px;"><div class="edit-label">Dancers (comma separated)</div><input class="edit-input" id="new-dancers-sangeet" placeholder="Shreni, Shreya, Pratham"/></div>
+        <div style="margin-bottom:8px;"><div class="edit-label">Choreography Link</div><input class="edit-input" id="new-link-sangeet" placeholder="https://instagram.com/..."/></div>
+        <div style="margin-bottom:8px;"><div class="edit-label">Outfit Theme</div><input class="edit-input" id="new-outfit-sangeet" placeholder="e.g. Pink & Gold"/></div>
+        <div style="margin-bottom:12px;"><div class="edit-label">Special Notes</div><input class="edit-input" id="new-notes-sangeet" placeholder="e.g. Surprise entry, lights off"/></div>
+        <button class="btn-save" onclick="saveNewPerf('sangeet')">✓ सेव करें</button>
+        <button class="btn-cancel" onclick="hideAddPerf('sangeet')">रद्द</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- BARAAT -->
+<div class="event-card">
+  <div class="event-card-header" onclick="toggleEvent('baraat')">
+    <div class="event-dot">🐎</div>
+    <div class="event-header-info">
+      <div class="event-header-hindi">बारात</div>
+      <div class="event-header-name">Baraat</div>
+      <div class="event-header-meta">
+        <div class="e-pill">📅 ३ जुलाई</div>
+        <div class="e-pill">🕓 शाम ४ – ६</div>
+        <div class="e-pill amber">📍 Royal Club</div>
+      </div>
+    </div>
+    <div class="event-toggle" id="toggle-baraat">▾</div>
+  </div>
+  <div class="event-body" id="body-baraat">
+    <div class="event-desc">भव्य बारात — ढोल, नृत्य और पूरी ऊर्जा के साथ!</div>
+    <div class="steps-title">कार्यक्रम की रूपरेखा</div>
+    <div class="step-item"><div class="step-num">1</div><div class="step-info"><div class="step-name">बारात की शुरुआत</div><div class="step-detail">Hum Ladke Hain Baraat Leke Jaenge से शुरू</div></div></div>
+    <div class="step-item"><div class="step-num">2</div><div class="step-info"><div class="step-name">घोड़ी पर दूल्हा</div><div class="step-detail">Ghodi Chadh Gaya — Haldi sequence</div></div></div>
+    <div class="step-item"><div class="step-num">3</div><div class="step-info"><div class="step-name">बारात जुलूस</div><div class="step-detail">सभी गाने बजते रहेंगे, ऊर्जा बनाए रखें</div></div></div>
+    <div class="perf-section">
+      <div class="perf-section-title">🎵 बारात के गाने</div>
+      <div id="perfs-baraat"></div>
+    </div>
+  </div>
+</div>
+
+<!-- VIVAH -->
+<div class="event-card">
+  <div class="event-card-header" onclick="toggleEvent('vivah')">
+    <div class="event-dot">🔥</div>
+    <div class="event-header-info">
+      <div class="event-header-hindi">विवाह संस्कार</div>
+      <div class="event-header-name">Vivah</div>
+      <div class="event-header-meta">
+        <div class="e-pill">📅 ३ जुलाई</div>
+        <div class="e-pill">🕖 रात ७ – ११</div>
+        <div class="e-pill amber">📍 Royal Club</div>
+      </div>
+    </div>
+    <div class="event-toggle" id="toggle-vivah">▾</div>
+  </div>
+  <div class="event-body" id="body-vivah">
+    <div class="event-desc">सात फेरों की पावन रस्म — जीवन भर का यादगार पल। ✨</div>
+    <div class="steps-title">कार्यक्रम की रूपरेखा</div>
+    <div class="step-item"><div class="step-num">1</div><div class="step-info"><div class="step-name">जयमाल</div><div class="step-detail">वरमाला की रस्म, फोटोग्राफी</div></div></div>
+    <div class="step-item"><div class="step-num">2</div><div class="step-info"><div class="step-name">सात फेरे</div><div class="step-detail">पंडित जी के साथ पवित्र अग्नि के सात फेरे</div></div></div>
+    <div class="step-item"><div class="step-num">3</div><div class="step-info"><div class="step-name">विदाई</div><div class="step-detail">भावभीनी विदाई</div></div></div>
+  </div>
+</div>
+
+<!-- RECEPTION -->
+<div class="event-card">
+  <div class="event-card-header" onclick="toggleEvent('reception')">
+    <div class="event-dot">🥂</div>
+    <div class="event-header-info">
+      <div class="event-header-hindi">स्वागत समारोह</div>
+      <div class="event-header-name">Reception</div>
+      <div class="event-header-meta">
+        <div class="e-pill">📅 ३ जुलाई</div>
+        <div class="e-pill">🕖 रात ७ – ११</div>
+        <div class="e-pill amber">📍 Royal Club</div>
+      </div>
+    </div>
+    <div class="event-toggle" id="toggle-reception">▾</div>
+  </div>
+  <div class="event-body" id="body-reception">
+    <div class="event-desc">१०००+ मेहमानों के साथ भव्य स्वागत। सभी भाई-बहन तैयार रहें! 🎊</div>
+    <div class="steps-title">कार्यक्रम की रूपरेखा</div>
+    <div class="step-item"><div class="step-num">1</div><div class="step-info"><div class="step-name">मेहमानों का स्वागत</div><div class="step-detail">दरवाजे पर स्वागत टीम तैयार</div></div></div>
+    <div class="step-item"><div class="step-num">2</div><div class="step-info"><div class="step-name">खाना-पीना</div><div class="step-detail">कैटरिंग इंचार्ज काउंटर पर</div></div></div>
+    <div class="step-item"><div class="step-num">3</div><div class="step-info"><div class="step-name">फोटो & रील्स</div><div class="step-detail">मीडिया टीम सक्रिय</div></div></div>
+  </div>
+</div>
+```
+
+  </div>
+
+  <!-- ══ ROLES ══ -->
+
+  <div class="section" id="sec-roles">
+    <div class="sec-tag">भूमिका चुनें</div>
+    <div class="sec-title">अपनी <em>भूमिका</em></div>
+    <div class="sec-sub">अपनी पसंद की भूमिका चुनें। शुभम की मंजूरी के बाद भूमिका पक्की होगी।</div>
+    <div class="roles-intro">
+      <h3>आप इस विवाह को यादगार बनाते हैं ✦</h3>
+      <p>Royal Club रायपुर में १०००+ मेहमानों के साथ, हर भाई-बहन की भूमिका बहुत अहम है।</p>
+    </div>
+
+```
+<div class="role-category">
+  <div class="role-cat-title">👑 Groomsmen & Groomswomen</div>
+  <div class="role-grid">
+    <div class="role-card" id="role-gm1" onclick="toggleRole('gm1')"><div class="role-check">✓</div><div class="role-icon">🤵</div><div class="role-name">Groomsman 1</div><div class="role-desc">दूल्हे का पहला साथी</div><div class="role-taken-badge" id="taken-gm1"></div></div>
+    <div class="role-card" id="role-gm2" onclick="toggleRole('gm2')"><div class="role-check">✓</div><div class="role-icon">🤵</div><div class="role-name">Groomsman 2</div><div class="role-desc">दूल्हे का दूसरा साथी</div><div class="role-taken-badge" id="taken-gm2"></div></div>
+    <div class="role-card" id="role-gm3" onclick="toggleRole('gm3')"><div class="role-check">✓</div><div class="role-icon">🤵</div><div class="role-name">Groomsman 3</div><div class="role-desc">दूल्हे का तीसरा साथी</div><div class="role-taken-badge" id="taken-gm3"></div></div>
+    <div class="role-card" id="role-gw1" onclick="toggleRole('gw1')"><div class="role-check">✓</div><div class="role-icon">💃</div><div class="role-name">Groomswoman 1</div><div class="role-desc">दुल्हन की पहली सहेली</div><div class="role-taken-badge" id="taken-gw1"></div></div>
+    <div class="role-card" id="role-gw2" onclick="toggleRole('gw2')"><div class="role-check">✓</div><div class="role-icon">💃</div><div class="role-name">Groomswoman 2</div><div class="role-desc">दुल्हन की दूसरी सहेली</div><div class="role-taken-badge" id="taken-gw2"></div></div>
+    <div class="role-card" id="role-gw3" onclick="toggleRole('gw3')"><div class="role-check">✓</div><div class="role-icon">💃</div><div class="role-name">Groomswoman 3</div><div class="role-desc">दुल्हन की तीसरी सहेली</div><div class="role-taken-badge" id="taken-gw3"></div></div>
+  </div>
+</div>
+
+<div class="role-category">
+  <div class="role-cat-title">🎊 बारात व रस्में</div>
+  <div class="role-grid">
+    <div class="role-card" id="role-baraat1" onclick="toggleRole('baraat1')"><div class="role-check">✓</div><div class="role-icon">🐎</div><div class="role-name">बारात लीडर</div><div class="role-desc">बारात में सबसे आगे</div><div class="role-taken-badge" id="taken-baraat1"></div></div>
+    <div class="role-card" id="role-baraat2" onclick="toggleRole('baraat2')"><div class="role-check">✓</div><div class="role-icon">💃</div><div class="role-name">बारात डांसर</div><div class="role-desc">बारात में नृत्य ऊर्जा</div><div class="role-taken-badge" id="taken-baraat2"></div></div>
+    <div class="role-card" id="role-pheras" onclick="toggleRole('pheras')"><div class="role-check">✓</div><div class="role-icon">🌼</div><div class="role-name">रस्म सहयोगी</div><div class="role-desc">पूजा सामग्री तैयार रखें</div><div class="role-taken-badge" id="taken-pheras"></div></div>
+    <div class="role-card" id="role-groom" onclick="toggleRole('groom')"><div class="role-check">✓</div><div class="role-icon">🤵</div><div class="role-name">दूल्हे का साया</div><div class="role-desc">शुभम के साथ हर पल</div><div class="role-taken-badge" id="taken-groom"></div></div>
+  </div>
+</div>
+
+<div class="role-category">
+  <div class="role-cat-title">🚪 मेहमान प्रबंधन</div>
+  <div class="role-grid">
+    <div class="role-card" id="role-welcome1" onclick="toggleRole('welcome1')"><div class="role-check">✓</div><div class="role-icon">🙏</div><div class="role-name">स्वागत करता</div><div class="role-desc">दरवाजे पर गर्मजोशी से</div><div class="role-taken-badge" id="taken-welcome1"></div></div>
+    <div class="role-card" id="role-welcome2" onclick="toggleRole('welcome2')"><div class="role-check">✓</div><div class="role-icon">👴</div><div class="role-name">VIP होस्ट</div><div class="role-desc">बुजुर्गों का व्यक्तिगत ध्यान</div><div class="role-taken-badge" id="taken-welcome2"></div></div>
+    <div class="role-card" id="role-seating" onclick="toggleRole('seating')"><div class="role-check">✓</div><div class="role-icon">🪑</div><div class="role-name">बैठक व्यवस्था</div><div class="role-desc">१०००+ मेहमान मार्गदर्शन</div><div class="role-taken-badge" id="taken-seating"></div></div>
+    <div class="role-card" id="role-kids" onclick="toggleRole('kids')"><div class="role-check">✓</div><div class="role-icon">👶</div><div class="role-name">बच्चों की देखभाल</div><div class="role-desc">बच्चों को सुरक्षित रखें</div><div class="role-taken-badge" id="taken-kids"></div></div>
+  </div>
+</div>
+
+<div class="role-category">
+  <div class="role-cat-title">🍽️ खाना व लॉजिस्टिक्स</div>
+  <div class="role-grid">
+    <div class="role-card" id="role-catering" onclick="toggleRole('catering')"><div class="role-check">✓</div><div class="role-icon">🍛</div><div class="role-name">खाना इंचार्ज</div><div class="role-desc">कैटरर समन्वय</div><div class="role-taken-badge" id="taken-catering"></div></div>
+    <div class="role-card" id="role-vendor" onclick="toggleRole('vendor')"><div class="role-check">✓</div><div class="role-icon">📋</div><div class="role-name">वेंडर समन्वयक</div><div class="role-desc">सभी वेंडर से संपर्क</div><div class="role-taken-badge" id="taken-vendor"></div></div>
+    <div class="role-card" id="role-gifts" onclick="toggleRole('gifts')"><div class="role-check">✓</div><div class="role-icon">🎁</div><div class="role-name">उपहार प्रबंधक</div><div class="role-desc">उपहार एकत्र व सुरक्षित</div><div class="role-taken-badge" id="taken-gifts"></div></div>
+    <div class="role-card" id="role-float" onclick="toggleRole('float')"><div class="role-check">✓</div><div class="role-icon">⚡</div><div class="role-name">फ्लोटिंग हेल्पर</div><div class="role-desc">जहाँ जरूरत, वहाँ दौड़ें</div><div class="role-taken-badge" id="taken-float"></div></div>
+  </div>
+</div>
+
+<div class="role-category">
+  <div class="role-cat-title">🎉 मनोरंजन व मीडिया</div>
+  <div class="role-grid">
+    <div class="role-card" id="role-mc" onclick="toggleRole('mc')"><div class="role-check">✓</div><div class="role-icon">🎤</div><div class="role-name">MC / एंकर</div><div class="role-desc">संगीत व रिसेप्शन होस्ट</div><div class="role-taken-badge" id="taken-mc"></div></div>
+    <div class="role-card" id="role-dance" onclick="toggleRole('dance')"><div class="role-check">✓</div><div class="role-icon">🕺</div><div class="role-name">डांस लीड</div><div class="role-desc">नृत्य प्रस्तुति आयोजन</div><div class="role-taken-badge" id="taken-dance"></div></div>
+    <div class="role-card" id="role-dj" onclick="toggleRole('dj')"><div class="role-check">✓</div><div class="role-icon">🎵</div><div class="role-name">DJ समन्वयक</div><div class="role-desc">सही वक्त पर सही गाना</div><div class="role-taken-badge" id="taken-dj"></div></div>
+    <div class="role-card" id="role-reels" onclick="toggleRole('reels')"><div class="role-check">✓</div><div class="role-icon">📸</div><div class="role-name">रील्स & फोटो</div><div class="role-desc">यादगार पलों को कैद करें</div><div class="role-taken-badge" id="taken-reels"></div></div>
+  </div>
+</div>
+
+<div class="role-category" id="customRoleCategory" style="display:none;">
+  <div class="role-cat-title">✦ परिवार द्वारा जोड़ी गई भूमिकाएँ</div>
+  <div class="role-grid" id="customRoleGrid"></div>
+</div>
+
+<div class="add-role-box">
+  <h4>✦ नई भूमिका जोड़ें</h4>
+  <p>अपनी भूमिका नहीं दिखी? यहाँ जोड़ें!</p>
+  <div class="add-role-row">
+    <input class="add-role-input" id="customRoleName" placeholder="भूमिका का नाम"/>
+    <input class="add-role-input" id="customRoleDesc" placeholder="छोटा विवरण"/>
+    <button class="btn-add" onclick="addCustomRole()">+ जोड़ें</button>
+  </div>
+</div>
+
+<div class="claim-form" id="claimForm">
+  <h3>अपनी भूमिका लें 🌼</h3>
+  <p>ऊपर भूमिका चुनें, फिर नाम भरकर अनुरोध करें।</p>
+  <div class="selected-preview" id="selectedPreview">अभी कोई भूमिका नहीं चुनी…</div>
+  <input class="form-input" id="cousinName" placeholder="आपका पूरा नाम"/>
+  <input class="form-input" id="cousinPhone" placeholder="WhatsApp नंबर (वैकल्पिक)"/>
+  <button class="btn-primary" onclick="claimRoles()">✦ भूमिका के लिए अनुरोध करें</button>
+</div>
+
+<div class="success-box" id="successBox">
+  <div style="font-size:36px;">🌼✦🎉</div>
+  <h3>अनुरोध भेज दिया!</h3>
+  <p id="successMsg">आपका अनुरोध भेज दिया गया है।</p>
+</div>
+```
+
+  </div>
+
+  <!-- ══ SQUAD ══ -->
+
+  <div class="section" id="sec-squad">
+    <div class="sec-tag">विवाह टीम</div>
+    <div class="sec-title">हमारी <em>टीम</em></div>
+    <div class="sec-sub">अपना नाम खोजें या देखें किसने कौन सी भूमिका ली।</div>
+
+```
+<div class="search-box">
+  <h4>🔍 अपना नाम खोजें</h4>
+  <p>अपना नाम लिखें — आपकी भूमिका और परफॉर्मेंस दोनों दिखेंगे।</p>
+  <input class="form-input" id="searchName" placeholder="नाम लिखें…" oninput="searchPerson()"/>
+  <div class="search-results" id="searchResults"></div>
+</div>
+
+<div class="results-header">
+  <h3>✦ मंजूर भूमिकाएँ</h3>
+  <p id="squadCount">लोड हो रहा है…</p>
+</div>
+<div class="assigned-list" id="assignedList"></div>
+
+<div class="divider">✦ ◆ ✦</div>
+<div class="sec-tag" style="margin-bottom:6px;">प्रतीक्षारत अनुरोध</div>
+<div class="assigned-list" id="pendingList"></div>
+
+<div class="admin-section" id="adminSection">
+  <h4>👑 Shubham का पैनल</h4>
+  <p>भूमिका अनुरोध मंजूर या अस्वीकार करें। (केवल Shubham के लिए)</p>
+  <div id="adminApprovalList"></div>
+</div>
+```
+
+  </div>
+
+  <!-- ══ SUGGESTIONS ══ -->
+
+  <div class="section" id="sec-suggest">
+    <div class="sec-tag">सुझाव</div>
+    <div class="sec-title">आपके <em>सुझाव</em></div>
+    <div class="sec-sub">कोई भी विचार, आइडिया यहाँ लिखें। @नाम से किसी को टैग करें!</div>
+
+```
+<div class="suggestion-form">
+  <h4>✦ अपना सुझाव लिखें</h4>
+  <p>@नाम लिखकर किसी को टैग करें।</p>
+  <input class="form-input" id="suggName" placeholder="आपका नाम"/>
+  <textarea class="form-input" id="suggText" rows="3" placeholder="आपका सुझाव…"></textarea>
+  <div class="tag-input-wrap">
+    <input class="form-input" style="margin:0;" id="tagInput" placeholder="@किसी को टैग करें" oninput="showTagSuggestions()" onblur="hideTagSugg()"/>
+    <div class="tag-suggestions" id="tagSuggestions"></div>
+  </div>
+  <div class="added-tags" id="addedTags"></div>
+  <button class="btn-primary" onclick="submitSuggestion()">✦ सुझाव भेजें</button>
+</div>
+<div id="suggestionsList"></div>
+```
+
+  </div>
+
+  <!-- ══ INFO ══ -->
+
+  <div class="section" id="sec-info">
+    <div class="sec-tag">जानकारी</div>
+    <div class="sec-title">विवाह का <em>विवरण</em></div>
+    <div class="sec-sub">रायपुर पहुँचने से पहले यह सब जान लें।</div>
+    <div class="dress-card">
+      <div class="info-card-icon">👗</div>
+      <div class="info-card-label">पोशाक संहिता</div>
+      <div class="info-card-value">पारंपरिक भारतीय वेशभूषा</div>
+      <div class="info-card-sub">महिलाएँ: लहंगा / साड़ी &nbsp;·&nbsp; पुरुष: शेरवानी / कुर्ता<br/>WhatsApp ग्रुप में रंग समन्वय करें! 🌼</div>
+    </div>
+    <div class="info-grid">
+      <div class="info-card"><div class="info-card-icon">📍</div><div class="info-card-label">मुख्य स्थल</div><div class="info-card-value">Royal Club</div><div class="info-card-sub">रायपुर, छत्तीसगढ़</div></div>
+      <div class="info-card"><div class="info-card-icon">👥</div><div class="info-card-label">मेहमान</div><div class="info-card-value">~१०००</div><div class="info-card-sub">भव्य पारंपरिक विवाह</div></div>
+      <div class="info-card"><div class="info-card-icon">📅</div><div class="info-card-label">तारीखें</div><div class="info-card-value">१–३ जुलाई</div><div class="info-card-sub">२०२५ · तीन दिन</div></div>
+      <div class="info-card"><div class="info-card-icon">🌼</div><div class="info-card-label">कार्यक्रम</div><div class="info-card-value">७ आयोजन</div><div class="info-card-sub">सगाई · मेहंदी · हल्दी · संगीत · बारात · विवाह · स्वागत</div></div>
+    </div>
+    <div class="link-card">
+      <div class="info-card-icon">🔗</div>
+      <div class="info-card-label">वेबसाइट लिंक</div>
+      <div class="info-card-value">इस वेबसाइट को शेयर करें</div>
+      <div class="link-url" id="siteUrl">https://shreyadubey-studio.github.io/priyanka-shubham-wedding</div>
+      <div class="copy-btn" onclick="copyLink()">📋 लिंक कॉपी करें</div>
+    </div>
+    <div class="checklist-card">
+      <div class="info-card-icon">✅</div>
+      <div class="info-card-label">भाई-बहनों की सूची</div>
+      <div class="info-card-value">दिन की तैयारी</div>
+      <div class="info-card-sub">
+        🌼 &nbsp;अभी भूमिका के लिए अनुरोध करें<br/>
+        ✦ &nbsp;अपने कार्यक्रम से १ घंटे पहले पहुँचें<br/>
+        🌼 &nbsp;फोन पूरा चार्ज रखें<br/>
+        ✦ &nbsp;शादी से एक रात पहले परिवार मीटिंग<br/>
+        🌼 &nbsp;टीम से पोशाक रंग तय करें<br/>
+        ✦ &nbsp;खूब मज़े करें! 🎊
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- BOTTOM NAV -->
+
+<div class="bottom-nav" id="bottomNav" style="display:none;">
+  <button id="bn-events" onclick="showSection('events')"><span class="bn-icon">🗓️</span>कार्यक्रम</button>
+  <button id="bn-roles" onclick="showSection('roles')"><span class="bn-icon">✋</span>भूमिका</button>
+  <button id="bn-squad" onclick="showSection('squad')"><span class="bn-icon">👑</span>टीम</button>
+  <button id="bn-suggest" onclick="showSection('suggest')"><span class="bn-icon">💡</span>सुझाव</button>
+  <button id="bn-info" onclick="showSection('info')"><span class="bn-icon">ℹ️</span>जानकारी</button>
+</div>
+
+</div><!-- end mainApp -->
+
+<script>
+// ── USERS ──
+const USERS = {
+  sneha:   { pass:'sneha2025',   role:'editor', display:'Sneha (Dance Coordinator)' },
+  shreya:  { pass:'shreya2025',  role:'editor', display:'Shreya' },
+  shubham: { pass:'shubham2025', role:'admin',  display:'Shubham 👑' },
+  guest:   { pass:'guest123',    role:'guest',  display:'Guest' }
+};
+
+const SK = 'prishubh_v5';
+let currentUser = null;
+let selectedRoles = [];
+let taggedPeople = [];
+
+let data = JSON.parse(localStorage.getItem(SK) || JSON.stringify({
+  assignments: [],
+  customRoles: [],
+  suggestions: [],
+  performances: {
+    sangeet: [
+      { id:'s1', seq:1, song:'Mere Brother Ki Dulhan', category:"Sibling's Love", dancers:'Shreni, Shreya, Pratham', lead:'Shreni', duration:'5', outfit:'To be updated', link:'', link2:'', practiceStatus:'progress', practiceplan:'Flexible', trackReady:'Yes', songFinalized:'Yes', notes:'Energetic Performance', entryStyle:'Energetic Performance' },
+      { id:'s2', seq:2, song:'Tere Ishq Ki Diwanagi Sir Pe Chadhke Bole', category:"Bride's Side", dancers:'Shubh, Shreya, Shreni', lead:'Priyanka', duration:'', outfit:'Bride theme', link:'https://www.instagram.com/reel/DWUOnupksM0/?igsh=MW5pcXZ1bXk2ZTUyNg==', link2:'', practiceStatus:'tbu', practiceplan:'', trackReady:'', songFinalized:'', notes:'', entryStyle:'' },
+      { id:'s3', seq:3, song:'Ek Kuwara Fir Gaya Mara', category:"Groom's Fun", dancers:'', lead:'', duration:'', outfit:'', link:'', link2:'', practiceStatus:'tbu', practiceplan:'', trackReady:'', songFinalized:'', notes:'', entryStyle:'' },
+      { id:'s4', seq:4, song:'Hum Kya Purane Zamaane Ki Saas Hain', category:"Mother's Love", dancers:'Saas Group', lead:'', duration:'', outfit:'', link:'', link2:'', practiceStatus:'tbu', practiceplan:'', trackReady:'', songFinalized:'', notes:'', entryStyle:'' },
+      { id:'s5', seq:5, song:'Biwi Number One', category:"Dee & Jiju Group", dancers:'Dee, Jiju Group', lead:'', duration:'', outfit:'', link:'', link2:'', practiceStatus:'tbu', practiceplan:'', trackReady:'', songFinalized:'', notes:'', entryStyle:'' },
+      { id:'s6', seq:6, song:'Main To Raste Se Jaa Raha Tha', category:"Siblings Fun", dancers:'Siblings', lead:'', duration:'', outfit:'', link:'', link2:'', practiceStatus:'tbu', practiceplan:'', trackReady:'', songFinalized:'', notes:'', entryStyle:'' },
+      { id:'s7', seq:7, song:'Tu Mera Hero Number 1', category:"Dee & Jiju Group", dancers:'Dee, Jiju Group', lead:'', duration:'', outfit:'', link:'', link2:'', practiceStatus:'tbu', practiceplan:'', trackReady:'', songFinalized:'', notes:'', entryStyle:'' },
+      { id:'s8', seq:8, song:'Maya Maya Mola Maya Hoge', category:"Dee & Jiju Group", dancers:'Dee, Jiju Group', lead:'', duration:'', outfit:'', link:'', link2:'', practiceStatus:'tbu', practiceplan:'', trackReady:'', songFinalized:'', notes:'', entryStyle:'' },
+      { id:'s9', seq:9, song:'Naatu Naatu', category:"Kids", dancers:'Kids Group', lead:'', duration:'', outfit:'', link:'', link2:'', practiceStatus:'tbu', practiceplan:'', trackReady:'', songFinalized:'', notes:'', entryStyle:'' },
+      { id:'s10', seq:10, song:'Veere Di Wedding Songs', category:"Ladies", dancers:'Ladies Group', lead:'', duration:'', outfit:'', link:'', link2:'', practiceStatus:'tbu', practiceplan:'', trackReady:'', songFinalized:'', notes:'', entryStyle:'' },
+      { id:'s11', seq:11, song:'Zhingaat', category:"Group Dance", dancers:'', lead:'', duration:'', outfit:'', link:'', link2:'', practiceStatus:'tbu', practiceplan:'', trackReady:'', songFinalized:'', notes:'', entryStyle:'' },
+      { id:'s12', seq:12, song:'Ek Garam Chai Ki Pyaali Ho', category:"Groom's Side", dancers:'Groom Side', lead:'', duration:'', outfit:'', link:'', link2:'', practiceStatus:'tbu', practiceplan:'', trackReady:'', songFinalized:'', notes:'', entryStyle:'' },
+      { id:'s13', seq:13, song:'Chanda Meri Chanda', category:"Mother's Love", dancers:'Saas Group', lead:'', duration:'', outfit:'', link:'', link2:'', practiceStatus:'tbu', practiceplan:'', trackReady:'', songFinalized:'', notes:'', entryStyle:'' },
+      { id:'s14', seq:14, song:'Mere Husband Mujhse Pyar Nahi Karte', category:"Dee & Jiju Group", dancers:'Dee, Jiju Group', lead:'', duration:'', outfit:'', link:'', link2:'', practiceStatus:'tbu', practiceplan:'', trackReady:'', songFinalized:'', notes:'', entryStyle:'' },
+      { id:'s15', seq:15, song:'Mere Khwabon Mein Jo Aaye', category:"Romantic", dancers:'Shreni, Kritu', lead:'Shreni', duration:'', outfit:'', link:'', link2:'', practiceStatus:'tbu', practiceplan:'', trackReady:'', songFinalized:'', notes:'', entryStyle:'' },
+      { id:'s16', seq:16, song:'Andekha Anjaana Sa', category:"Romantic", dancers:'Shreni, Kritu', lead:'Shreni', duration:'', outfit:'', link:'', link2:'', practiceStatus:'tbu', practiceplan:'', trackReady:'', songFinalized:'', notes:'', entryStyle:'' },
+      { id:'s17', seq:17, song:'Laal Chunariya Waali Koi Ghar Mere Bhi Laao', category:"Unmarried Siblings", dancers:'Unmarried Siblings', lead:'', duration:'', outfit:'', link:'', link2:'', practiceStatus:'tbu', practiceplan:'', trackReady:'', songFinalized:'', notes:'', entryStyle:'' },
+      { id:'s18', seq:18, song:'Meri Shaadi Karwao', category:"Unmarried Siblings", dancers:'Unmarried Siblings', lead:'', duration:'', outfit:'', link:'', link2:'', practiceStatus:'tbu', practiceplan:'', trackReady:'', songFinalized:'', notes:'', entryStyle:'' },
+      { id:'s19', seq:19, song:'Yaad Aa Rahi Hain', category:"Unmarried Siblings", dancers:'Unmarried Siblings', lead:'', duration:'', outfit:'', link:'', link2:'', practiceStatus:'tbu', practiceplan:'', trackReady:'', songFinalized:'', notes:'', entryStyle:'' },
+      { id:'s20', seq:20, song:'Rangila Maaro Dhholna', category:"Ladies", dancers:'Ladies', lead:'', duration:'', outfit:'', link:'', link2:'', practiceStatus:'tbu', practiceplan:'', trackReady:'', songFinalized:'', notes:'', entryStyle:'' },
+      { id:'s21', seq:21, song:'Tere Dware Pe Aayi Barat', category:"Sangeet Ending", dancers:'Everyone', lead:'', duration:'', outfit:'', link:'', link2:'', practiceStatus:'tbu', practiceplan:'', trackReady:'', songFinalized:'', notes:'Sangeet Ending — सभी मिलकर', entryStyle:'' }
+    ],
+    baraat: [
+      { id:'b1', seq:1, song:'Hum Ladke Hain Baraat Leke Jaenge', category:'Baraat Opening', dancers:'', lead:'', duration:'', outfit:'', link:'', link2:'', practiceStatus:'tbu', practiceplan:'', trackReady:'', songFinalized:'', notes:'Baraat Starting', entryStyle:'' },
+      { id:'b2', seq:2, song:'Pyara Bhaiya Mera Dulha Raja Ban Ke Aagya', category:"Brother's Love", dancers:'', lead:'', duration:'', outfit:'', link:'', link2:'', practiceStatus:'tbu', practiceplan:'', trackReady:'', songFinalized:'', notes:'', entryStyle:'' },
+      { id:'b3', seq:3, song:'Chhote Chhote Bhaiyyon Ke Bade Bhaiya', category:"Brother's Love", dancers:'', lead:'', duration:'', outfit:'', link:'', link2:'', practiceStatus:'tbu', practiceplan:'', trackReady:'', songFinalized:'', notes:'', entryStyle:'' },
+      { id:'b4', seq:4, song:'Oh Balle Balle Soniyo Ke Rang Dekhlo', category:'Baraat Dance', dancers:'', lead:'', duration:'', outfit:'', link:'', link2:'', practiceStatus:'tbu', practiceplan:'', trackReady:'', songFinalized:'', notes:'', entryStyle:'' }
+    ],
+    haldi: [
+      { id:'h1', seq:1, song:'Ghodi Chadh Gaya We Sadda Barkhurdar', category:'Haldi / Baraat Sequence', dancers:'', lead:'', duration:'', outfit:'', link:'', link2:'', practiceStatus:'tbu', practiceplan:'', trackReady:'', songFinalized:'', notes:'Haldi + Baraat sequence', entryStyle:'' }
+    ]
+  }
+}));
+
+function saveData(){ localStorage.setItem(SK, JSON.stringify(data)); }
+
+// ── LOGIN ──
+function fillLogin(u, p){ document.getElementById('loginUser').value=u; document.getElementById('loginPass').value=p; }
+
+function doLogin(){
+  const u = document.getElementById('loginUser').value.trim().toLowerCase();
+  const p = document.getElementById('loginPass').value;
+  const err = document.getElementById('loginError');
+  if(USERS[u] && USERS[u].pass === p){
+    currentUser = { username:u, ...USERS[u] };
+    err.classList.remove('show');
+    startApp();
+  } else {
+    err.classList.add('show');
+  }
+}
+
+function doGuestLogin(){
+  currentUser = { username:'guest', role:'guest', display:'Guest' };
+  startApp();
+}
+
+function doLogout(){
+  currentUser = null;
+  document.getElementById('loginScreen').style.display='flex';
+  document.getElementById('mainApp').style.display='none';
+  document.getElementById('loginUser').value='';
+  document.getElementById('loginPass').value='';
+}
+
+function startApp(){
+  document.getElementById('loginScreen').style.display='none';
+  document.getElementById('mainApp').style.display='block';
+  document.getElementById('navUser').textContent = currentUser.display;
+  // Show admin panel only for shubham
+  const adminEl = document.getElementById('adminSection');
+  if(adminEl) adminEl.style.display = currentUser.role==='admin' ? 'block' : 'none';
+  // Show editor badge & add button for editors
+  const badge = document.getElementById('editorBadge');
+  const addBtn = document.getElementById('addPerfBtn');
+  if(badge) badge.style.display = (currentUser.role==='editor'||currentUser.role==='admin') ? 'inline-flex' : 'none';
+  if(addBtn) addBtn.style.display = (currentUser.role==='editor'||currentUser.role==='admin') ? 'block' : 'none';
+  renderAllPerfs();
+  renderCustomRoles();
+  renderTakenBadges();
+}
+
+// ── EVENT TOGGLE ──
+function toggleEvent(name){
+  const body = document.getElementById('body-'+name);
+  const tog = document.getElementById('toggle-'+name);
+  const isOpen = body.classList.contains('open');
+  body.classList.toggle('open', !isOpen);
+  tog.classList.toggle('open', !isOpen);
+}
+
+// ── PERFORMANCES ──
+const statusLabels = { ready:'✅ Ready', progress:'⏳ In Progress', notstarted:'🔴 Not Started', tbu:'📝 To be updated' };
+const statusClasses = { ready:'status-ready', progress:'status-progress', notstarted:'status-notstarted', tbu:'status-tbu' };
+
+function renderAllPerfs(){
+  ['sangeet','baraat','haldi'].forEach(e => renderPerfs(e));
+}
+
+function renderPerfs(event){
+  const el = document.getElementById('perfs-'+event);
+  if(!el) return;
+  const perfs = data.performances[event] || [];
+  if(!perfs.length){ el.innerHTML='<div class="empty-state">अभी कोई परफॉर्मेंस नहीं जोड़ी गई।</div>'; return; }
+  const sorted = [...perfs].sort((a,b)=>(a.seq||99)-(b.seq||99));
+  const canEdit = currentUser && (currentUser.role==='editor'||currentUser.role==='admin');
+  el.innerHTML = sorted.map(p => `
+    <div class="perf-card" id="pcard-${p.id}">
+      <div class="perf-seq">${p.seq||'?'}</div>
+      <div class="perf-song">${escHtml(p.song)}</div>
+      <div class="perf-category">${escHtml(p.category||'')}</div>
+      <div class="perf-grid">
+        <div class="perf-field"><div class="perf-field-label">Dance Lead</div><div class="perf-field-value ${!p.lead?'tbu':''}">${escHtml(p.lead)||'To be updated'}</div></div>
+        <div class="perf-field"><div class="perf-field-label">Duration</div><div class="perf-field-value ${!p.duration?'tbu':''}">${p.duration ? p.duration+' mins' : 'To be updated'}</div></div>
+        <div class="perf-field"><div class="perf-field-label">Track Ready</div><div class="perf-field-value ${!p.trackReady?'tbu':''}">${escHtml(p.trackReady)||'To be updated'}</div></div>
+        <div class="perf-field"><div class="perf-field-label">Song Finalized</div><div class="perf-field-value ${!p.songFinalized?'tbu':''}">${escHtml(p.songFinalized)||'To be updated'}</div></div>
+      </div>
+      <div class="perf-dancers">
+        <div class="perf-field-label">Dancers</div>
+        <div class="perf-field-value ${!p.dancers?'tbu':''}">${escHtml(p.dancers)||'To be updated'}</div>
+      </div>
+      ${(p.outfit||p.entryStyle||p.practiceplan||p.notes) ? `
+      <div class="perf-grid">
+        ${p.outfit?`<div class="perf-field"><div class="perf-field-label">Outfit Theme</div><div class="perf-field-value">${escHtml(p.outfit)}</div></div>`:''}
+        ${p.entryStyle?`<div class="perf-field"><div class="perf-field-label">Entry Style</div><div class="perf-field-value">${escHtml(p.entryStyle)}</div></div>`:''}
+        ${p.practiceplan?`<div class="perf-field"><div class="perf-field-label">Practice Plan</div><div class="perf-field-value">${escHtml(p.practiceplan)}</div></div>`:''}
+        ${p.notes?`<div class="perf-field"><div class="perf-field-label">Special Notes</div><div class="perf-field-value">${escHtml(p.notes)}</div></div>`:''}
+      </div>`:'' }
+      ${(p.link||p.link2) ? `<div class="perf-links">
+        ${p.link?`<a class="perf-link" href="${escHtml(p.link)}" target="_blank">🎬 Choreography Ref 1</a>`:''}
+        ${p.link2?`<a class="perf-link" href="${escHtml(p.link2)}" target="_blank">🎬 Choreography Ref 2</a>`:''}
+      </div>`:''}
+      <span class="perf-status ${statusClasses[p.practiceStatus]||'status-tbu'}">${statusLabels[p.practiceStatus]||'📝 To be updated'}</span>
+      ${canEdit ? `<button class="edit-btn" onclick="toggleEditForm('${p.id}','${event}')">✏️ Edit</button>` : ''}
+      <div class="edit-form" id="eform-${p.id}">
+        <div class="edit-row">
+          <div><div class="edit-label">Song Name</div><input class="edit-input" id="ef-song-${p.id}" value="${escHtml(p.song)}"/></div>
+          <div><div class="edit-label">Category</div><input class="edit-input" id="ef-cat-${p.id}" value="${escHtml(p.category||'')}"/></div>
+        </div>
+        <div class="edit-row">
+          <div><div class="edit-label">Sequence #</div><input class="edit-input" id="ef-seq-${p.id}" value="${p.seq||''}"/></div>
+          <div><div class="edit-label">Duration (mins)</div><input class="edit-input" id="ef-dur-${p.id}" value="${p.duration||''}"/></div>
+        </div>
+        <div class="edit-row">
+          <div><div class="edit-label">Dance Lead</div><input class="edit-input" id="ef-lead-${p.id}" value="${escHtml(p.lead||'')}"/></div>
+          <div><div class="edit-label">Practice Status</div>
+            <select class="edit-input" id="ef-status-${p.id}">
+              <option value="tbu" ${p.practiceStatus==='tbu'?'selected':''}>To be updated</option>
+              <option value="notstarted" ${p.practiceStatus==='notstarted'?'selected':''}>Not Started</option>
+              <option value="progress" ${p.practiceStatus==='progress'?'selected':''}>In Progress</option>
+              <option value="ready" ${p.practiceStatus==='ready'?'selected':''}>Ready</option>
+            </select>
+          </div>
+        </div>
+        <div style="margin-bottom:8px;"><div class="edit-label">Dancers</div><input class="edit-input" id="ef-dancers-${p.id}" value="${escHtml(p.dancers||'')}"/></div>
+        <div class="edit-row">
+          <div><div class="edit-label">Outfit Theme</div><input class="edit-input" id="ef-outfit-${p.id}" value="${escHtml(p.outfit||'')}"/></div>
+          <div><div class="edit-label">Entry Style</div><input class="edit-input" id="ef-entry-${p.id}" value="${escHtml(p.entryStyle||'')}"/></div>
+        </div>
+        <div class="edit-row">
+          <div><div class="edit-label">Track Ready</div>
+            <select class="edit-input" id="ef-track-${p.id}">
+              <option value="" ${!p.trackReady?'selected':''}>To be updated</option>
+              <option value="Yes" ${p.trackReady==='Yes'?'selected':''}>Yes</option>
+              <option value="No" ${p.trackReady==='No'?'selected':''}>No</option>
+            </select>
+          </div>
+          <div><div class="edit-label">Song Finalized</div>
+            <select class="edit-input" id="ef-finalized-${p.id}">
+              <option value="" ${!p.songFinalized?'selected':''}>To be updated</option>
+              <option value="Yes" ${p.songFinalized==='Yes'?'selected':''}>Yes</option>
+              <option value="No" ${p.songFinalized==='No'?'selected':''}>No</option>
+            </select>
+          </div>
+        </div>
+        <div style="margin-bottom:8px;"><div class="edit-label">Practice Plan</div><input class="edit-input" id="ef-practice-${p.id}" value="${escHtml(p.practiceplan||'')}"/></div>
+        <div style="margin-bottom:8px;"><div class="edit-label">Choreography Link 1</div><input class="edit-input" id="ef-link-${p.id}" value="${escHtml(p.link||'')}"/></div>
+        <div style="margin-bottom:8px;"><div class="edit-label">Choreography Link 2</div><input class="edit-input" id="ef-link2-${p.id}" value="${escHtml(p.link2||'')}"/></div>
+        <div style="margin-bottom:12px;"><div class="edit-label">Special Notes</div><input class="edit-input" id="ef-notes-${p.id}" value="${escHtml(p.notes||'')}"/></div>
+        <button class="btn-save" onclick="saveEdit('${p.id}','${event}')">✓ सेव करें</button>
+        <button class="btn-cancel" onclick="toggleEditForm('${p.id}','${event}')">रद्द</button>
+      </div>
+    </div>
+  `).join('');
+}
+
+function toggleEditForm(id, event){
+  const form = document.getElementById('eform-'+id);
+  form.classList.toggle('open');
+}
+
+function saveEdit(id, event){
+  const idx = data.performances[event].findIndex(p=>p.id===id);
+  if(idx===-1) return;
+  const p = data.performances[event][idx];
+  p.song = document.getElementById('ef-song-'+id).value.trim();
+  p.category = document.getElementById('ef-cat-'+id).value.trim();
+  p.seq = parseInt(document.getElementById('ef-seq-'+id).value)||p.seq;
+  p.duration = document.getElementById('ef-dur-'+id).value.trim();
+  p.lead = document.getElementById('ef-lead-'+id).value.trim();
+  p.practiceStatus = document.getElementById('ef-status-'+id).value;
+  p.dancers = document.getElementById('ef-dancers-'+id).value.trim();
+  p.outfit = document.getElementById('ef-outfit-'+id).value.trim();
+  p.entryStyle = document.getElementById('ef-entry-'+id).value.trim();
+  p.trackReady = document.getElementById('ef-track-'+id).value;
+  p.songFinalized = document.getElementById('ef-finalized-'+id).value;
+  p.practiceplan = document.getElementById('ef-practice-'+id).value.trim();
+  p.link = document.getElementById('ef-link-'+id).value.trim();
+  p.link2 = document.getElementById('ef-link2-'+id).value.trim();
+  p.notes = document.getElementById('ef-notes-'+id).value.trim();
+  saveData();
+  renderPerfs(event);
+  alert('✓ सेव हो गया!');
+}
+
+function showAddPerf(event){ document.getElementById('addPerfForm-'+event).classList.add('open'); }
+function hideAddPerf(event){ document.getElementById('addPerfForm-'+event).classList.remove('open'); }
+
+function saveNewPerf(event){
+  const song = document.getElementById('new-song-'+event).value.trim();
+  if(!song){ alert('गाने का नाम लिखें!'); return; }
+  const newP = {
+    id: event[0]+Date.now(),
+    seq: parseInt(document.getElementById('new-seq-'+event).value)||data.performances[event].length+1,
+    song, category:document.getElementById('new-cat-'+event).value.trim(),
+    duration:document.getElementById('new-dur-'+event).value.trim(),
+    lead:document.getElementById('new-lead-'+event).value.trim(),
+    practiceStatus:document.getElementById('new-status-'+event).value,
+    dancers:document.getElementById('new-dancers-'+event).value.trim(),
+    link:document.getElementById('new-link-'+event).value.trim(),
+    link2:'', outfit:document.getElementById('new-outfit-'+event).value.trim(),
+    notes:document.getElementById('new-notes-'+event).value.trim(),
+    entryStyle:'', practiceplan:'', trackReady:'', songFinalized:''
+  };
+  data.performances[event].push(newP);
+  saveData();
+  hideAddPerf(event);
+  renderPerfs(event);
+  ['new-song-','new-cat-','new-seq-','new-dur-','new-lead-','new-dancers-','new-link-','new-outfit-','new-notes-'].forEach(f=>{
+    const el=document.getElementById(f+event); if(el) el.value='';
+  });
+  alert('✓ परफॉर्मेंस जोड़ दी गई!');
+}
+
+// ── ROLES ──
+const builtinRoles = {
+  gm1:'Groomsman 1',gm2:'Groomsman 2',gm3:'Groomsman 3',
+  gw1:'Groomswoman 1',gw2:'Groomswoman 2',gw3:'Groomswoman 3',
+  baraat1:'बारात लीडर',baraat2:'बारात डांसर',pheras:'रस्म सहयोगी',groom:'दूल्हे का साया',
+  welcome1:'स्वागत करता',welcome2:'VIP होस्ट',seating:'बैठक व्यवस्था',kids:'बच्चों की देखभाल',
+  catering:'खाना इंचार्ज',vendor:'वेंडर समन्वयक',gifts:'उपहार प्रबंधक',float:'फ्लोटिंग हेल्पर',
+  mc:'MC / एंकर',dance:'डांस लीड',dj:'DJ समन्वयक',reels:'रील्स & फोटो'
+};
+
+function getAllRoleNames(){ const all={...builtinRoles}; data.customRoles.forEach(r=>{all[r.id]=r.name;}); return all; }
+function getAllTakenRoles(){ const t={}; data.assignments.forEach(a=>{a.roles.forEach(r=>{t[r]=a.name;})}); return t; }
+
+function toggleRole(roleId){
+  const taken=getAllTakenRoles(); if(taken[roleId]) return;
+  const card=document.getElementById('role-'+roleId); if(!card) return;
+  const idx=selectedRoles.indexOf(roleId);
+  if(idx===-1){selectedRoles.push(roleId);card.classList.add('selected');}
+  else{selectedRoles.splice(idx,1);card.classList.remove('selected');}
+  updatePreview();
+}
+
+function updatePreview(){
+  const p=document.getElementById('selectedPreview');
+  const names=getAllRoleNames();
+  p.textContent=selectedRoles.length?'✓ '+selectedRoles.map(r=>names[r]||r).join(' · '):'अभी कोई भूमिका नहीं चुनी…';
+}
+
+function renderTakenBadges(){
+  const taken=getAllTakenRoles();
+  Object.keys(getAllRoleNames()).forEach(id=>{
+    const card=document.getElementById('role-'+id);
+    const badge=document.getElementById('taken-'+id);
+    if(!card||!badge) return;
+    if(taken[id]){card.classList.add('taken');card.classList.remove('selected');badge.textContent='✓ '+taken[id]+' ने ली';}
+    else{card.classList.remove('taken');badge.textContent='';}
+  });
+}
+
+function addCustomRole(){
+  const name=document.getElementById('customRoleName').value.trim();
+  const desc=document.getElementById('customRoleDesc').value.trim();
+  if(!name){alert('कृपया भूमिका का नाम लिखें!');return;}
+  data.customRoles.push({id:'custom_'+Date.now(),name,desc:desc||'परिवार द्वारा जोड़ी गई भूमिका'});
+  saveData(); renderCustomRoles(); renderTakenBadges();
+  document.getElementById('customRoleName').value=''; document.getElementById('customRoleDesc').value='';
+}
+
+function renderCustomRoles(){
+  const grid=document.getElementById('customRoleGrid');
+  const cat=document.getElementById('customRoleCategory');
+  if(!data.customRoles.length){cat.style.display='none';return;}
+  cat.style.display='block';
+  const taken=getAllTakenRoles();
+  grid.innerHTML=data.customRoles.map(r=>`
+    <div class="role-card ${taken[r.id]?'taken':''} ${selectedRoles.includes(r.id)?'selected':''}" id="role-${r.id}" onclick="toggleRole('${r.id}')">
+      <div class="role-check">✓</div><div class="role-icon">✦</div>
+      <div class="role-name">${escHtml(r.name)}</div>
+      <div class="role-desc">${escHtml(r.desc)}</div>
+      <div class="role-taken-badge" id="taken-${r.id}">${taken[r.id]?'✓ '+taken[r.id]+' ने ली':''}</div>
+    </div>`).join('');
+}
+
+function claimRoles(){
+  const name=document.getElementById('cousinName').value.trim();
+  if(!name){alert('कृपया अपना नाम लिखें!');return;}
+  if(!selectedRoles.length){alert('कृपया कम से कम एक भूमिका चुनें!');return;}
+  const taken=getAllTakenRoles();
+  const conflict=selectedRoles.find(r=>taken[r]);
+  if(conflict){alert('"'+(getAllRoleNames()[conflict]||conflict)+'" पहले से '+taken[conflict]+' ने ली है।');return;}
+  data.assignments.push({name,roles:[...selectedRoles],phone:document.getElementById('cousinPhone').value.trim(),status:'pending',time:Date.now()});
+  saveData();
+  document.getElementById('successMsg').textContent=name+', आपका अनुरोध भेज दिया गया है! शुभम की मंजूरी का इंतजार करें। 🌼';
+  document.getElementById('successBox').classList.add('show');
+  document.getElementById('claimForm').style.display='none';
+  selectedRoles=[];
+  renderTakenBadges(); renderCustomRoles();
+}
+
+// ── SQUAD ──
+function renderSquad(){
+  const allNames=getAllRoleNames();
+  const approved=data.assignments.filter(a=>a.status==='approved');
+  const pending=data.assignments.filter(a=>a.status==='pending');
+  const countEl=document.getElementById('squadCount');
+  const list=document.getElementById('assignedList');
+  const pList=document.getElementById('pendingList');
+
+  countEl.textContent=approved.length+' भूमिकाएँ मंजूर हुई हैं';
+  list.innerHTML=!approved.length?'<div class="empty-state">अभी कोई भूमिका मंजूर नहीं हुई।</div>':
+    approved.map(a=>`<div class="assigned-item"><div class="assigned-avatar">${a.name.charAt(0).toUpperCase()}</div><div class="assigned-info"><div class="assigned-name">${escHtml(a.name)}</div><div class="assigned-role">${a.roles.map(r=>allNames[r]||r).join(' · ')}</div><span class="status-badge status-approved">✓ मंजूर</span></div></div>`).join('');
+
+  pList.innerHTML=!pending.length?'<div class="empty-state">कोई प्रतीक्षारत अनुरोध नहीं।</div>':
+    pending.map(a=>`<div class="assigned-item"><div class="assigned-avatar" style="background:linear-gradient(135deg,#8B5500,#C8820A);">${a.name.charAt(0).toUpperCase()}</div><div class="assigned-info"><div class="assigned-name">${escHtml(a.name)}</div><div class="assigned-role">${a.roles.map(r=>allNames[r]||r).join(' · ')}</div><span class="status-badge status-pending">⏳ मंजूरी बाकी</span></div></div>`).join('');
+
+  if(currentUser && currentUser.role==='admin') renderAdminPanel();
+}
+
+function renderAdminPanel(){
+  const allNames=getAllRoleNames();
+  const pending=data.assignments.filter(a=>a.status==='pending');
+  const el=document.getElementById('adminApprovalList');
+  if(!el) return;
+  el.innerHTML=!pending.length?'<div class="empty-state">कोई प्रतीक्षारत अनुरोध नहीं।</div>':
+    pending.map((a)=>{
+      const realIdx=data.assignments.indexOf(a);
+      return `<div class="approval-item"><div class="approval-name">${escHtml(a.name)}</div><div class="approval-roles">${a.roles.map(r=>allNames[r]||r).join(' · ')}</div><div class="approval-btns"><button class="btn-approve" onclick="approveRole(${realIdx})">✓ मंजूर करें</button><button class="btn-reject" onclick="rejectRole(${realIdx})">✗ अस्वीकार</button></div></div>`;
+    }).join('');
+}
+
+function approveRole(idx){ data.assignments[idx].status='approved'; saveData(); renderSquad(); renderTakenBadges(); alert('✓ मंजूर!'); }
+function rejectRole(idx){ data.assignments[idx].status='rejected'; saveData(); renderSquad(); renderTakenBadges(); alert('अस्वीकार।'); }
+
+// ── SEARCH ──
+function searchPerson(){
+  const q=document.getElementById('searchName').value.trim().toLowerCase();
+  const res=document.getElementById('searchResults');
+  if(!q){res.innerHTML='';return;}
+  const allNames=getAllRoleNames();
+  let html='';
+
+  // Role assignments
+  const myAssignments=data.assignments.filter(a=>a.name.toLowerCase().includes(q));
+  if(myAssignments.length){
+    html+=`<div style="font-size:11px;font-weight:600;color:var(--gold);letter-spacing:0.1em;text-transform:uppercase;margin:10px 0 6px;">भूमिकाएँ</div>`;
+    html+=myAssignments.map(a=>`<div class="assigned-item"><div class="assigned-avatar">${a.name.charAt(0).toUpperCase()}</div><div class="assigned-info"><div class="assigned-name">${escHtml(a.name)}</div><div class="assigned-role">${a.roles.map(r=>allNames[r]||r).join(' · ')}</div><span class="status-badge ${a.status==='approved'?'status-approved':'status-pending'}">${a.status==='approved'?'✓ मंजूर':'⏳ प्रतीक्षारत'}</span></div></div>`).join('');
+  }
+
+  // Performances
+  const allPerfs=[];
+  Object.entries(data.performances).forEach(([event,perfs])=>{
+    perfs.forEach(p=>{
+      if((p.dancers&&p.dancers.toLowerCase().includes(q))||(p.lead&&p.lead.toLowerCase().includes(q))){
+        allPerfs.push({...p,event});
+      }
+    });
+  });
+
+  if(allPerfs.length){
+    html+=`<div style="font-size:11px;font-weight:600;color:var(--gold);letter-spacing:0.1em;text-transform:uppercase;margin:10px 0 6px;">परफॉर्मेंस</div>`;
+    html+=allPerfs.map(p=>`<div class="perf-card"><div class="perf-seq">${p.seq}</div><div class="perf-song">${escHtml(p.song)}</div><div class="perf-category">${escHtml(p.category||'')} · ${p.event.charAt(0).toUpperCase()+p.event.slice(1)}</div><div style="font-size:12px;color:var(--muted);">Dance Lead: ${escHtml(p.lead||'TBU')} · Dancers: ${escHtml(p.dancers||'TBU')}</div><span class="perf-status ${statusClasses[p.practiceStatus]||'status-tbu'}" style="margin-top:6px;">${statusLabels[p.practiceStatus]||'📝 To be updated'}</span></div>`).join('');
+  }
+
+  if(!html) html='<div class="empty-state">कोई नतीजा नहीं मिला।</div>';
+  res.innerHTML=html;
+}
+
+// ── SUGGESTIONS ──
+function getAllPersonNames(){
+  const names=new Set();
+  data.assignments.forEach(a=>names.add(a.name));
+  data.suggestions.forEach(s=>names.add(s.author));
+  Object.values(data.performances).forEach(perfs=>perfs.forEach(p=>{
+    if(p.lead) names.add(p.lead);
+    if(p.dancers) p.dancers.split(',').forEach(d=>{const n=d.trim();if(n)names.add(n);});
+  }));
+  return [...names];
+}
+
+function showTagSuggestions(){
+  const input=document.getElementById('tagInput').value.trim();
+  const sugg=document.getElementById('tagSuggestions');
+  if(!input){sugg.classList.remove('show');return;}
+  const names=getAllPersonNames().filter(n=>n.toLowerCase().includes(input.toLowerCase())&&!taggedPeople.includes(n));
+  if(!names.length){sugg.classList.remove('show');return;}
+  sugg.innerHTML=names.slice(0,5).map(n=>`<div class="tag-suggestion-item" onmousedown="addTag('${escJs(n)}')">${escHtml(n)}</div>`).join('');
+  sugg.classList.add('show');
+}
+
+function hideTagSugg(){ setTimeout(()=>document.getElementById('tagSuggestions').classList.remove('show'),200); }
+function addTag(name){ if(taggedPeople.includes(name)) return; taggedPeople.push(name); document.getElementById('tagInput').value=''; document.getElementById('tagSuggestions').classList.remove('show'); renderAddedTags(); }
+function removeTag(name){ taggedPeople=taggedPeople.filter(t=>t!==name); renderAddedTags(); }
+function renderAddedTags(){ document.getElementById('addedTags').innerHTML=taggedPeople.map(t=>`<div class="added-tag" onclick="removeTag('${escJs(t)}')">@${escHtml(t)} ✕</div>`).join(''); }
+
+function submitSuggestion(){
+  const author=document.getElementById('suggName').value.trim();
+  const text=document.getElementById('suggText').value.trim();
+  if(!author||!text){alert('कृपया नाम और सुझाव लिखें!');return;}
+  data.suggestions.unshift({author,text,tags:[...taggedPeople],time:Date.now()});
+  saveData();
+  document.getElementById('suggName').value=''; document.getElementById('suggText').value='';
+  taggedPeople=[]; renderAddedTags(); renderSuggestions();
+  alert('✦ सुझाव भेज दिया गया!');
+}
+
+function renderSuggestions(){
+  const el=document.getElementById('suggestionsList');
+  if(!data.suggestions.length){el.innerHTML='<div class="empty-state">अभी कोई सुझाव नहीं — पहले आप लिखें! 💡</div>';return;}
+  el.innerHTML=data.suggestions.map(s=>{
+    const d=new Date(s.time);
+    const t=d.toLocaleDateString('hi-IN')+' '+d.toLocaleTimeString('hi-IN',{hour:'2-digit',minute:'2-digit'});
+    return `<div class="suggestion-card"><div class="suggestion-header"><div class="suggestion-avatar">${s.author.charAt(0).toUpperCase()}</div><div class="suggestion-meta"><div class="suggestion-author">${escHtml(s.author)}</div><div class="suggestion-time">${t}</div></div></div><div class="suggestion-text">${escHtml(s.text)}</div>${s.tags.length?`<div class="suggestion-tags">${s.tags.map(t=>`<span class="tag-pill">@${escHtml(t)}</span>`).join('')}</div>`:''}</div>`;
+  }).join('');
+}
+
+// ── SECTION NAV ──
+function showSection(name){
+  document.getElementById('heroSection').style.display='none';
+  document.getElementById('mainNav').style.display='flex';
+  document.getElementById('mainNav2').style.display='flex';
+  document.getElementById('bottomNav').style.display='flex';
+
+  ['events','roles','squad','suggest','info'].forEach(s=>{
+    document.getElementById('sec-'+s).classList.remove('visible');
+    const bn=document.getElementById('bn-'+s); const nv=document.getElementById('nav-'+s);
+    if(bn) bn.classList.remove('active'); if(nv) nv.classList.remove('active');
+  });
+
+  document.getElementById('sec-'+name).classList.add('visible');
+  const bn=document.getElementById('bn-'+name); const nv=document.getElementById('nav-'+name);
+  if(bn) bn.classList.add('active'); if(nv) nv.classList.add('active');
+
+  if(name==='roles'){renderCustomRoles();renderTakenBadges();}
+  if(name==='squad'){renderSquad();}
+  if(name==='suggest'){renderSuggestions();}
+  window.scrollTo(0,0);
+}
+
+function copyLink(){
+  const url=document.getElementById('siteUrl').textContent;
+  navigator.clipboard.writeText(url).then(()=>alert('✦ लिंक कॉपी हो गया!')).catch(()=>alert('लिंक: '+url));
+}
+
+function escHtml(t){ return String(t??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+function escJs(t){ return String(t??'').replace(/'/g,"\\'").replace(/"/g,'\\"'); }
+</script>
+
+</body>
+</html>
