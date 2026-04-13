@@ -822,7 +822,7 @@ function loadCustomRoles(){ get('custom_roles','select=*&order=created_at.asc').
 function getAllRoles(){ return ROLES.concat(customRoles.map(function(r){return {id:r.id,ico:'✦',name:r.name,cat:'✦ Family Added',tag:r.tagline||r.role_desc||'',det:[r.role_desc||''],custom:true};})); }
 function renderRoles(){
   var cont=document.getElementById('rolesC');if(!cont)return;
-  var all=getAllRoles(),ci=cu&&cu.role!=='guest',cats={};
+  var all=getAllRoles(),ci=cu&&cu.role!=='guest',isAdmin=cu&&cu.role==='admin',cats={};
   all.forEach(function(r){if(!cats[r.cat])cats[r.cat]=[];cats[r.cat].push(r);});
   var html='';
   Object.keys(cats).forEach(function(cat){
@@ -835,6 +835,7 @@ function renderRoles(){
       html+='<div class="rrow"><div class="rcnt">'+ints.length+' interested</div>'+(ci?'<button class="bint'+(iM?' mine':'')+'" onclick="toggleRI(\''+r.id+'\','+(iM?'true':'false')+')">'+(iM?'✓ Mine':'+')+'</button>':'<span style="font-size:10px;color:rgba(232,193,122,0.25);">Login</span>')+'</div>';
       if(ints.length) html+='<div class="ichips">'+ints.map(function(i){return '<span class="ichip'+(i.user_id===(cu&&cu.id)?' me':'')+'">'+ e(i.full_name)+'</span>';}).join('')+'</div>';
       if(suggs.length) html+=suggs.map(function(s){return '<div class="rsugg">💬 <b>'+e(s.suggester_name)+'</b> → '+e(s.suggested_name)+'</div>';}).join('');
+      if(isAdmin&&r.custom) html+='<button class="bsugg" style="color:rgba(239,154,154,0.8);" onclick="deleteRole(\''+r.id+'\')">🗑 Delete role</button>';
       if(ci) html+='<button class="bsugg" onclick="toggleSI(\''+r.id+'\')">💡 Suggest someone</button><div class="siw" id="si-'+r.id+'"><input class="smi" id="sn-'+r.id+'" placeholder="Name?"/><button class="smb" onclick="submitRS(\''+r.id+'\')">Suggest</button></div>';
       html+='</div>';
     });
@@ -1054,6 +1055,18 @@ function showSec(name){
 }
 
 function copyLink(){navigator.clipboard.writeText('https://shreyadubey-studio.github.io/priyanka-shubham-wedding').then(function(){alert('✦ Link copied!');});}
+function deleteRole(id){
+  if(!confirm('Delete this role?')) return;
+  del('custom_roles','id=eq.'+id).then(function(){
+    loadCustomRoles();setTimeout(renderRoles,400);alert('✦ Role deleted!');
+  });
+}
+function deleteBuiltinInterests(roleId){
+  if(!confirm('Clear all interests for this role?')) return;
+  del('role_interests','role_id=eq.'+roleId).then(function(){
+    loadRoleInterests();alert('✦ Interests cleared!');
+  });
+}
 function e(t){return String(t==null?'':t).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
 function ej(t){return String(t==null?'':t).replace(/\\/g,'\\\\').replace(/'/g,"\\'").replace(/"/g,'\\"');}
 </script>
