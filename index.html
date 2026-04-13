@@ -814,12 +814,17 @@ function loadRoleInterests(){
     allInts={};(data||[]).forEach(function(i){if(!allInts[i.role_id])allInts[i.role_id]=[];allInts[i.role_id].push(i);});
     get('role_suggestions','select=*').then(function(data2){
       allRSuggs={};(data2||[]).forEach(function(s){if(!allRSuggs[s.role_id])allRSuggs[s.role_id]=[];allRSuggs[s.role_id].push(s);});
-      if(document.getElementById('sec-roles').classList.contains('on')) renderRoles();
+      get('role_approvals','select=*').then(function(data3){
+        allApprovals={};(data3||[]).forEach(function(a){if(!allApprovals[a.role_id])allApprovals[a.role_id]=[];allApprovals[a.role_id].push(a);});
+        if(document.getElementById('sec-roles').classList.contains('on')) renderRoles();
+      });
     });
   });
 }
 function loadCustomRoles(){ get('custom_roles','select=*&order=created_at.asc').then(function(d){customRoles=d||[];}); }
-function getAllRoles(){ return ROLES.concat(customRoles.map(function(r){return {id:r.id,ico:'✦',name:r.name,cat:'✦ Family Added',tag:r.tagline||r.role_desc||'',det:[r.role_desc||''],custom:true};})); }
+function getAllRoles(){ return ROLES.concat(customRoles.filter(function(r){return !r.name.startsWith('__deleted__')&&!r.id.startsWith('deleted_')&&!r.id.startsWith('override_');}).map(function(r){return {id:r.id,ico:'✦',name:r.name,cat:'✦ Family Added',tag:r.tagline||r.role_desc||'',det:[r.role_desc||''],custom:true};})); }
+var allApprovals={};
+
 function renderRoles(){
   var cont=document.getElementById('rolesC');if(!cont)return;
   var all=getAllRoles(),ci=cu&&cu.role!=='guest',isAdmin=cu&&cu.role==='admin',cats={};
@@ -828,27 +833,115 @@ function renderRoles(){
   Object.keys(cats).forEach(function(cat){
     html+='<div class="rcat-lbl">'+e(cat)+'</div><div class="rgrid">';
     cats[cat].forEach(function(r){
-      var ints=allInts[r.id]||[],iM=ints.some(function(i){return i.user_id===cu&&cu.id;}),suggs=allRSuggs[r.id]||[];
-      html+='<div class="rcard"><div class="rtop"><div class="rico">'+r.ico+'</div><div><div class="rname">'+e(r.name)+'</div><div class="rtag">'+e(r.tag||'')+'</div></div></div>';
-      html+='<button class="rexp" onclick="toggleRD(\''+r.id+'\')">📋 Details ▾</button>';
+      var ints=allInts[r.id]||[];
+      var iM=ints.some(function(i){return i.user_id===cu.id;});
+      var approvals=allApprovals[r.id]||[];
+      var approvedIds=approvals.map(function(a){return a.user_id;});
+      var pendingInts=ints.filter(function(i){return !approvedIds.includes(i.user_id);});
+
+      html+='<div class="rcard" id="rcard-'+r.id+'">';
+      html+='<div class="rtop"><div class="rico">'+r.ico+'</div><div style="flex:1;"><div class="rname">'+e(r.name)+'</div><div class="rtag">'+e(r.tag||'')+'</div></div></div>';
+      html+='<button class="rexp" data-action="toggleRD" data-id="'+r.id+'">📋 Details ▾</button>';
       html+='<div class="rdet" id="rd-'+r.id+'">'+(r.det||[]).map(function(d){return '<div class="rdi">'+e(d)+'</div>';}).join('')+'</div>';
-      html+='<div class="rrow"><div class="rcnt">'+ints.length+' interested</div>'+(ci?'<button class="bint'+(iM?' mine':'')+'" onclick="toggleRI(\''+r.id+'\','+(iM?'true':'false')+')">'+(iM?'✓ Mine':'+')+'</button>':'<span style="font-size:10px;color:rgba(232,193,122,0.25);">Login</span>')+'</div>';
-      if(ints.length) html+='<div class="ichips">'+ints.map(function(i){return '<span class="ichip'+(i.user_id===(cu&&cu.id)?' me':'')+'">'+ e(i.full_name)+'</span>';}).join('')+'</div>';
-      if(suggs.length) html+=suggs.map(function(s){return '<div class="rsugg">💬 <b>'+e(s.suggester_name)+'</b> → '+e(s.suggested_name)+'</div>';}).join('');
-      if(isAdmin&&r.custom) html+='<button class="bsugg" style="color:rgba(239,154,154,0.8);" onclick="deleteRole(\''+r.id+'\')">🗑 Delete role</button>';
-      if(ci) html+='<button class="bsugg" onclick="toggleSI(\''+r.id+'\')">💡 Suggest someone</button><div class="siw" id="si-'+r.id+'"><input class="smi" id="sn-'+r.id+'" placeholder="Name?"/><button class="smb" onclick="submitRS(\''+r.id+'\')">Suggest</button></div>';
+
+      if(approvals.length){
+        html+='<div style="display:flex;flex-wrap:wrap;gap:4px;margin:6px 0;">';
+        approvals.forEach(function(a){
+          html+='<div class="assigned-chip">✅ '+e(a.full_name);
+          if(isAdmin) html+=' <span style="cursor:pointer;opacity:0.6;" data-action="removeApproval" data-rid="'+r.id+'" data-uid="'+a.user_id+'">✕</span>';
+          html+='</div>';
+        });
+        html+='</div>';
+      }
+
+      html+='<div class="int-section">';
+      if(isAdmin&&pendingInts.length){
+        html+='<div class="int-section-lbl">Waiting for approval ('+pendingInts.length+')</div>';
+        pendingInts.forEach(function(i){
+          html+='<div class="interest-person"><span class="interest-person-name">🌼 '+e(i.full_name)+'</span><button class="bapprove" data-action="approveInterest" data-rid="'+r.id+'" data-uid="'+i.user_id+'" data-name="'+ej(i.full_name)+'" data-uname="'+ej(i.username||'')+'">✓ Assign</button></div>';
+        });
+      } else if(!isAdmin&&pendingInts.length){
+        html+='<div class="ichips">'+pendingInts.map(function(i){return '<span class="ichip'+(i.user_id===cu.id?' me':'')+'">'+ e(i.full_name)+'</span>';}).join('')+'</div>';
+      }
+
+      if(ci&&!isAdmin){
+        html+='<button class="binterested'+(iM?' active':'')+'" data-action="toggleRI" data-id="'+r.id+'" data-mine="'+iM+'" style="width:100%;margin-top:8px;">'+(iM?'🌼 Interested ✓ (tap to remove)':'🌼 Interested?')+'</button>';
+      }
+      if(isAdmin) html+='<div style="font-size:11px;color:rgba(232,193,122,0.3);margin-top:6px;">'+ints.length+' interested · '+approvals.length+' assigned</div>';
+      html+='</div>';
+
+      if(isAdmin){
+        html+='<div class="admin-role-bar"><button class="bedRole" data-action="openRoleEdit" data-id="'+r.id+'">✏️ Edit</button><button class="bdelRole" data-action="deleteAnyRole" data-id="'+r.id+'" data-custom="'+!!r.custom+'">🗑 Delete</button></div>';
+        html+='<div class="role-edit-form" id="ref-'+r.id+'"><div class="el" style="margin-bottom:3px;">Role Name</div><input class="ei" id="ren-'+r.id+'" value="'+e(r.name)+'" style="width:100%;margin-bottom:7px;"/><div class="el" style="margin-bottom:3px;">Tagline</div><input class="ei" id="ret-'+r.id+'" value="'+e(r.tag||'')+'" style="width:100%;margin-bottom:9px;"/><button class="bsave" data-action="saveRoleEdit" data-id="'+r.id+'" data-custom="'+!!r.custom+'">✓ Save</button><button class="bcancel" data-action="closeRoleEdit" data-id="'+r.id+'">Cancel</button></div>';
+      }
       html+='</div>';
     });
     html+='</div>';
   });
   cont.innerHTML=html;
 }
+
+// Event delegation for roles
+document.addEventListener('click', function(ev){
+  var el=ev.target.closest('[data-action]');
+  if(!el||!el.closest('#rolesC')) return;
+  var action=el.dataset.action, id=el.dataset.id;
+  if(action==='toggleRD'){var d=document.getElementById('rd-'+id);if(d)d.classList.toggle('open');}
+  else if(action==='toggleRI'){toggleRI(id,el.dataset.mine==='true');}
+  else if(action==='openRoleEdit'){var f=document.getElementById('ref-'+id);if(f)f.classList.add('open');}
+  else if(action==='closeRoleEdit'){var f=document.getElementById('ref-'+id);if(f)f.classList.remove('open');}
+  else if(action==='saveRoleEdit'){saveRoleEdit(id,el.dataset.custom==='true');}
+  else if(action==='deleteAnyRole'){deleteAnyRole(id,el.dataset.custom==='true');}
+  else if(action==='approveInterest'){approveInterest(el.dataset.rid,el.dataset.uid,el.dataset.name,el.dataset.uname);}
+  else if(action==='removeApproval'){removeApproval(el.dataset.rid,el.dataset.uid);}
+});
 function toggleRD(id){var el=document.getElementById('rd-'+id);if(el)el.classList.toggle('open');}
 function toggleSI(id){var el=document.getElementById('si-'+id);if(el)el.classList.toggle('open');}
+
 function toggleRI(roleId,isMine){
-  if(!cu||cu.role==='guest')return;
-  var p=isMine?del('role_interests','role_id=eq.'+roleId+'&user_id=eq.'+cu.id):post('role_interests',{role_id:roleId,user_id:cu.id,username:cu.username,full_name:cu.full_name});
-  p.then(function(){logCh('role_interests',roleId,isMine?'delete':'insert',{role:roleId,user:cu.full_name});loadRoleInterests();});
+  if(!cu||cu.role==='guest'||cu.role==='admin') return;
+  if(isMine){
+    del('role_interests','role_id=eq.'+roleId+'&user_id=eq.'+cu.id).then(function(){loadRoleInterests();});
+  } else {
+    post('role_interests',{role_id:roleId,user_id:cu.id,username:cu.username,full_name:cu.full_name}).then(function(){loadRoleInterests();});
+  }
+}
+
+function approveInterest(roleId,userId,fullName,username){
+  post('role_approvals',{role_id:roleId,user_id:userId,username:username,full_name:fullName,approved_by:cu.full_name,approved_at:new Date().toISOString()}).then(function(){
+    logCh('role_approvals',roleId,'insert',{role:roleId,assigned_to:fullName,approved_by:cu.full_name});
+    loadRoleInterests();alert('✦ '+fullName+' assigned!');
+  });
+}
+function removeApproval(roleId,userId){
+  if(!confirm('Remove this assignment?')) return;
+  del('role_approvals','role_id=eq.'+roleId+'&user_id=eq.'+userId).then(function(){loadRoleInterests();});
+}
+function openRoleEdit(id){var f=document.getElementById('ref-'+id);if(f)f.classList.add('open');}
+function closeRoleEdit(id){var f=document.getElementById('ref-'+id);if(f)f.classList.remove('open');}
+function saveRoleEdit(roleId,isCustom){
+  var name=document.getElementById('ren-'+roleId).value.trim();
+  var tag=document.getElementById('ret-'+roleId).value.trim();
+  if(!name){alert('Name cannot be empty!');return;}
+  if(isCustom){
+    patch('custom_roles','id=eq.'+roleId,{name:name,tagline:tag,role_desc:tag}).then(function(){loadCustomRoles();setTimeout(renderRoles,400);alert('✦ Saved!');});
+  } else {
+    var r=ROLES.find(function(x){return x.id===roleId;});
+    if(r){r.name=name;r.tag=tag;}
+    closeRoleEdit(roleId);renderRoles();alert('✦ Updated!');
+  }
+}
+function deleteAnyRole(roleId,isCustom){
+  if(!confirm('Delete this role? All interests will also be removed.')) return;
+  del('role_interests','role_id=eq.'+roleId);
+  del('role_approvals','role_id=eq.'+roleId);
+  if(isCustom){
+    del('custom_roles','id=eq.'+roleId).then(function(){loadCustomRoles();setTimeout(renderRoles,400);alert('✦ Deleted!');});
+  } else {
+    var idx=ROLES.findIndex(function(r){return r.id===roleId;});
+    if(idx>-1) ROLES.splice(idx,1);
+    renderRoles();alert('✦ Deleted!');
+  }
 }
 function submitRS(roleId){
   var n=document.getElementById('sn-'+roleId);if(!n||!n.value.trim()){alert('Enter a name!');return;}
@@ -862,7 +955,6 @@ function addCustomRole(){
     loadCustomRoles();setTimeout(renderRoles,500);alert('✦ Role added!');
   });
 }
-
 // ── TEAM ──
 function renderTeam(){
   var grid=document.getElementById('teamGrid'),empty=document.getElementById('teamEmpty');if(!grid)return;
