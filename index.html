@@ -29,6 +29,11 @@ body{font-family:'Jost',sans-serif;background:#1A0A0C;color:rgba(232,193,122,0.9
 .lbtn-ghost{width:100%;background:transparent;color:rgba(232,193,122,.4);border:1px solid rgba(196,151,74,.14);border-radius:10px;padding:11px;font-family:'Jost',sans-serif;font-size:12px;cursor:pointer;}
 .lerr{font-size:12px;color:#F4A0A8;margin-top:7px;display:none;background:rgba(180,50,60,.12);border-radius:8px;padding:8px;}
 .lerr.on{display:block;}
+.pw-wrap{position:relative;margin-bottom:8px;}
+.pw-wrap .linp{margin-bottom:0;width:100%;}
+.pw-eye{position:absolute;right:12px;top:50%;transform:translateY(-50%);cursor:pointer;font-size:15px;color:rgba(196,151,74,.5);user-select:none;}
+.pw-eye:hover{color:rgba(196,151,74,.85);}
+.lerr.on{display:block;}
 /* APP */
 #appWrap{display:none;}
 /* NAV */
@@ -309,16 +314,16 @@ body{font-family:'Jost',sans-serif;background:#1A0A0C;color:rgba(232,193,122,0.9
     </div>
     <div id="fL">
       <input class="linp" id="lU" placeholder="Username"/>
-      <input class="linp" id="lP" type="password" placeholder="Password"/>
-      <button class="lbtn" onclick="doLogin()">✦ प्रवेश करें</button>
+      <div class="pw-wrap"><input class="linp" id="lP" type="password" placeholder="Password"/><span class="pw-eye" onclick="togglePw('lP',this)">👁</span></div>
+      <button class="lbtn" id="loginBtn" onclick="doLogin()">✦ प्रवेश करें</button>
       <button class="lbtn-ghost" onclick="doGuest()">👁 Guest के रूप में देखें</button>
     </div>
     <div id="fR" style="display:none;">
       <input class="linp" id="rN" placeholder="आपका पूरा नाम"/>
       <input class="linp" id="rPh" placeholder="WhatsApp नंबर" type="tel"/>
       <input class="linp" id="rU" placeholder="Username"/>
-      <input class="linp" id="rPw" type="password" placeholder="Password चुनें"/>
-      <input class="linp" id="rT" type="password" placeholder="Team Password"/>
+      <div class="pw-wrap"><input class="linp" id="rPw" type="password" placeholder="Password चुनें"/><span class="pw-eye" onclick="togglePw('rPw',this)">👁</span></div>
+      <div class="pw-wrap"><input class="linp" id="rT" type="password" placeholder="Team Password"/><span class="pw-eye" onclick="togglePw('rT',this)">👁</span></div>
       <button class="lbtn" onclick="doReg()">✦ टीम में शामिल हों</button>
       <button class="lbtn-ghost" onclick="doGuest()">👁 Guest के रूप में देखें</button>
     </div>
@@ -545,11 +550,23 @@ var del=function(t,q){return api('DELETE',t,q);};
     var s=JSON.parse(saved);
     if(s&&s.id){
       get('users','select=*&id=eq.'+s.id).then(function(d){
-        if(d&&d[0]){cu=d[0];startApp();}
-        else localStorage.removeItem(SK);
+        if(d&&d[0]){
+          cu=d[0];
+          try{startApp();}
+          catch(ex){
+            // startApp failed - show login
+            localStorage.removeItem(SK);
+            document.getElementById('loginWrap').style.display='flex';
+          }
+        }else{
+          localStorage.removeItem(SK);
+        }
+      }).catch(function(){
+        // Network error - just show login, don't auto-restore
+        localStorage.removeItem(SK);
       });
     }
-  }catch(e){localStorage.removeItem(SK);}
+  }catch(ex){localStorage.removeItem(SK);}
 })();
 
 // ── AUTH ──
@@ -562,13 +579,31 @@ function sTab(t){
 }
 function showErr(m){var e=document.getElementById('lErr');e.textContent=m;e.classList.add('on');}
 
+function togglePw(id,eye){
+  var inp=document.getElementById(id);
+  if(!inp)return;
+  var show=inp.type==='password';
+  inp.type=show?'text':'password';
+  eye.textContent=show?'🙈':'👁';
+  eye.style.color=show?'rgba(196,151,74,.85)':'rgba(196,151,74,.5)';
+}
 function doLogin(){
-  var u=document.getElementById('lU').value.trim().toLowerCase();
-  var p=document.getElementById('lP').value;
+  var u=(document.getElementById('lU').value||'').trim().toLowerCase();
+  var p=(document.getElementById('lP').value||'');
   if(!u||!p){showErr('Username और password दोनों लिखें।');return;}
-  get('users','select=*&username=eq.'+encodeURIComponent(u)+'&password_hash=eq.'+encodeURIComponent(p)).then(function(d){
+  var btn=document.getElementById('loginBtn');
+  if(btn){btn.textContent='⏳ Loading…';btn.disabled=true;}
+  get('users','select=*&username=eq.'+encodeURIComponent(u)+'&password_hash=eq.'+encodeURIComponent(p))
+  .then(function(d){
+    if(btn){btn.textContent='✦ प्रवेश करें';btn.disabled=false;}
     if(!d||!d[0]){showErr('गलत username या password!');return;}
-    cu=d[0];localStorage.setItem(SK,JSON.stringify({id:cu.id}));startApp();
+    cu=d[0];
+    localStorage.setItem(SK,JSON.stringify({id:cu.id}));
+    startApp();
+  })
+  .catch(function(err){
+    if(btn){btn.textContent='✦ प्रवेश करें';btn.disabled=false;}
+    showErr('Connection error. Check internet and try again.');
   });
 }
 function doReg(){
@@ -593,6 +628,7 @@ function doLogout(){
 
 // ── START APP ──
 function startApp(){
+  try{
   document.getElementById('loginWrap').style.display='none';
   document.getElementById('appWrap').style.display='block';
   var admin=cu.role==='admin',canEdit=cu.role!=='guest';
@@ -607,6 +643,11 @@ function startApp(){
     if(document.getElementById('sec-events').classList.contains('on'))loadAllPerfs();
     if(document.getElementById('sec-gallery').classList.contains('on'))loadGallery();
   },10000);
+  }catch(ex){
+    // If anything fails in startApp, show login
+    document.getElementById('loginWrap').style.display='flex';
+    document.getElementById('appWrap').style.display='none';
+  }
 }
 
 // ── LANG ──
@@ -804,13 +845,17 @@ function renderRoles(){
         html+='<div class="el" style="margin-bottom:3px;">Name</div><input class="ei" id="ren-'+r.id+'" value="'+e(r.name)+'" style="width:100%;margin-bottom:6px;"/>';
         html+='<div class="el" style="margin-bottom:3px;">Tagline</div><input class="ei" id="ret-'+r.id+'" value="'+e(r.tag||'')+'" style="width:100%;margin-bottom:6px;"/>';
         html+='<div class="el" style="margin-bottom:3px;">Description (one line each)</div><textarea class="ei" id="red-'+r.id+'" rows="3" style="width:100%;margin-bottom:8px;resize:vertical;">'+(r.det||[]).join('\n')+'</textarea>';
-        html+='<button class="bsave" data-save-r="'+r.id+'" data-save-custom="'+!!r.custom+'">✓ Save</button><button class="bcancel" data-cancel-r="'+r.id+'">Cancel</button>';
-        html+='</div>';
-      }
-      html+='</div>';
-    });
+
+```
+    html+='<button class="bsave" data-save-r="'+r.id+'" data-save-custom="'+!!r.custom+'">✓ Save</button><button class="bcancel" data-cancel-r="'+r.id+'">Cancel</button>';
     html+='</div>';
-  });
+  }
+  html+='</div>';
+});
+html+='</div>';
+```
+
+});
 cont.innerHTML=html;
 }
 
