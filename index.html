@@ -1,4 +1,4 @@
-my<!DOCTYPE html>
+<!DOCTYPE html>
 
 <html lang="hi">
 <head>
@@ -313,12 +313,12 @@ body{font-family:'Jost',sans-serif;background:#1A0A0C;color:rgba(232,193,122,0.9
     <div class="l-sub">विवाह उत्सव</div>
     <div class="l-dt">१ – ३ जुलाई २०२५ · रायपुर</div>
     <div class="l-tabs">
-      <div class="l-tab on" id="tl" onclick="sTab('l')">Login</div>
-      <div class="l-tab" id="tr" onclick="sTab('r')">Join Team</div>
+      <div class="l-tab on" id="tl">Login</div>
+      <div class="l-tab" id="tr">Join Team</div>
     </div>
     <div id="fL">
       <input class="linp" id="lU" placeholder="Username"/>
-      <div class="pw-wrap"><input class="linp" id="lP" type="password" placeholder="Password"/><span class="pw-eye" onclick="togglePw('lP',this)">👁</span></div>
+      <div class="pw-wrap"><input class="linp" id="lP" type="password" placeholder="Password"/><span class="pw-eye" data-for="lP">👁</span></div>
       <button class="lbtn" id="loginBtn" onclick="doLogin()">✦ प्रवेश करें</button>
       <button class="lbtn-ghost" onclick="doGuest()">👁 Guest के रूप में देखें</button>
     </div>
@@ -326,8 +326,8 @@ body{font-family:'Jost',sans-serif;background:#1A0A0C;color:rgba(232,193,122,0.9
       <input class="linp" id="rN" placeholder="आपका पूरा नाम"/>
       <input class="linp" id="rPh" placeholder="WhatsApp नंबर" type="tel"/>
       <input class="linp" id="rU" placeholder="Username"/>
-      <div class="pw-wrap"><input class="linp" id="rPw" type="password" placeholder="Password चुनें"/><span class="pw-eye" onclick="togglePw('rPw',this)">👁</span></div>
-      <div class="pw-wrap"><input class="linp" id="rT" type="password" placeholder="Team Password"/><span class="pw-eye" onclick="togglePw('rT',this)">👁</span></div>
+      <div class="pw-wrap"><input class="linp" id="rPw" type="password" placeholder="Password चुनें"/><span class="pw-eye" data-for="rPw">👁</span></div>
+      <div class="pw-wrap"><input class="linp" id="rT" type="password" placeholder="Team Password"/><span class="pw-eye" data-for="rT">👁</span></div>
       <button class="lbtn" onclick="doReg()">✦ टीम में शामिल हों</button>
       <button class="lbtn-ghost" onclick="doGuest()">👁 Guest के रूप में देखें</button>
     </div>
@@ -434,6 +434,7 @@ body{font-family:'Jost',sans-serif;background:#1A0A0C;color:rgba(232,193,122,0.9
 <div class="card"><div class="ch" onclick="toggleCard('reception')"><div class="c-ico">🥂</div><div class="c-inf"><div class="c-sub">स्वागत समारोह</div><div class="c-tit">Reception</div><div class="c-meta"><div class="ctag">📅 3 July</div><div class="ctag">🕖 7–11 PM</div><div class="ctag g">📍 Royal Club</div></div></div><div class="c-chev" id="cc-reception">▾</div></div>
   <div class="cb" id="cb-reception"><div class="c-desc">१०००+ मेहमानों के साथ भव्य स्वागत! 🎊</div><div class="stl">OVERVIEW</div><div class="step"><div class="stn">1</div><div><div class="stnm">Welcome Guests</div><div class="std">Welcome team at entrance</div></div></div><div class="step"><div class="stn">2</div><div><div class="stnm">Dining</div><div class="std">Catering team active</div></div></div><div class="ep-sec"><div class="ep-lbl">PHOTOS</div><div class="ep-grid" id="ep-reception"></div><button class="ep-add epb" data-ev="reception" style="display:none;">📷 Add Photo</button></div></div>
 </div>
+```
 
   </div>
 
@@ -542,19 +543,9 @@ window.addEventListener('unhandledrejection', function(e) {
 <script>
 // ── CONFIG ──
 // Attach login buttons after DOM ready - belt AND suspenders approach
-document.addEventListener('DOMContentLoaded', function() {
-  var lb = document.getElementById('loginBtn');
-  if(lb) lb.addEventListener('click', function() { doLogin(); });
-  var gb = document.querySelector('.lbtn-ghost');
-  if(gb) gb.addEventListener('click', function() { doGuest(); });
-  var tl = document.getElementById('tl');
-  if(tl) tl.addEventListener('click', function() { sTab('l'); });
-  var tr = document.getElementById('tr');
-  if(tr) tr.addEventListener('click', function() { sTab('r'); });
-});
 var SB='https://fwbbfsfjgmuuzqymxtdv.supabase.co/rest/v1/';
 var KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZ3YmJmc2ZqZ211dXpxeW14dGR2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzYwMTUxMDksImV4cCI6MjA5MTU5MTEwOX0.npnpwd1SirAHyHH1JahMcKyEsvJb5MrPXEzdPAPpC-0';
-var TP='4567',SK='ps_v11';
+var TP='4567',SK='ps_v12';
 var cu=null,lang='hi',allPhotos=[],allInts={},allApprovals={},allRSuggs={},customRoles=[];
 var tagPpl=[],photoTags=[],pgf=null,pef=null,pen=null,gFilter='',AGF=null;
 
@@ -575,6 +566,34 @@ var get=function(t,q){return api('GET',t,q);};
 var post=function(t,b){return api('POST',t,null,b);};
 var patch=function(t,q,b){return api('PATCH',t,q,b);};
 var del=function(t,q){return api('DELETE',t,q);};
+
+// ── ATTACH ALL BUTTON LISTENERS ──
+// Script is at bottom of body so DOM is ready
+(function attachListeners(){
+  var el;
+  el=document.getElementById('loginBtn'); if(el) el.addEventListener('click',function(){doLogin();});
+  el=document.getElementById('tl'); if(el) el.addEventListener('click',function(){sTab('l');});
+  el=document.getElementById('tr'); if(el) el.addEventListener('click',function(){sTab('r');});
+  // Guest buttons
+  var guests=document.querySelectorAll('.lbtn-ghost');
+  for(var i=0;i<guests.length;i++){guests[i].addEventListener('click',function(){doGuest();});}
+  // Register button
+  var regBtns=document.querySelectorAll('#fR .lbtn');
+  for(var i=0;i<regBtns.length;i++){regBtns[i].addEventListener('click',function(){doReg();});}
+  // Eye toggle buttons (pw-eye)
+  var eyes=document.querySelectorAll('.pw-eye');
+  for(var i=0;i<eyes.length;i++){
+    (function(eye){
+      eye.addEventListener('click',function(){
+        var inp=document.getElementById(eye.dataset.for);
+        if(!inp)return;
+        var show=inp.type==='password';
+        inp.type=show?'text':'password';
+        eye.textContent=show?'🙈':'👁';
+      });
+    })(eyes[i]);
+  }
+})();
 
 // ── LOGIN — NO WAITING, show immediately ──
 // loginWrap already visible in HTML
@@ -615,14 +634,6 @@ function sTab(t){
 }
 function showErr(m){var e=document.getElementById('lErr');e.textContent=m;e.classList.add('on');}
 
-function togglePw(id,eye){
-  var inp=document.getElementById(id);
-  if(!inp)return;
-  var show=inp.type==='password';
-  inp.type=show?'text':'password';
-  eye.textContent=show?'🙈':'👁';
-  eye.style.color=show?'rgba(196,151,74,.85)':'rgba(196,151,74,.5)';
-}
 function doLogin(){
   var u=(document.getElementById('lU').value||'').trim().toLowerCase();
   var p=(document.getElementById('lP').value||'');
@@ -881,12 +892,16 @@ function renderRoles(){
         html+='<div class="el" style="margin-bottom:3px;">Name</div><input class="ei" id="ren-'+r.id+'" value="'+e(r.name)+'" style="width:100%;margin-bottom:6px;"/>';
         html+='<div class="el" style="margin-bottom:3px;">Tagline</div><input class="ei" id="ret-'+r.id+'" value="'+e(r.tag||'')+'" style="width:100%;margin-bottom:6px;"/>';
         html+='<div class="el" style="margin-bottom:3px;">Description (one line each)</div><textarea class="ei" id="red-'+r.id+'" rows="3" style="width:100%;margin-bottom:8px;resize:vertical;">'+(r.det||[]).join('\n')+'</textarea>';
+
+```
     html+='<button class="bsave" data-save-r="'+r.id+'" data-save-custom="'+!!r.custom+'">✓ Save</button><button class="bcancel" data-cancel-r="'+r.id+'">Cancel</button>';
     html+='</div>';
   }
   html+='</div>';
 });
 html+='</div>';
+```
+
 });
 cont.innerHTML=html;
 }
