@@ -296,6 +296,8 @@ body{font-family:'Jost',sans-serif;background:#1A0A0C;color:rgba(232,193,122,0.9
 </style>
 </head>
 <body>
+<div id="jsCheck" style="position:fixed;bottom:8px;right:8px;width:8px;height:8px;border-radius:50%;background:#C4974A;z-index:9999;display:none;"></div>
+<script>document.getElementById('jsCheck').style.display='block';</script>
 
 <!-- LOGIN — visible immediately, no JS needed to show this -->
 
@@ -387,6 +389,8 @@ body{font-family:'Jost',sans-serif;background:#1A0A0C;color:rgba(232,193,122,0.9
       <button class="f-cl" id="fCl" onclick="clearF()">✕ Filter हटाएँ</button>
       <div class="f-cnt" id="fCnt"></div>
     </div>
+
+```
 <div class="card"><div class="ch" onclick="toggleCard('eng')"><div class="c-ico">💍</div><div class="c-inf"><div class="c-sub">सगाई</div><div class="c-tit">Engagement</div><div class="c-meta"><div class="ctag">🕐 Coming Soon</div></div></div><div class="c-chev" id="cc-eng">▾</div></div>
   <div class="cb" id="cb-eng"><div class="c-desc">उनके हमेशा की शुरुआत। 💍</div><div class="stl">OVERVIEW</div><div class="step"><div class="stn">1</div><div><div class="stnm">Date &amp; Venue</div><div class="std">To be announced</div></div></div><div class="ep-sec"><div class="ep-lbl">PHOTOS</div><div class="ep-grid" id="ep-eng"></div><button class="ep-add epb" data-ev="eng" style="display:none;">📷 Add Photo</button></div></div>
 </div>
@@ -430,6 +434,8 @@ body{font-family:'Jost',sans-serif;background:#1A0A0C;color:rgba(232,193,122,0.9
 <div class="card"><div class="ch" onclick="toggleCard('reception')"><div class="c-ico">🥂</div><div class="c-inf"><div class="c-sub">स्वागत समारोह</div><div class="c-tit">Reception</div><div class="c-meta"><div class="ctag">📅 3 July</div><div class="ctag">🕖 7–11 PM</div><div class="ctag g">📍 Royal Club</div></div></div><div class="c-chev" id="cc-reception">▾</div></div>
   <div class="cb" id="cb-reception"><div class="c-desc">१०००+ मेहमानों के साथ भव्य स्वागत! 🎊</div><div class="stl">OVERVIEW</div><div class="step"><div class="stn">1</div><div><div class="stnm">Welcome Guests</div><div class="std">Welcome team at entrance</div></div></div><div class="step"><div class="stn">2</div><div><div class="stnm">Dining</div><div class="std">Catering team active</div></div></div><div class="ep-sec"><div class="ep-lbl">PHOTOS</div><div class="ep-grid" id="ep-reception"></div><button class="ep-add epb" data-ev="reception" style="display:none;">📷 Add Photo</button></div></div>
 </div>
+```
+
   </div>
 
   <!-- ROLES -->
@@ -527,11 +533,16 @@ var tagPpl=[],photoTags=[],pgf=null,pef=null,pen=null,gFilter='',AGF=null;
 
 // ── API ──
 function api(m,t,q,b){
-  var h={'apikey':KEY,'Authorization':'Bearer '+KEY,'Content-Type':'application/json'};
-  if(m==='POST'||m==='PATCH') h['Prefer']='return=representation';
-  return fetch(SB+t+(q?'?'+q:''),{method:m,headers:h,body:b?JSON.stringify(Array.isArray(b)?b:[b]):undefined})
-    .then(function(r){if(r.status===204)return[];return r.json();})
-    .catch(function(){return[];});
+  var h={'apikey':KEY,'Authorization':'Bearer '+KEY};
+  if(m==='POST'||m==='PATCH'){h['Content-Type']='application/json';h['Prefer']='return=representation';}
+  var opts={method:m,headers:h};
+  if(b) opts.body=JSON.stringify(Array.isArray(b)?b:[b]);
+  return fetch(SB+t+(q?'?'+q:''),opts)
+    .then(function(r){
+      if(r.status===204||r.status===200&&r.headers.get('content-length')==='0')return[];
+      return r.json();
+    })
+    .catch(function(err){console.warn('API error:',err);return[];});
 }
 var get=function(t,q){return api('GET',t,q);};
 var post=function(t,b){return api('POST',t,null,b);};
@@ -843,12 +854,16 @@ function renderRoles(){
         html+='<div class="el" style="margin-bottom:3px;">Name</div><input class="ei" id="ren-'+r.id+'" value="'+e(r.name)+'" style="width:100%;margin-bottom:6px;"/>';
         html+='<div class="el" style="margin-bottom:3px;">Tagline</div><input class="ei" id="ret-'+r.id+'" value="'+e(r.tag||'')+'" style="width:100%;margin-bottom:6px;"/>';
         html+='<div class="el" style="margin-bottom:3px;">Description (one line each)</div><textarea class="ei" id="red-'+r.id+'" rows="3" style="width:100%;margin-bottom:8px;resize:vertical;">'+(r.det||[]).join('\n')+'</textarea>';
+
+```
     html+='<button class="bsave" data-save-r="'+r.id+'" data-save-custom="'+!!r.custom+'">✓ Save</button><button class="bcancel" data-cancel-r="'+r.id+'">Cancel</button>';
     html+='</div>';
   }
   html+='</div>';
 });
 html+='</div>';
+```
+
 });
 cont.innerHTML=html;
 }
