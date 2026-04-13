@@ -858,7 +858,13 @@ function renderRoles(){
       if(isAdmin&&pendingInts.length){
         html+='<div class="int-section-lbl">Waiting for approval ('+pendingInts.length+')</div>';
         pendingInts.forEach(function(i){
-          html+='<div class="interest-person"><span class="interest-person-name">🌼 '+e(i.full_name)+'</span><button class="bapprove" data-action="approveInterest" data-rid="'+r.id+'" data-uid="'+i.user_id+'" data-name="'+ej(i.full_name)+'" data-uname="'+ej(i.username||'')+'">✓ Assign</button></div>';
+          html+='<div class="interest-person">'
+            +'<span class="interest-person-name">🌼 '+e(i.full_name)+'</span>'
+            +'<div style="display:flex;gap:5px;">'
+            +'<button class="bapprove" data-action="approveInterest" data-rid="'+r.id+'" data-uid="'+i.user_id+'" data-name="'+ej(i.full_name)+'" data-uname="'+ej(i.username||'')+'">✓ Assign</button>'
+            +'<button class="bremove-approval" data-action="removeInterest" data-rid="'+r.id+'" data-uid="'+i.user_id+'">✕</button>'
+            +'</div>'
+            +'</div>';
         });
       } else if(!isAdmin&&pendingInts.length){
         html+='<div class="ichips">'+pendingInts.map(function(i){return '<span class="ichip'+(i.user_id===cu.id?' me':'')+'">'+ e(i.full_name)+'</span>';}).join('')+'</div>';
@@ -872,295 +878,320 @@ function renderRoles(){
 
       if(isAdmin){
         html+='<div class="admin-role-bar"><button class="bedRole" data-action="openRoleEdit" data-id="'+r.id+'">✏️ Edit</button><button class="bdelRole" data-action="deleteAnyRole" data-id="'+r.id+'" data-custom="'+!!r.custom+'">🗑 Delete</button></div>';
-        html+='<div class="role-edit-form" id="ref-'+r.id+'"><div class="el" style="margin-bottom:3px;">Role Name</div><input class="ei" id="ren-'+r.id+'" value="'+e(r.name)+'" style="width:100%;margin-bottom:7px;"/><div class="el" style="margin-bottom:3px;">Tagline</div><input class="ei" id="ret-'+r.id+'" value="'+e(r.tag||'')+'" style="width:100%;margin-bottom:9px;"/><button class="bsave" data-action="saveRoleEdit" data-id="'+r.id+'" data-custom="'+!!r.custom+'">✓ Save</button><button class="bcancel" data-action="closeRoleEdit" data-id="'+r.id+'">Cancel</button></div>';
-      }
-      html+='</div>';
-    });
-    html+='</div>';
-  });
-  cont.innerHTML=html;
+        html+='<div class="role-edit-form" id="ref-'+r.id+'">'
+          +'<div class="el" style="margin-bottom:3px;">Role Name</div>'
+          +'<input class="ei" id="ren-'+r.id+'" value="'+e(r.name)+'" style="width:100%;margin-bottom:7px;"/>'
+          +'<div class="el" style="margin-bottom:3px;">Tagline / Short Description</div>'
+          +'<input class="ei" id="ret-'+r.id+'" value="'+e(r.tag||'')+'" style="width:100%;margin-bottom:7px;"/>'
+          +'<div class="el" style="margin-bottom:3px;">Full Description (one point per line)</div>'
+          +'<textarea class="ei" id="red-'+r.id+'" rows="4" style="width:100%;margin-bottom:9px;resize:vertical;">'+(r.det||[]).join('\n')+'</textarea>'
+
+```
+      +'<button class="bsave" data-action="saveRoleEdit" data-id="'+r.id+'" data-custom="'+!!r.custom+'">✓ Save Changes</button>'
+      +'<button class="bcancel" data-action="closeRoleEdit" data-id="'+r.id+'" style="margin-left:7px;">Cancel</button>'
+      +'</div>';
+  }
+  html+='</div>';
+});
+html+='</div>';
+```
+
+});
+cont.innerHTML=html;
 }
 
 // Event delegation for roles
-document.addEventListener('click', function(ev){
-  var el=ev.target.closest('[data-action]');
-  if(!el||!el.closest('#rolesC')) return;
-  var action=el.dataset.action, id=el.dataset.id;
-  if(action==='toggleRD'){var d=document.getElementById('rd-'+id);if(d)d.classList.toggle('open');}
-  else if(action==='toggleRI'){toggleRI(id,el.dataset.mine==='true');}
-  else if(action==='openRoleEdit'){var f=document.getElementById('ref-'+id);if(f)f.classList.add('open');}
-  else if(action==='closeRoleEdit'){var f=document.getElementById('ref-'+id);if(f)f.classList.remove('open');}
-  else if(action==='saveRoleEdit'){saveRoleEdit(id,el.dataset.custom==='true');}
-  else if(action==='deleteAnyRole'){deleteAnyRole(id,el.dataset.custom==='true');}
-  else if(action==='approveInterest'){approveInterest(el.dataset.rid,el.dataset.uid,el.dataset.name,el.dataset.uname);}
-  else if(action==='removeApproval'){removeApproval(el.dataset.rid,el.dataset.uid);}
+document.addEventListener(‘click’, function(ev){
+var el=ev.target.closest(’[data-action]’);
+if(!el||!el.closest(’#rolesC’)) return;
+var action=el.dataset.action, id=el.dataset.id;
+if(action===‘toggleRD’){var d=document.getElementById(‘rd-’+id);if(d)d.classList.toggle(‘open’);}
+else if(action===‘toggleRI’){toggleRI(id,el.dataset.mine===‘true’);}
+else if(action===‘openRoleEdit’){var f=document.getElementById(‘ref-’+id);if(f)f.classList.add(‘open’);}
+else if(action===‘closeRoleEdit’){var f=document.getElementById(‘ref-’+id);if(f)f.classList.remove(‘open’);}
+else if(action===‘saveRoleEdit’){saveRoleEdit(id,el.dataset.custom===‘true’);}
+else if(action===‘deleteAnyRole’){deleteAnyRole(id,el.dataset.custom===‘true’);}
+else if(action===‘approveInterest’){approveInterest(el.dataset.rid,el.dataset.uid,el.dataset.name,el.dataset.uname);}
+else if(action===‘removeApproval’){removeApproval(el.dataset.rid,el.dataset.uid);}
+else if(action===‘removeInterest’){removeInterest(el.dataset.rid,el.dataset.uid);}
 });
-function toggleRD(id){var el=document.getElementById('rd-'+id);if(el)el.classList.toggle('open');}
-function toggleSI(id){var el=document.getElementById('si-'+id);if(el)el.classList.toggle('open');}
+function toggleRD(id){var el=document.getElementById(‘rd-’+id);if(el)el.classList.toggle(‘open’);}
+function toggleSI(id){var el=document.getElementById(‘si-’+id);if(el)el.classList.toggle(‘open’);}
 
 function toggleRI(roleId,isMine){
-  if(!cu||cu.role==='guest'||cu.role==='admin') return;
-  if(isMine){
-    del('role_interests','role_id=eq.'+roleId+'&user_id=eq.'+cu.id).then(function(){loadRoleInterests();});
-  } else {
-    post('role_interests',{role_id:roleId,user_id:cu.id,username:cu.username,full_name:cu.full_name}).then(function(){loadRoleInterests();});
-  }
+if(!cu||cu.role===‘guest’||cu.role===‘admin’) return;
+if(isMine){
+del(‘role_interests’,‘role_id=eq.’+roleId+’&user_id=eq.’+cu.id).then(function(){loadRoleInterests();});
+} else {
+post(‘role_interests’,{role_id:roleId,user_id:cu.id,username:cu.username,full_name:cu.full_name}).then(function(){loadRoleInterests();});
+}
 }
 
 function approveInterest(roleId,userId,fullName,username){
-  post('role_approvals',{role_id:roleId,user_id:userId,username:username,full_name:fullName,approved_by:cu.full_name,approved_at:new Date().toISOString()}).then(function(){
-    logCh('role_approvals',roleId,'insert',{role:roleId,assigned_to:fullName,approved_by:cu.full_name});
-    loadRoleInterests();alert('✦ '+fullName+' assigned!');
-  });
+post(‘role_approvals’,{role_id:roleId,user_id:userId,username:username,full_name:fullName,approved_by:cu.full_name,approved_at:new Date().toISOString()}).then(function(){
+logCh(‘role_approvals’,roleId,‘insert’,{role:roleId,assigned_to:fullName,approved_by:cu.full_name});
+loadRoleInterests();alert(‘✦ ‘+fullName+’ assigned!’);
+});
 }
 function removeApproval(roleId,userId){
-  if(!confirm('Remove this assignment?')) return;
-  del('role_approvals','role_id=eq.'+roleId+'&user_id=eq.'+userId).then(function(){loadRoleInterests();});
+if(!confirm(‘Remove this assignment?’)) return;
+del(‘role_approvals’,‘role_id=eq.’+roleId+’&user_id=eq.’+userId).then(function(){loadRoleInterests();});
 }
-function openRoleEdit(id){var f=document.getElementById('ref-'+id);if(f)f.classList.add('open');}
-function closeRoleEdit(id){var f=document.getElementById('ref-'+id);if(f)f.classList.remove('open');}
+function removeInterest(roleId,userId){
+del(‘role_interests’,‘role_id=eq.’+roleId+’&user_id=eq.’+userId).then(function(){
+loadRoleInterests();
+});
+}
+function openRoleEdit(id){var f=document.getElementById(‘ref-’+id);if(f)f.classList.add(‘open’);}
+function closeRoleEdit(id){var f=document.getElementById(‘ref-’+id);if(f)f.classList.remove(‘open’);}
 function saveRoleEdit(roleId,isCustom){
-  var name=document.getElementById('ren-'+roleId).value.trim();
-  var tag=document.getElementById('ret-'+roleId).value.trim();
-  if(!name){alert('Name cannot be empty!');return;}
-  if(isCustom){
-    patch('custom_roles','id=eq.'+roleId,{name:name,tagline:tag,role_desc:tag}).then(function(){loadCustomRoles();setTimeout(renderRoles,400);alert('✦ Saved!');});
-  } else {
-    var r=ROLES.find(function(x){return x.id===roleId;});
-    if(r){r.name=name;r.tag=tag;}
-    closeRoleEdit(roleId);renderRoles();alert('✦ Updated!');
-  }
+var name=document.getElementById(‘ren-’+roleId).value.trim();
+var tag=document.getElementById(‘ret-’+roleId).value.trim();
+var descEl=document.getElementById(‘red-’+roleId);
+var det=descEl?descEl.value.split(’\n’).map(function(s){return s.trim();}).filter(Boolean):[];
+if(!name){alert(‘Name cannot be empty!’);return;}
+if(isCustom){
+var fullDesc=det.join(’ | ‘);
+patch(‘custom_roles’,‘id=eq.’+roleId,{name:name,tagline:tag,role_desc:fullDesc}).then(function(){
+loadCustomRoles();setTimeout(renderRoles,400);alert(‘✦ Saved!’);
+});
+} else {
+// Update in-memory ROLES array
+var r=ROLES.find(function(x){return x.id===roleId;});
+if(r){r.name=name;r.tag=tag;r.det=det.length?det:r.det;}
+closeRoleEdit(roleId);renderRoles();alert(‘✦ Updated!’);
+}
 }
 function deleteAnyRole(roleId,isCustom){
-  if(!confirm('Delete this role? All interests will also be removed.')) return;
-  del('role_interests','role_id=eq.'+roleId);
-  del('role_approvals','role_id=eq.'+roleId);
-  if(isCustom){
-    del('custom_roles','id=eq.'+roleId).then(function(){loadCustomRoles();setTimeout(renderRoles,400);alert('✦ Deleted!');});
-  } else {
-    var idx=ROLES.findIndex(function(r){return r.id===roleId;});
-    if(idx>-1) ROLES.splice(idx,1);
-    renderRoles();alert('✦ Deleted!');
-  }
+if(!confirm(‘Delete this role? All interests will also be removed.’)) return;
+del(‘role_interests’,‘role_id=eq.’+roleId);
+del(‘role_approvals’,‘role_id=eq.’+roleId);
+if(isCustom){
+del(‘custom_roles’,‘id=eq.’+roleId).then(function(){loadCustomRoles();setTimeout(renderRoles,400);alert(‘✦ Deleted!’);});
+} else {
+var idx=ROLES.findIndex(function(r){return r.id===roleId;});
+if(idx>-1) ROLES.splice(idx,1);
+renderRoles();alert(‘✦ Deleted!’);
+}
 }
 function submitRS(roleId){
-  var n=document.getElementById('sn-'+roleId);if(!n||!n.value.trim()){alert('Enter a name!');return;}
-  post('role_suggestions',{role_id:roleId,suggester_username:cu.username,suggester_name:cu.full_name,suggested_name:n.value.trim()}).then(function(){n.value='';var si=document.getElementById('si-'+roleId);if(si)si.classList.remove('open');loadRoleInterests();alert('✦ Suggested!');});
+var n=document.getElementById(‘sn-’+roleId);if(!n||!n.value.trim()){alert(‘Enter a name!’);return;}
+post(‘role_suggestions’,{role_id:roleId,suggester_username:cu.username,suggester_name:cu.full_name,suggested_name:n.value.trim()}).then(function(){n.value=’’;var si=document.getElementById(‘si-’+roleId);if(si)si.classList.remove(‘open’);loadRoleInterests();alert(‘✦ Suggested!’);});
 }
 function addCustomRole(){
-  var name=document.getElementById('arName').value.trim(),desc=document.getElementById('arDesc').value.trim();
-  if(!name){alert('Enter role name!');return;}
-  post('custom_roles',{id:'custom_'+Date.now(),name:name,role_desc:desc,tagline:desc||'',created_by:cu.username}).then(function(){
-    document.getElementById('arName').value='';document.getElementById('arDesc').value='';
-    loadCustomRoles();setTimeout(renderRoles,500);alert('✦ Role added!');
-  });
+var name=document.getElementById(‘arName’).value.trim(),desc=document.getElementById(‘arDesc’).value.trim();
+if(!name){alert(‘Enter role name!’);return;}
+post(‘custom_roles’,{id:‘custom_’+Date.now(),name:name,role_desc:desc,tagline:desc||’’,created_by:cu.username}).then(function(){
+document.getElementById(‘arName’).value=’’;document.getElementById(‘arDesc’).value=’’;
+loadCustomRoles();setTimeout(renderRoles,500);alert(‘✦ Role added!’);
+});
 }
 // ── TEAM ──
 function renderTeam(){
-  var grid=document.getElementById('teamGrid'),empty=document.getElementById('teamEmpty');if(!grid)return;
-  get('users','select=*&role=neq.guest&order=created_at.asc').then(function(data){
-    if(!data||!data.length){grid.innerHTML='';empty.style.display='block';return;}
-    empty.style.display='none';
-    var all=getAllRoles();
-    grid.innerHTML=data.map(function(m){
-      var isMe=cu&&cu.id===m.id;
-      var dn=m.role==='admin'?(m.full_name||m.username).split(' ')[0]:(m.full_name||m.username);
-      var showBadge=m.role!=='admin';
-      var myR=Object.keys(allInts).filter(function(rid){return(allInts[rid]||[]).some(function(i){return i.user_id===m.id;});}).map(function(rid){var r=all.find(function(x){return x.id===rid;});return r?r.name:null;}).filter(Boolean);
-      return '<div class="tcard"><div class="tav" onclick="'+(isMe?'triggerAv()':'')+'">'+(m.photo_url?'<img src="'+e(m.photo_url)+'" alt="'+e(dn)+'"/>':'<div class="tinit">'+dn.charAt(0).toUpperCase()+'</div>')+(isMe?'<div class="tedit">📷</div>':'')+'</div><div class="tname">'+e(dn)+'</div>'+(showBadge?'<div class="tbadge '+m.role+'">'+m.role+'</div>':'')+(myR.length?'<div class="troles">'+myR.slice(0,3).join(' · ')+'</div>':'')+'</div>';
-    }).join('');
-  });
+var grid=document.getElementById(‘teamGrid’),empty=document.getElementById(‘teamEmpty’);if(!grid)return;
+get(‘users’,‘select=*&role=neq.guest&order=created_at.asc’).then(function(data){
+if(!data||!data.length){grid.innerHTML=’’;empty.style.display=‘block’;return;}
+empty.style.display=‘none’;
+var all=getAllRoles();
+grid.innerHTML=data.map(function(m){
+var isMe=cu&&cu.id===m.id;
+var dn=m.role===‘admin’?(m.full_name||m.username).split(’ ‘)[0]:(m.full_name||m.username);
+var showBadge=m.role!==‘admin’;
+var myR=Object.keys(allInts).filter(function(rid){return(allInts[rid]||[]).some(function(i){return i.user_id===m.id;});}).map(function(rid){var r=all.find(function(x){return x.id===rid;});return r?r.name:null;}).filter(Boolean);
+return ‘<div class="tcard"><div class="tav" onclick="'+(isMe?'triggerAv()':'')+'">’+(m.photo_url?’<img src="'+e(m.photo_url)+'" alt="'+e(dn)+'"/>’:’<div class="tinit">’+dn.charAt(0).toUpperCase()+’</div>’)+(isMe?’<div class="tedit">📷</div>’:’’)+’</div><div class="tname">’+e(dn)+’</div>’+(showBadge?’<div class="tbadge '+m.role+'">’+m.role+’</div>’:’’)+(myR.length?’<div class="troles">’+myR.slice(0,3).join(’ · ‘)+’</div>’:’’)+’</div>’;
+}).join(’’);
+});
 }
-function triggerAv(){document.getElementById('photoInput').click();}
+function triggerAv(){document.getElementById(‘photoInput’).click();}
 function handleAvatarUpload(ev){
-  var file=ev.target.files[0];if(!file)return;
-  var reader=new FileReader();
-  reader.onload=function(e2){
-    patch('users','id=eq.'+cu.id,{photo_url:e2.target.result}).then(function(){cu.photo_url=e2.target.result;renderTeam();});
-  };
-  reader.readAsDataURL(file);
+var file=ev.target.files[0];if(!file)return;
+var reader=new FileReader();
+reader.onload=function(e2){
+patch(‘users’,‘id=eq.’+cu.id,{photo_url:e2.target.result}).then(function(){cu.photo_url=e2.target.result;renderTeam();});
+};
+reader.readAsDataURL(file);
 }
 
 // ── GALLERY ──
 function loadGallery(){
-  get('event_photos','select=*&order=created_at.desc').then(function(data){
-    allPhotos=data||[];renderGallery(gFilter);loadAllEvPhotos();
-  });
+get(‘event_photos’,‘select=*&order=created_at.desc’).then(function(data){
+allPhotos=data||[];renderGallery(gFilter);loadAllEvPhotos();
+});
 }
 function renderGallery(filter){
-  var grid=document.getElementById('gGrid');if(!grid)return;
-  var photos=filter?allPhotos.filter(function(p){return p.event_name===filter;}):allPhotos;
-  if(!photos.length){grid.innerHTML='<div class="empty" style="grid-column:1/-1;">No photos yet. Be the first! 📸</div>';return;}
-  grid.innerHTML=photos.map(function(p){
-    return '<div class="gi" onclick="openLb(\''+ej(p.photo_url)+'\',\''+ej(p.caption||'')+'\')"><img src="'+e(p.photo_url)+'" loading="lazy"/><div class="gi-ov"><div class="gi-cap">'+e(p.caption||'')+'</div></div></div>';
-  }).join('');
+var grid=document.getElementById(‘gGrid’);if(!grid)return;
+var photos=filter?allPhotos.filter(function(p){return p.event_name===filter;}):allPhotos;
+if(!photos.length){grid.innerHTML=’<div class="empty" style="grid-column:1/-1;">No photos yet. Be the first! 📸</div>’;return;}
+grid.innerHTML=photos.map(function(p){
+return ‘<div class="gi" onclick="openLb(\''+ej(p.photo_url)+'\',\''+ej(p.caption||'')+'\')"><img src="'+e(p.photo_url)+'" loading="lazy"/><div class="gi-ov"><div class="gi-cap">’+e(p.caption||’’)+’</div></div></div>’;
+}).join(’’);
 }
 function setGF(el,filter){
-  gFilter=filter;
-  document.querySelectorAll('#gFilt .chip').forEach(function(c){c.classList.remove('on');});
-  el.classList.add('on');renderGallery(filter);
+gFilter=filter;
+document.querySelectorAll(’#gFilt .chip’).forEach(function(c){c.classList.remove(‘on’);});
+el.classList.add(‘on’);renderGallery(filter);
 }
 function loadAllEvPhotos(){
-  ['eng','mehndi','haldi','sangeet','baraat','vivah','reception'].forEach(function(ev){
-    var grid=document.getElementById('ep-'+ev);if(!grid)return;
-    var evName=ev==='eng'?'engagement':ev;
-    var photos=allPhotos.filter(function(p){return p.event_name===evName||p.event_name===ev;});
-    grid.innerHTML=photos.map(function(p){return '<div class="ep-thumb" onclick="openLb(\''+ej(p.photo_url)+'\',\''+ej(p.caption||'')+'\')"><img src="'+e(p.photo_url)+'" loading="lazy"/></div>';}).join('');
-  });
+[‘eng’,‘mehndi’,‘haldi’,‘sangeet’,‘baraat’,‘vivah’,‘reception’].forEach(function(ev){
+var grid=document.getElementById(‘ep-’+ev);if(!grid)return;
+var evName=ev===‘eng’?‘engagement’:ev;
+var photos=allPhotos.filter(function(p){return p.event_name===evName||p.event_name===ev;});
+grid.innerHTML=photos.map(function(p){return ‘<div class="ep-thumb" onclick="openLb(\''+ej(p.photo_url)+'\',\''+ej(p.caption||'')+'\')"><img src="'+e(p.photo_url)+'" loading="lazy"/></div>’;}).join(’’);
+});
 }
-function openLb(url,cap){document.getElementById('lbImg').src=url;document.getElementById('lbCap').textContent=cap||'';document.getElementById('lb').classList.add('open');document.body.style.overflow='hidden';}
-function closeLb(){document.getElementById('lb').classList.remove('open');document.body.style.overflow='';}
-document.getElementById('lb').addEventListener('click',function(ev){if(ev.target===document.getElementById('lb'))closeLb();});
+function openLb(url,cap){document.getElementById(‘lbImg’).src=url;document.getElementById(‘lbCap’).textContent=cap||’’;document.getElementById(‘lb’).classList.add(‘open’);document.body.style.overflow=‘hidden’;}
+function closeLb(){document.getElementById(‘lb’).classList.remove(‘open’);document.body.style.overflow=’’;}
+document.getElementById(‘lb’).addEventListener(‘click’,function(ev){if(ev.target===document.getElementById(‘lb’))closeLb();});
 
 function handleGalleryFile(ev){
-  var file=ev.target.files[0];if(!file)return;
-  if(!cu||cu.role==='guest'){alert('Please login to add photos.');return;}
-  pgf=file;document.getElementById('gupForm').classList.add('open');document.getElementById('gupCard').style.display='none';
+var file=ev.target.files[0];if(!file)return;
+if(!cu||cu.role===‘guest’){alert(‘Please login to add photos.’);return;}
+pgf=file;document.getElementById(‘gupForm’).classList.add(‘open’);document.getElementById(‘gupCard’).style.display=‘none’;
 }
-function cancelGUp(){pgf=null;photoTags=[];document.getElementById('gupForm').classList.remove('open');document.getElementById('gupCard').style.display='block';document.getElementById('gCap').value='';renderGTags();}
+function cancelGUp(){pgf=null;photoTags=[];document.getElementById(‘gupForm’).classList.remove(‘open’);document.getElementById(‘gupCard’).style.display=‘block’;document.getElementById(‘gCap’).value=’’;renderGTags();}
 function submitGPhoto(){
-  if(!pgf){alert('No file selected.');return;}
-  var reader=new FileReader();
-  reader.onload=function(ev2){
-    post('event_photos',{photo_url:ev2.target.result,caption:document.getElementById('gCap').value.trim()||null,event_name:document.getElementById('gEv').value||null,uploaded_by:cu.username,uploaded_by_name:cu.full_name||cu.username,tags:photoTags.length?photoTags:null}).then(function(){cancelGUp();loadGallery();alert('✦ Photo added!');});
-  };
-  reader.readAsDataURL(pgf);
+if(!pgf){alert(‘No file selected.’);return;}
+var reader=new FileReader();
+reader.onload=function(ev2){
+post(‘event_photos’,{photo_url:ev2.target.result,caption:document.getElementById(‘gCap’).value.trim()||null,event_name:document.getElementById(‘gEv’).value||null,uploaded_by:cu.username,uploaded_by_name:cu.full_name||cu.username,tags:photoTags.length?photoTags:null}).then(function(){cancelGUp();loadGallery();alert(‘✦ Photo added!’);});
+};
+reader.readAsDataURL(pgf);
 }
 function openEvPhoto(ev){
-  if(!cu||cu.role==='guest'){alert('Please login.');return;}
-  pen=ev==='eng'?'engagement':ev;document.getElementById('eventPhotoInput').click();
+if(!cu||cu.role===‘guest’){alert(‘Please login.’);return;}
+pen=ev===‘eng’?‘engagement’:ev;document.getElementById(‘eventPhotoInput’).click();
 }
 function handleEventPhotoFile(ev){
-  var file=ev.target.files[0];if(!file)return;
-  var reader=new FileReader();
-  reader.onload=function(e2){
-    var cap=prompt('Caption (optional):');
-    post('event_photos',{photo_url:e2.target.result,event_name:pen,caption:cap||null,uploaded_by:cu.username,uploaded_by_name:cu.full_name||cu.username}).then(function(){loadGallery();alert('✦ Photo added!');pef=null;pen=null;document.getElementById('eventPhotoInput').value='';});
-  };
-  reader.readAsDataURL(file);
+var file=ev.target.files[0];if(!file)return;
+var reader=new FileReader();
+reader.onload=function(e2){
+var cap=prompt(‘Caption (optional):’);
+post(‘event_photos’,{photo_url:e2.target.result,event_name:pen,caption:cap||null,uploaded_by:cu.username,uploaded_by_name:cu.full_name||cu.username}).then(function(){loadGallery();alert(‘✦ Photo added!’);pef=null;pen=null;document.getElementById(‘eventPhotoInput’).value=’’;});
+};
+reader.readAsDataURL(file);
 }
 function showGTS(){
-  var inp=document.getElementById('gTagInp').value.trim(),drop=document.getElementById('gTagDrop');
-  if(!inp){drop.classList.remove('on');return;}
-  get('users','select=full_name&role=neq.guest').then(function(data){
-    var names=(data||[]).map(function(u){return u.full_name;}).filter(function(n){return n.toLowerCase().includes(inp.toLowerCase())&&!photoTags.includes(n);});
-    if(!names.length){drop.classList.remove('on');return;}
-    drop.innerHTML=names.slice(0,5).map(function(n){return '<div class="tdi" onmousedown="addPT(\''+ej(n)+'\')">'+e(n)+'</div>';}).join('');
-    drop.classList.add('on');
-  });
+var inp=document.getElementById(‘gTagInp’).value.trim(),drop=document.getElementById(‘gTagDrop’);
+if(!inp){drop.classList.remove(‘on’);return;}
+get(‘users’,‘select=full_name&role=neq.guest’).then(function(data){
+var names=(data||[]).map(function(u){return u.full_name;}).filter(function(n){return n.toLowerCase().includes(inp.toLowerCase())&&!photoTags.includes(n);});
+if(!names.length){drop.classList.remove(‘on’);return;}
+drop.innerHTML=names.slice(0,5).map(function(n){return ‘<div class="tdi" onmousedown="addPT(\''+ej(n)+'\')">’+e(n)+’</div>’;}).join(’’);
+drop.classList.add(‘on’);
+});
 }
-function hideGTS(){setTimeout(function(){var d=document.getElementById('gTagDrop');if(d)d.classList.remove('on');},200);}
-function addPT(n){if(photoTags.includes(n))return;photoTags.push(n);document.getElementById('gTagInp').value='';renderGTags();}
+function hideGTS(){setTimeout(function(){var d=document.getElementById(‘gTagDrop’);if(d)d.classList.remove(‘on’);},200);}
+function addPT(n){if(photoTags.includes(n))return;photoTags.push(n);document.getElementById(‘gTagInp’).value=’’;renderGTags();}
 function removePT(n){photoTags=photoTags.filter(function(t){return t!==n;});renderGTags();}
-function renderGTags(){document.getElementById('gTags').innerHTML=photoTags.map(function(t){return '<div class="atag" onclick="removePT(\''+ej(t)+'\')">@'+e(t)+' ✕</div>';}).join('');}
+function renderGTags(){document.getElementById(‘gTags’).innerHTML=photoTags.map(function(t){return ‘<div class="atag" onclick="removePT(\''+ej(t)+'\')">@’+e(t)+’ ✕</div>’;}).join(’’);}
 
 // ── SUGGESTIONS ──
 function loadSuggestions(){
-  var el=document.getElementById('suggList');if(!el)return;
-  get('suggestions','select=*&order=created_at.desc&limit=30').then(function(data){
-    if(!data||!data.length){el.innerHTML='<div class="empty">No suggestions yet. 💡</div>';return;}
-    el.innerHTML=data.map(function(s){
-      var d=new Date(s.created_at),ti=d.toLocaleDateString('en-IN')+' '+d.toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit'});
-      return '<div class="scard"><div class="sc-h"><div class="sc-av">'+s.author.charAt(0).toUpperCase()+'</div><div><div class="sc-auth">'+e(s.author)+'</div><div class="sc-time">'+ti+'</div></div></div><div class="sc-txt">'+e(s.suggestion_text||s.text||'')+'</div>'+(s.tags&&s.tags.length?'<div style="display:flex;flex-wrap:wrap;gap:4px;">'+s.tags.map(function(t){return '<span class="tpill">@'+e(t)+'</span>';}).join('')+'</div>':'')+'</div>';
-    }).join('');
-  });
+var el=document.getElementById(‘suggList’);if(!el)return;
+get(‘suggestions’,‘select=*&order=created_at.desc&limit=30’).then(function(data){
+if(!data||!data.length){el.innerHTML=’<div class="empty">No suggestions yet. 💡</div>’;return;}
+el.innerHTML=data.map(function(s){
+var d=new Date(s.created_at),ti=d.toLocaleDateString(‘en-IN’)+’ ‘+d.toLocaleTimeString(‘en-IN’,{hour:‘2-digit’,minute:‘2-digit’});
+return ‘<div class="scard"><div class="sc-h"><div class="sc-av">’+s.author.charAt(0).toUpperCase()+’</div><div><div class="sc-auth">’+e(s.author)+’</div><div class="sc-time">’+ti+’</div></div></div><div class="sc-txt">’+e(s.suggestion_text||s.text||’’)+’</div>’+(s.tags&&s.tags.length?’<div style="display:flex;flex-wrap:wrap;gap:4px;">’+s.tags.map(function(t){return ‘<span class="tpill">@’+e(t)+’</span>’;}).join(’’)+’</div>’:’’)+’</div>’;
+}).join(’’);
+});
 }
 function showSTS(){
-  var inp=document.getElementById('sgTagInp').value.trim(),drop=document.getElementById('sgTagDrop');
-  if(!inp){drop.classList.remove('on');return;}
-  get('users','select=full_name&role=neq.guest').then(function(data){
-    var names=(data||[]).map(function(u){return u.full_name;}).filter(function(n){return n.toLowerCase().includes(inp.toLowerCase())&&!tagPpl.includes(n);});
-    if(!names.length){drop.classList.remove('on');return;}
-    drop.innerHTML=names.slice(0,5).map(function(n){return '<div class="tdi" onmousedown="addST(\''+ej(n)+'\')">'+e(n)+'</div>';}).join('');
-    drop.classList.add('on');
-  });
+var inp=document.getElementById(‘sgTagInp’).value.trim(),drop=document.getElementById(‘sgTagDrop’);
+if(!inp){drop.classList.remove(‘on’);return;}
+get(‘users’,‘select=full_name&role=neq.guest’).then(function(data){
+var names=(data||[]).map(function(u){return u.full_name;}).filter(function(n){return n.toLowerCase().includes(inp.toLowerCase())&&!tagPpl.includes(n);});
+if(!names.length){drop.classList.remove(‘on’);return;}
+drop.innerHTML=names.slice(0,5).map(function(n){return ‘<div class="tdi" onmousedown="addST(\''+ej(n)+'\')">’+e(n)+’</div>’;}).join(’’);
+drop.classList.add(‘on’);
+});
 }
-function hideSTS(){setTimeout(function(){var d=document.getElementById('sgTagDrop');if(d)d.classList.remove('on');},200);}
-function addST(n){if(tagPpl.includes(n))return;tagPpl.push(n);document.getElementById('sgTagInp').value='';renderSTags();}
+function hideSTS(){setTimeout(function(){var d=document.getElementById(‘sgTagDrop’);if(d)d.classList.remove(‘on’);},200);}
+function addST(n){if(tagPpl.includes(n))return;tagPpl.push(n);document.getElementById(‘sgTagInp’).value=’’;renderSTags();}
 function removeST(n){tagPpl=tagPpl.filter(function(t){return t!==n;});renderSTags();}
-function renderSTags(){document.getElementById('sgTags').innerHTML=tagPpl.map(function(t){return '<div class="atag" onclick="removeST(\''+ej(t)+'\')">@'+e(t)+' ✕</div>';}).join('');}
+function renderSTags(){document.getElementById(‘sgTags’).innerHTML=tagPpl.map(function(t){return ‘<div class="atag" onclick="removeST(\''+ej(t)+'\')">@’+e(t)+’ ✕</div>’;}).join(’’);}
 function submitSugg(){
-  var author=document.getElementById('sgName').value.trim(),text=document.getElementById('sgText').value.trim();
-  if(!author||!text){alert('Please enter name and suggestion!');return;}
-  post('suggestions',{author:author,suggestion_text:text,tags:tagPpl}).then(function(){document.getElementById('sgName').value='';document.getElementById('sgText').value='';tagPpl=[];renderSTags();loadSuggestions();alert('✦ Sent!');});
+var author=document.getElementById(‘sgName’).value.trim(),text=document.getElementById(‘sgText’).value.trim();
+if(!author||!text){alert(‘Please enter name and suggestion!’);return;}
+post(‘suggestions’,{author:author,suggestion_text:text,tags:tagPpl}).then(function(){document.getElementById(‘sgName’).value=’’;document.getElementById(‘sgText’).value=’’;tagPpl=[];renderSTags();loadSuggestions();alert(‘✦ Sent!’);});
 }
 
 // ── FILTER ──
-var GK={kids:['kids','children','naatu'],sisters:['sister','dee','sibling'],brothers:['brother','bhai','sibling'],mothers:['mother','saas','maa','aunti','mausi'],ladies:['ladies','women','rangila','girl','dee'],siblings:['sibling','siblings','brother','sister','dee'],dee_jiju:['dee','jiju','biwi','hero','maya','husband'],unmarried:['unmarried','shaadi','laal','yaad']};
+var GK={kids:[‘kids’,‘children’,‘naatu’],sisters:[‘sister’,‘dee’,‘sibling’],brothers:[‘brother’,‘bhai’,‘sibling’],mothers:[‘mother’,‘saas’,‘maa’,‘aunti’,‘mausi’],ladies:[‘ladies’,‘women’,‘rangila’,‘girl’,‘dee’],siblings:[‘sibling’,‘siblings’,‘brother’,‘sister’,‘dee’],dee_jiju:[‘dee’,‘jiju’,‘biwi’,‘hero’,‘maya’,‘husband’],unmarried:[‘unmarried’,‘shaadi’,‘laal’,‘yaad’]};
 function applyFilter(){
-  var sv=(document.getElementById('fInp')&&document.getElementById('fInp').value||'').toLowerCase().trim();
-  var tot=0;
-  ['sangeet','baraat','haldi'].forEach(function(ev){
-    var el=document.getElementById('pp-'+ev);if(!el)return;
-    var cards=el.querySelectorAll('.pc'),c=0;
-    cards.forEach(function(card){
-      var ft=card.textContent.toLowerCase(),show=true;
-      if(sv&&!ft.includes(sv))show=false;
-      if(show&&AGF){var kws=GK[AGF]||[];if(!kws.some(function(kw){return ft.includes(kw);}))show=false;}
-      card.classList.toggle('hidden',!show);if(show)c++;
-    });
-    tot+=c;
-    if(c>0&&(sv||AGF)){var body=document.getElementById('cb-'+ev),ch=document.getElementById('cc-'+ev);if(body&&!body.classList.contains('open')){body.classList.add('open');if(ch)ch.classList.add('open');}}
-  });
-  var has=sv||AGF;
-  var fc=document.getElementById('fClear');if(fc)fc.classList.toggle('on',!!has);
-  var cnt=document.getElementById('fCnt');if(cnt)cnt.textContent=has?tot+' songs found':'';
+var sv=(document.getElementById(‘fInp’)&&document.getElementById(‘fInp’).value||’’).toLowerCase().trim();
+var tot=0;
+[‘sangeet’,‘baraat’,‘haldi’].forEach(function(ev){
+var el=document.getElementById(‘pp-’+ev);if(!el)return;
+var cards=el.querySelectorAll(’.pc’),c=0;
+cards.forEach(function(card){
+var ft=card.textContent.toLowerCase(),show=true;
+if(sv&&!ft.includes(sv))show=false;
+if(show&&AGF){var kws=GK[AGF]||[];if(!kws.some(function(kw){return ft.includes(kw);}))show=false;}
+card.classList.toggle(‘hidden’,!show);if(show)c++;
+});
+tot+=c;
+if(c>0&&(sv||AGF)){var body=document.getElementById(‘cb-’+ev),ch=document.getElementById(‘cc-’+ev);if(body&&!body.classList.contains(‘open’)){body.classList.add(‘open’);if(ch)ch.classList.add(‘open’);}}
+});
+var has=sv||AGF;
+var fc=document.getElementById(‘fClear’);if(fc)fc.classList.toggle(‘on’,!!has);
+var cnt=document.getElementById(‘fCnt’);if(cnt)cnt.textContent=has?tot+’ songs found’:’’;
 }
 function toggleGF(el,group){
-  if(AGF===group){AGF=null;el.classList.remove('on');}
-  else{document.querySelectorAll('.chips .chip').forEach(function(c){c.classList.remove('on');});AGF=group;el.classList.add('on');}
-  applyFilter();
+if(AGF===group){AGF=null;el.classList.remove(‘on’);}
+else{document.querySelectorAll(’.chips .chip’).forEach(function(c){c.classList.remove(‘on’);});AGF=group;el.classList.add(‘on’);}
+applyFilter();
 }
 function clearFilter(){
-  var fi=document.getElementById('fInp');if(fi)fi.value='';
-  AGF=null;document.querySelectorAll('.chips .chip').forEach(function(c){c.classList.remove('on');});
-  document.querySelectorAll('.pc').forEach(function(c){c.classList.remove('hidden');});
-  var fc=document.getElementById('fClear');if(fc)fc.classList.remove('on');
-  var cnt=document.getElementById('fCnt');if(cnt)cnt.textContent='';
+var fi=document.getElementById(‘fInp’);if(fi)fi.value=’’;
+AGF=null;document.querySelectorAll(’.chips .chip’).forEach(function(c){c.classList.remove(‘on’);});
+document.querySelectorAll(’.pc’).forEach(function(c){c.classList.remove(‘hidden’);});
+var fc=document.getElementById(‘fClear’);if(fc)fc.classList.remove(‘on’);
+var cnt=document.getElementById(‘fCnt’);if(cnt)cnt.textContent=’’;
 }
 
 // ── NAV ──
 function toggleCard(name){
-  var body=document.getElementById('cb-'+name),ch=document.getElementById('cc-'+name);
-  if(body)body.classList.toggle('open');
-  if(ch)ch.classList.toggle('open',body&&body.classList.contains('open'));
+var body=document.getElementById(‘cb-’+name),ch=document.getElementById(‘cc-’+name);
+if(body)body.classList.toggle(‘open’);
+if(ch)ch.classList.toggle(‘open’,body&&body.classList.contains(‘open’));
 }
 function showSec(name){
-  document.getElementById('heroSec').style.display='none';
-  document.getElementById('nav').style.display='flex';
-  document.getElementById('subnav').style.display='flex';
-  document.getElementById('bnav').style.display='flex';
-  ['events','roles','team','gallery','suggest','changes','info'].forEach(function(s){
-    var sec=document.getElementById('sec-'+s);if(sec)sec.classList.remove('on');
-    var bn=document.getElementById('bn-'+s);if(bn)bn.classList.remove('on');
-    var sn=document.getElementById('sn-'+s);if(sn)sn.classList.remove('active');
-  });
-  var sec=document.getElementById('sec-'+name);if(sec)sec.classList.add('on');
-  var bn=document.getElementById('bn-'+name);if(bn)bn.classList.add('on');
-  var sn=document.getElementById('sn-'+name);if(sn)sn.classList.add('active');
-  if(name==='roles')renderRoles();
-  if(name==='team')renderTeam();
-  if(name==='suggest')loadSuggestions();
-  if(name==='changes')loadChangeLog();
-  if(name==='gallery')loadGallery();
-  window.scrollTo(0,0);
+document.getElementById(‘heroSec’).style.display=‘none’;
+document.getElementById(‘nav’).style.display=‘flex’;
+document.getElementById(‘subnav’).style.display=‘flex’;
+document.getElementById(‘bnav’).style.display=‘flex’;
+[‘events’,‘roles’,‘team’,‘gallery’,‘suggest’,‘changes’,‘info’].forEach(function(s){
+var sec=document.getElementById(‘sec-’+s);if(sec)sec.classList.remove(‘on’);
+var bn=document.getElementById(‘bn-’+s);if(bn)bn.classList.remove(‘on’);
+var sn=document.getElementById(‘sn-’+s);if(sn)sn.classList.remove(‘active’);
+});
+var sec=document.getElementById(‘sec-’+name);if(sec)sec.classList.add(‘on’);
+var bn=document.getElementById(‘bn-’+name);if(bn)bn.classList.add(‘on’);
+var sn=document.getElementById(‘sn-’+name);if(sn)sn.classList.add(‘active’);
+if(name===‘roles’)renderRoles();
+if(name===‘team’)renderTeam();
+if(name===‘suggest’)loadSuggestions();
+if(name===‘changes’)loadChangeLog();
+if(name===‘gallery’)loadGallery();
+window.scrollTo(0,0);
 }
 
-function copyLink(){navigator.clipboard.writeText('https://shreyadubey-studio.github.io/priyanka-shubham-wedding').then(function(){alert('✦ Link copied!');});}
+function copyLink(){navigator.clipboard.writeText(‘https://shreyadubey-studio.github.io/priyanka-shubham-wedding’).then(function(){alert(‘✦ Link copied!’);});}
 function deleteRole(id){
-  if(!confirm('Delete this role?')) return;
-  del('custom_roles','id=eq.'+id).then(function(){
-    loadCustomRoles();setTimeout(renderRoles,400);alert('✦ Role deleted!');
-  });
+if(!confirm(‘Delete this role?’)) return;
+del(‘custom_roles’,‘id=eq.’+id).then(function(){
+loadCustomRoles();setTimeout(renderRoles,400);alert(‘✦ Role deleted!’);
+});
 }
 function deleteBuiltinInterests(roleId){
-  if(!confirm('Clear all interests for this role?')) return;
-  del('role_interests','role_id=eq.'+roleId).then(function(){
-    loadRoleInterests();alert('✦ Interests cleared!');
-  });
+if(!confirm(‘Clear all interests for this role?’)) return;
+del(‘role_interests’,‘role_id=eq.’+roleId).then(function(){
+loadRoleInterests();alert(‘✦ Interests cleared!’);
+});
 }
-function e(t){return String(t==null?'':t).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
-function ej(t){return String(t==null?'':t).replace(/\\/g,'\\\\').replace(/'/g,"\\'").replace(/"/g,'\\"');}
+function e(t){return String(t==null?’’:t).replace(/&/g,’&’).replace(/</g,’<’).replace(/>/g,’>’).replace(/”/g,’"’);}
+function ej(t){return String(t==null?’’:t).replace(/\/g,’\\’).replace(/’/g,”\’”).replace(/”/g,’\”’);}
 </script>
 
 </body>
