@@ -914,7 +914,7 @@ try{
 const{data:ex}=await sb.from(‘users’).select(‘id’).eq(‘username’,u).single();
 if(ex){showErr(t(‘errTaken’));showLoad(false);return;}
 const{data,error}=await sb.from(‘users’).insert({username:u,password_hash:p,full_name:fn,phone:ph,role:‘member’}).select().single();
-if(error){showErr(t(‘errConn’)+’ ‘+error.message);showLoad(false);return;}
+if(error){showErr(t(‘errConn’)+’ ’+error.message);showLoad(false);return;}
 cu=data;localStorage.setItem(SK,JSON.stringify({id:data.id,username:data.username}));
 showLoad(false);startApp();
 }catch(e){showErr(t(‘errConn’));showLoad(false);}
@@ -925,7 +925,7 @@ cu=null;localStorage.removeItem(SK);
 rtSubs.forEach(s=>sb.removeChannel(s));rtSubs=[];
 document.getElementById(‘loginScreen’).style.display=‘flex’;
 document.getElementById(‘mainApp’).style.display=‘none’;
-document.getElementById(‘loginScreen’).querySelector(’.login-screen’).style.display=‘flex’;
+
 }
 
 // ── START APP ──
