@@ -11,7 +11,7 @@
 body{font-family:'Jost',sans-serif;background:#1A0A0C;color:rgba(232,193,122,0.9);min-height:100vh;}
 
 /* LOADING */
-#app{display:none;}
+#app{display:block;}
 #splash{position:fixed;inset:0;background:#1A0A0C;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;z-index:9999;}
 #splash h1{font-family:‘Cormorant Garamond’,serif;font-size:42px;font-weight:300;color:rgba(232,193,122,0.92);text-align:center;line-height:0.9;}
 #splash p{font-size:11px;letter-spacing:0.3em;text-transform:uppercase;color:rgba(196,151,74,0.45);}
@@ -559,13 +559,11 @@ function del(table,params){ return api('DELETE',table,params); }
 
 // ── INIT ──
 window.addEventListener('load', function(){
-  // Safety net - always show login after 4 seconds no matter what
-  var safetyTimer = setTimeout(function(){
-    if(document.getElementById('login').style.display==='none' &&
-       document.getElementById('app').style.display==='none'){
-      showLogin();
-    }
-  }, 4000);
+  var done = false;
+  function go(){ if(done) return; done=true; showLogin(); }
+
+  // Always show login after 3 seconds if nothing else happened
+  setTimeout(go, 3000);
 
   var saved = localStorage.getItem(SK);
   if(saved){
@@ -574,17 +572,17 @@ window.addEventListener('load', function(){
       if(sess && sess.id){
         get('users','select=*&id=eq.'+sess.id)
           .then(function(data){
-            clearTimeout(safetyTimer);
+            if(done) return;
+            done=true;
             if(data && data[0]){ cu=data[0]; startApp(); }
             else{ localStorage.removeItem(SK); showLogin(); }
           })
-          .catch(function(){ clearTimeout(safetyTimer); showLogin(); });
+          .catch(function(){ go(); });
         return;
       }
     }catch(e){ localStorage.removeItem(SK); }
   }
-  clearTimeout(safetyTimer);
-  showLogin();
+  go();
 });
 
 function showLogin(){
