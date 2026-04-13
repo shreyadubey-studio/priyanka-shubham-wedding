@@ -524,7 +524,35 @@ body{font-family:'Jost',sans-serif;background:#1A0A0C;color:rgba(232,193,122,0.9
 <input type="file" id="ePhotoInput" accept="image/*" onchange="handleEFile(event)"/>
 
 <script>
+// Catch any JS errors and show them visibly
+window.onerror = function(msg, src, line, col, err) {
+  var d = document.createElement('div');
+  d.style.cssText = 'position:fixed;top:0;left:0;right:0;z-index:99999;background:#c0392b;color:white;padding:10px;font-size:12px;font-family:monospace;word-break:break-all;';
+  d.textContent = 'JS ERROR line ' + line + ': ' + msg;
+  document.body.appendChild(d);
+  return false;
+};
+window.addEventListener('unhandledrejection', function(e) {
+  var d = document.createElement('div');
+  d.style.cssText = 'position:fixed;top:30px;left:0;right:0;z-index:99999;background:#c0392b;color:white;padding:10px;font-size:12px;font-family:monospace;word-break:break-all;';
+  d.textContent = 'PROMISE ERROR: ' + (e.reason && e.reason.message ? e.reason.message : String(e.reason));
+  document.body.appendChild(d);
+});
+</script>
+
+<script>
 // ── CONFIG ──
+// Attach login buttons after DOM ready - belt AND suspenders approach
+document.addEventListener('DOMContentLoaded', function() {
+  var lb = document.getElementById('loginBtn');
+  if(lb) lb.addEventListener('click', function() { doLogin(); });
+  var gb = document.querySelector('.lbtn-ghost');
+  if(gb) gb.addEventListener('click', function() { doGuest(); });
+  var tl = document.getElementById('tl');
+  if(tl) tl.addEventListener('click', function() { sTab('l'); });
+  var tr = document.getElementById('tr');
+  if(tr) tr.addEventListener('click', function() { sTab('r'); });
+});
 var SB='https://fwbbfsfjgmuuzqymxtdv.supabase.co/rest/v1/';
 var KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZ3YmJmc2ZqZ211dXpxeW14dGR2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzYwMTUxMDksImV4cCI6MjA5MTU5MTEwOX0.npnpwd1SirAHyHH1JahMcKyEsvJb5MrPXEzdPAPpC-0';
 var TP='4567',SK='ps_v11';
