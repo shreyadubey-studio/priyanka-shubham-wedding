@@ -559,21 +559,31 @@ function del(table,params){ return api('DELETE',table,params); }
 
 // ── INIT ──
 window.addEventListener('load', function(){
-  document.getElementById('splashTxt').textContent='Loading…';
-  var saved=localStorage.getItem(SK);
+  // Safety net - always show login after 4 seconds no matter what
+  var safetyTimer = setTimeout(function(){
+    if(document.getElementById('login').style.display==='none' &&
+       document.getElementById('app').style.display==='none'){
+      showLogin();
+    }
+  }, 4000);
+
+  var saved = localStorage.getItem(SK);
   if(saved){
     try{
-      var sess=JSON.parse(saved);
-      if(sess&&sess.id){
-        get('users','select=*&id=eq.'+sess.id).then(function(data){
-          if(data&&data[0]){ cu=data[0]; startApp(); }
-          else{ localStorage.removeItem(SK); showLogin(); }
-        }).catch(function(){ showLogin(); });
+      var sess = JSON.parse(saved);
+      if(sess && sess.id){
+        get('users','select=*&id=eq.'+sess.id)
+          .then(function(data){
+            clearTimeout(safetyTimer);
+            if(data && data[0]){ cu=data[0]; startApp(); }
+            else{ localStorage.removeItem(SK); showLogin(); }
+          })
+          .catch(function(){ clearTimeout(safetyTimer); showLogin(); });
         return;
       }
-    }catch(e){}
-    localStorage.removeItem(SK);
+    }catch(e){ localStorage.removeItem(SK); }
   }
+  clearTimeout(safetyTimer);
   showLogin();
 });
 
@@ -581,6 +591,7 @@ function showLogin(){
   document.getElementById('splash').style.display='none';
   document.getElementById('app').style.display='block';
   document.getElementById('login').style.display='flex';
+  applyLang();
 }
 
 // ── AUTH ──
