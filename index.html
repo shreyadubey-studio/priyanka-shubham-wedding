@@ -405,6 +405,18 @@ text-align:center;padding:40px 24px 130px;position:relative;overflow:hidden;
 
 </head>
 <body>
+<div id="errBox" style="display:none;position:fixed;top:0;left:0;right:0;z-index:9999;background:#c0392b;color:white;padding:12px;font-size:12px;font-family:monospace;word-break:break-all;"></div>
+<script>
+window.onerror=function(msg,src,line,col,err){
+  var b=document.getElementById('errBox');
+  if(b){b.style.display='block';b.textContent='ERROR: '+msg+' | Line: '+line+' | '+src;}
+  return false;
+};
+window.addEventListener('unhandledrejection',function(e){
+  var b=document.getElementById('errBox');
+  if(b){b.style.display='block';b.textContent='PROMISE ERROR: '+(e.reason?.message||e.reason||'unknown');}
+});
+</script>
 
 <!-- LOGIN -->
 
