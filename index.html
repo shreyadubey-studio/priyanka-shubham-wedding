@@ -7,7 +7,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500;600&family=Noto+Sans+Devanagari:wght@300;400;500&display=swap" rel="stylesheet"/>
   <style>
     *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
-    body{font-family:'Jost',sans-serif;background:#1A0A0C;color:rgba(232,193,122,0.9);min-height:100vh;}
+    body{font-family:'Jost',sans-serif;background:#1A0A0C;color:rgba(232,193,122,0.9);min-height:100vh;padding-top:34px;}
     #loginWrap{min-height:100vh;background:radial-gradient(ellipse at 20% 10%,rgba(196,151,74,.15) 0%,transparent 50%),linear-gradient(145deg,#1A0A0C 0%,#2E1418 40%,#1E0E10 100%);display:flex;align-items:center;justify-content:center;padding:20px;}
     .lcard{background:rgba(255,255,255,.03);border:1px solid rgba(196,151,74,.22);border-radius:22px;padding:36px 26px 28px;width:100%;max-width:360px;text-align:center;position:relative;}
     .lcard::before{content:'';position:absolute;top:0;left:15%;right:15%;height:1px;background:linear-gradient(90deg,transparent,rgba(196,151,74,.6),transparent);}
@@ -266,9 +266,11 @@
     .bnav button .bi{font-size:15px;}
     .bnav button.on{color:rgba(232,193,122,.88);background:rgba(196,151,74,.1);}
     #photoInput,#gPhotoInput,#ePhotoInput{display:none;}
+    #testModeBanner{position:fixed;top:0;left:0;right:0;z-index:9999;background:linear-gradient(90deg,#7B3F00,#C0392B);color:#fff;text-align:center;font-family:'Jost',sans-serif;font-size:12px;font-weight:600;letter-spacing:.08em;padding:6px 12px;box-shadow:0 2px 8px rgba(0,0,0,.5);}
   </style>
 </head>
 <body>
+  <div id="testModeBanner">⚠️ Test Mode — test-wedding-admin</div>
   <div id="loginWrap">
     <div class="lcard">
       <div class="lang-row">
