@@ -1,0 +1,989 @@
+Here is the final corrected HTML for your admin-editable wedding management site.
+
+It includes:
+	•	login / join team / guest mode
+	•	Vivah Utsav — Rasme & Karyakram ✨
+	•	admin can:
+	•	edit any ceremony card
+	•	create new ceremony cards
+	•	delete custom ceremony cards
+	•	edit title / subtitle / date / time / venue / description / order
+	•	add / edit / delete songs
+	•	change sequence
+	•	roles section with:
+	•	multiple people can mark Interested
+	•	people can suggest others
+	•	people can support / like 🧡 a person for a role
+	•	admin can assign / remove
+	•	team section
+	•	gallery
+	•	suggestions
+	•	info section
+	•	safer JS than before
+	•	fallback storage for new features if some new Supabase tables are not created yet
+
+Use this as your new index.html:
+
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>Vivah Utsav — Rasme & Karyakram ✨</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Jost:wght@300;400;500;600;700&family=Noto+Sans+Devanagari:wght@300;400;500;700&display=swap" rel="stylesheet" />
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+    body{font-family:'Jost',sans-serif;background:#1A0A0C;color:rgba(232,193,122,.92);min-height:100vh}
+    button,input,textarea,select{font-family:'Jost',sans-serif}
+    a{color:inherit}
+    .hide{display:none!important}
+    .spin{padding:18px;text-align:center;color:rgba(232,193,122,.35);font-size:13px}
+    .empty{text-align:center;padding:18px;border:1px dashed rgba(196,151,74,.2);border-radius:14px;background:#231010;color:rgba(232,193,122,.35);font-size:13px}
+
+    /* login */
+    #loginWrap{
+      min-height:100vh;
+      background:
+        radial-gradient(ellipse at 20% 10%, rgba(196,151,74,.15) 0%, transparent 50%),
+        linear-gradient(145deg,#1A0A0C 0%,#2E1418 40%,#1E0E10 100%);
+      display:flex;align-items:center;justify-content:center;padding:20px;
+    }
+    .lcard{
+      background:rgba(255,255,255,.03);
+      border:1px solid rgba(196,151,74,.22);
+      border-radius:22px;
+      padding:36px 26px 28px;
+      width:100%;max-width:380px;
+      text-align:center;
+      position:relative;
+    }
+    .lcard:before{
+      content:'';
+      position:absolute;top:0;left:15%;right:15%;height:1px;
+      background:linear-gradient(90deg,transparent,rgba(196,151,74,.6),transparent);
+    }
+    .lang-row{display:flex;justify-content:flex-end;margin-bottom:14px}
+    .lbtn-lang,.nav-lang{
+      display:inline-flex;align-items:center;gap:4px;
+      background:rgba(196,151,74,.1);
+      border:1px solid rgba(196,151,74,.2);
+      border-radius:999px;padding:5px 11px;
+      cursor:pointer;font-size:11px;font-weight:600;
+      color:rgba(232,193,122,.75);user-select:none;
+    }
+    .l-logo{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:38px;line-height:.9;color:rgba(232,193,122,.96);margin-bottom:4px}
+    .l-logo .amp{display:block;font-style:italic;font-size:26px;color:rgba(196,151,74,.75);margin:3px 0}
+    .l-sub{font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:rgba(232,193,122,.3);margin-bottom:3px}
+    .l-dt{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:13px;color:rgba(232,193,122,.26);margin-bottom:22px}
+    .l-tabs{display:flex;gap:5px;margin-bottom:16px;background:rgba(255,255,255,.04);border-radius:10px;padding:3px}
+    .l-tab{
+      flex:1;padding:8px;border-radius:8px;border:none;background:transparent;
+      color:rgba(232,193,122,.4);font-size:12px;font-weight:600;cursor:pointer;
+    }
+    .l-tab.on{background:rgba(196,151,74,.18);color:rgba(232,193,122,.95)}
+    .linp,.ei,.finp,.sinp,.ari{
+      width:100%;
+      background:rgba(255,255,255,.04);
+      border:1px solid rgba(196,151,74,.2);
+      border-radius:10px;
+      padding:12px 14px;
+      font-size:13px;
+      color:rgba(232,193,122,.92);
+      outline:none;
+    }
+    .ei,.finp,.sinp,.ari{background:#1A0A0C}
+    .linp::placeholder,.ei::placeholder,.finp::placeholder,.sinp::placeholder,.ari::placeholder{color:rgba(232,193,122,.2)}
+    .linp:focus,.ei:focus,.finp:focus,.sinp:focus,.ari:focus{border-color:rgba(196,151,74,.55)}
+    .mb8{margin-bottom:8px}
+    .pw-wrap{position:relative;margin-bottom:8px}
+    .pw-eye{
+      position:absolute;right:12px;top:50%;transform:translateY(-50%);
+      cursor:pointer;font-size:14px;color:rgba(196,151,74,.55);user-select:none;
+    }
+    .lbtn,.bprim,.badd,.bsave,.ct-btn{
+      background:linear-gradient(135deg,#8B6B35,#C4974A);
+      color:#1A0A0C;border:none;border-radius:10px;
+      padding:12px 14px;font-size:13px;font-weight:700;cursor:pointer;
+    }
+    .lbtn{width:100%;margin-bottom:8px}
+    .lbtn:disabled{opacity:.55;cursor:not-allowed}
+    .lbtn-ghost,.bcancel,.nav-out{
+      background:transparent;color:rgba(232,193,122,.5);
+      border:1px solid rgba(196,151,74,.16);border-radius:10px;
+      padding:11px 12px;font-size:12px;cursor:pointer;
+    }
+    .lbtn-ghost{width:100%}
+    .lerr{
+      display:none;margin-top:10px;padding:11px;border-radius:10px;
+      background:rgba(200,50,50,.22);border:1px solid rgba(255,100,100,.3);
+      color:#ffadad;font-size:13px;font-weight:600
+    }
+    .lerr.on{display:block}
+
+    /* app */
+    #appWrap{display:none}
+    .nav{
+      position:sticky;top:0;z-index:200;height:56px;
+      background:rgba(14,5,8,.97);backdrop-filter:blur(18px);
+      border-bottom:1px solid rgba(196,151,74,.14);
+      display:flex;align-items:center;justify-content:space-between;padding:0 14px;
+    }
+    .nav-brand{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:18px;color:rgba(232,193,122,.86)}
+    .nav-r{display:flex;align-items:center;gap:6px}
+    .nav-pill{
+      max-width:110px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+      font-size:11px;color:rgba(232,193,122,.6);
+      background:rgba(196,151,74,.08);border:1px solid rgba(196,151,74,.12);
+      border-radius:999px;padding:4px 10px;
+    }
+
+    .subnav{
+      position:sticky;top:56px;z-index:190;display:flex;overflow-x:auto;
+      padding:0 6px;background:rgba(14,5,8,.95);backdrop-filter:blur(18px);
+      border-bottom:1px solid rgba(196,151,74,.1);
+      scrollbar-width:none;
+    }
+    .subnav::-webkit-scrollbar{display:none}
+    .subnav button{
+      background:none;border:none;cursor:pointer;white-space:nowrap;
+      color:rgba(232,193,122,.34);font-size:11px;font-weight:500;padding:11px 12px;
+      border-bottom:2px solid transparent;
+    }
+    .subnav button.on{color:rgba(232,193,122,.92);border-bottom-color:rgba(196,151,74,.65)}
+
+    .hero{
+      min-height:100vh;
+      background:
+        radial-gradient(ellipse at 20% 10%,rgba(196,151,74,.12) 0%,transparent 55%),
+        linear-gradient(155deg,#1A0A0C 0%,#2A1215 35%,#0E0508 100%);
+      display:flex;flex-direction:column;align-items:center;justify-content:center;
+      text-align:center;padding:40px 24px 120px;position:relative;overflow:hidden;
+    }
+    .hero:before{
+      content:'';
+      position:absolute;inset:0;
+      background-image:radial-gradient(circle,rgba(196,151,74,.05) 1px,transparent 1px);
+      background-size:44px 44px;pointer-events:none;
+    }
+    .h-eye{font-size:10px;font-weight:500;letter-spacing:.34em;text-transform:uppercase;color:rgba(196,151,74,.6);margin-bottom:20px}
+    .h-names{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(52px,14vw,108px);line-height:.88}
+    .h-bride{color:rgba(232,193,122,.96)}
+    .h-amp{display:block;font-style:italic;font-size:clamp(30px,8vw,62px);color:rgba(196,151,74,.72);margin:5px 0}
+    .h-groom{color:rgba(253,240,225,.82)}
+    .h-div{display:flex;align-items:center;gap:14px;margin:22px 0}
+    .hl{height:1px;width:55px;background:linear-gradient(90deg,transparent,rgba(196,151,74,.5))}
+    .hl.r{background:linear-gradient(90deg,rgba(196,151,74,.5),transparent)}
+    .h-gem{font-size:13px;color:rgba(196,151,74,.56);letter-spacing:4px}
+    .h-date{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:17px;color:rgba(232,193,122,.58)}
+    .h-venue{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:rgba(253,240,225,.22);margin-top:7px}
+    .h-cta{
+      position:absolute;bottom:46px;left:50%;transform:translateX(-50%);
+      cursor:pointer;background:rgba(196,151,74,.1);
+      border:1px solid rgba(196,151,74,.24);border-radius:999px;
+      padding:12px 28px;
+    }
+
+    .cwrap{background:#1A0A0C;min-height:60vh;padding-bottom:90px}
+    .sec{display:none;max-width:760px;margin:0 auto;padding:26px 15px 40px}
+    .sec.on{display:block}
+    .s-eye{font-size:10px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:rgba(196,151,74,.72);margin-bottom:5px}
+    .s-ti{font-family:'Cormorant Garamond',serif;font-size:clamp(28px,7vw,44px);font-weight:300;line-height:1.08;margin-bottom:5px}
+    .s-ti em{font-style:italic;color:rgba(196,151,74,.86)}
+    .s-sub{color:rgba(232,193,122,.42);font-size:13px;line-height:1.7;margin-bottom:20px}
+
+    /* card */
+    .card{background:#231010;border:1px solid rgba(196,151,74,.18);border-radius:18px;margin-bottom:12px;overflow:hidden}
+    .ch{padding:15px 16px;display:flex;align-items:center;gap:12px;cursor:pointer}
+    .ch:active{background:rgba(196,151,74,.06)}
+    .c-ico{
+      width:42px;height:42px;border-radius:12px;display:flex;align-items:center;justify-content:center;
+      background:rgba(196,151,74,.1);border:1px solid rgba(196,151,74,.18);font-size:18px;flex-shrink:0
+    }
+    .c-inf{flex:1}
+    .c-sub{font-size:11px;color:rgba(232,193,122,.38);margin-bottom:2px}
+    .c-tit{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:500;color:rgba(232,193,122,.94)}
+    .c-meta{display:flex;flex-wrap:wrap;gap:5px;margin-top:4px}
+    .ctag{font-size:10px;padding:2px 8px;border-radius:999px;background:rgba(196,151,74,.1);border:1px solid rgba(196,151,74,.18);color:rgba(196,151,74,.82)}
+    .ctag.g{background:rgba(196,151,74,.16);color:rgba(232,193,122,.78)}
+    .c-chev{font-size:16px;color:rgba(196,151,74,.55);transition:transform .25s}
+    .c-chev.open{transform:rotate(180deg)}
+    .cb{display:none;border-top:1px solid rgba(196,151,74,.12);padding:15px 16px}
+    .cb.open{display:block}
+    .c-desc{font-size:13px;color:rgba(232,193,122,.45);line-height:1.7;margin-bottom:12px}
+    .stl{font-size:10px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:rgba(196,151,74,.66);margin-bottom:8px}
+    .step{display:flex;gap:10px;padding:8px 0;border-bottom:1px solid rgba(196,151,74,.08)}
+    .step:last-child{border-bottom:none}
+    .stn{
+      width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+      background:rgba(196,151,74,.1);border:1px solid rgba(196,151,74,.18);font-size:10px;font-weight:700;color:rgba(196,151,74,.84);flex-shrink:0
+    }
+    .stnm{font-weight:600;font-size:13px;color:rgba(232,193,122,.9);margin-bottom:2px}
+    .std{font-size:12px;color:rgba(232,193,122,.38)}
+
+    /* bars */
+    .fbar,.sfcard,.rbanner,.arbox,.gup,.dcard,.lkcard,.clcard,.ctcard{
+      background:#231010;border:1px solid rgba(196,151,74,.16);border-radius:15px;
+    }
+    .fbar,.sfcard,.rbanner,.arbox,.gup,.dcard,.lkcard,.clcard,.ctcard{padding:14px}
+    .f-ti,.r-int-lbl,.ep-lbl,.rcat-lbl,.i-lbl,.ct-eye{
+      font-size:10px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:rgba(196,151,74,.67)
+    }
+    .chips,.gfilt,.atags,.ichips,.arow{display:flex;flex-wrap:wrap;gap:6px}
+    .chip,.tpill,.ichip,.atag,.nav-badge,.mini-btn{
+      font-size:11px;padding:4px 10px;border-radius:999px;
+      background:rgba(196,151,74,.08);border:1px solid rgba(196,151,74,.18);color:rgba(232,193,122,.5)
+    }
+    .chip.on{background:rgba(196,151,74,.2);color:rgba(232,193,122,.92);border-color:rgba(196,151,74,.4)}
+    .f-cl{display:none;margin-top:6px;background:none;border:none;color:rgba(196,151,74,.76);font-weight:600;cursor:pointer}
+    .f-cl.on{display:block}
+    .f-cnt{font-size:11px;color:rgba(232,193,122,.3);margin-top:4px}
+
+    /* performance */
+    .plbl{font-family:'Cormorant Garamond',serif;font-size:18px;color:rgba(232,193,122,.9);margin:14px 0 10px;display:flex;align-items:center;gap:7px}
+    .ebadge{
+      font-size:10px;background:rgba(196,151,74,.12);border:1px solid rgba(196,151,74,.22);
+      color:rgba(196,151,74,.82);padding:2px 7px;border-radius:999px;font-weight:600
+    }
+    .pc{background:#2E1418;border:1px solid rgba(196,151,74,.15);border-radius:14px;padding:12px 14px;margin-bottom:9px;position:relative}
+    .pc.hidden{display:none}
+    .pc-num{
+      position:absolute;top:10px;right:10px;width:20px;height:20px;border-radius:50%;
+      background:linear-gradient(135deg,#8B6B35,#C4974A);display:flex;align-items:center;justify-content:center;
+      color:#1A0A0C;font-size:9px;font-weight:700
+    }
+    .pc-song{font-family:'Cormorant Garamond',serif;font-size:17px;color:rgba(232,193,122,.95);margin-bottom:2px;padding-right:28px}
+    .pc-cat{font-size:11px;color:rgba(196,151,74,.78);font-weight:600;margin-bottom:8px}
+    .pg{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:8px}
+    .pf,.pc-dan,.icard,.rcard,.tcard,.scard,.citem{
+      background:#231010;border:1px solid rgba(196,151,74,.14);border-radius:12px;padding:10px
+    }
+    .pfl{font-size:9px;font-weight:600;letter-spacing:.13em;text-transform:uppercase;color:rgba(196,151,74,.6);margin-bottom:2px}
+    .pfv{font-size:12px;color:rgba(232,193,122,.84)}
+    .pfv.na{color:rgba(232,193,122,.28);font-style:italic}
+    .pc-lnk{
+      display:inline-flex;align-items:center;gap:4px;font-size:11px;padding:4px 9px;border-radius:999px;
+      background:rgba(196,151,74,.1);border:1px solid rgba(196,151,74,.2);text-decoration:none;margin-right:5px;margin-bottom:8px
+    }
+    .pstat{display:inline-flex;align-items:center;gap:4px;font-size:11px;font-weight:600;padding:3px 9px;border-radius:999px}
+    .sr{background:rgba(46,125,50,.2);color:#90EDA0}
+    .sp{background:rgba(245,127,23,.15);color:#FFB74D}
+    .snn{background:rgba(255,255,255,.05);color:rgba(232,193,122,.38)}
+    .st{background:rgba(196,151,74,.1);color:rgba(196,151,74,.76)}
+    .pupd{font-size:10px;color:rgba(232,193,122,.26);margin-top:4px;font-style:italic}
+
+    .ebtn,.b-int,.b-assign,.b-rem-int,.b-edit-r,.b-del-r{
+      cursor:pointer;border-radius:999px;font-size:11px;font-weight:600;padding:7px 11px;border:1px solid rgba(196,151,74,.2)
+    }
+    .ebtn,.b-edit-r{background:rgba(196,151,74,.1);color:rgba(196,151,74,.84)}
+    .b-int{width:100%;margin-top:7px;background:rgba(196,151,74,.07);color:rgba(232,193,122,.68)}
+    .b-int.on{background:rgba(196,151,74,.2);color:rgba(232,193,122,.95);border-color:rgba(196,151,74,.5)}
+    .b-assign{background:rgba(46,125,50,.14);border-color:rgba(46,125,50,.25);color:#90EDA0}
+    .b-rem-int,.b-del-r{background:rgba(198,40,40,.12);border-color:rgba(198,40,40,.18);color:#efb3b3}
+    .r-admin{display:flex;gap:6px;margin-top:8px;padding-top:8px;border-top:1px solid rgba(196,151,74,.1)}
+    .eform,.r-edit-form,.gform{
+      background:#2E1418;border:1px solid rgba(196,151,74,.18);border-top:3px solid rgba(196,151,74,.6);
+      border-radius:12px;padding:12px;margin-top:8px;display:none
+    }
+    .eform.open,.r-edit-form.open,.gform.open{display:block}
+    .erow{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:6px}
+
+    /* roles */
+    .rbanner h3{font-family:'Cormorant Garamond',serif;font-size:21px;font-style:italic;font-weight:400;color:rgba(232,193,122,.9);margin-bottom:4px}
+    .rbanner p,.arbox p{font-size:12px;color:rgba(232,193,122,.36);line-height:1.65}
+    .rgrid,.tgrid,.igrid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+    .rtop{display:flex;gap:8px;align-items:flex-start;margin-bottom:6px}
+    .rico{font-size:20px;flex-shrink:0;margin-top:1px}
+    .rname{font-family:'Cormorant Garamond',serif;font-size:15px;color:rgba(232,193,122,.92)}
+    .rtag{font-size:11px;color:rgba(232,193,122,.36);line-height:1.5}
+    .rdet{display:none;background:rgba(196,151,74,.07);border-radius:8px;padding:8px 10px;margin:8px 0}
+    .rdet.open{display:block}
+    .rdi{font-size:11px;color:rgba(232,193,122,.54);line-height:1.6;padding:1px 0}
+    .rdi:before{content:'◆ ';font-size:7px;color:rgba(196,151,74,.48);vertical-align:middle}
+    .a-chip{
+      display:inline-flex;align-items:center;gap:5px;font-size:11px;padding:3px 8px;border-radius:999px;
+      background:rgba(46,125,50,.18);color:#90EDA0;border:1px solid rgba(46,125,50,.28);font-weight:600;margin:2px
+    }
+    .a-chip .x{cursor:pointer;opacity:.75}
+    .ip-row{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:6px 0;border-bottom:1px solid rgba(196,151,74,.08)}
+    .ip-row:last-child{border-bottom:none}
+    .ip-name{font-size:12px;color:rgba(232,193,122,.74)}
+    .ip-btns{display:flex;gap:5px;flex-wrap:wrap}
+
+    /* team */
+    .tcard{text-align:center}
+    .tav{
+      width:64px;height:64px;border-radius:50%;overflow:hidden;margin:0 auto 8px;cursor:pointer;position:relative;
+      display:flex;align-items:center;justify-content:center;background:rgba(196,151,74,.1);border:2px solid rgba(196,151,74,.24)
+    }
+    .tav img{width:100%;height:100%;object-fit:cover}
+    .tinit{font-family:'Cormorant Garamond',serif;font-size:24px;color:rgba(196,151,74,.82)}
+    .tedit{
+      position:absolute;right:0;bottom:0;width:18px;height:18px;border-radius:50%;
+      background:#C4974A;color:#1A0A0C;display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:700
+    }
+    .tname{font-family:'Cormorant Garamond',serif;font-size:15px;color:rgba(232,193,122,.92);margin-bottom:3px}
+    .tbadge{display:inline-block;padding:2px 7px;border-radius:999px;font-size:10px;font-weight:600;margin-bottom:4px}
+    .tbadge.admin{background:rgba(196,151,74,.15);color:rgba(196,151,74,.92)}
+    .tbadge.member{background:rgba(255,255,255,.05);color:rgba(232,193,122,.34)}
+    .troles{font-size:11px;color:rgba(232,193,122,.34);line-height:1.5}
+
+    /* gallery */
+    .gup h4,.arbox h4,.sfcard h4{font-family:'Cormorant Garamond',serif;font-size:17px;color:rgba(232,193,122,.9);margin-bottom:4px}
+    .gup p,.sfcard p{font-size:12px;color:rgba(232,193,122,.34)}
+    .ggrid,.ep-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+    .gi,.ep-th{
+      aspect-ratio:1;border-radius:11px;overflow:hidden;cursor:pointer;position:relative;
+      background:rgba(196,151,74,.08);border:1px solid rgba(196,151,74,.18)
+    }
+    .gi img,.ep-th img{width:100%;height:100%;object-fit:cover}
+    .gi-ov{
+      position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(14,5,8,.78));
+      opacity:0;display:flex;align-items:flex-end;padding:6px;transition:opacity .2s
+    }
+    .gi:hover .gi-ov{opacity:1}
+    .gi-cap{font-size:11px;color:rgba(232,193,122,.86);line-height:1.3}
+    .lb{
+      position:fixed;inset:0;z-index:500;background:rgba(14,5,8,.96);backdrop-filter:blur(18px);
+      display:none;align-items:center;justify-content:center;flex-direction:column;gap:10px;padding:20px
+    }
+    .lb.open{display:flex}
+    .lb-img{max-width:100%;max-height:74vh;border-radius:14px;object-fit:contain}
+    .lb-close{
+      position:absolute;top:18px;right:18px;width:36px;height:36px;border-radius:50%;
+      background:rgba(255,255,255,.08);border:none;color:rgba(232,193,122,.76);font-size:16px;cursor:pointer
+    }
+    .lb-cap{font-size:13px;color:rgba(232,193,122,.48);text-align:center}
+
+    /* change log / suggestion / info */
+    .ci-h,.sc-h{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+    .ci-av,.sc-av{
+      width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+      background:rgba(196,151,74,.14);color:rgba(196,151,74,.86);font-family:'Cormorant Garamond',serif;font-weight:600
+    }
+    .ci-nm,.sc-au{font-weight:600;font-size:13px;color:rgba(232,193,122,.88)}
+    .ci-t,.sc-t{font-size:10px;color:rgba(232,193,122,.3)}
+    .ci-d,.sc-tx{font-size:12px;color:rgba(232,193,122,.5);line-height:1.6}
+    .cbadge{display:inline-block;font-size:10px;padding:1px 6px;border-radius:999px;font-weight:600;margin-right:4px}
+    .cb-u{background:rgba(245,127,23,.15);color:#FFB74D}
+    .cb-i{background:rgba(46,125,50,.18);color:#90EDA0}
+    .cb-d{background:rgba(198,40,40,.18);color:#EF9A9A}
+    .i-ico{font-size:20px;margin-bottom:6px}
+    .i-val{font-family:'Cormorant Garamond',serif;font-size:17px;color:rgba(232,193,122,.92);margin-bottom:3px}
+    .i-sub{font-size:12px;color:rgba(232,193,122,.36);line-height:1.6}
+    .lkurl{font-size:12px;color:rgba(196,151,74,.86);line-height:1.6;text-decoration:underline;word-break:break-all}
+    .cpbtn{
+      display:inline-block;margin-top:8px;padding:6px 12px;border-radius:8px;
+      background:rgba(196,151,74,.12);border:1px solid rgba(196,151,74,.22);font-size:11px;font-weight:600;cursor:pointer
+    }
+    .ctcard{text-align:center;background:linear-gradient(135deg,rgba(196,151,74,.08),#2E1418)}
+    .ct-tit{font-family:'Cormorant Garamond',serif;font-size:14px;font-weight:300;color:rgba(232,193,122,.42);margin-bottom:3px}
+    .ct-nm{font-family:'Cormorant Garamond',serif;font-size:22px;color:rgba(232,193,122,.92);margin-bottom:4px}
+    .ct-ph{font-size:15px;font-weight:600;color:rgba(232,193,122,.86);margin-bottom:11px}
+
+    /* bottom nav */
+    .bnav{
+      position:fixed;left:0;right:0;bottom:0;z-index:100;
+      background:rgba(14,5,8,.98);backdrop-filter:blur(18px);
+      border-top:1px solid rgba(196,151,74,.12);
+      display:flex;gap:1px;padding:5px 2px 12px
+    }
+    .bnav button{
+      flex:1;background:none;border:none;color:rgba(232,193,122,.24);
+      font-size:9px;font-weight:500;padding:6px 2px;border-radius:8px;cursor:pointer;
+      display:flex;flex-direction:column;align-items:center;gap:3px
+    }
+    .bnav button .bi{font-size:15px}
+    .bnav button.on{color:rgba(232,193,122,.9);background:rgba(196,151,74,.1)}
+
+    /* modal */
+    .modal{
+      position:fixed;inset:0;z-index:600;background:rgba(14,5,8,.92);backdrop-filter:blur(14px);
+      display:none;align-items:center;justify-content:center;padding:18px
+    }
+    .modal.open{display:flex}
+    .modal-card{
+      width:100%;max-width:640px;background:#231010;border:1px solid rgba(196,151,74,.2);
+      border-radius:18px;padding:16px;max-height:88vh;overflow:auto
+    }
+    .modal-title{font-family:'Cormorant Garamond',serif;font-size:28px;color:rgba(232,193,122,.92);margin-bottom:6px}
+    .modal-sub{font-size:13px;color:rgba(232,193,122,.38);margin-bottom:14px;line-height:1.6}
+    .modal-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+    .warning{
+      font-size:12px;color:#f5c97a;background:rgba(196,151,74,.08);
+      border:1px solid rgba(196,151,74,.2);padding:10px 12px;border-radius:12px;margin-bottom:12px
+    }
+    #photoInput,#gPhotoInput,#ePhotoInput{display:none}
+
+    @media(max-width:540px){
+      .pg,.erow,.rgrid,.tgrid,.igrid{grid-template-columns:1fr}
+      .ggrid,.ep-grid{grid-template-columns:repeat(3,1fr)}
+      .nav-pill{display:none}
+    }
+  </style>
+</head>
+<body>
+  <div id="jsCheck" style="position:fixed;bottom:8px;right:8px;width:8px;height:8px;border-radius:50%;background:#C4974A;z-index:9999;display:none;"></div>
+  <script>document.getElementById('jsCheck').style.display='block';</script>
+
+  <div id="loginWrap">
+    <div class="lcard">
+      <div class="lang-row">
+        <div class="lbtn-lang" onclick="toggleLang()">
+          <span id="lLE">EN</span>
+          <span style="color:rgba(196,151,74,.3)">|</span>
+          <span id="lLH" style="font-family:'Noto Sans Devanagari',sans-serif;">हि</span>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;justify-content:center;margin-bottom:14px;">
+        <div style="height:1px;width:30px;background:linear-gradient(90deg,transparent,rgba(196,151,74,.4));"></div>
+        <div style="font-size:9px;color:rgba(196,151,74,.5);letter-spacing:3px;">◆ ◆ ◆</div>
+        <div style="height:1px;width:30px;background:linear-gradient(90deg,rgba(196,151,74,.4),transparent);"></div>
+      </div>
+      <div class="l-logo">Priyanka<span class="amp">&amp;</span>Shubham</div>
+      <div class="l-sub">विवाह उत्सव</div>
+      <div class="l-dt">१ – ३ जुलाई २०२५ · रायपुर</div>
+
+      <div class="l-tabs">
+        <button class="l-tab on" id="tl" type="button">Login</button>
+        <button class="l-tab" id="tr" type="button">Join Team</button>
+      </div>
+
+      <div id="fL">
+        <input class="linp mb8" id="lU" placeholder="Username" />
+        <div class="pw-wrap">
+          <input class="linp" id="lP" type="password" placeholder="Password" />
+          <span class="pw-eye" data-for="lP">👁</span>
+        </div>
+        <button class="lbtn" id="loginBtn" type="button">✦ प्रवेश करें</button>
+        <button class="lbtn-ghost" type="button" onclick="doGuest()">👁 Guest के रूप में देखें</button>
+      </div>
+
+      <div id="fR" class="hide">
+        <input class="linp mb8" id="rN" placeholder="आपका पूरा नाम" />
+        <input class="linp mb8" id="rPh" placeholder="WhatsApp नंबर" type="tel" />
+        <input class="linp mb8" id="rU" placeholder="Username" />
+        <div class="pw-wrap">
+          <input class="linp" id="rPw" type="password" placeholder="Password चुनें" />
+          <span class="pw-eye" data-for="rPw">👁</span>
+        </div>
+        <div class="pw-wrap">
+          <input class="linp" id="rT" type="password" placeholder="Team Password" />
+          <span class="pw-eye" data-for="rT">👁</span>
+        </div>
+        <button class="lbtn" id="regBtn" type="button">✦ टीम में शामिल हों</button>
+        <button class="lbtn-ghost" type="button" onclick="doGuest()">👁 Guest के रूप में देखें</button>
+      </div>
+
+      <div class="lerr" id="lErr"></div>
+    </div>
+  </div>
+
+  <div id="appWrap">
+    <div class="nav">
+      <div class="nav-brand">Vivah Utsav — Rasme &amp; Karyakram ✨</div>
+      <div class="nav-r">
+        <div class="nav-pill" id="navPill"></div>
+        <div class="nav-lang" onclick="toggleLang()">
+          <span id="nLE">EN</span>
+          <span style="color:rgba(196,151,74,.2)">|</span>
+          <span id="nLH" style="font-family:'Noto Sans Devanagari',sans-serif;">हि</span>
+        </div>
+        <button class="nav-out" type="button" onclick="doLogout()">बाहर</button>
+      </div>
+    </div>
+
+    <div class="subnav" id="subnav">
+      <button type="button" id="sn-events" onclick="goSec('events')">🗓 Events</button>
+      <button type="button" id="sn-roles" onclick="goSec('roles')">✋ Roles</button>
+      <button type="button" id="sn-team" onclick="goSec('team')">👥 Team</button>
+      <button type="button" id="sn-gallery" onclick="goSec('gallery')">📸 Gallery</button>
+      <button type="button" id="sn-suggest" onclick="goSec('suggest')">💡 Suggest</button>
+      <button type="button" id="sn-changes" class="hide" onclick="goSec('changes')">📋 Changes</button>
+      <button type="button" id="sn-info" onclick="goSec('info')">ℹ Info</button>
+    </div>
+
+    <div class="hero" id="heroSec">
+      <div class="h-eye">एक यादगार विवाह उत्सव</div>
+      <div class="h-names">
+        <span class="h-bride">Priyanka</span>
+        <span class="h-amp">&amp;</span>
+        <span class="h-groom">Shubham</span>
+      </div>
+      <div class="h-div">
+        <div class="hl"></div>
+        <div class="h-gem">◆ ◆ ◆</div>
+        <div class="hl r"></div>
+      </div>
+      <div class="h-date">१ – ३ जुलाई २०२५ · रायपुर</div>
+      <div class="h-venue">✦ Royal Club, Chhattisgarh ✦</div>
+      <div class="h-cta" onclick="goSec('events')"><div>✦ Explore the Wedding</div></div>
+    </div>
+
+    <div class="cwrap">
+      <!-- events -->
+      <div class="sec" id="sec-events">
+        <div class="s-eye">विवाह उत्सव</div>
+        <div class="s-ti">Sabhi <em>Vivah ke Rasme &amp; Karyakram</em></div>
+        <div class="s-sub">हर समारोह कार्ड पर क्लिक करके पूरा विवरण, गाने, क्रम और तैयारी देखें। Admin सब कुछ edit कर सकते हैं।</div>
+
+        <div class="warning" id="storageNote">
+          Test note: ceremony cards, role suggestions, and support/likes use shared Supabase tables if available. If those new tables are missing, the app will fall back to local browser storage for those specific features.
+        </div>
+
+        <div class="fbar">
+          <div class="f-ti">🔍 गाने खोजें</div>
+          <input class="finp" id="fInp" placeholder="नाम, गाना, group या keyword लिखें…" oninput="applyFilter()" />
+          <div class="chips" id="filterChips">
+            <div class="chip" data-g="kids">👶 Kids</div>
+            <div class="chip" data-g="sisters">👩 Sisters</div>
+            <div class="chip" data-g="brothers">👨 Brothers</div>
+            <div class="chip" data-g="mothers">👩‍👧 Mothers</div>
+            <div class="chip" data-g="ladies">💃 Ladies</div>
+            <div class="chip" data-g="siblings">🤝 Siblings</div>
+            <div class="chip" data-g="dee_jiju">🥂 Dee &amp; Jiju</div>
+            <div class="chip" data-g="unmarried">💍 Unmarried</div>
+          </div>
+          <button class="f-cl" id="fCl" type="button" onclick="clearF()">✕ Filter हटाएँ</button>
+          <div class="f-cnt" id="fCnt"></div>
+        </div>
+
+        <div id="eventsAdminBar" class="hide" style="margin-bottom:12px;">
+          <button class="badd" type="button" onclick="openCeremonyModal(null)">+ Add New Ceremony Card</button>
+        </div>
+
+        <div id="ceremonyList"><div class="spin">Loading ceremonies…</div></div>
+      </div>
+
+      <!-- roles -->
+      <div class="sec" id="sec-roles">
+        <div class="s-eye">भूमिका</div>
+        <div class="s-ti">अपनी <em>भूमिका</em> चुनें</div>
+        <div class="s-sub">Multiple people किसी भी role में interest दिखा सकते हैं। आप किसी और को suggest भी कर सकते हैं और support/like 🧡 भी दे सकते हैं।</div>
+        <div class="rbanner">
+          <h3>आप इस विवाह को यादगार बनाते हैं ✦</h3>
+          <p>Role चुनें, interest दिखाएँ, दूसरों को nominate करें, और admin final assignments कर सकेंगी।</p>
+        </div>
+        <div id="rolesC"><div class="spin">Loading roles…</div></div>
+        <div class="arbox">
+          <h4>✦ नई भूमिका जोड़ें</h4>
+          <p>अगर कोई role missing हो, admin यहाँ से add कर सकती हैं।</p>
+          <div class="arow">
+            <input class="ari" id="arName" placeholder="भूमिका का नाम" />
+            <input class="ari" id="arDesc" placeholder="छोटा विवरण" />
+            <button class="badd" type="button" onclick="addCustomRole()">+ जोड़ें</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- team -->
+      <div class="sec" id="sec-team">
+        <div class="s-eye">विवाह टीम</div>
+        <div class="s-ti">हमारी <em>टीम</em></div>
+        <div class="s-sub">Management team और role interest वाले सदस्य।</div>
+        <div class="tgrid" id="teamGrid"></div>
+        <div class="empty hide" id="teamEmpty">No members yet.</div>
+      </div>
+
+      <!-- gallery -->
+      <div class="sec" id="sec-gallery">
+        <div class="s-eye">Photos</div>
+        <div class="s-ti">Wedding <em>Gallery</em></div>
+        <div class="s-sub">All wedding memories, references, and planning photos.</div>
+
+        <div class="gup" id="gupCard" onclick="document.getElementById('gPhotoInput').click()">
+          <h4>📷 Add a Photo</h4>
+          <p>Tap to upload. Tag people and optionally link it to a ceremony.</p>
+        </div>
+
+        <div class="gform" id="gupForm">
+          <div class="el" style="margin-bottom:5px;">Caption</div>
+          <input class="ei" style="margin-bottom:7px;" id="gCap" placeholder="Caption (optional)" />
+          <div class="el" style="margin-bottom:4px;">Event</div>
+          <select class="ei" style="margin-bottom:7px;" id="gEv"></select>
+          <div class="el" style="margin-bottom:4px;">Tag People</div>
+          <div style="position:relative;margin-bottom:7px;">
+            <input class="ei" id="gTagInp" placeholder="@tag someone" oninput="showGTS()" onblur="hideGTS()" />
+            <div class="tdrop" id="gTagDrop"></div>
+          </div>
+          <div class="atags" id="gTags"></div>
+          <div style="display:flex;gap:6px;">
+            <button class="bsave" type="button" style="flex:1;" onclick="submitGPhoto()">📤 Upload</button>
+            <button class="bcancel" type="button" onclick="cancelGUp()">Cancel</button>
+          </div>
+        </div>
+
+        <div class="gfilt" id="gFilt"></div>
+        <div class="ggrid" id="gGrid"><div class="spin" style="grid-column:1/-1;">Loading photos…</div></div>
+      </div>
+
+      <!-- changes -->
+      <div class="sec" id="sec-changes">
+        <div class="s-eye">Change Log</div>
+        <div class="s-ti">Who, <em>What, When</em></div>
+        <div class="s-sub">All admin-level changes to cards, songs, roles, and assignments.</div>
+        <div id="chLog"><div class="spin">Loading changes…</div></div>
+      </div>
+
+      <!-- suggestion board -->
+      <div class="sec" id="sec-suggest">
+        <div class="s-eye">सुझाव</div>
+        <div class="s-ti">आपके <em>सुझाव</em></div>
+        <div class="s-sub">Any idea, logistics suggestion, or coordination note can go here.</div>
+        <div class="sfcard">
+          <h4>✦ अपना सुझाव लिखें</h4>
+          <p>@नाम लिखकर tag करें।</p>
+          <input class="sinp" id="sgNm" placeholder="आपका नाम" />
+          <textarea class="sinp" id="sgTx" rows="3" placeholder="आपका सुझाव…"></textarea>
+          <div style="position:relative;margin-bottom:7px;">
+            <input class="sinp" style="margin:0;" id="sgTgInp" placeholder="@किसी को tag करें" oninput="showSTS()" onblur="hideSTS()" />
+            <div class="tdrop" id="sgTgDrop"></div>
+          </div>
+          <div class="atags" id="sgTgs"></div>
+          <button class="bprim" type="button" onclick="submitSugg()">✦ सुझाव भेजें</button>
+        </div>
+        <div id="suggList"><div class="spin">Loading suggestions…</div></div>
+      </div>
+
+      <!-- info -->
+      <div class="sec" id="sec-info">
+        <div class="s-eye">जानकारी</div>
+        <div class="s-ti">विवाह का <em>विवरण</em></div>
+        <div class="s-sub">Planning, venue, access, and quick day-of reminders.</div>
+
+        <div class="dcard">
+          <div class="i-ico">👗</div>
+          <div class="i-lbl">DRESS CODE</div>
+          <div class="i-val">Traditional Indian Attire</div>
+          <div class="i-sub">Ladies: Lehenga / Saree · Gents: Sherwani / Kurta</div>
+        </div>
+
+        <div class="igrid">
+          <div class="icard">
+            <div class="i-ico">📍</div>
+            <div class="i-lbl">VENUE</div>
+            <div class="i-val">Royal Club</div>
+            <div class="i-sub">Raipur, Chhattisgarh</div>
+          </div>
+          <div class="icard">
+            <div class="i-ico">👥</div>
+            <div class="i-lbl">GUESTS</div>
+            <div class="i-val">~1000</div>
+            <div class="i-sub">Grand traditional wedding</div>
+          </div>
+          <div class="icard">
+            <div class="i-ico">📅</div>
+            <div class="i-lbl">DATES</div>
+            <div class="i-val">1–3 July</div>
+            <div class="i-sub">2025 · Three days</div>
+          </div>
+          <div class="icard">
+            <div class="i-ico">🌸</div>
+            <div class="i-lbl">EVENTS</div>
+            <div class="i-val" id="infoEventsCount">—</div>
+            <div class="i-sub">Dynamic ceremony cards</div>
+          </div>
+        </div>
+
+        <div class="lkcard">
+          <div class="i-ico">🔗</div>
+          <div class="i-lbl">WEBSITE</div>
+          <div class="i-val">Share this link</div>
+          <div class="lkurl" id="shareUrl">https://shreyadubey-studio.github.io/priyanka-shubham-wedding</div>
+          <div class="cpbtn" onclick="copyLink()">📋 Copy Link</div>
+        </div>
+
+        <div class="clcard">
+          <div class="i-lbl">CHECKLIST</div>
+          <div class="i-val">Day-of Tips</div>
+          <div class="i-sub">
+            🌸 Claim your role on this website<br/>
+            ✦ Arrive 1 hour before your event<br/>
+            🌸 Keep your phone fully charged<br/>
+            ✦ Family briefing the night before<br/>
+            🌸 Coordinate outfit colour with team<br/>
+            ✦ Have fun! 🎊
+          </div>
+        </div>
+
+        <div class="ctcard">
+          <div class="ct-eye">Website Issues</div>
+          <div class="ct-tit">Contact</div>
+          <div class="ct-nm">Shreya Dubey</div>
+          <div class="ct-ph">+91 91095 27063</div>
+          <a class="ct-btn" href="tel:+919109527063">📞 Call Shreya</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="bnav">
+      <button id="bn-events" type="button" onclick="goSec('events')"><span class="bi">🗓️</span>Events</button>
+      <button id="bn-roles" type="button" onclick="goSec('roles')"><span class="bi">✋</span>Roles</button>
+      <button id="bn-team" type="button" onclick="goSec('team')"><span class="bi">👥</span>Team</button>
+      <button id="bn-gallery" type="button" onclick="goSec('gallery')"><span class="bi">📸</span>Gallery</button>
+      <button id="bn-suggest" type="button" onclick="goSec('suggest')"><span class="bi">💡</span>Suggest</button>
+      <button id="bn-info" type="button" onclick="goSec('info')"><span class="bi">ℹ️</span>Info</button>
+    </div>
+  </div>
+
+  <div class="lb" id="lb">
+    <button class="lb-close" type="button" onclick="closeLb()">✕</button>
+    <img class="lb-img" id="lbImg" src="" alt="" />
+    <div class="lb-cap" id="lbCap"></div>
+  </div>
+
+  <!-- ceremony admin modal -->
+  <div class="modal" id="ceremonyModal">
+    <div class="modal-card">
+      <div class="modal-title" id="cmTitle">Ceremony Card</div>
+      <div class="modal-sub">Admin can edit existing cards or create a new one.</div>
+
+      <div class="erow">
+        <div>
+          <div class="el">Icon</div>
+          <input class="ei" id="cmIcon" placeholder="🌸" />
+        </div>
+        <div>
+          <div class="el">Slug / ID</div>
+          <input class="ei" id="cmSlug" placeholder="mehndi-night" />
+        </div>
+      </div>
+
+      <div class="erow">
+        <div>
+          <div class="el">Subtitle</div>
+          <input class="ei" id="cmSub" placeholder="मेहंदी की शाम" />
+        </div>
+        <div>
+          <div class="el">Title</div>
+          <input class="ei" id="cmTitleText" placeholder="Mehndi Night" />
+        </div>
+      </div>
+
+      <div class="erow">
+        <div>
+          <div class="el">Date</div>
+          <input class="ei" id="cmDate" placeholder="1 July" />
+        </div>
+        <div>
+          <div class="el">Time</div>
+          <input class="ei" id="cmTime" placeholder="7–11 PM" />
+        </div>
+      </div>
+
+      <div class="erow">
+        <div>
+          <div class="el">Venue</div>
+          <input class="ei" id="cmVenue" placeholder="Royal Club" />
+        </div>
+        <div>
+          <div class="el">Order</div>
+          <input class="ei" id="cmOrder" type="number" placeholder="1" />
+        </div>
+      </div>
+
+      <div style="margin-bottom:8px;">
+        <div class="el">Short Description</div>
+        <textarea class="ei" id="cmDesc" rows="3" placeholder="Card description…"></textarea>
+      </div>
+
+      <div style="margin-bottom:8px;">
+        <div class="el">Overview Steps (one per line, format: Title | Description)</div>
+        <textarea class="ei" id="cmSteps" rows="5" placeholder="Décor & Prep | Arrive 1 hour early"></textarea>
+      </div>
+
+      <div class="modal-actions">
+        <button class="bsave" type="button" onclick="saveCeremonyFromModal()">✓ Save Card</button>
+        <button class="bcancel" type="button" onclick="closeCeremonyModal()">Cancel</button>
+        <button class="b-del-r hide" id="cmDeleteBtn" type="button" onclick="deleteCeremonyFromModal()">Delete Card</button>
+      </div>
+    </div>
+  </div>
+
+  <input type="file" id="photoInput" accept="image/*" onchange="handleAv(event)" />
+  <input type="file" id="gPhotoInput" accept="image/*" onchange="handleGFile(event)" />
+  <input type="file" id="ePhotoInput" accept="image/*" onchange="handleEFile(event)" />
+
+  <script>
+    window.onerror = function(msg, src, line) {
+      showTopError('JS ERROR line ' + line + ': ' + msg);
+      return false;
+    };
+    window.addEventListener('unhandledrejection', function(e) {
+      showTopError('PROMISE ERROR: ' + (e.reason && e.reason.message ? e.reason.message : String(e.reason)));
+    });
+    function showTopError(text){
+      var old = document.getElementById('topErrorBar');
+      if(old) old.remove();
+      var d = document.createElement('div');
+      d.id = 'topErrorBar';
+      d.style.cssText = 'position:fixed;top:0;left:0;right:0;z-index:99999;background:#b63a3a;color:#fff;padding:10px;font-size:12px;font-family:monospace;word-break:break-word;';
+      d.textContent = text;
+      document.body.appendChild(d);
+    }
+  </script>
+
+  <script>
+    /* =========================
+       CONFIG
+    ========================= */
+    var SB = 'https://fwbbfsfjgmuuzqymxtdv.supabase.co/rest/v1/';
+    var KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZ3YmJmc2ZqZ211dXpxeW14dGR2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzYwMTUxMDksImV4cCI6MjA5MTU5MTEwOX0.npnpwd1SirAHyHH1JahMcKyEsvJb5MrPXEzdPAPpC-0';
+    var TEAM_PASSWORD = '4567';
+    var SESSION_KEY = 'ps_v15';
+
+    var cu = null;
+    var lang = 'hi';
+    var gFilter = '';
+    var AGF = null;
+
+    var ceremonies = [];
+    var ceremonySource = 'default';
+    var currentCeremonyEditingId = null;
+
+    var allPhotos = [];
+    var allInts = {};
+    var allApprovals = {};
+    var customRoles = [];
+    var roleSuggestions = {};
+    var roleSupports = {};
+    var localRoleSuggestions = [];
+    var localRoleSupports = [];
+
+    var photoTags = [];
+    var sgTags = [];
+    var pgf = null;
+    var pen = null;
+
+    var SECS = ['events','roles','team','gallery','suggest','changes','info'];
+
+    var GK = {
+      kids:['kids','children','child','naatu'],
+      sisters:['sister','sisters','dee'],
+      brothers:['brother','brothers','bhai'],
+      mothers:['mother','mothers','maa','saas','aunty','aunti'],
+      ladies:['ladies','women','girls','female'],
+      siblings:['sibling','siblings','brother','sister'],
+      dee_jiju:['dee','jiju'],
+      unmarried:['unmarried','single']
+    };
+
+    var DEFAULT_CEREMONIES = [
+      {
+        id:'eng',
+        icon:'💍',
+        subtitle:'सगाई',
+        title:'Engagement',
+        date:'Coming Soon',
+        time:'',
+        venue:'To be announced',
+        sort_order:1,
+        desc:'उनके हमेशा की शुरुआत। 💍',
+        steps:[{title:'Date & Venue',desc:'To be announced'}],
+        deletable:false
+      },
+      {
+        id:'mehndi',
+        icon:'🌸',
+        subtitle:'मेहंदी की शाम',
+        title:'Mehndi Night',
+        date:'1 July',
+        time:'7–11 PM',
+        venue:"Shubham's Home",
+        sort_order:2,
+        desc:'संगीत, हँसी और नृत्य से भरी शाम।',
+        steps:[
+          {title:'Mehndi Application',desc:'Ladies taking turns'},
+          {title:'Music & Dance',desc:'DJ, songs, dancing'}
+        ],
+        deletable:false
+      },
+      {
+        id:'haldi',
+        icon:'🌿',
+        subtitle:'हल्दी रस्म',
+        title:'Haldi',
+        date:'2 July',
+        time:'11AM–2PM',
+        venue:'Royal Club',
+        sort_order:3,
+        desc:'पवित्र हल्दी की रस्म।',
+        steps:[
+          {title:'Décor & Prep',desc:'Arrive 1 hour early'},
+          {title:'Haldi Ceremony',desc:'Family takes turns'}
+        ],
+        deletable:false
+      },
+      {
+        id:'sangeet',
+        icon:'🎉',
+        subtitle:'संगीत समारोह',
+        title:'Sangeet',
+        date:'2 July',
+        time:'5–8 PM',
+        venue:'Royal Club',
+        sort_order:4,
+        desc:'नृत्य प्रदर्शन और उत्सव की भव्य शाम! 🎤',
+        steps:[
+          {title:'Sound Check',desc:'2 hours early'},
+          {title:'Performances',desc:'In sequence as listed'}
+        ],
+        deletable:false
+      },
+      {
+        id:'baraat',
+        icon:'🐎',
+        subtitle:'बारात',
+        title:'Baraat',
+        date:'3 July',
+        time:'4–6 PM',
+        venue:'Royal Club',
+        sort_order:5,
+        desc:'भव्य बारात — ढोल, नृत्य और पूरी ऊर्जा!',
+        steps:[
+          {title:'Opening',desc:'Hum Ladke Hain'},
+          {title:'Groom on Horse',desc:'Ghodi Chadh Gaya'}
+        ],
+        deletable:false
+      },
+      {
+        id:'vivah',
+        icon:'🔥',
+        subtitle:'विवाह संस्कार',
+        title:'Vivah',
+        date:'3 July',
+        time:'7–11 PM',
+        venue:'Royal Club',
+        sort_order:6,
+        desc:'सात फेरों की पावन रस्म। ✨',
+        steps:[
+          {title:'Jaymala',desc:'Varmala ceremony'},
+          {title:'Saat Phere',desc:'Sacred vows'},
+          {title:'Vidaai',desc:'Emotional farewell'}
+        ],
+        deletable:false
+      },
+      {
+        id:'reception',
+        icon:'🥂',
+        subtitle:'स्वागत समारोह',
+        title:'Reception',
+        date:'3 July',
+        time:'7–11 PM',
+        venue:'Royal Club',
+        sort_order:7,
+        desc:'१०००+ मेहमानों के साथ भव्य स्वागत! 🎊',
+        steps:[
+          {title:'Welcome Guests',desc:'Welcome team at entrance'},
+          {title:'Dining',desc:'Catering team active'}
+        ],
+        deletable:false
+      }
+    ];
+
+    var ROLES = [
+      {id:'gm1',ico:'🤵',name:'Groomsman 1',cat:'✨ Wedding Core',tag:'Groom side coordination',det:['Coordinate arrivals','Help with movement & transitions']},
+      {id:'gm2',ico:'🤵',name:'Groomsman 2',cat:'✨ Wedding Core',tag:'Support & logistics',det:['Support groom team','Coordinate outfits and movement']},
+      {id:'gw1',ico:'👰',name:'Groomswoman 1',cat:'✨ Wedding Core',tag:'Warm hosting + coordination',det:['Support entries','Guest-facing coordination']},
+      {id:'wel1',ico:'🌸',name:'Welcome Host',cat:'🌼 Guest Experience',tag:'Entrance welcome team',det:['Receive guests','Guide family and VIP guests']},
+      {id:'seat',ico:'🪑',name:'Seating Coordinator',cat:'🌼 Guest Experience',tag:'Manage guest placement',det:['Seating flow','Reserved areas coordination']},
+      {id:'kids',ico:'🧒',name:'Kids Coordinator',cat:'🌼 Guest Experience',tag:'Children flow support',det:['Watch movement around stage','
