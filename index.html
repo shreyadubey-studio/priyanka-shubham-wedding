@@ -1,17 +1,1396 @@
 <!DOCTYPE html>
-<html lang="en">
+
+<html lang="hi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wedding Invitation</title>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Priyanka & Shubham · Vivah 2025</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Jost:wght@300;400;500;600&family=Noto+Sans+Devanagari:wght@300;400;500&display=swap" rel="stylesheet"/>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<style>
+:root{
+  --rose:#B76E79;--rose-deep:#8B4A52;--rose-light:#D4959E;--rose-pale:#FDF0F1;--rose-soft:#F5D5D8;
+  --gold:#C4974A;--gold-deep:#8B6B35;--gold-light:#E8C17A;--gold-pale:#FDF8EE;--gold-soft:#F0DDB0;
+  --ivory:#FDFAF5;--ivory-deep:#F5F0E8;--warm-white:#FFFEFB;
+  --text:#2A1A1C;--text-mid:#5A3A3E;--muted:#9A7A7E;--line:#EAD8DA;
+  --shadow-sm:0 2px 12px rgba(180,100,110,0.08);
+  --shadow:0 8px 32px rgba(180,100,110,0.12);
+  --dark:#1A0A0C;--dark-mid:#2E1418;
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
+html{scroll-behavior:smooth;}
+body{font-family:'Jost',sans-serif;background:var(--ivory);color:var(--text);min-height:100vh;}
+
+/* LOGIN */
+.login-screen{
+min-height:100vh;
+background:radial-gradient(ellipse at 20% 10%,rgba(196,151,74,0.15) 0%,transparent 50%),
+radial-gradient(ellipse at 80% 90%,rgba(183,110,121,0.12) 0%,transparent 50%),
+linear-gradient(145deg,#1A0A0C 0%,#2E1418 40%,#1E0E10 100%);
+display:flex;align-items:center;justify-content:center;padding:20px;
+position:relative;overflow:hidden;
+}
+.login-screen::before{content:’’;position:absolute;inset:0;background-image:radial-gradient(circle,rgba(196,151,74,0.06) 1px,transparent 1px);background-size:44px 44px;pointer-events:none;}
+.lf{position:absolute;pointer-events:none;opacity:0.06;animation:floatUp 12s ease-in-out infinite;}
+.lf:nth-child(1){bottom:10%;left:8%;font-size:60px;animation-delay:0s;}
+.lf:nth-child(2){bottom:20%;right:10%;font-size:40px;animation-delay:3s;}
+.lf:nth-child(3){top:15%;left:12%;font-size:30px;animation-delay:6s;}
+.lf:nth-child(4){top:10%;right:8%;font-size:50px;animation-delay:9s;}
+@keyframes floatUp{0%,100%{transform:translateY(0) rotate(0deg);}50%{transform:translateY(-20px) rotate(8deg);}}
+
+.login-card{
+background:rgba(253,250,245,0.03);border:1px solid rgba(196,151,74,0.2);border-radius:24px;
+padding:40px 28px 32px;width:100%;max-width:360px;backdrop-filter:blur(30px);
+text-align:center;position:relative;z-index:1;
+box-shadow:0 40px 80px rgba(0,0,0,0.4),inset 0 1px 0 rgba(196,151,74,0.15);
+}
+.login-card::before{content:’’;position:absolute;top:0;left:15%;right:15%;height:1px;background:linear-gradient(90deg,transparent,rgba(196,151,74,0.6),transparent);}
+
+.lang-row{display:flex;justify-content:flex-end;margin-bottom:18px;}
+.lang-btn{display:flex;align-items:center;gap:5px;background:rgba(196,151,74,0.1);border:1px solid rgba(196,151,74,0.2);border-radius:999px;padding:5px 12px;cursor:pointer;font-size:11px;font-weight:600;font-family:‘Jost’,sans-serif;transition:all 0.2s;user-select:none;}
+.lang-btn:hover{background:rgba(196,151,74,0.18);}
+.len{color:rgba(232,193,122,0.9);}
+.lhi{color:rgba(232,193,122,0.35);font-family:‘Noto Sans Devanagari’,sans-serif;}
+.lsep{color:rgba(196,151,74,0.3);}
+.lang-btn.hi .len{color:rgba(232,193,122,0.35);}
+.lang-btn.hi .lhi{color:rgba(232,193,122,0.9);}
+
+.nav-lang{display:flex;align-items:center;gap:5px;background:rgba(196,151,74,0.08);border:1px solid rgba(196,151,74,0.15);border-radius:999px;padding:4px 10px;cursor:pointer;font-size:11px;font-weight:600;font-family:‘Jost’,sans-serif;transition:all 0.2s;user-select:none;}
+.nav-lang .len{color:rgba(232,193,122,0.85);}
+.nav-lang .lhi{color:rgba(232,193,122,0.28);font-family:‘Noto Sans Devanagari’,sans-serif;}
+.nav-lang .lsep{color:rgba(196,151,74,0.2);}
+.nav-lang.hi .len{color:rgba(232,193,122,0.28);}
+.nav-lang.hi .lhi{color:rgba(232,193,122,0.85);}
+
+.l-orn{display:flex;align-items:center;gap:10px;justify-content:center;margin-bottom:18px;}
+.l-line{height:1px;width:36px;background:linear-gradient(90deg,transparent,rgba(196,151,74,0.4));}
+.l-line.r{background:linear-gradient(90deg,rgba(196,151,74,0.4),transparent);}
+.l-gem{font-size:9px;color:rgba(196,151,74,0.45);letter-spacing:4px;}
+
+.login-logo{font-family:‘Cormorant Garamond’,serif;font-weight:300;font-size:40px;color:rgba(232,193,122,0.95);line-height:0.9;margin-bottom:5px;text-shadow:0 0 40px rgba(196,151,74,0.3);}
+.login-logo .amp{display:block;font-style:italic;font-size:28px;color:rgba(183,110,121,0.75);margin:3px 0;}
+.l-tagline{font-size:10px;letter-spacing:0.3em;text-transform:uppercase;color:rgba(232,193,122,0.3);margin-bottom:3px;}
+.l-date{font-family:‘Cormorant Garamond’,serif;font-style:italic;font-size:13px;color:rgba(232,193,122,0.22);margin-bottom:26px;}
+
+.l-tabs{display:flex;gap:5px;margin-bottom:16px;background:rgba(255,255,255,0.04);border-radius:11px;padding:3px;}
+.l-tab{flex:1;padding:9px;border-radius:8px;border:none;background:transparent;color:rgba(232,193,122,0.35);font-family:‘Jost’,sans-serif;font-size:12px;font-weight:600;cursor:pointer;transition:all 0.2s;}
+.l-tab.active{background:rgba(196,151,74,0.18);color:rgba(232,193,122,0.9);}
+
+.l-input{width:100%;background:rgba(253,250,245,0.04);border:1px solid rgba(196,151,74,0.18);border-radius:11px;padding:12px 14px;font-size:13px;font-family:‘Jost’,sans-serif;color:rgba(253,250,245,0.85);outline:none;margin-bottom:8px;transition:all 0.2s;}
+.l-input::placeholder{color:rgba(232,193,122,0.2);}
+.l-input:focus{border-color:rgba(196,151,74,0.5);background:rgba(253,250,245,0.07);}
+.l-btn{width:100%;background:linear-gradient(135deg,var(–rose-deep),var(–rose));color:white;border:none;border-radius:11px;padding:13px;font-family:‘Jost’,sans-serif;font-size:13px;font-weight:600;cursor:pointer;letter-spacing:0.06em;margin-bottom:8px;box-shadow:0 8px 24px rgba(139,74,82,0.38);transition:opacity 0.2s;}
+.l-btn:hover{opacity:0.92;}
+.l-ghost{width:100%;background:transparent;color:rgba(232,193,122,0.4);border:1px solid rgba(196,151,74,0.14);border-radius:11px;padding:11px;font-family:‘Jost’,sans-serif;font-size:12px;cursor:pointer;transition:all 0.2s;}
+.l-ghost:hover{background:rgba(196,151,74,0.08);}
+.l-err{font-size:12px;color:#F4A0A8;margin-top:8px;display:none;background:rgba(180,50,60,0.12);border-radius:8px;padding:8px;}
+.l-err.show{display:block;}
+.l-loading{font-size:11px;color:rgba(232,193,122,0.38);margin-top:8px;display:none;letter-spacing:0.06em;}
+.l-loading.show{display:block;}
+
+/* HERO */
+.hero{
+min-height:100vh;min-height:100svh;
+background:radial-gradient(ellipse at 20% 10%,rgba(196,151,74,0.12) 0%,transparent 55%),
+radial-gradient(ellipse at 80% 90%,rgba(183,110,121,0.1) 0%,transparent 55%),
+linear-gradient(155deg,#1A0A0C 0%,#2A1215 35%,#1E0E12 70%,#0E0508 100%);
+display:flex;flex-direction:column;align-items:center;justify-content:center;
+text-align:center;padding:40px 24px 130px;position:relative;overflow:hidden;
+}
+.hero::before{content:’’;position:absolute;inset:0;background-image:radial-gradient(circle,rgba(196,151,74,0.05) 1px,transparent 1px);background-size:44px 44px;pointer-events:none;}
+.hp{position:absolute;pointer-events:none;opacity:0.07;animation:pf 10s ease-in-out infinite;}
+.hp:nth-child(1){top:6%;left:5%;font-size:48px;animation-delay:0s;}
+.hp:nth-child(2){top:12%;right:7%;font-size:28px;animation-delay:2s;}
+.hp:nth-child(3){bottom:22%;left:4%;font-size:36px;animation-delay:4s;}
+.hp:nth-child(4){bottom:16%;right:6%;font-size:42px;animation-delay:6s;}
+.hp:nth-child(5){top:42%;left:2%;font-size:20px;animation-delay:3s;}
+.hp:nth-child(6){top:30%;right:2%;font-size:24px;animation-delay:7s;}
+@keyframes pf{0%,100%{transform:translateY(0) rotate(0deg);opacity:0.07;}50%{transform:translateY(-22px) rotate(15deg);opacity:0.14;}}
+@keyframes ri{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:translateY(0);}}
+@keyframes si{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+@keyframes ab{0%,100%{transform:translateY(0);}50%{transform:translateY(5px);}}
+@keyframes pd{0%,100%{opacity:1;transform:scale(1);}50%{opacity:0.4;transform:scale(0.8);}}
+
+.h-eyebrow{font-size:10px;font-weight:500;letter-spacing:0.36em;text-transform:uppercase;color:rgba(196,151,74,0.6);margin-bottom:22px;animation:ri 1s ease both;}
+.h-names{font-family:‘Cormorant Garamond’,serif;font-weight:300;font-size:clamp(56px,15vw,120px);line-height:0.88;animation:ri 1s 0.15s ease both;}
+.h-bride{color:rgba(232,193,122,0.95);}
+.h-amp{display:block;font-style:italic;font-size:clamp(32px,9vw,68px);color:rgba(183,110,121,0.72);margin:6px 0;}
+.h-groom{color:rgba(253,240,225,0.82);}
+.h-div{display:flex;align-items:center;gap:16px;margin:24px 0;animation:ri 1s 0.3s ease both;}
+.h-dline{height:1px;width:60px;background:linear-gradient(90deg,transparent,rgba(196,151,74,0.5));}
+.h-dline.r{background:linear-gradient(90deg,rgba(196,151,74,0.5),transparent);}
+.h-dgem{font-size:12px;color:rgba(196,151,74,0.55);letter-spacing:5px;}
+.h-date{font-family:‘Cormorant Garamond’,serif;font-style:italic;font-size:18px;color:rgba(232,193,122,0.58);letter-spacing:0.06em;animation:ri 1s 0.4s ease both;}
+.h-venue{font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:rgba(253,240,225,0.22);margin-top:8px;animation:ri 1s 0.5s ease both;}
+.h-cta{position:absolute;bottom:48px;left:50%;transform:translateX(-50%);animation:ri 1s 0.7s ease both;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:7px;background:rgba(196,151,74,0.1);border:1px solid rgba(196,151,74,0.25);border-radius:999px;padding:12px 28px;backdrop-filter:blur(12px);transition:all 0.25s;white-space:nowrap;}
+.h-cta:hover{background:rgba(196,151,74,0.18);}
+.h-cta-en{font-size:12px;color:rgba(232,193,122,0.82);font-weight:500;letter-spacing:0.08em;}
+.h-cta-hi{font-size:11px;color:rgba(232,193,122,0.38);font-family:‘Noto Sans Devanagari’,sans-serif;}
+.h-cta-arr{font-size:13px;color:rgba(196,151,74,0.55);animation:ab 2s ease infinite;}
+
+/* NAV */
+.nav{position:sticky;top:0;z-index:200;height:56px;background:rgba(26,10,12,0.93);backdrop-filter:blur(24px);border-bottom:1px solid rgba(196,151,74,0.14);padding:0 14px;display:flex;align-items:center;justify-content:space-between;}
+.nav-brand{font-family:‘Cormorant Garamond’,serif;font-style:italic;font-size:17px;color:rgba(232,193,122,0.82);white-space:nowrap;display:flex;align-items:center;gap:8px;}
+.rt-dot{width:5px;height:5px;border-radius:50%;background:#6DBF78;animation:pd 2.5s ease infinite;}
+.nav-right{display:flex;align-items:center;gap:6px;}
+.nav-pill{font-size:11px;color:rgba(232,193,122,0.55);background:rgba(196,151,74,0.08);border:1px solid rgba(196,151,74,0.12);border-radius:999px;padding:4px 10px;white-space:nowrap;}
+.nav-logout{font-size:11px;background:rgba(183,110,121,0.12);border:1px solid rgba(183,110,121,0.18);color:rgba(212,149,158,0.75);border-radius:8px;padding:5px 10px;cursor:pointer;font-family:‘Jost’,sans-serif;transition:all 0.2s;}
+.nav-logout:hover{background:rgba(183,110,121,0.22);}
+
+.subnav{position:sticky;top:56px;z-index:199;background:rgba(26,10,12,0.9);backdrop-filter:blur(20px);border-bottom:1px solid rgba(196,151,74,0.09);display:flex;padding:0 6px;overflow-x:auto;scrollbar-width:none;}
+.subnav::-webkit-scrollbar{display:none;}
+.subnav button{background:none;border:none;color:rgba(232,193,122,0.32);font-family:‘Jost’,sans-serif;font-size:11px;font-weight:500;padding:12px 11px;white-space:nowrap;cursor:pointer;border-bottom:2px solid transparent;transition:all 0.2s;letter-spacing:0.04em;}
+.subnav button:hover{color:rgba(232,193,122,0.62);}
+.subnav button.active{color:rgba(232,193,122,0.92);border-bottom-color:rgba(196,151,74,0.55);}
+
+/* CONTENT */
+.content-wrap{background:var(–ivory);min-height:60vh;padding-bottom:80px;}
+.section{display:none;max-width:720px;margin:0 auto;padding:26px 15px 40px;animation:si 0.3s ease both;}
+.section.visible{display:block;}
+.s-eye{font-size:10px;font-weight:600;letter-spacing:0.24em;text-transform:uppercase;color:var(–rose);margin-bottom:6px;}
+.s-title{font-family:‘Cormorant Garamond’,serif;font-size:clamp(28px,7vw,46px);font-weight:300;line-height:1.05;margin-bottom:6px;color:var(–text);}
+.s-title em{font-style:italic;color:var(–rose);}
+.s-sub{color:var(–muted);font-size:13px;line-height:1.7;margin-bottom:22px;}
+
+/* FILTER */
+.filter-bar{background:var(–warm-white);border:1px solid var(–line);border-radius:16px;padding:15px 16px;margin-bottom:16px;box-shadow:var(–shadow-sm);}
+.filter-title{font-size:10px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(–rose);margin-bottom:9px;}
+.filter-search{width:100%;border:1.5px solid var(–line);background:var(–ivory);border-radius:10px;padding:10px 13px;font-size:13px;font-family:‘Jost’,sans-serif;color:var(–text);outline:none;margin-bottom:9px;transition:border-color 0.2s;}
+.filter-search:focus{border-color:var(–rose);}
+.filter-chips{display:flex;flex-wrap:wrap;gap:5px;}
+.fc{font-size:11px;padding:5px 11px;border-radius:999px;background:var(–ivory-deep);border:1.5px solid var(–line);color:var(–muted);cursor:pointer;transition:all 0.2s;font-weight:500;}
+.fc:hover{border-color:var(–rose-light);color:var(–rose-deep);}
+.fc.active{background:var(–rose);color:white;border-color:var(–rose);}
+.filter-clear{font-size:11px;color:var(–rose);cursor:pointer;background:none;border:none;font-family:‘Jost’,sans-serif;font-weight:600;margin-top:7px;padding:0;display:none;}
+.filter-clear.show{display:block;}
+.filter-count{font-size:11px;color:var(–muted);margin-top:5px;}
+
+/* EVENT CARDS */
+.ev-card{background:var(–warm-white);border:1px solid var(–line);border-radius:20px;margin-bottom:13px;overflow:hidden;box-shadow:var(–shadow-sm);transition:box-shadow 0.2s;}
+.ev-card:hover{box-shadow:var(–shadow);}
+.ev-head{padding:17px 18px;cursor:pointer;display:flex;align-items:center;gap:13px;transition:background 0.2s;}
+.ev-head:hover{background:var(–rose-pale);}
+.ev-icon{width:44px;height:44px;border-radius:13px;flex-shrink:0;background:linear-gradient(135deg,var(–rose-pale),var(–rose-soft));border:1px solid var(–rose-soft);display:flex;align-items:center;justify-content:center;font-size:19px;}
+.ev-info{flex:1;}
+.ev-sub{font-size:11px;color:var(–muted);margin-bottom:2px;font-family:‘Noto Sans Devanagari’,sans-serif;}
+.ev-name{font-family:‘Cormorant Garamond’,serif;font-size:20px;font-weight:500;color:var(–text);}
+.ev-meta{display:flex;flex-wrap:wrap;gap:4px;margin-top:4px;}
+.et{font-size:10px;padding:3px 8px;border-radius:999px;font-weight:500;background:var(–gold-pale);color:var(–gold-deep);border:1px solid var(–gold-soft);}
+.et.r{background:var(–rose-pale);color:var(–rose-deep);border-color:var(–rose-soft);}
+.et.m{background:var(–ivory-deep);color:var(–muted);border-color:var(–line);}
+.ev-chev{font-size:16px;color:var(–rose-light);transition:transform 0.25s;flex-shrink:0;}
+.ev-chev.open{transform:rotate(180deg);}
+.ev-body{display:none;border-top:1px solid var(–line);padding:17px 18px;}
+.ev-body.open{display:block;}
+.ev-desc{font-size:13px;color:var(–muted);line-height:1.65;margin-bottom:15px;}
+.steps-label{font-size:10px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(–gold);margin-bottom:9px;}
+.step{display:flex;gap:11px;padding:9px 0;border-bottom:1px solid rgba(234,216,218,0.5);}
+.step:last-child{border-bottom:none;}
+.step-n{width:23px;height:23px;border-radius:50%;flex-shrink:0;background:var(–gold-pale);border:1px solid var(–gold-soft);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:var(–gold-deep);}
+.step-name{font-weight:600;font-size:13px;color:var(–text);margin-bottom:2px;}
+.step-detail{font-size:12px;color:var(–muted);}
+
+/* EVENT PHOTOS */
+.ev-photos{margin-top:16px;}
+.ev-photos-label{font-size:10px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(–rose);margin-bottom:8px;}
+.ev-photo-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-bottom:8px;}
+.ev-photo-thumb{aspect-ratio:1;border-radius:11px;overflow:hidden;cursor:pointer;background:var(–rose-pale);border:1px solid var(–rose-soft);position:relative;}
+.ev-photo-thumb img{width:100%;height:100%;object-fit:cover;transition:transform 0.3s;}
+.ev-photo-thumb:hover img{transform:scale(1.06);}
+.add-ev-photo-btn{width:100%;background:var(–rose-pale);border:1.5px dashed var(–rose-soft);border-radius:11px;padding:11px;font-family:‘Jost’,sans-serif;font-size:12px;color:var(–rose);font-weight:600;cursor:pointer;transition:all 0.2s;text-align:center;}
+.add-ev-photo-btn:hover{background:var(–rose-soft);border-style:solid;}
+
+/* PERF CARDS */
+.perf-section{margin-top:16px;}
+.perf-label{font-family:‘Cormorant Garamond’,serif;font-size:19px;font-weight:500;color:var(–text);margin-bottom:11px;display:flex;align-items:center;gap:8px;}
+.ed-badge{font-size:10px;background:var(–gold-pale);color:var(–gold-deep);border-radius:999px;padding:2px 8px;border:1px solid var(–gold-soft);font-family:‘Jost’,sans-serif;font-weight:600;}
+.perf-card{background:var(–ivory-deep);border:1px solid var(–line);border-radius:15px;padding:13px 15px;margin-bottom:9px;position:relative;transition:box-shadow 0.2s;}
+.perf-card:hover{box-shadow:var(–shadow-sm);}
+.perf-card.hidden{display:none;}
+.p-num{position:absolute;top:11px;right:11px;width:22px;height:22px;border-radius:50%;background:linear-gradient(135deg,var(–rose-deep),var(–rose));color:white;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;}
+.p-song{font-family:‘Cormorant Garamond’,serif;font-size:17px;font-weight:500;color:var(–text);margin-bottom:3px;padding-right:26px;}
+.p-cat{font-size:11px;color:var(–rose);font-weight:600;margin-bottom:9px;letter-spacing:0.04em;}
+.p-grid{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:9px;}
+@media(max-width:460px){.p-grid{grid-template-columns:1fr;}}
+.p-field{background:var(–warm-white);border:1px solid var(–line);border-radius:10px;padding:8px 10px;}
+.pfl{font-size:9px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(–gold);margin-bottom:2px;}
+.pfv{font-size:12px;color:var(–text);line-height:1.4;}
+.pfv.tbu{color:var(–muted);font-style:italic;}
+.p-dancers{background:var(–warm-white);border:1px solid var(–line);border-radius:10px;padding:8px 10px;margin-bottom:9px;}
+.p-links{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:9px;}
+.p-link{display:inline-flex;align-items:center;gap:4px;font-size:11px;padding:5px 10px;border-radius:999px;background:var(–rose-pale);color:var(–rose-deep);text-decoration:none;font-weight:500;border:1px solid var(–rose-soft);transition:all 0.2s;}
+.p-link:hover{background:var(–rose-soft);}
+.p-status{display:inline-flex;align-items:center;gap:4px;font-size:11px;font-weight:600;padding:4px 10px;border-radius:999px;}
+.sr{background:#E8F5E9;color:#2E7D32;}
+.sp{background:#FFF8E1;color:#F57F17;}
+.sn{background:var(–ivory-deep);color:var(–muted);}
+.st{background:var(–gold-pale);color:var(–gold-deep);}
+.p-updated{font-size:10px;color:var(–muted);margin-top:5px;font-style:italic;}
+
+.edit-btn{background:var(–gold-pale);border:1px solid var(–gold-soft);color:var(–gold-deep);border-radius:8px;padding:6px 12px;font-size:11px;font-weight:600;cursor:pointer;margin-top:7px;font-family:‘Jost’,sans-serif;transition:all 0.2s;}
+.edit-btn:hover{background:var(–gold-soft);}
+.edit-form{background:var(–warm-white);border:1px solid var(–line);border-top:3px solid var(–rose);border-radius:12px;padding:13px;margin-top:9px;display:none;}
+.edit-form.open{display:block;animation:si 0.25s ease;}
+.edit-row{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:7px;}
+@media(max-width:460px){.edit-row{grid-template-columns:1fr;}}
+.el{font-size:10px;font-weight:600;color:var(–muted);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:3px;}
+.ei{width:100%;border:1.5px solid var(–line);background:var(–ivory);border-radius:9px;padding:9px 11px;font-size:12px;font-family:‘Jost’,sans-serif;color:var(–text);outline:none;transition:border-color 0.2s;}
+.ei:focus{border-color:var(–rose);}
+.btn-save{background:linear-gradient(135deg,var(–rose-deep),var(–rose));color:white;border:none;border-radius:9px;padding:10px 15px;font-family:‘Jost’,sans-serif;font-size:12px;font-weight:600;cursor:pointer;margin-right:7px;box-shadow:0 4px 12px rgba(139,74,82,0.28);}
+.btn-cancel{background:var(–ivory-deep);color:var(–muted);border:1px solid var(–line);border-radius:9px;padding:10px 13px;font-family:‘Jost’,sans-serif;font-size:12px;cursor:pointer;}
+.btn-add{background:linear-gradient(135deg,var(–gold-deep),var(–gold));color:white;border:none;border-radius:9px;padding:9px 13px;font-family:‘Jost’,sans-serif;font-size:12px;font-weight:600;cursor:pointer;white-space:nowrap;box-shadow:0 4px 12px rgba(139,107,53,0.28);}
+
+/* ROLES */
+.roles-banner{background:linear-gradient(135deg,var(–dark) 0%,var(–dark-mid) 100%);border-radius:19px;padding:21px 22px;color:white;margin-bottom:18px;position:relative;overflow:hidden;border:1px solid rgba(196,151,74,0.2);}
+.roles-banner::after{content:‘✦’;position:absolute;right:18px;top:50%;transform:translateY(-50%);font-size:68px;opacity:0.04;color:var(–gold-light);}
+.roles-banner h3{font-family:‘Cormorant Garamond’,serif;font-size:21px;font-weight:400;font-style:italic;margin-bottom:4px;color:rgba(232,193,122,0.88);}
+.roles-banner p{font-size:12px;opacity:0.58;line-height:1.6;}
+.role-cat{margin-bottom:20px;}
+.role-cat-label{font-size:10px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(–gold);margin-bottom:7px;}
+.role-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+@media(max-width:460px){.role-grid{grid-template-columns:1fr;}}
+.role-card{background:var(–warm-white);border:1.5px solid var(–line);border-radius:15px;padding:12px 13px;transition:all 0.2s;}
+.role-card:hover{border-color:var(–rose-soft);box-shadow:var(–shadow-sm);}
+.role-top{display:flex;gap:9px;align-items:flex-start;margin-bottom:7px;}
+.role-icon{font-size:22px;flex-shrink:0;margin-top:2px;}
+.role-n{font-family:‘Cormorant Garamond’,serif;font-size:15px;font-weight:500;color:var(–text);margin-bottom:2px;}
+.role-tag{font-size:11px;color:var(–muted);line-height:1.4;}
+.role-expand{font-size:10px;color:var(–gold);font-weight:600;cursor:pointer;margin-bottom:7px;display:inline-flex;align-items:center;gap:3px;}
+.role-details{display:none;background:var(–gold-pale);border-radius:9px;padding:8px 10px;margin-bottom:9px;}
+.role-details.open{display:block;animation:si 0.2s ease;}
+.rdi{font-size:11px;color:var(–text-mid);line-height:1.6;padding:2px 0;}
+.rdi::before{content:’◆ ’;color:var(–gold);font-size:7px;vertical-align:middle;}
+.ri-row{display:flex;align-items:center;justify-content:space-between;gap:7px;}
+.ri-count{font-size:11px;color:var(–muted);}
+.btn-ri{font-size:11px;font-weight:600;padding:6px 11px;border-radius:999px;border:1.5px solid var(–rose-soft);background:var(–rose-pale);color:var(–rose-deep);cursor:pointer;transition:all 0.2s;font-family:‘Jost’,sans-serif;}
+.btn-ri:hover{background:var(–rose-soft);}
+.btn-ri.mine{background:var(–rose);color:white;border-color:var(–rose);}
+.ri-chips{display:flex;flex-wrap:wrap;gap:4px;margin-top:7px;}
+.ri-chip{font-size:10px;padding:3px 8px;border-radius:999px;background:var(–ivory-deep);border:1px solid var(–line);color:var(–muted);}
+.ri-chip.me{background:var(–rose);color:white;border-color:var(–rose);}
+.role-suggs{margin-top:7px;}
+.role-sugg{font-size:11px;color:var(–muted);padding:5px 8px;background:var(–ivory-deep);border-radius:8px;margin-top:4px;border:1px solid var(–line);}
+.sugg-role-btn{font-size:10px;color:var(–rose);font-weight:600;cursor:pointer;margin-top:5px;background:none;border:none;font-family:‘Jost’,sans-serif;padding:0;}
+.si-wrap{margin-top:5px;display:none;}
+.si-wrap.open{display:flex;gap:5px;}
+.si-input{flex:1;border:1px solid var(–line);background:var(–ivory);border-radius:8px;padding:7px 9px;font-size:12px;font-family:‘Jost’,sans-serif;color:var(–text);outline:none;}
+.si-btn{background:var(–rose);color:white;border:none;border-radius:8px;padding:7px 11px;font-size:12px;cursor:pointer;}
+.add-role-box{background:var(–warm-white);border:1.5px dashed var(–line);border-radius:15px;padding:15px;margin-bottom:18px;}
+.add-role-box h4{font-family:‘Cormorant Garamond’,serif;font-size:17px;font-weight:400;color:var(–text);margin-bottom:3px;}
+.add-role-box p{font-size:12px;color:var(–muted);margin-bottom:11px;}
+.add-role-row{display:flex;gap:6px;flex-wrap:wrap;}
+.ari{flex:1;min-width:100px;border:1.5px solid var(–line);background:var(–ivory);border-radius:9px;padding:9px 10px;font-size:12px;font-family:‘Jost’,sans-serif;color:var(–text);outline:none;}
+.ari:focus{border-color:var(–rose);}
+
+/* TEAM */
+.team-grid{display:grid;grid-template-columns:1fr 1fr;gap:11px;margin-bottom:18px;}
+@media(max-width:460px){.team-grid{grid-template-columns:1fr;}}
+.team-card{background:var(–warm-white);border:1px solid var(–line);border-radius:19px;padding:17px;text-align:center;box-shadow:var(–shadow-sm);transition:box-shadow 0.2s;}
+.team-card:hover{box-shadow:var(–shadow);}
+.t-avatar{width:68px;height:68px;border-radius:50%;margin:0 auto 9px;overflow:hidden;border:2.5px solid var(–rose-soft);background:linear-gradient(135deg,var(–rose-pale),var(–rose-soft));display:flex;align-items:center;justify-content:center;cursor:pointer;position:relative;box-shadow:0 4px 14px rgba(183,110,121,0.18);}
+.t-avatar img{width:100%;height:100%;object-fit:cover;}
+.t-placeholder{font-family:‘Cormorant Garamond’,serif;font-size:25px;font-weight:500;color:var(–rose-deep);}
+.t-edit{position:absolute;bottom:0;right:0;background:var(–rose);border-radius:50%;width:19px;height:19px;display:flex;align-items:center;justify-content:center;font-size:9px;box-shadow:0 2px 6px rgba(0,0,0,0.18);}
+.t-name{font-family:‘Cormorant Garamond’,serif;font-size:16px;font-weight:500;color:var(–text);margin-bottom:3px;}
+.t-badge{display:inline-block;font-size:10px;padding:2px 8px;border-radius:999px;margin-bottom:5px;font-weight:600;}
+.t-badge.admin{background:var(–gold-pale);color:var(–gold-deep);}
+.t-badge.coordinator{background:#E8F5E9;color:#2E7D32;}
+.t-badge.member{background:var(–ivory-deep);color:var(–muted);}
+.t-roles{margin-top:4px;font-size:11px;color:var(–muted);line-height:1.5;}
+
+/* GALLERY */
+.gallery-filter{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:14px;}
+.gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-bottom:14px;}
+.g-item{aspect-ratio:1;border-radius:13px;overflow:hidden;cursor:pointer;position:relative;background:var(–rose-pale);border:1px solid var(–rose-soft);}
+.g-item img{width:100%;height:100%;object-fit:cover;transition:transform 0.3s;}
+.g-item:hover img{transform:scale(1.06);}
+.g-overlay{position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(26,10,12,0.75));opacity:0;transition:opacity 0.2s;display:flex;align-items:flex-end;padding:7px;}
+.g-item:hover .g-overlay{opacity:1;}
+.g-caption{font-size:11px;color:white;font-weight:500;line-height:1.3;}
+
+.upload-card{background:var(–warm-white);border:1.5px dashed var(–rose-soft);border-radius:17px;padding:22px;text-align:center;cursor:pointer;transition:all 0.2s;margin-bottom:14px;}
+.upload-card:hover{background:var(–rose-pale);border-style:solid;}
+.upload-card-icon{font-size:30px;margin-bottom:7px;}
+.upload-card h4{font-family:‘Cormorant Garamond’,serif;font-size:18px;font-weight:400;color:var(–text);margin-bottom:4px;}
+.upload-card p{font-size:12px;color:var(–muted);}
+
+.photo-form{background:var(–warm-white);border:1px solid var(–line);border-top:3px solid var(–rose);border-radius:15px;padding:15px;margin-bottom:14px;display:none;}
+.photo-form.open{display:block;animation:si 0.3s ease;}
+
+/* LIGHTBOX */
+.lightbox{position:fixed;inset:0;z-index:500;background:rgba(26,10,12,0.96);backdrop-filter:blur(20px);display:none;align-items:center;justify-content:center;padding:20px;}
+.lightbox.open{display:flex;animation:si 0.3s ease;}
+.lb-img{max-width:100%;max-height:80vh;border-radius:14px;object-fit:contain;}
+.lb-close{position:absolute;top:18px;right:18px;background:rgba(255,255,255,0.1);border:none;color:white;border-radius:50%;width:38px;height:38px;font-size:17px;cursor:pointer;display:flex;align-items:center;justify-content:center;}
+.lb-caption{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);text-align:center;color:white;font-size:13px;background:rgba(0,0,0,0.5);border-radius:999px;padding:6px 15px;white-space:nowrap;}
+
+/* CHANGE LOG */
+.cl-item{background:var(–warm-white);border:1px solid var(–line);border-radius:13px;padding:11px 13px;margin-bottom:7px;}
+.cl-head{display:flex;align-items:center;gap:9px;margin-bottom:4px;}
+.cl-avatar{width:27px;height:27px;border-radius:50%;background:linear-gradient(135deg,var(–rose-pale),var(–rose-soft));color:var(–rose-deep);display:flex;align-items:center;justify-content:center;font-family:‘Cormorant Garamond’,serif;font-size:14px;font-weight:600;flex-shrink:0;}
+.cl-name{font-weight:600;font-size:13px;color:var(–text);}
+.cl-time{font-size:10px;color:var(–muted);}
+.cl-desc{font-size:12px;color:var(–text-mid);line-height:1.5;}
+.cl-badge{display:inline-block;font-size:10px;padding:2px 7px;border-radius:999px;font-weight:600;margin-right:4px;}
+.cbu{background:#FFF8E1;color:#F57F17;}
+.cbi{background:#E8F5E9;color:#2E7D32;}
+.cbd{background:#FFEBEE;color:#C62828;}
+
+/* SUGGESTIONS */
+.sugg-form-card{background:var(–warm-white);border:1px solid var(–line);border-top:3px solid var(–rose);border-radius:17px;padding:17px;margin-bottom:17px;box-shadow:var(–shadow-sm);}
+.sugg-form-card h4{font-family:‘Cormorant Garamond’,serif;font-size:18px;font-weight:400;color:var(–text);margin-bottom:3px;}
+.sugg-form-card p{font-size:12px;color:var(–muted);margin-bottom:13px;}
+.form-input{width:100%;border:1.5px solid var(–line);background:var(–ivory);border-radius:11px;padding:11px 13px;font-size:13px;font-family:‘Jost’,sans-serif;color:var(–text);outline:none;margin-bottom:8px;transition:border-color 0.2s;}
+.form-input:focus{border-color:var(–rose);}
+.btn-primary{width:100%;background:linear-gradient(135deg,var(–rose-deep),var(–rose));color:white;border:none;border-radius:11px;padding:13px;font-family:‘Jost’,sans-serif;font-size:13px;font-weight:600;cursor:pointer;box-shadow:0 8px 20px rgba(139,74,82,0.28);}
+.sugg-card{background:var(–warm-white);border:1px solid var(–line);border-radius:13px;padding:13px;margin-bottom:9px;box-shadow:var(–shadow-sm);}
+.sugg-head{display:flex;align-items:center;gap:9px;margin-bottom:7px;}
+.sugg-av{width:33px;height:33px;border-radius:50%;background:linear-gradient(135deg,var(–rose-pale),var(–rose-soft));color:var(–rose-deep);display:flex;align-items:center;justify-content:center;font-family:‘Cormorant Garamond’,serif;font-size:15px;font-weight:600;flex-shrink:0;}
+.sugg-author{font-weight:600;font-size:13px;color:var(–text);}
+.sugg-time{font-size:10px;color:var(–muted);}
+.sugg-text{font-size:13px;color:var(–text-mid);line-height:1.6;margin-bottom:7px;}
+.tag-pill{font-size:11px;padding:3px 8px;border-radius:999px;background:var(–rose-pale);color:var(–rose-deep);border:1px solid var(–rose-soft);font-weight:600;}
+.added-tags{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:8px;}
+.added-tag{font-size:11px;padding:4px 9px;border-radius:999px;background:var(–rose);color:white;font-weight:500;display:flex;align-items:center;gap:4px;cursor:pointer;}
+.tag-wrap{position:relative;margin-bottom:8px;}
+.tag-drop{position:absolute;top:100%;left:0;right:0;z-index:50;background:white;border:1px solid var(–line);border-radius:10px;box-shadow:var(–shadow);display:none;}
+.tag-drop.show{display:block;}
+.tditem{padding:9px 12px;font-size:13px;cursor:pointer;border-bottom:1px solid var(–line);}
+.tditem:hover{background:var(–rose-pale);}
+.tditem:last-child{border-bottom:none;}
+
+/* INFO */
+.info-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:12px;}
+@media(max-width:460px){.info-grid{grid-template-columns:1fr;}}
+.info-card{background:var(–warm-white);border:1px solid var(–line);border-radius:15px;padding:15px;box-shadow:var(–shadow-sm);}
+.info-icon{font-size:23px;margin-bottom:7px;}
+.info-label{font-size:10px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(–rose);margin-bottom:3px;}
+.info-value{font-family:‘Cormorant Garamond’,serif;font-size:18px;font-weight:500;margin-bottom:3px;color:var(–text);}
+.info-sub{font-size:12px;color:var(–muted);line-height:1.5;}
+.dress-card{background:linear-gradient(135deg,var(–dark) 0%,var(–dark-mid) 100%);border-radius:17px;padding:19px;margin-bottom:12px;border:1px solid rgba(196,151,74,0.18);position:relative;overflow:hidden;}
+.dress-card::after{content:‘🌸✦’;position:absolute;right:13px;top:50%;transform:translateY(-50%);font-size:34px;opacity:0.1;letter-spacing:4px;}
+.dress-card .info-label{color:rgba(232,193,122,0.65);}
+.dress-card .info-value{color:rgba(232,193,122,0.88);font-size:19px;}
+.dress-card .info-sub{color:rgba(253,240,225,0.42);}
+.link-card{background:linear-gradient(135deg,var(–dark),var(–dark-mid));border-radius:15px;padding:15px;margin-bottom:12px;border:1px solid rgba(196,151,74,0.13);}
+.link-card .info-label{color:rgba(232,193,122,0.65);}
+.link-card .info-value{color:rgba(232,193,122,0.88);font-size:15px;margin-bottom:7px;}
+.link-url{font-size:12px;color:rgba(232,193,122,0.85);word-break:break-all;line-height:1.5;text-decoration:underline;text-underline-offset:3px;}
+.copy-btn{display:inline-block;margin-top:7px;padding:6px 13px;background:rgba(196,151,74,0.13);color:rgba(232,193,122,0.75);border:1px solid rgba(196,151,74,0.22);border-radius:8px;font-size:11px;font-weight:600;cursor:pointer;transition:all 0.2s;}
+.copy-btn:hover{background:rgba(196,151,74,0.22);}
+.checklist-card{background:var(–warm-white);border:1px solid var(–line);border-left:3px solid var(–rose);border-radius:15px;padding:15px;margin-bottom:12px;}
+.checklist-card .info-label{color:var(–rose);}
+.checklist-card .info-sub{line-height:2.1;}
+
+.contact-card{background:linear-gradient(135deg,var(–rose-pale),var(–ivory-deep));border:1px solid var(–rose-soft);border-radius:17px;padding:22px;margin-top:18px;text-align:center;}
+.cc-eye{font-size:10px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(–rose);margin-bottom:5px;}
+.cc-title{font-family:‘Cormorant Garamond’,serif;font-size:18px;font-weight:400;color:var(–text);margin-bottom:3px;}
+.cc-name{font-family:‘Cormorant Garamond’,serif;font-size:22px;font-weight:500;color:var(–rose-deep);margin-bottom:3px;}
+.cc-phone{font-size:17px;font-weight:600;color:var(–text);letter-spacing:0.04em;margin-bottom:12px;}
+.cc-btn{display:inline-block;background:linear-gradient(135deg,var(–rose-deep),var(–rose));color:white;border:none;border-radius:999px;padding:12px 28px;font-family:‘Jost’,sans-serif;font-size:13px;font-weight:600;cursor:pointer;text-decoration:none;box-shadow:0 6px 18px rgba(139,74,82,0.28);transition:opacity 0.2s;}
+.cc-btn:hover{opacity:0.9;}
+
+/* MISC */
+.empty-state{text-align:center;padding:26px 14px;background:var(–warm-white);border:1.5px dashed var(–line);border-radius:15px;color:var(–muted);font-size:13px;}
+.loading-spin{text-align:center;padding:22px;color:var(–muted);font-size:13px;}
+
+/* BOTTOM NAV */
+.bottom-nav{position:fixed;bottom:0;left:0;right:0;z-index:100;background:rgba(26,10,12,0.96);backdrop-filter:blur(20px);border-top:1px solid rgba(196,151,74,0.1);display:flex;padding:6px 3px 13px;gap:1px;}
+.bottom-nav button{flex:1;background:none;border:none;color:rgba(232,193,122,0.25);font-family:‘Jost’,sans-serif;font-size:9px;font-weight:500;padding:7px 2px;border-radius:9px;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:3px;transition:all 0.2s;letter-spacing:0.03em;}
+.bottom-nav button .bi{font-size:16px;}
+.bottom-nav button.active{color:rgba(232,193,122,0.9);background:rgba(196,151,74,0.12);}
+
+#photoInput,#galleryPhotoInput,#eventPhotoInput{display:none;}
+</style>
+
 </head>
 <body>
-    <h1>Welcome to Our Wedding</h1>
-    <p>We are excited to invite you to our wedding celebration!</p>
-    <p>Date: 2026-04-13</p>
-    <p>Venue: Beautiful Gardens</p>
-    <footer>
-        <p>&copy; 2026 Our Wedding</p>
-    </footer>
+
+<!-- LOGIN -->
+
+<div id="loginScreen" style="display:none;">
+<div class="login-screen">
+<div class="lf">🌸</div><div class="lf">✦</div><div class="lf">🌼</div><div class="lf">◆</div>
+<div class="login-card">
+  <div class="lang-row"><div class="lang-btn hi" id="loginLangBtn" onclick="toggleLang()"><span class="len">EN</span><span class="lsep">|</span><span class="lhi">हि</span></div></div>
+  <div class="l-orn"><div class="l-line"></div><div class="l-gem">◆ ◆ ◆</div><div class="l-line r"></div></div>
+  <div class="login-logo">Priyanka<span class="amp">&amp;</span>Shubham</div>
+  <div class="l-tagline" id="ltag">विवाह उत्सव</div>
+  <div class="l-date">१ – ३ जुलाई २०२५ · रायपुर</div>
+  <div class="l-tabs">
+    <div class="l-tab active" id="tab-login" onclick="switchTab('login')">Login</div>
+    <div class="l-tab" id="tab-register" onclick="switchTab('register')">Join Team</div>
+  </div>
+  <div id="formLogin">
+    <input class="l-input" id="loginUsername" placeholder="Username"/>
+    <input class="l-input" id="loginPassword" type="password" placeholder="Password"/>
+    <button class="l-btn" id="loginEnterBtn" onclick="doLogin()">✦ &nbsp;प्रवेश करें</button>
+    <button class="l-ghost" id="loginGuestBtn" onclick="doGuest()">👁 &nbsp;Guest के रूप में देखें</button>
+  </div>
+  <div id="formRegister" style="display:none;">
+    <input class="l-input" id="regFullName" placeholder="आपका पूरा नाम"/>
+    <input class="l-input" id="regPhone" placeholder="WhatsApp नंबर" type="tel"/>
+    <input class="l-input" id="regUsername" placeholder="Username"/>
+    <input class="l-input" id="regPassword" type="password" placeholder="Password चुनें"/>
+    <input class="l-input" id="regTeamPass" type="password" placeholder="Team Password"/>
+    <button class="l-btn" id="joinTeamBtn" onclick="doRegister()">✦ &nbsp;टीम में शामिल हों</button>
+    <button class="l-ghost" id="joinGuestBtn" onclick="doGuest()">👁 &nbsp;Guest के रूप में देखें</button>
+  </div>
+  <div class="l-err" id="loginError"></div>
+  <div class="l-loading" id="loginLoading">⏳ लोड हो रहा है…</div>
+</div>
+</div>
+</div>
+
+<input type="file" id="photoInput" accept="image/*" onchange="handleAvatarUpload(event)"/>
+<input type="file" id="galleryPhotoInput" accept="image/*" onchange="handleGalleryUpload(event)"/>
+<input type="file" id="eventPhotoInput" accept="image/*" onchange="handleEventPhotoUpload(event)"/>
+
+<!-- LIGHTBOX -->
+
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <button class="lb-close" onclick="closeLightbox()">✕</button>
+  <img class="lb-img" id="lightboxImg" src="" alt=""/>
+  <div class="lb-caption" id="lightboxCaption"></div>
+</div>
+
+<!-- MAIN APP -->
+
+<div id="mainApp" style="display:none;">
+
+<div class="hero" id="heroSection">
+  <div class="hp">🌸</div><div class="hp">✦</div><div class="hp">🌼</div>
+  <div class="hp">◆</div><div class="hp">🌸</div><div class="hp">✦</div>
+  <div class="h-eyebrow" id="heroEyebrow">एक यादगार विवाह उत्सव</div>
+  <div class="h-names"><span class="h-bride">Priyanka</span><span class="h-amp">&amp;</span><span class="h-groom">Shubham</span></div>
+  <div class="h-div"><div class="h-dline"></div><div class="h-dgem">◆ ◆ ◆</div><div class="h-dline r"></div></div>
+  <div class="h-date">१ – ३ जुलाई २०२५ · रायपुर</div>
+  <div class="h-venue">✦ Royal Club, Chhattisgarh ✦</div>
+  <div class="h-cta" onclick="showSection('events')">
+    <div class="h-cta-arr">▾</div>
+    <div class="h-cta-en" id="heroCtaEn">Explore the Wedding</div>
+    <div class="h-cta-hi" id="heroCtaHi">विवरण के लिए यहाँ क्लिक करें</div>
+  </div>
+</div>
+
+<div class="nav" id="mainNav" style="display:none;">
+  <div class="nav-brand">Priyanka &amp; Shubham <span class="rt-dot" id="rtDot" style="display:none;"></span></div>
+  <div class="nav-right">
+    <div class="nav-pill" id="navPill"></div>
+    <div class="nav-lang hi" id="navLangBtn" onclick="toggleLang()"><span class="len">EN</span><span class="lsep">|</span><span class="lhi">हि</span></div>
+    <button class="nav-logout" id="navLogoutBtn" onclick="doLogout()">बाहर</button>
+  </div>
+</div>
+<div class="subnav" id="subnav" style="display:none;">
+  <button onclick="showSection('events')" id="nav-events">🗓 कार्यक्रम</button>
+  <button onclick="showSection('roles')" id="nav-roles">✋ भूमिका</button>
+  <button onclick="showSection('team')" id="nav-team">👥 टीम</button>
+  <button onclick="showSection('gallery')" id="nav-gallery">📸 Gallery</button>
+  <button onclick="showSection('suggest')" id="nav-suggest">💡 सुझाव</button>
+  <button onclick="showSection('changes')" id="nav-changes" style="display:none;">📋 Changes</button>
+  <button onclick="showSection('info')" id="nav-info">ℹ Info</button>
+</div>
+
+<div class="content-wrap">
+
+<!-- EVENTS -->
+
+<div class="section" id="sec-events">
+  <div class="s-eye" id="eventsTag">विवाह उत्सव</div>
+  <div class="s-title" id="eventsTitle">सभी <em>कार्यक्रम</em></div>
+  <div class="s-sub" id="eventsSub">हर कार्यक्रम पर क्लिक करके विस्तृत जानकारी देखें।</div>
+  <div class="filter-bar">
+    <div class="filter-title" id="filterTitle">🔍 गाने खोजें</div>
+    <input class="filter-search" id="filterSearch" placeholder="अपना नाम या गाने का नाम लिखें…" oninput="applyFilter()"/>
+    <div class="filter-chips">
+      <div class="fc" onclick="setGF(this,'kids')">👶 Kids</div>
+      <div class="fc" onclick="setGF(this,'sisters')">👩 Sisters</div>
+      <div class="fc" onclick="setGF(this,'brothers')">👨 Brothers</div>
+      <div class="fc" onclick="setGF(this,'mothers')">👩‍👧 Mothers</div>
+      <div class="fc" onclick="setGF(this,'ladies')">💃 Ladies</div>
+      <div class="fc" onclick="setGF(this,'siblings')">🤝 Siblings</div>
+      <div class="fc" onclick="setGF(this,'dee_jiju')">🥂 Dee &amp; Jiju</div>
+      <div class="fc" onclick="setGF(this,'unmarried')">💍 Unmarried</div>
+    </div>
+    <button class="filter-clear" id="filterClear" onclick="clearFilter()">✕ Filter हटाएँ</button>
+    <div class="filter-count" id="filterCount"></div>
+  </div>
+
+  <div class="ev-card">
+    <div class="ev-head" onclick="toggleEv('engagement')"><div class="ev-icon">💍</div><div class="ev-info"><div class="ev-sub" id="esub-engagement">सगाई</div><div class="ev-name">Engagement</div><div class="ev-meta"><div class="et m">🕐 Coming Soon</div></div></div><div class="ev-chev" id="ech-engagement">▾</div></div>
+    <div class="ev-body" id="ebody-engagement">
+      <div class="ev-desc">उनके हमेशा की शुरुआत। तारीख जल्द घोषित होगी। 💍</div>
+      <div class="steps-label">OVERVIEW</div>
+      <div class="step"><div class="step-n">1</div><div><div class="step-name">Date & Venue</div><div class="step-detail">To be announced</div></div></div>
+      <div class="step"><div class="step-n">2</div><div><div class="step-name">Ring Ceremony</div><div class="step-detail">Photography, family</div></div></div>
+      <div class="ev-photos"><div class="ev-photos-label">PHOTOS</div><div class="ev-photo-grid" id="ep-engagement"></div><button class="add-ev-photo-btn" id="epbtn-engagement" style="display:none;" onclick="openEvPhoto('engagement')">📷 Add Photo</button></div>
+    </div>
+  </div>
+
+  <div class="ev-card">
+    <div class="ev-head" onclick="toggleEv('mehndi')"><div class="ev-icon">🌸</div><div class="ev-info"><div class="ev-sub" id="esub-mehndi">मेहंदी की शाम</div><div class="ev-name">Mehndi Night</div><div class="ev-meta"><div class="et">📅 1 July</div><div class="et">🕖 7–11 PM</div><div class="et r">📍 Shubham's Home</div></div></div><div class="ev-chev" id="ech-mehndi">▾</div></div>
+    <div class="ev-body" id="ebody-mehndi">
+      <div class="ev-desc">संगीत, हँसी और नृत्य से भरी मेहंदी की सुहानी शाम।</div>
+      <div class="steps-label">OVERVIEW</div>
+      <div class="step"><div class="step-n">1</div><div><div class="step-name">Mehndi Application</div><div class="step-detail">Ladies taking turns</div></div></div>
+      <div class="step"><div class="step-n">2</div><div><div class="step-name">Music & Dance</div><div class="step-detail">DJ, songs, dancing</div></div></div>
+      <div class="step"><div class="step-n">3</div><div><div class="step-name">Photography</div><div class="step-detail">Reels team ready</div></div></div>
+      <div class="ev-photos"><div class="ev-photos-label">PHOTOS</div><div class="ev-photo-grid" id="ep-mehndi"></div><button class="add-ev-photo-btn" id="epbtn-mehndi" style="display:none;" onclick="openEvPhoto('mehndi')">📷 Add Photo</button></div>
+    </div>
+  </div>
+
+  <div class="ev-card">
+    <div class="ev-head" onclick="toggleEv('haldi')"><div class="ev-icon">🌿</div><div class="ev-info"><div class="ev-sub" id="esub-haldi">हल्दी रस्म</div><div class="ev-name">Haldi</div><div class="ev-meta"><div class="et">📅 2 July</div><div class="et">🕚 11 AM–2 PM</div><div class="et r">📍 Royal Club</div></div></div><div class="ev-chev" id="ech-haldi">▾</div></div>
+    <div class="ev-body" id="ebody-haldi">
+      <div class="ev-desc">पवित्र हल्दी की रस्म — परिवार के साथ खुशी का पल।</div>
+      <div class="steps-label">OVERVIEW</div>
+      <div class="step"><div class="step-n">1</div><div><div class="step-name">Décor & Prep</div><div class="step-detail">Arrive 1 hour early</div></div></div>
+      <div class="step"><div class="step-n">2</div><div><div class="step-name">Haldi Ceremony</div><div class="step-detail">Family takes turns</div></div></div>
+      <div class="step"><div class="step-n">3</div><div><div class="step-name">Baraat Songs</div><div class="step-detail">Ghodi Chadh Gaya sequence</div></div></div>
+      <div class="perf-section"><div class="perf-label">🎵 Songs <span class="ed-badge" id="edBadge" style="display:none;">✏️ Editor</span></div><div id="perfs-haldi"><div class="loading-spin">Loading…</div></div></div>
+      <div class="ev-photos"><div class="ev-photos-label">PHOTOS</div><div class="ev-photo-grid" id="ep-haldi"></div><button class="add-ev-photo-btn" id="epbtn-haldi" style="display:none;" onclick="openEvPhoto('haldi')">📷 Add Photo</button></div>
+    </div>
+  </div>
+
+  <div class="ev-card">
+    <div class="ev-head" onclick="toggleEv('sangeet')"><div class="ev-icon">🎉</div><div class="ev-info"><div class="ev-sub" id="esub-sangeet">संगीत समारोह</div><div class="ev-name">Sangeet</div><div class="ev-meta"><div class="et">📅 2 July</div><div class="et">🕔 5–8 PM</div><div class="et r">📍 Royal Club</div></div></div><div class="ev-chev" id="ech-sangeet">▾</div></div>
+    <div class="ev-body" id="ebody-sangeet">
+      <div class="ev-desc">नृत्य प्रदर्शन और उत्सव की भव्य शाम! 🎤</div>
+      <div class="steps-label">OVERVIEW</div>
+      <div class="step"><div class="step-n">1</div><div><div class="step-name">Sound Check</div><div class="step-detail">2 hours early — DJ, mic, lights</div></div></div>
+      <div class="step"><div class="step-n">2</div><div><div class="step-name">Performances</div><div class="step-detail">As listed in sequence below</div></div></div>
+      <div class="step"><div class="step-n">3</div><div><div class="step-name">Sangeet Ending</div><div class="step-detail">Tere Dware Pe Aayi Barat — all together</div></div></div>
+      <div class="perf-section">
+        <div class="perf-label">🎵 Performances <span class="ed-badge" id="edBadge2" style="display:none;">✏️ Editor</span></div>
+        <div id="perfs-sangeet"><div class="loading-spin">Loading…</div></div>
+        <div id="addPerfBtn" style="display:none;margin-top:10px;"><button class="btn-add" onclick="showAddPerf('sangeet')">+ Add Performance</button></div>
+        <div id="addPerfForm-sangeet" class="edit-form" style="margin-top:10px;">
+          <div class="edit-row"><div><div class="el">Song</div><input class="ei" id="new-song-sangeet" placeholder="Song name"/></div><div><div class="el">Category</div><input class="ei" id="new-cat-sangeet" placeholder="e.g. Siblings"/></div></div>
+          <div class="edit-row"><div><div class="el">Seq #</div><input class="ei" id="new-seq-sangeet" placeholder="22"/></div><div><div class="el">Duration</div><input class="ei" id="new-dur-sangeet" placeholder="3 mins"/></div></div>
+          <div class="edit-row"><div><div class="el">Dance Lead</div><input class="ei" id="new-lead-sangeet" placeholder="Name"/></div><div><div class="el">Status</div><select class="ei" id="new-status-sangeet"><option value="tbu">TBU</option><option value="notstarted">Not Started</option><option value="progress">In Progress</option><option value="ready">Ready</option></select></div></div>
+          <div style="margin-bottom:7px;"><div class="el">Dancers</div><input class="ei" id="new-dancers-sangeet" placeholder="Shreni, Shreya"/></div>
+          <div style="margin-bottom:7px;"><div class="el">Choreo Link</div><input class="ei" id="new-link-sangeet" placeholder="https://..."/></div>
+          <div style="margin-bottom:7px;"><div class="el">Outfit</div><input class="ei" id="new-outfit-sangeet" placeholder="e.g. Pink & Gold"/></div>
+          <div style="margin-bottom:7px;"><div class="el">Event</div><select class="ei" id="new-event-sangeet"><option value="sangeet">🎉 Sangeet</option><option value="baraat">🐎 Baraat</option><option value="haldi">🌿 Haldi</option><option value="mehndi">🌸 Mehndi</option><option value="reception">🥂 Reception</option></select></div>
+          <div style="margin-bottom:11px;"><div class="el">Notes</div><input class="ei" id="new-notes-sangeet" placeholder="e.g. Surprise entry"/></div>
+          <button class="btn-save" onclick="saveNewPerf('sangeet')">✓ Save</button>
+          <button class="btn-cancel" onclick="hideAddPerf('sangeet')">Cancel</button>
+        </div>
+      </div>
+      <div class="ev-photos"><div class="ev-photos-label">PHOTOS</div><div class="ev-photo-grid" id="ep-sangeet"></div><button class="add-ev-photo-btn" id="epbtn-sangeet" style="display:none;" onclick="openEvPhoto('sangeet')">📷 Add Photo</button></div>
+    </div>
+  </div>
+
+  <div class="ev-card">
+    <div class="ev-head" onclick="toggleEv('baraat')"><div class="ev-icon">🐎</div><div class="ev-info"><div class="ev-sub" id="esub-baraat">बारात</div><div class="ev-name">Baraat</div><div class="ev-meta"><div class="et">📅 3 July</div><div class="et">🕓 4–6 PM</div><div class="et r">📍 Royal Club</div></div></div><div class="ev-chev" id="ech-baraat">▾</div></div>
+    <div class="ev-body" id="ebody-baraat">
+      <div class="ev-desc">भव्य बारात — ढोल, नृत्य और पूरी ऊर्जा!</div>
+      <div class="steps-label">OVERVIEW</div>
+      <div class="step"><div class="step-n">1</div><div><div class="step-name">Opening</div><div class="step-detail">Hum Ladke Hain — baraat starts</div></div></div>
+      <div class="step"><div class="step-n">2</div><div><div class="step-name">Groom on Horse</div><div class="step-detail">Ghodi Chadh Gaya</div></div></div>
+      <div class="perf-section"><div class="perf-label">🎵 Baraat Songs</div><div id="perfs-baraat"><div class="loading-spin">Loading…</div></div></div>
+      <div class="ev-photos"><div class="ev-photos-label">PHOTOS</div><div class="ev-photo-grid" id="ep-baraat"></div><button class="add-ev-photo-btn" id="epbtn-baraat" style="display:none;" onclick="openEvPhoto('baraat')">📷 Add Photo</button></div>
+    </div>
+  </div>
+
+  <div class="ev-card">
+    <div class="ev-head" onclick="toggleEv('vivah')"><div class="ev-icon">🔥</div><div class="ev-info"><div class="ev-sub" id="esub-vivah">विवाह संस्कार</div><div class="ev-name">Vivah</div><div class="ev-meta"><div class="et">📅 3 July</div><div class="et">🕖 7–11 PM</div><div class="et r">📍 Royal Club</div></div></div><div class="ev-chev" id="ech-vivah">▾</div></div>
+    <div class="ev-body" id="ebody-vivah">
+      <div class="ev-desc">सात फेरों की पावन रस्म — जीवन भर का यादगार पल। ✨</div>
+      <div class="steps-label">OVERVIEW</div>
+      <div class="step"><div class="step-n">1</div><div><div class="step-name">Jaymala</div><div class="step-detail">Varmala, photography</div></div></div>
+      <div class="step"><div class="step-n">2</div><div><div class="step-name">Saat Phere</div><div class="step-detail">Sacred vows with pandit ji</div></div></div>
+      <div class="step"><div class="step-n">3</div><div><div class="step-name">Vidaai</div><div class="step-detail">Emotional farewell</div></div></div>
+      <div class="ev-photos"><div class="ev-photos-label">PHOTOS</div><div class="ev-photo-grid" id="ep-vivah"></div><button class="add-ev-photo-btn" id="epbtn-vivah" style="display:none;" onclick="openEvPhoto('vivah')">📷 Add Photo</button></div>
+    </div>
+  </div>
+
+  <div class="ev-card">
+    <div class="ev-head" onclick="toggleEv('reception')"><div class="ev-icon">🥂</div><div class="ev-info"><div class="ev-sub" id="esub-reception">स्वागत समारोह</div><div class="ev-name">Reception</div><div class="ev-meta"><div class="et">📅 3 July</div><div class="et">🕖 7–11 PM</div><div class="et r">📍 Royal Club</div></div></div><div class="ev-chev" id="ech-reception">▾</div></div>
+    <div class="ev-body" id="ebody-reception">
+      <div class="ev-desc">१०००+ मेहमानों के साथ भव्य स्वागत! 🎊</div>
+      <div class="steps-label">OVERVIEW</div>
+      <div class="step"><div class="step-n">1</div><div><div class="step-name">Welcome Guests</div><div class="step-detail">Welcome team at entrance</div></div></div>
+      <div class="step"><div class="step-n">2</div><div><div class="step-name">Dining</div><div class="step-detail">Catering team at counters</div></div></div>
+      <div class="step"><div class="step-n">3</div><div><div class="step-name">Photos & Reels</div><div class="step-detail">Media team active</div></div></div>
+      <div class="ev-photos"><div class="ev-photos-label">PHOTOS</div><div class="ev-photo-grid" id="ep-reception"></div><button class="add-ev-photo-btn" id="epbtn-reception" style="display:none;" onclick="openEvPhoto('reception')">📷 Add Photo</button></div>
+    </div>
+  </div>
+</div>
+
+<!-- ROLES -->
+
+<div class="section" id="sec-roles">
+  <div class="s-eye" id="rolesTag">भूमिका</div>
+  <div class="s-title" id="rolesTitle">अपनी <em>भूमिका चुनें</em></div>
+  <div class="s-sub" id="rolesSub">जो भूमिका आप लेना चाहते हैं, उसमें रुचि दिखाएँ।</div>
+  <div class="roles-banner"><h3 id="rolesIntroH">आप इस विवाह को यादगार बनाते हैं ✦</h3><p id="rolesIntroP">भूमिका चुनें, विवरण पढ़ें। दूसरे सुझाव भी दे सकते हैं।</p></div>
+  <div id="rolesContainer"></div>
+  <div class="add-role-box"><h4 id="addRoleTitle">✦ नई भूमिका जोड़ें</h4><p id="addRoleP">कोई भूमिका नहीं दिखी? यहाँ जोड़ें!</p><div class="add-role-row"><input class="ari" id="customRoleName" placeholder="भूमिका का नाम"/><input class="ari" id="customRoleDesc" placeholder="छोटा विवरण"/><button class="btn-add" id="addRoleBtn" onclick="addCustomRole()">+ जोड़ें</button></div></div>
+</div>
+
+<!-- TEAM -->
+
+<div class="section" id="sec-team">
+  <div class="s-eye" id="teamTag">विवाह टीम</div>
+  <div class="s-title" id="teamTitle">हमारी <em>टीम</em></div>
+  <div class="s-sub" id="teamSub">Management team के सभी सदस्य — भूमिका और फोटो के साथ।</div>
+  <div class="team-grid" id="teamGrid"></div>
+  <div class="empty-state" id="teamEmpty" style="display:none;">अभी कोई member नहीं जुड़ा।</div>
+</div>
+
+<!-- GALLERY -->
+
+<div class="section" id="sec-gallery">
+  <div class="s-eye">Photos</div>
+  <div class="s-title">Wedding <em>Gallery</em></div>
+  <div class="s-sub" id="gallerySub">सभी यादें एक जगह। Tap to view, comment, tag people.</div>
+  <div class="upload-card" id="uploadCardBtn" onclick="document.getElementById('galleryPhotoInput').click()" style="display:none;">
+    <div class="upload-card-icon">📷</div>
+    <h4 id="uploadCardTitle">Add a Photo</h4>
+    <p id="uploadCardSub">Tap to upload from your phone</p>
+  </div>
+  <div class="photo-form" id="galleryUploadForm">
+    <div class="el" style="margin-bottom:7px;">Photo Details</div>
+    <input class="ei" style="width:100%;margin-bottom:7px;" id="photoCaptionInput" placeholder="Caption (optional)"/>
+    <div class="el" style="margin-bottom:4px;">Event</div>
+    <select class="ei" style="width:100%;margin-bottom:7px;" id="photoEventInput">
+      <option value="">General</option>
+      <option value="mehndi">🌸 Mehndi</option>
+      <option value="haldi">🌿 Haldi</option>
+      <option value="sangeet">🎉 Sangeet</option>
+      <option value="baraat">🐎 Baraat</option>
+      <option value="vivah">🔥 Vivah</option>
+      <option value="reception">🥂 Reception</option>
+    </select>
+    <div class="el" style="margin-bottom:4px;">Tag People</div>
+    <div class="tag-wrap" style="margin-bottom:7px;">
+      <input class="ei" style="width:100%;" id="photoTagInput" placeholder="@tag someone" oninput="showPhotoTagSugg()" onblur="hidePhotoTagSugg()"/>
+      <div class="tag-drop" id="photoTagDrop"></div>
+    </div>
+    <div class="added-tags" id="photoAddedTags"></div>
+    <div style="display:flex;gap:7px;"><button class="btn-save" style="flex:1;" onclick="submitGalleryPhoto()">Upload Photo</button><button class="btn-cancel" onclick="cancelGalleryUpload()">Cancel</button></div>
+  </div>
+  <div class="gallery-filter" id="galleryFilter">
+    <div class="fc active" onclick="filterGallery(this,'')">All</div>
+    <div class="fc" onclick="filterGallery(this,'mehndi')">🌸 Mehndi</div>
+    <div class="fc" onclick="filterGallery(this,'haldi')">🌿 Haldi</div>
+    <div class="fc" onclick="filterGallery(this,'sangeet')">🎉 Sangeet</div>
+    <div class="fc" onclick="filterGallery(this,'baraat')">🐎 Baraat</div>
+    <div class="fc" onclick="filterGallery(this,'vivah')">🔥 Vivah</div>
+    <div class="fc" onclick="filterGallery(this,'reception')">🥂 Reception</div>
+  </div>
+  <div class="gallery-grid" id="galleryGrid"><div class="loading-spin" style="grid-column:1/-1;">Loading…</div></div>
+</div>
+
+<!-- CHANGES (admin only) -->
+
+<div class="section" id="sec-changes">
+  <div class="s-eye">Change Log</div>
+  <div class="s-title">Who, <em>What, When</em></div>
+  <div class="s-sub">Complete record of all edits and updates.</div>
+  <div id="changeLogList"><div class="loading-spin">Loading…</div></div>
+</div>
+
+<!-- SUGGESTIONS -->
+
+<div class="section" id="sec-suggest">
+  <div class="s-eye" id="suggestTag">सुझाव</div>
+  <div class="s-title" id="suggestTitle">आपके <em>सुझाव</em></div>
+  <div class="s-sub" id="suggestSub">कोई भी विचार यहाँ लिखें। @नाम से किसी को टैग करें!</div>
+  <div class="sugg-form-card">
+    <h4 id="suggestFormH">✦ अपना सुझाव लिखें</h4>
+    <p id="suggestFormP">@नाम लिखकर टैग करें।</p>
+    <input class="form-input" id="suggName" placeholder="आपका नाम"/>
+    <textarea class="form-input" id="suggText" rows="3" placeholder="आपका सुझाव…"></textarea>
+    <div class="tag-wrap">
+      <input class="form-input" style="margin:0;" id="tagInput" placeholder="@किसी को टैग करें" oninput="showTagSugg()" onblur="hideTagSugg()"/>
+      <div class="tag-drop" id="tagDrop"></div>
+    </div>
+    <div class="added-tags" id="addedTags"></div>
+    <button class="btn-primary" id="suggestSendBtn" onclick="submitSuggestion()">✦ सुझाव भेजें</button>
+  </div>
+  <div id="suggestionsList"></div>
+</div>
+
+<!-- INFO -->
+
+<div class="section" id="sec-info">
+  <div class="s-eye" id="infoTag">जानकारी</div>
+  <div class="s-title" id="infoTitle">विवाह का <em>विवरण</em></div>
+  <div class="s-sub" id="infoSub">रायपुर पहुँचने से पहले यह सब जान लें।</div>
+  <div class="dress-card"><div class="info-icon">👗</div><div class="info-label">DRESS CODE</div><div class="info-value">Traditional Indian Attire</div><div class="info-sub">Ladies: Lehenga / Saree &nbsp;·&nbsp; Gents: Sherwani / Kurta<br/>Coordinate colours in the WhatsApp group! 🌸</div></div>
+  <div class="info-grid">
+    <div class="info-card"><div class="info-icon">📍</div><div class="info-label">VENUE</div><div class="info-value">Royal Club</div><div class="info-sub">Raipur, Chhattisgarh</div></div>
+    <div class="info-card"><div class="info-icon">👥</div><div class="info-label">GUESTS</div><div class="info-value">~1000</div><div class="info-sub">Grand traditional wedding</div></div>
+    <div class="info-card"><div class="info-icon">📅</div><div class="info-label">DATES</div><div class="info-value">1–3 July</div><div class="info-sub">2025 · Three days</div></div>
+    <div class="info-card"><div class="info-icon">🌸</div><div class="info-label">EVENTS</div><div class="info-value">7 Functions</div><div class="info-sub">Engagement · Mehndi · Haldi · Sangeet · Baraat · Vivah · Reception</div></div>
+  </div>
+  <div class="link-card"><div class="info-icon">🔗</div><div class="info-label">WEBSITE</div><div class="info-value">Share this link</div><div class="link-url">https://shreyadubey-studio.github.io/priyanka-shubham-wedding</div><div class="copy-btn" onclick="copyLink()">📋 Copy Link</div></div>
+  <div class="checklist-card"><div class="info-label">COUSIN CHECKLIST</div><div class="info-value" style="font-family:'Cormorant Garamond',serif;font-size:18px;margin-bottom:8px;">Day-of Tips</div><div class="info-sub">🌸 &nbsp;Claim your role on this website<br/>✦ &nbsp;Arrive 1 hour before your event<br/>🌸 &nbsp;Keep phone fully charged<br/>✦ &nbsp;Family briefing the night before<br/>🌸 &nbsp;Coordinate outfit colour with your team<br/>✦ &nbsp;Have fun — it's a celebration! 🎊</div></div>
+  <div class="contact-card"><div class="cc-eye">Website Issues? Contact</div><div class="cc-title">Get in touch with</div><div class="cc-name">Shreya Dubey</div><div class="cc-phone">+91 91095 27063</div><a class="cc-btn" href="tel:+919109527063">📞 Call Shreya</a></div>
+</div>
+
+</div><!-- content-wrap -->
+
+<div class="bottom-nav" id="bottomNav" style="display:none;">
+  <button id="bn-events" onclick="showSection('events')"><span class="bi">🗓️</span><span id="bnEvents">Events</span></button>
+  <button id="bn-roles" onclick="showSection('roles')"><span class="bi">✋</span><span id="bnRoles">Roles</span></button>
+  <button id="bn-team" onclick="showSection('team')"><span class="bi">👥</span><span id="bnTeam">Team</span></button>
+  <button id="bn-gallery" onclick="showSection('gallery')"><span class="bi">📸</span><span id="bnGallery">Gallery</span></button>
+  <button id="bn-suggest" onclick="showSection('suggest')"><span class="bi">💡</span><span id="bnSuggest">Suggest</span></button>
+  <button id="bn-info" onclick="showSection('info')"><span class="bi">ℹ️</span><span id="bnInfo">Info</span></button>
+</div>
+
+</div><!-- mainApp -->
+<script>
+const SB_URL='https://fwbbfsfjgmuuzqymxtdv.supabase.co';
+const SB_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZ3YmJmc2ZqZ211dXpxeW14dGR2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzYwMTUxMDksImV4cCI6MjA5MTU5MTEwOX0.npnpwd1SirAHyHH1JahMcKyEsvJb5MrPXEzdPAPpC-0';
+const TEAM_PASS='4567';
+const SK='prishubh_v8';
+const sb=supabase.createClient(SB_URL,SB_KEY);
+let cu=null,tagPeople=[],photoTagPeople=[],activeGF=null,rtSubs=[];
+let pendingGalleryFile=null,pendingEvFile=null,pendingEvName=null,galleryFilter='';
+let currentLang=localStorage.getItem('prishubh_lang')||'hi';
+
+const T={
+en:{
+loginTab:‘Login’,joinTab:‘Join Team’,uPh:‘Username’,pPh:‘Password’,enterBtn:‘✦  Enter’,guestBtn:‘👁  View as Guest’,
+fName:‘Your full name’,phone:‘WhatsApp number’,uPh2:‘Username’,choosePw:‘Choose password’,teamPw:‘Team Password’,
+joinBtn:‘✦  Join the Team’,loading:‘⏳ Loading…’,logout:‘Logout’,
+evTag:‘Wedding’,evTitle:’All ‘,evTitleEm:‘Events’,evSub:‘Click each event for details.’,
+fTitle:‘🔍 Search Songs’,fPh:‘Type your name or song name…’,fClear:‘✕ Clear Filter’,
+rTag:‘Roles’,rTitle:‘Choose Your ‘,rTitleEm:‘Role’,rSub:‘Show interest in a role.’,
+rIntroH:‘You make this wedding memorable ✦’,rIntroP:‘Choose a role, read details.’,
+arTitle:‘✦ Add New Role’,arP:“Don’t see your role? Add here!”,arNPh:‘Role name’,arDPh:‘Short description’,arBtn:’+ Add’,
+tTag:‘Team’,tTitle:’Our ’,tTitleEm:‘Team’,tSub:‘All management team members.’,
+galSub:‘All wedding memories. Tap to view.’,
+upTitle:‘Add a Photo’,upSub:‘Tap to upload from your phone’,
+sgTag:‘Suggestions’,sgTitle:‘Your ‘,sgTitleEm:‘Suggestions’,sgSub:‘Share any idea. Tag with @name!’,
+sgH:‘✦ Write a Suggestion’,sgP:‘Tag someone with @name.’,sgNPh:‘Your name’,sgTPh:‘Your suggestion…’,tPh:’@Tag someone’,
+sgBtn:‘✦ Send’,iTag:‘Info’,iTitle:‘Wedding ‘,iTitleEm:‘Details’,iSub:‘Everything before arriving.’,
+bnEv:‘Events’,bnRoles:‘Roles’,bnTeam:‘Team’,bnGal:‘Gallery’,bnSug:‘Suggest’,bnInfo:‘Info’,
+eEngagement:‘Engagement’,eMehndi:‘Mehndi Night’,eHaldi:‘Haldi’,eSangeet:‘Sangeet’,
+eBaraat:‘Baraat’,eVivah:‘Vivah’,eReception:‘Reception’,heroEye:‘A Memorable Wedding Celebration’,
+heroCta:‘Explore the Wedding’,heroCtaHi:‘Click to explore’,noPerf:‘No performances yet.’,
+intCount:’ interested’,loginToInt:‘Login to interact’,lastBy:‘✏️ Last updated by: ‘,found:’ songs found’,
+errBoth:‘Enter username and password.’,errWrong:‘Wrong username or password!’,
+errFill:‘Fill all fields.’,errTeamPw:‘Wrong Team Password!’,errTaken:‘Username already taken.’,errConn:‘Connection error.’
+},
+hi:{
+loginTab:‘Login’,joinTab:‘टीम में शामिल हों’,uPh:‘Username’,pPh:‘Password’,enterBtn:‘✦  प्रवेश करें’,guestBtn:‘👁  Guest के रूप में देखें’,
+fName:‘आपका पूरा नाम’,phone:‘WhatsApp नंबर’,uPh2:‘Username’,choosePw:‘Password चुनें’,teamPw:‘Team Password’,
+joinBtn:‘✦  टीम में शामिल हों’,loading:‘⏳ लोड हो रहा है…’,logout:‘बाहर’,
+evTag:‘विवाह उत्सव’,evTitle:’सभी ’,evTitleEm:‘कार्यक्रम’,evSub:‘हर कार्यक्रम पर क्लिक करके विस्तृत जानकारी देखें।’,
+fTitle:‘🔍 गाने खोजें’,fPh:‘अपना नाम या गाने का नाम लिखें…’,fClear:‘✕ Filter हटाएँ’,
+rTag:‘भूमिका’,rTitle:‘अपनी ‘,rTitleEm:‘भूमिका चुनें’,rSub:‘जो भूमिका आप लेना चाहते हैं, उसमें रुचि दिखाएँ।’,
+rIntroH:‘आप इस विवाह को यादगार बनाते हैं ✦’,rIntroP:‘भूमिका चुनें, विवरण पढ़ें। दूसरे सुझाव भी दे सकते हैं।’,
+arTitle:‘✦ नई भूमिका जोड़ें’,arP:‘कोई भूमिका नहीं दिखी? यहाँ जोड़ें!’,arNPh:‘भूमिका का नाम’,arDPh:‘छोटा विवरण’,arBtn:’+ जोड़ें’,
+tTag:‘विवाह टीम’,tTitle:‘हमारी ‘,tTitleEm:‘टीम’,tSub:‘Management team के सभी सदस्य।’,
+galSub:‘सभी यादें एक जगह। Tap to view.’,upTitle:‘Photo जोड़ें’,upSub:‘अपने phone से upload करें’,
+sgTag:‘सुझाव’,sgTitle:‘आपके ‘,sgTitleEm:‘सुझाव’,sgSub:‘कोई भी विचार यहाँ लिखें। @नाम से टैग करें!’,
+sgH:‘✦ अपना सुझाव लिखें’,sgP:’@नाम लिखकर टैग करें।’,sgNPh:‘आपका नाम’,sgTPh:‘आपका सुझाव…’,tPh:’@किसी को टैग करें’,
+sgBtn:‘✦ सुझाव भेजें’,iTag:‘जानकारी’,iTitle:‘विवाह का ‘,iTitleEm:‘विवरण’,iSub:‘रायपुर पहुँचने से पहले यह सब जान लें।’,
+bnEv:‘कार्यक्रम’,bnRoles:‘भूमिका’,bnTeam:‘टीम’,bnGal:‘Gallery’,bnSug:‘सुझाव’,bnInfo:‘जानकारी’,
+eEngagement:‘सगाई’,eMehndi:‘मेहंदी की शाम’,eHaldi:‘हल्दी रस्म’,eSangeet:‘संगीत समारोह’,
+eBaraat:‘बारात’,eVivah:‘विवाह संस्कार’,eReception:‘स्वागत समारोह’,heroEye:‘एक यादगार विवाह उत्सव’,
+heroCta:‘Explore the Wedding’,heroCtaHi:‘विवरण के लिए यहाँ क्लिक करें’,noPerf:‘अभी कोई परफॉर्मेंस नहीं।’,
+intCount:’ रुचि’,loginToInt:‘Login करें’,lastBy:‘✏️ Last updated by: ‘,found:’ गाने मिले’,
+errBoth:‘Username और password दोनों लिखें।’,errWrong:‘गलत username या password!’,
+errFill:‘सभी fields भरें।’,errTeamPw:‘गलत Team Password!’,errTaken:‘यह username पहले से लिया गया।’,errConn:‘Connection error.’
+}
+};
+const t=k=>T[currentLang][k]||T.en[k]||k;
+
+function toggleLang(){
+currentLang=currentLang===‘hi’?‘en’:‘hi’;
+localStorage.setItem(‘prishubh_lang’,currentLang);
+applyLang();
+}
+
+function applyLang(){
+const isHi=currentLang===‘hi’;
+document.documentElement.lang=currentLang;
+document.querySelectorAll(’.lang-btn,.nav-lang’).forEach(el=>el.classList.toggle(‘hi’,isHi));
+// Login
+setT(‘tab-login’,‘loginTab’);setT(‘tab-register’,‘joinTab’);
+setPh(‘loginUsername’,‘uPh’);setPh(‘loginPassword’,‘pPh’);
+setT(‘loginEnterBtn’,‘enterBtn’);setT(‘loginGuestBtn’,‘guestBtn’);
+setPh(‘regFullName’,‘fName’);setPh(‘regPhone’,‘phone’);setPh(‘regUsername’,‘uPh2’);
+setPh(‘regPassword’,‘choosePw’);setPh(‘regTeamPass’,‘teamPw’);
+setT(‘joinTeamBtn’,‘joinBtn’);setT(‘joinGuestBtn’,‘guestBtn’);
+setT(‘loginLoading’,‘loading’);setT(‘navLogoutBtn’,‘logout’);
+// Sections
+setT(‘eventsTag’,‘evTag’);setT2(‘eventsTitle’,‘evTitle’,‘evTitleEm’);setT(‘eventsSub’,‘evSub’);
+setT(‘filterTitle’,‘fTitle’);setPh(‘filterSearch’,‘fPh’);setT(‘filterClear’,‘fClear’);
+setT(‘rolesTag’,‘rTag’);setT2(‘rolesTitle’,‘rTitle’,‘rTitleEm’);setT(‘rolesSub’,‘rSub’);
+setT(‘rolesIntroH’,‘rIntroH’);setT(‘rolesIntroP’,‘rIntroP’);
+setT(‘addRoleTitle’,‘arTitle’);setT(‘addRoleP’,‘arP’);setPh(‘customRoleName’,‘arNPh’);setPh(‘customRoleDesc’,‘arDPh’);setT(‘addRoleBtn’,‘arBtn’);
+setT(‘teamTag’,‘tTag’);setT2(‘teamTitle’,‘tTitle’,‘tTitleEm’);setT(‘teamSub’,‘tSub’);
+setT(‘gallerySub’,‘galSub’);setT(‘uploadCardTitle’,‘upTitle’);setT(‘uploadCardSub’,‘upSub’);
+setT(‘suggestTag’,‘sgTag’);setT2(‘suggestTitle’,‘sgTitle’,‘sgTitleEm’);setT(‘suggestSub’,‘sgSub’);
+setT(‘suggestFormH’,‘sgH’);setT(‘suggestFormP’,‘sgP’);setPh(‘suggName’,‘sgNPh’);setPh(‘suggText’,‘sgTPh’);setPh(‘tagInput’,‘tPh’);
+setT(‘suggestSendBtn’,‘sgBtn’);setT(‘infoTag’,‘iTag’);setT2(‘infoTitle’,‘iTitle’,‘iTitleEm’);setT(‘infoSub’,‘iSub’);
+// Bottom nav
+setT(‘bnEvents’,‘bnEv’);setT(‘bnRoles’,‘bnRoles’);setT(‘bnTeam’,‘bnTeam’);setT(‘bnGallery’,‘bnGal’);setT(‘bnSuggest’,‘bnSug’);setT(‘bnInfo’,‘bnInfo’);
+// Event subtitles
+setT(‘esub-engagement’,‘eEngagement’);setT(‘esub-mehndi’,‘eMehndi’);setT(‘esub-haldi’,‘eHaldi’);
+setT(‘esub-sangeet’,‘eSangeet’);setT(‘esub-baraat’,‘eBaraat’);setT(‘esub-vivah’,‘eVivah’);setT(‘esub-reception’,‘eReception’);
+// Hero
+setT(‘heroEyebrow’,‘heroEye’);setT(‘heroCtaEn’,‘heroCta’);setT(‘heroCtaHi’,‘heroCtaHi’);
+// Nav links
+sNav(‘nav-events’,’🗓 ’,‘evTag’);sNav(‘nav-roles’,’✋ ’,‘rTag’);sNav(‘nav-team’,’👥 ’,‘tTag’);
+sNav(‘nav-gallery’,’📸 ’,‘bnGal’);sNav(‘nav-suggest’,‘💡 ‘,‘sgTag’);sNav(‘nav-info’,‘ℹ ‘,‘iTag’);
+// Re-render if visible
+if(document.getElementById(‘sec-roles’)?.classList.contains(‘visible’)) renderRoles();
+}
+function setT(id,k){const el=document.getElementById(id);if(el)el.textContent=t(k);}
+function setPh(id,k){const el=document.getElementById(id);if(el)el.placeholder=t(k);}
+function setT2(id,k,ek){const el=document.getElementById(id);if(el)el.innerHTML=t(k)+’<em>’+t(ek)+’</em>’;}
+function sNav(id,icon,k){const el=document.getElementById(id);if(el)el.textContent=icon+t(k);}
+
+// ── ROLES ──
+const ROLES=[
+{id:‘gm1’,icon:‘🤵’,name:‘Groomsman 1’,cat:‘👑 Groomsmen & Groomswomen’,tag:‘दूल्हे का पहला साथी’,details:[‘हर रस्म में शुभम के साथ रहें’,‘Sherwani / coordinated outfit’,‘फोटोग्राफर के साथ group shots’]},
+{id:‘gm2’,icon:‘🤵’,name:‘Groomsman 2’,cat:‘👑 Groomsmen & Groomswomen’,tag:‘दूल्हे का दूसरा साथी’,details:[‘मंच पर हमेशा मौजूद रहें’,‘Sherwani / coordinated outfit’]},
+{id:‘gm3’,icon:‘🤵’,name:‘Groomsman 3’,cat:‘👑 Groomsmen & Groomswomen’,tag:‘दूल्हे का तीसरा साथी’,details:[‘Sherwani / coordinated outfit’,‘बारात में साथ चलें’]},
+{id:‘gw1’,icon:‘💃’,name:‘Groomswoman 1’,cat:‘👑 Groomsmen & Groomswomen’,tag:‘दुल्हन की पहली सहेली’,details:[‘हर रस्म में प्रियंका के पास रहें’,‘Lehenga / coordinated outfit’]},
+{id:‘gw2’,icon:‘💃’,name:‘Groomswoman 2’,cat:‘👑 Groomsmen & Groomswomen’,tag:‘दुल्हन की दूसरी सहेली’,details:[‘Lehenga / coordinated outfit’,‘संगीत में dance performance’]},
+{id:‘gw3’,icon:‘💃’,name:‘Groomswoman 3’,cat:‘👑 Groomsmen & Groomswomen’,tag:‘दुल्हन की तीसरी सहेली’,details:[‘Lehenga / coordinated outfit’,‘विदाई में support’]},
+{id:‘baraat1’,icon:‘🐎’,name:‘बारात लीडर’,cat:‘🎊 बारात व रस्में’,tag:‘बारात में सबसे आगे’,details:[‘बारात में सबसे आगे चलें’,‘ढोल के साथ नृत्य करें’,‘बारात से ३० मिनट पहले तैयार’]},
+{id:‘baraat2’,icon:‘💃’,name:‘बारात डांसर’,cat:‘🎊 बारात व रस्में’,tag:‘बारात में नृत्य ऊर्जा’,details:[‘पूरी बारात में ऊर्जा बनाएँ’,‘Comfortable dancing outfit’]},
+{id:‘pheras’,icon:‘🌸’,name:‘रस्म सहयोगी’,cat:‘🎊 बारात व रस्में’,tag:‘पूजा सामग्री तैयार रखें’,details:[‘पूजा सामग्री list लें’,‘शांत और organized रहें’]},
+{id:‘groom_shadow’,icon:‘🤵’,name:‘दूल्हे का साया’,cat:‘🎊 बारात व रस्में’,tag:‘शुभम के साथ हर पल’,details:[‘पूरे दिन शुभम के साथ रहें’,‘Emergency में तुरंत action’]},
+{id:‘welcome1’,icon:‘🙏’,name:‘स्वागत करता’,cat:‘🚪 मेहमान प्रबंधन’,tag:‘दरवाजे पर गर्मजोशी से’,details:[‘Main gate पर स्वागत’,‘मुस्कुराहट और विनम्रता’]},
+{id:‘welcome2’,icon:‘👴’,name:‘VIP होस्ट’,cat:‘🚪 मेहमान प्रबंधन’,tag:‘बुजुर्गों का व्यक्तिगत ध्यान’,details:[‘बुजुर्गों को personally escort करें’,‘VIP list पहले से बनाएँ’]},
+{id:‘seating’,icon:‘🪑’,name:‘बैठक व्यवस्था’,cat:‘🚪 मेहमान प्रबंधन’,tag:‘१०००+ मेहमान मार्गदर्शन’,details:[‘Seating plan पहले से समझें’]},
+{id:‘kids’,icon:‘👶’,name:‘बच्चों की देखभाल’,cat:‘🚪 मेहमान प्रबंधन’,tag:‘बच्चों को सुरक्षित रखें’,details:[‘Stage से बच्चे दूर रखें’]},
+{id:‘catering’,icon:‘🍛’,name:‘खाना इंचार्ज’,cat:‘🍽️ खाना व लॉजिस्टिक्स’,tag:‘कैटरर समन्वय’,details:[‘Food counters भरे रखें’]},
+{id:‘vendor’,icon:‘📋’,name:‘वेंडर समन्वयक’,cat:‘🍽️ खाना व लॉजिस्टिक्स’,tag:‘सभी वेंडर से संपर्क’,details:[‘Photographer, DJ contact रखें’]},
+{id:‘gifts’,icon:‘🎁’,name:‘उपहार प्रबंधक’,cat:‘🍽️ खाना व लॉजिस्टिक्स’,tag:‘उपहार एकत्र व सुरक्षित’,details:[‘Cash envelopes safe box में’]},
+{id:‘float’,icon:‘⚡’,name:‘फ्लोटिंग हेल्पर’,cat:‘🍽️ खाना व लॉजिस्टिक्स’,tag:‘जहाँ जरूरत, वहाँ दौड़ें’,details:[‘Most flexible role’]},
+{id:‘mc’,icon:‘🎤’,name:‘MC / एंकर’,cat:‘🎉 मनोरंजन व मीडिया’,tag:‘संगीत व रिसेप्शन होस्ट’,details:[‘Script पहले से तैयार’,‘Energetic और funny’]},
+{id:‘dance’,icon:‘🕺’,name:‘डांस लीड’,cat:‘🎉 मनोरंजन व मीडिया’,tag:‘नृत्य प्रस्तुति आयोजन’,details:[‘सभी dance groups coordinate करें’]},
+{id:‘dj_coord’,icon:‘🎵’,name:‘DJ समन्वयक’,cat:‘🎉 मनोरंजन व मीडिया’,tag:‘सही वक्त पर सही गाना’,details:[‘Complete song list और sequence दें’]},
+{id:‘reels’,icon:‘📸’,name:‘रील्स & फोटो’,cat:‘🎉 मनोरंजन व मीडिया’,tag:‘यादगार पलों को कैद करें’,details:[‘Phone / camera पूरा charged रखें’]},
+{id:‘audio_track’,icon:‘🎧’,name:‘Audio & Track Manager’,cat:‘💻 Tech & Media’,tag:‘All tracks ready रखें’,details:[‘सभी edited song tracks collect करें’,‘DJ को सही format में files दें’,‘Master playlist बनाएँ’,‘Sangeet पर DJ का single point contact’]},
+{id:‘website_mgr’,icon:‘💻’,name:‘Website Manager’,cat:‘💻 Tech & Media’,tag:‘Website updated रखें’,details:[‘Performance details update करें’,‘Team members को login में help’,‘Day-of tech queries handle करें’]}
+];
+
+// ── LOGIN ──
+function switchTab(tab){
+document.getElementById(‘tab-login’).classList.toggle(‘active’,tab===‘login’);
+document.getElementById(‘tab-register’).classList.toggle(‘active’,tab===‘register’);
+document.getElementById(‘formLogin’).style.display=tab===‘login’?‘block’:‘none’;
+document.getElementById(‘formRegister’).style.display=tab===‘register’?‘block’:‘none’;
+document.getElementById(‘loginError’).classList.remove(‘show’);
+}
+function showErr(msg){const el=document.getElementById(‘loginError’);el.textContent=msg;el.classList.add(‘show’);}
+function showLoad(v){document.getElementById(‘loginLoading’).classList.toggle(‘show’,v);}
+
+async function doLogin(){
+const u=document.getElementById(‘loginUsername’).value.trim().toLowerCase();
+const p=document.getElementById(‘loginPassword’).value;
+if(!u||!p){showErr(t(‘errBoth’));return;}
+showLoad(true);
+try{
+const{data,error}=await sb.from(‘users’).select(’*’).eq(‘username’,u).eq(‘password_hash’,p).single();
+if(error||!data){showErr(t(‘errWrong’));showLoad(false);return;}
+await sb.from(‘users’).update({last_login:new Date().toISOString()}).eq(‘id’,data.id);
+cu=data;localStorage.setItem(SK,JSON.stringify({id:data.id,username:data.username}));
+showLoad(false);startApp();
+}catch(e){showErr(t(‘errConn’));showLoad(false);}
+}
+async function doRegister(){
+const fn=document.getElementById(‘regFullName’).value.trim();
+const ph=document.getElementById(‘regPhone’).value.trim();
+const u=document.getElementById(‘regUsername’).value.trim().toLowerCase();
+const p=document.getElementById(‘regPassword’).value;
+const tp=document.getElementById(‘regTeamPass’).value;
+if(!fn||!ph||!u||!p){showErr(t(‘errFill’));return;}
+if(tp!==TEAM_PASS){showErr(t(‘errTeamPw’));return;}
+showLoad(true);
+try{
+const{data:ex}=await sb.from(‘users’).select(‘id’).eq(‘username’,u).single();
+if(ex){showErr(t(‘errTaken’));showLoad(false);return;}
+const{data,error}=await sb.from(‘users’).insert({username:u,password_hash:p,full_name:fn,phone:ph,role:‘member’}).select().single();
+if(error){showErr(t(‘errConn’)+’ ’+error.message);showLoad(false);return;}
+cu=data;localStorage.setItem(SK,JSON.stringify({id:data.id,username:data.username}));
+showLoad(false);startApp();
+}catch(e){showErr(t(‘errConn’));showLoad(false);}
+}
+async function doGuest(){cu={id:‘guest’,username:‘guest’,full_name:‘Guest’,role:‘guest’};startApp();}
+function doLogout(){
+cu=null;localStorage.removeItem(SK);
+rtSubs.forEach(s=>sb.removeChannel(s));rtSubs=[];
+document.getElementById(‘loginScreen’).style.display=‘flex’;
+document.getElementById(‘mainApp’).style.display=‘none’;
+
+}
+
+// ── START APP ──
+async function startApp(){
+document.getElementById(‘loginScreen’).style.display=‘none’;
+document.getElementById(‘mainApp’).style.display=‘block’;
+const isAdmin=cu.role===‘admin’;
+const canEdit=cu.role!==‘guest’;
+
+// Nav pill — show first name only (no role for admin)
+const displayName = cu.full_name ? cu.full_name.split(’ ‘)[0] : cu.username;
+document.getElementById(‘navPill’).textContent = displayName + (cu.role===‘guest’?’ (Guest)’:’’);
+
+// Editor badges
+[‘edBadge’,‘edBadge2’].forEach(id=>{const el=document.getElementById(id);if(el)el.style.display=canEdit?‘inline’:‘none’;});
+const apb=document.getElementById(‘addPerfBtn’);if(apb)apb.style.display=canEdit?‘block’:‘none’;
+
+// Event photo buttons
+if(canEdit){[‘engagement’,‘mehndi’,‘haldi’,‘sangeet’,‘baraat’,‘vivah’,‘reception’].forEach(ev=>{const b=document.getElementById(‘epbtn-’+ev);if(b)b.style.display=‘block’;});}
+
+// Gallery upload button
+const ucb=document.getElementById(‘uploadCardBtn’);if(ucb)ucb.style.display=canEdit?‘block’:‘none’;
+
+// Changes tab for admin only
+if(isAdmin)document.getElementById(‘nav-changes’).style.display=‘block’;
+
+applyLang();
+await loadAllPerfs();
+await loadRoleInterests();
+await loadCustomRoles();
+await loadGallery();
+setupRealtime();
+}
+
+// ── REALTIME ──
+function setupRealtime(){
+document.getElementById(‘rtDot’).style.display=‘inline-block’;
+const ps=sb.channel(‘perfs’).on(‘postgres_changes’,{event:’*’,schema:‘public’,table:‘performances’},(payload)=>{
+const ev=payload.new?.event||payload.old?.event;if(ev)loadPerfs(ev);
+}).subscribe();
+const is=sb.channel(‘interests’).on(‘postgres_changes’,{event:’*’,schema:‘public’,table:‘role_interests’},()=>loadRoleInterests()).subscribe();
+const gs=sb.channel(‘photos’).on(‘postgres_changes’,{event:’*’,schema:‘public’,table:‘event_photos’},()=>{loadGallery();loadAllEvPhotos();}).subscribe();
+rtSubs=[ps,is,gs];
+}
+
+// ── PERFORMANCES ──
+const SL={ready:‘✅ Ready’,progress:‘⏳ In Progress’,notstarted:‘🔴 Not Started’,tbu:‘📝 TBU’};
+const SC={ready:‘sr’,progress:‘sp’,notstarted:‘sn’,tbu:‘st’};
+
+async function loadAllPerfs(){await Promise.all([‘sangeet’,‘baraat’,‘haldi’].map(e=>loadPerfs(e)));}
+
+async function loadPerfs(event){
+const el=document.getElementById(‘perfs-’+event);if(!el)return;
+const{data,error}=await sb.from(‘performances’).select(’*’).eq(‘event’,event).order(‘seq’);
+if(error){el.innerHTML=’<div class="empty-state">Error loading.</div>’;return;}
+renderPerfs(event,data||[]);
+}
+
+function renderPerfs(event,perfs){
+const el=document.getElementById(‘perfs-’+event);if(!el)return;
+if(!perfs.length){el.innerHTML=`<div class="empty-state">${t('noPerf')}</div>`;return;}
+const canEdit=cu&&cu.role!==‘guest’;
+el.innerHTML=perfs.map(p=>` <div class="perf-card" id="pc-${p.id}"> <div class="p-num">${p.seq||'?'}</div> <div class="p-song">${esc(p.song)}</div> <div class="p-cat">${esc(p.category||'')}</div> <div class="p-grid"> <div class="p-field"><div class="pfl">Dance Lead</div><div class="pfv ${!p.lead?'tbu':''}">${esc(p.lead)||'To be updated'}</div></div> <div class="p-field"><div class="pfl">Duration</div><div class="pfv ${!p.duration?'tbu':''}">${p.duration?p.duration+' mins':'To be updated'}</div></div> <div class="p-field"><div class="pfl">Track Ready</div><div class="pfv ${!p.track_ready?'tbu':''}">${esc(p.track_ready)||'To be updated'}</div></div> <div class="p-field"><div class="pfl">Finalized</div><div class="pfv ${!p.song_finalized?'tbu':''}">${esc(p.song_finalized)||'To be updated'}</div></div> </div> <div class="p-dancers"><div class="pfl">Dancers</div><div class="pfv ${!p.dancers?'tbu':''}">${esc(p.dancers)||'To be updated'}</div></div> ${(p.outfit||p.notes)?`<div class="p-grid">${p.outfit?`<div class="p-field"><div class="pfl">Outfit</div><div class="pfv">${esc(p.outfit)}</div></div>`:’’}${p.notes?`<div class="p-field"><div class="pfl">Notes</div><div class="pfv">${esc(p.notes)}</div></div>`:’’}</div>`:''} ${p.link?`<div class="p-links"><a class="p-link" href="${esc(p.link)}" target="_blank">🎬 Choreo Ref</a>${p.link2?`<a class="p-link" href="${esc(p.link2)}" target="_blank">🎬 Ref 2</a>`:’’}</div>`:''} <span class="p-status ${SC[p.practice_status]||'st'}">${SL[p.practice_status]||'📝 TBU'}</span> ${p.updated_by?`<div class="p-updated">${t(‘lastBy’)}${esc(p.updated_by)}</div>`:''} ${canEdit?`<button class="edit-btn" onclick="toggleEdit('${p.id}','${event}')">✏️ Edit</button>`:''} <div class="edit-form" id="ef-${p.id}"> <div class="edit-row"><div><div class="el">Song</div><input class="ei" id="es-${p.id}" value="${esc(p.song)}"/></div><div><div class="el">Category</div><input class="ei" id="ec-${p.id}" value="${esc(p.category||'')}"/></div></div> <div class="edit-row"><div><div class="el">Seq #</div><input class="ei" id="eq-${p.id}" value="${p.seq||''}"/></div><div><div class="el">Duration</div><input class="ei" id="ed-${p.id}" value="${esc(p.duration||'')}"/></div></div> <div class="edit-row"><div><div class="el">Dance Lead</div><input class="ei" id="el-${p.id}" value="${esc(p.lead||'')}"/></div><div><div class="el">Status</div><select class="ei" id="est-${p.id}"><option value="tbu" ${p.practice_status==='tbu'?'selected':''}>TBU</option><option value="notstarted" ${p.practice_status==='notstarted'?'selected':''}>Not Started</option><option value="progress" ${p.practice_status==='progress'?'selected':''}>In Progress</option><option value="ready" ${p.practice_status==='ready'?'selected':''}>Ready</option></select></div></div> <div style="margin-bottom:7px;"><div class="el">Dancers</div><input class="ei" id="edn-${p.id}" value="${esc(p.dancers||'')}"/></div> <div class="edit-row"><div><div class="el">Outfit</div><input class="ei" id="eo-${p.id}" value="${esc(p.outfit||'')}"/></div><div><div class="el">Track Ready</div><select class="ei" id="etr-${p.id}"><option value="" ${!p.track_ready?'selected':''}>TBU</option><option value="Yes" ${p.track_ready==='Yes'?'selected':''}>Yes</option><option value="No" ${p.track_ready==='No'?'selected':''}>No</option></select></div></div> <div class="edit-row"><div><div class="el">Finalized</div><select class="ei" id="ef2-${p.id}"><option value="" ${!p.song_finalized?'selected':''}>TBU</option><option value="Yes" ${p.song_finalized==='Yes'?'selected':''}>Yes</option><option value="No" ${p.song_finalized==='No'?'selected':''}>No</option></select></div><div><div class="el">Practice Plan</div><input class="ei" id="epp-${p.id}" value="${esc(p.practice_plan||'')}"/></div></div> <div style="margin-bottom:7px;"><div class="el">Choreo Link 1</div><input class="ei" id="elk-${p.id}" value="${esc(p.link||'')}"/></div> <div style="margin-bottom:7px;"><div class="el">Choreo Link 2</div><input class="ei" id="elk2-${p.id}" value="${esc(p.link2||'')}"/></div> <div style="margin-bottom:7px;"><div class="el">🔄 Move to Event</div><select class="ei" id="eev-${p.id}"><option value="sangeet" ${event==='sangeet'?'selected':''}>🎉 Sangeet</option><option value="baraat" ${event==='baraat'?'selected':''}>🐎 Baraat</option><option value="haldi" ${event==='haldi'?'selected':''}>🌿 Haldi</option><option value="mehndi" ${event==='mehndi'?'selected':''}>🌸 Mehndi</option><option value="reception" ${event==='reception'?'selected':''}>🥂 Reception</option></select></div> <div style="margin-bottom:11px;"><div class="el">Notes</div><input class="ei" id="en-${p.id}" value="${esc(p.notes||'')}"/></div> <button class="btn-save" onclick="saveEdit('${p.id}','${event}')">✓ Save</button> <button class="btn-cancel" onclick="toggleEdit('${p.id}','${event}')">Cancel</button> </div> </div>`).join(’’);
+applyFilter();
+}
+
+function toggleEdit(id,ev){document.getElementById(‘ef-’+id)?.classList.toggle(‘open’);}
+
+async function saveEdit(id,event){
+const ne=document.getElementById(‘eev-’+id).value;
+const up={
+song:document.getElementById(‘es-’+id).value.trim(),
+category:document.getElementById(‘ec-’+id).value.trim(),
+seq:parseInt(document.getElementById(‘eq-’+id).value)||1,
+duration:document.getElementById(‘ed-’+id).value.trim(),
+lead:document.getElementById(‘el-’+id).value.trim(),
+practice_status:document.getElementById(‘est-’+id).value,
+dancers:document.getElementById(‘edn-’+id).value.trim(),
+outfit:document.getElementById(‘eo-’+id).value.trim(),
+track_ready:document.getElementById(‘etr-’+id).value,
+song_finalized:document.getElementById(‘ef2-’+id).value,
+practice_plan:document.getElementById(‘epp-’+id).value.trim(),
+link:document.getElementById(‘elk-’+id).value.trim(),
+link2:document.getElementById(‘elk2-’+id).value.trim(),
+notes:document.getElementById(‘en-’+id).value.trim(),
+updated_at:new Date().toISOString(),
+updated_by:cu.full_name.split(’ ’)[0]||cu.username,
+event:ne
+};
+const{error}=await sb.from(‘performances’).update(up).eq(‘id’,id);
+if(error){alert(’Error: ’+error.message);return;}
+await logChange(‘performances’,id,‘update’,{song:up.song,status:up.practice_status,event:ne});
+if(ne!==event){await loadPerfs(event);await loadPerfs(ne);alert(‘✓ Moved to ‘+ne+’!’);}
+else{await loadPerfs(event);alert(‘✓ Saved!’);}
+}
+
+function showAddPerf(e){document.getElementById(‘addPerfForm-’+e).classList.add(‘open’);}
+function hideAddPerf(e){document.getElementById(‘addPerfForm-’+e).classList.remove(‘open’);}
+
+async function saveNewPerf(event){
+const song=document.getElementById(‘new-song-’+event).value.trim();
+if(!song){alert(‘Enter song name!’);return;}
+const te=document.getElementById(‘new-event-’+event)?.value||event;
+const np={
+id:te[0]+Date.now(),event:te,
+seq:parseInt(document.getElementById(‘new-seq-’+event).value)||99,
+song,category:document.getElementById(‘new-cat-’+event).value.trim(),
+duration:document.getElementById(‘new-dur-’+event).value.trim(),
+lead:document.getElementById(‘new-lead-’+event).value.trim(),
+practice_status:document.getElementById(‘new-status-’+event).value,
+dancers:document.getElementById(‘new-dancers-’+event).value.trim(),
+link:document.getElementById(‘new-link-’+event).value.trim(),
+outfit:document.getElementById(‘new-outfit-’+event).value.trim(),
+notes:document.getElementById(‘new-notes-’+event).value.trim(),
+updated_by:cu.full_name.split(’ ’)[0]||cu.username,
+updated_at:new Date().toISOString()
+};
+const{error}=await sb.from(‘performances’).insert(np);
+if(error){alert(‘Error: ‘+error.message);return;}
+await logChange(‘performances’,np.id,‘insert’,{song,event:te});
+hideAddPerf(event);await loadPerfs(te);
+[‘new-song-’,‘new-cat-’,‘new-seq-’,‘new-dur-’,‘new-lead-’,‘new-dancers-’,‘new-link-’,‘new-outfit-’,‘new-notes-’].forEach(f=>{const el=document.getElementById(f+event);if(el)el.value=’’;});
+alert(‘✓ Added!’);
+}
+
+// ── CHANGE LOG ──
+async function logChange(table,id,action,vals){
+try{await sb.from(‘change_log’).insert({table_name:table,record_id:String(id),action,changed_by:cu.username||’?’,changed_by_name:cu.full_name.split(’ ’)[0]||cu.username,new_values:vals,created_at:new Date().toISOString()});}catch(e){}
+}
+
+async function loadChangeLog(){
+const el=document.getElementById(‘changeLogList’);if(!el)return;
+const{data}=await sb.from(‘change_log’).select(’*’).order(‘created_at’,{ascending:false}).limit(60);
+if(!data?.length){el.innerHTML=’<div class="empty-state">No changes yet.</div>’;return;}
+el.innerHTML=data.map(c=>{
+const d=new Date(c.created_at);
+const tm=d.toLocaleDateString(‘en-IN’)+’ ‘+d.toLocaleTimeString(‘en-IN’,{hour:‘2-digit’,minute:‘2-digit’});
+const cm={update:‘cbu’,insert:‘cbi’,delete:‘cbd’};
+const v=c.new_values||{};
+let desc=v.song?` "${esc(v.song)}"`:’ ‘;
+if(v.event)desc+=` → ${v.event}`;if(v.status)desc+=` · ${v.status}`;
+return `<div class="cl-item"><div class="cl-head"><div class="cl-avatar">${(c.changed_by_name||'?').charAt(0).toUpperCase()}</div><div style="flex:1;"><div class="cl-name">${esc(c.changed_by_name||c.changed_by)}</div><div class="cl-time">${tm}</div></div></div><div class="cl-desc"><span class="cl-badge ${cm[c.action]||'cbu'}">${c.action}</span><b>${c.table_name}</b>${desc}</div></div>`;
+}).join(’’);
+}
+
+// ── ROLES ──
+let allRI={},allRS={},customRolesDB=[];
+
+async function loadRoleInterests(){
+const{data:ri}=await sb.from(‘role_interests’).select(’*’);
+allRI={};(ri||[]).forEach(i=>{if(!allRI[i.role_id])allRI[i.role_id]=[];allRI[i.role_id].push(i);});
+const{data:rs}=await sb.from(‘role_suggestions’).select(’*’);
+allRS={};(rs||[]).forEach(s=>{if(!allRS[s.role_id])allRS[s.role_id]=[];allRS[s.role_id].push(s);});
+if(document.getElementById(‘sec-roles’)?.classList.contains(‘visible’))renderRoles();
+}
+
+async function loadCustomRoles(){const{data}=await sb.from(‘custom_roles’).select(’*’).order(‘created_at’);customRolesDB=data||[];}
+
+function getAllRoles(){
+return[…ROLES,…customRolesDB.map(r=>({id:r.id,icon:‘✦’,name:r.name,cat:‘✦ Family Added’,tag:r.tagline||r.role_desc||’’,details:[r.role_desc||’’],isCustom:true}))];
+}
+
+function renderRoles(){
+const cont=document.getElementById(‘rolesContainer’);if(!cont)return;
+const all=getAllRoles();
+const canInteract=cu&&cu.role!==‘guest’;
+const cats={};
+all.forEach(r=>{if(!cats[r.cat])cats[r.cat]=[];cats[r.cat].push(r);});
+let html=’’;
+Object.entries(cats).forEach(([cat,roles])=>{
+html+=`<div class="role-cat"><div class="role-cat-label">${esc(cat)}</div><div class="role-grid">`;
+roles.forEach(r=>{
+const ints=allRI[r.id]||[];
+const iMine=ints.some(i=>i.user_id===cu?.id);
+const suggs=allRS[r.id]||[];
+html+=`<div class="role-card"> <div class="role-top"><div class="role-icon">${r.icon}</div><div><div class="role-n">${esc(r.name)}</div><div class="role-tag">${esc(r.tag||'')}</div></div></div> <div class="role-expand" onclick="toggleRD('${r.id}')">📋 Details ▾</div> <div class="role-details" id="rd-${r.id}">${r.details.map(d=>`<div class="rdi">${esc(d)}</div>`).join('')}</div> <div class="ri-row"><div class="ri-count">${ints.length}${t('intCount')}</div> ${canInteract?`<button class="btn-ri ${iMine?'mine':''}" onclick="toggleRI('${r.id}',${iMine})">${iMine?‘✓ ‘+t(‘intCount’).trim():’+’+t(‘intCount’).trim()}</button>`:`<span style="font-size:10px;color:var(--muted);">${t(‘loginToInt’)}</span>`}</div> ${ints.length?`<div class="ri-chips">${ints.map(i=>`<span class="ri-chip ${i.user_id===cu?.id?'me':''}">${esc(i.full_name)}</span>`).join(’’)}</div>`:''} ${suggs.length?`<div class="role-suggs">${suggs.map(s=>`<div class="role-sugg">💬 <b>${esc(s.suggester_name)}</b> → <b>${esc(s.suggested_name)}</b></div>`).join(’’)}</div>`:''} ${canInteract?`<button class="sugg-role-btn" onclick="toggleSI('${r.id}')">💡 Suggest someone</button><div class="si-wrap" id="si-${r.id}"><input class="si-input" id="sin-${r.id}" placeholder="Name?"/><button class="si-btn" onclick="submitRS('${r.id}')">Suggest</button></div>`:''} </div>`;
+});
+html+=`</div></div>`;
+});
+cont.innerHTML=html;
+}
+
+function toggleRD(id){document.getElementById(‘rd-’+id)?.classList.toggle(‘open’);}
+function toggleSI(id){document.getElementById(‘si-’+id)?.classList.toggle(‘open’);}
+
+async function toggleRI(roleId,isMine){
+if(!cu||cu.role===‘guest’)return;
+if(isMine){await sb.from(‘role_interests’).delete().eq(‘role_id’,roleId).eq(‘user_id’,cu.id);}
+else{await sb.from(‘role_interests’).insert({role_id:roleId,user_id:cu.id,username:cu.username,full_name:cu.full_name});}
+await logChange(‘role_interests’,roleId,isMine?‘delete’:‘insert’,{role:roleId,user:cu.full_name});
+await loadRoleInterests();
+}
+async function submitRS(roleId){
+const n=document.getElementById(‘sin-’+roleId)?.value.trim();if(!n){alert(‘Enter name!’);return;}
+await sb.from(‘role_suggestions’).insert({role_id:roleId,suggester_username:cu.username,suggester_name:cu.full_name,suggested_name:n});
+document.getElementById(‘sin-’+roleId).value=’’;document.getElementById(‘si-’+roleId)?.classList.remove(‘open’);
+await loadRoleInterests();alert(‘✦ Suggested!’);
+}
+async function addCustomRole(){
+const name=document.getElementById(‘customRoleName’).value.trim();
+const desc=document.getElementById(‘customRoleDesc’).value.trim();
+if(!name){alert(‘Enter role name!’);return;}
+await sb.from(‘custom_roles’).insert({id:‘custom_’+Date.now(),name,role_desc:desc,tagline:desc||’’,created_by:cu.username});
+document.getElementById(‘customRoleName’).value=’’;document.getElementById(‘customRoleDesc’).value=’’;
+await loadCustomRoles();renderRoles();alert(‘✦ Role added!’);
+}
+
+// ── TEAM ──
+async function renderTeam(){
+const grid=document.getElementById(‘teamGrid’);
+const empty=document.getElementById(‘teamEmpty’);
+if(!grid)return;
+const{data}=await sb.from(‘users’).select(’*’).neq(‘role’,‘guest’).order(‘created_at’);
+if(!data?.length){grid.innerHTML=’’;empty.style.display=‘block’;return;}
+empty.style.display=‘none’;
+const all=getAllRoles();
+grid.innerHTML=data.map(m=>{
+const isMe=cu&&cu.id===m.id;
+// First name only for admin
+const displayName=m.role===‘admin’?m.full_name.split(’ ‘)[0]:m.full_name;
+// Don’t show admin badge to others
+const showBadge=m.role!==‘admin’||(cu&&cu.role===‘admin’);
+const myInts=Object.entries(allRI).filter(([rid,arr])=>arr.some(i=>i.user_id===m.id)).map(([rid])=>all.find(x=>x.id===rid)?.name).filter(Boolean);
+return `<div class="team-card"> <div class="t-avatar" onclick="${isMe?'document.getElementById(\'photoInput\').click()':''}"> ${m.photo_url?`<img src="${esc(m.photo_url)}" alt="${esc(displayName)}"/>`:`<div class="t-placeholder">${displayName.charAt(0).toUpperCase()}</div>`} ${isMe?`<div class="t-edit">📷</div>`:''} </div> <div class="t-name">${esc(displayName)}</div> ${showBadge?`<div class="t-badge ${m.role}">${m.role}</div>`:''} ${myInts.length?`<div class="t-roles">${myInts.join(’ · ‘)}</div>`:''} </div>`;
+}).join(’’);
+}
+
+async function handleAvatarUpload(event){
+const file=event.target.files[0];if(!file)return;
+const reader=new FileReader();
+reader.onload=async function(e){
+await sb.from(‘users’).update({photo_url:e.target.result}).eq(‘id’,cu.id);
+cu.photo_url=e.target.result;renderTeam();
+};reader.readAsDataURL(file);
+}
+
+// ── GALLERY ──
+let allPhotos=[];
+
+async function loadGallery(){
+const el=document.getElementById(‘galleryGrid’);if(!el)return;
+const{data}=await sb.from(‘event_photos’).select(’*’).order(‘created_at’,{ascending:false});
+allPhotos=data||[];
+renderGallery();
+loadAllEvPhotos();
+}
+
+function renderGallery(){
+const el=document.getElementById(‘galleryGrid’);if(!el)return;
+const filtered=galleryFilter?allPhotos.filter(p=>p.event_name===galleryFilter):allPhotos;
+if(!filtered.length){el.innerHTML=’<div class="empty-state" style="grid-column:1/-1;">No photos yet. Be the first to add! 📸</div>’;return;}
+el.innerHTML=filtered.map(p=>` <div class="g-item" onclick="openLightbox('${esc(p.photo_url)}','${esc(p.caption||'')}')"> <img src="${esc(p.photo_url)}" loading="lazy"/> <div class="g-overlay"><div class="g-caption">${esc(p.caption||'')}${p.tags?.length?' · @'+p.tags.join(' @'):''}</div></div> </div>`).join(’’);
+}
+
+function filterGallery(el,eventName){
+galleryFilter=eventName;
+document.querySelectorAll(’#galleryFilter .fc’).forEach(c=>c.classList.remove(‘active’));
+el.classList.add(‘active’);
+renderGallery();
+}
+
+function loadAllEvPhotos(){
+[‘engagement’,‘mehndi’,‘haldi’,‘sangeet’,‘baraat’,‘vivah’,‘reception’].forEach(ev=>{
+const grid=document.getElementById(‘ep-’+ev);if(!grid)return;
+const photos=allPhotos.filter(p=>p.event_name===ev).slice(0,6);
+grid.innerHTML=photos.map(p=>`<div class="ev-photo-thumb" onclick="openLightbox('${esc(p.photo_url)}','${esc(p.caption||'')}')"><img src="${esc(p.photo_url)}" loading="lazy"/></div>`).join(’’);
+});
+}
+
+// Gallery upload
+function handleGalleryUpload(event){
+const file=event.target.files[0];if(!file)return;
+pendingGalleryFile=file;pendingEvName=null;
+document.getElementById(‘galleryUploadForm’).classList.add(‘open’);
+document.getElementById(‘photoCaptionInput’).value=’’;
+document.getElementById(‘photoEventInput’).value=’’;
+photoTagPeople=[];renderPhotoTags();
+}
+function openEvPhoto(evName){
+pendingEvName=evName;
+document.getElementById(‘eventPhotoInput’).click();
+}
+function handleEventPhotoUpload(event){
+const file=event.target.files[0];if(!file)return;
+pendingEvFile=file;
+document.getElementById(‘galleryUploadForm’).classList.add(‘open’);
+document.getElementById(‘photoCaptionInput’).value=’’;
+if(pendingEvName)document.getElementById(‘photoEventInput’).value=pendingEvName;
+photoTagPeople=[];renderPhotoTags();
+}
+function cancelGalleryUpload(){pendingGalleryFile=null;pendingEvFile=null;document.getElementById(‘galleryUploadForm’).classList.remove(‘open’);}
+
+async function submitGalleryPhoto(){
+const file=pendingGalleryFile||pendingEvFile;if(!file){alert(‘No photo selected!’);return;}
+const caption=document.getElementById(‘photoCaptionInput’).value.trim();
+const evName=document.getElementById(‘photoEventInput’).value;
+const reader=new FileReader();
+reader.onload=async function(e){
+const{error}=await sb.from(‘event_photos’).insert({
+event_name:evName||null,photo_url:e.target.result,
+caption:caption||null,uploaded_by:cu.username||‘guest’,
+uploaded_by_name:cu.full_name?.split(’ ’)[0]||‘Guest’,
+tags:photoTagPeople.length?photoTagPeople:null,
+created_at:new Date().toISOString()
+});
+if(error){alert(’Upload failed: ’+error.message);return;}
+pendingGalleryFile=null;pendingEvFile=null;
+document.getElementById(‘galleryUploadForm’).classList.remove(‘open’);
+await loadGallery();alert(‘✓ Photo added!’);
+};reader.readAsDataURL(file);
+}
+
+async function showPhotoTagSugg(){
+const input=document.getElementById(‘photoTagInput’).value.trim();
+const drop=document.getElementById(‘photoTagDrop’);
+if(!input){drop.classList.remove(‘show’);return;}
+const{data}=await sb.from(‘users’).select(‘full_name’).neq(‘role’,‘guest’);
+const names=(data||[]).map(u=>u.full_name).filter(n=>n.toLowerCase().includes(input.toLowerCase())&&!photoTagPeople.includes(n));
+if(!names.length){drop.classList.remove(‘show’);return;}
+drop.innerHTML=names.slice(0,5).map(n=>`<div class="tditem" onmousedown="addPhotoTag('${escJs(n)}')">${esc(n)}</div>`).join(’’);
+drop.classList.add(‘show’);
+}
+function hidePhotoTagSugg(){setTimeout(()=>document.getElementById(‘photoTagDrop’)?.classList.remove(‘show’),200);}
+function addPhotoTag(n){if(photoTagPeople.includes(n))return;photoTagPeople.push(n);document.getElementById(‘photoTagInput’).value=’’;renderPhotoTags();}
+function removePhotoTag(n){photoTagPeople=photoTagPeople.filter(x=>x!==n);renderPhotoTags();}
+function renderPhotoTags(){document.getElementById(‘photoAddedTags’).innerHTML=photoTagPeople.map(t=>`<div class="added-tag" onclick="removePhotoTag('${escJs(t)}')">@${esc(t)} ✕</div>`).join(’’);}
+
+// Lightbox
+function openLightbox(src,caption){
+document.getElementById(‘lightboxImg’).src=src;
+document.getElementById(‘lightboxCaption’).textContent=caption||’’;
+document.getElementById(‘lightbox’).classList.add(‘open’);
+}
+function closeLightbox(){document.getElementById(‘lightbox’).classList.remove(‘open’);}
+
+// ── SUGGESTIONS ──
+async function loadSuggestions(){
+const el=document.getElementById(‘suggestionsList’);if(!el)return;
+const{data}=await sb.from(‘suggestions’).select(’*’).order(‘created_at’,{ascending:false}).limit(30);
+if(!data?.length){el.innerHTML=’<div class="empty-state">No suggestions yet. 💡</div>’;return;}
+el.innerHTML=data.map(s=>{
+const d=new Date(s.created_at);
+const tm=d.toLocaleDateString(‘en-IN’)+’ ‘+d.toLocaleTimeString(‘en-IN’,{hour:‘2-digit’,minute:‘2-digit’});
+return `<div class="sugg-card"><div class="sugg-head"><div class="sugg-av">${s.author.charAt(0).toUpperCase()}</div><div style="flex:1;"><div class="sugg-author">${esc(s.author)}</div><div class="sugg-time">${tm}</div></div></div><div class="sugg-text">${esc(s.suggestion_text||'')}</div>${s.tags?.length?`<div style="display:flex;flex-wrap:wrap;gap:5px;">${s.tags.map(tg=>`<span class="tag-pill">@${esc(tg)}</span>`).join(’’)}</div>`:''}</div>`;
+}).join(’’);
+}
+
+async function getAllMembers(){const{data}=await sb.from(‘users’).select(‘full_name’).neq(‘role’,‘guest’);return(data||[]).map(u=>u.full_name);}
+
+async function showTagSugg(){
+const inp=document.getElementById(‘tagInput’).value.trim();
+const drop=document.getElementById(‘tagDrop’);
+if(!inp){drop.classList.remove(‘show’);return;}
+const names=await getAllMembers();
+const f=names.filter(n=>n.toLowerCase().includes(inp.toLowerCase())&&!tagPeople.includes(n));
+if(!f.length){drop.classList.remove(‘show’);return;}
+drop.innerHTML=f.slice(0,5).map(n=>`<div class="tditem" onmousedown="addTag('${escJs(n)}')">${esc(n)}</div>`).join(’’);
+drop.classList.add(‘show’);
+}
+function hideTagSugg(){setTimeout(()=>document.getElementById(‘tagDrop’)?.classList.remove(‘show’),200);}
+function addTag(n){if(tagPeople.includes(n))return;tagPeople.push(n);document.getElementById(‘tagInput’).value=’’;renderTags();}
+function removeTag(n){tagPeople=tagPeople.filter(x=>x!==n);renderTags();}
+function renderTags(){document.getElementById(‘addedTags’).innerHTML=tagPeople.map(t=>`<div class="added-tag" onclick="removeTag('${escJs(t)}')">@${esc(t)} ✕</div>`).join(’’);}
+
+async function submitSuggestion(){
+const author=document.getElementById(‘suggName’).value.trim();
+const text=document.getElementById(‘suggText’).value.trim();
+if(!author||!text){alert(‘Enter name and suggestion!’);return;}
+await sb.from(‘suggestions’).insert({author,suggestion_text:text,tags:tagPeople});
+document.getElementById(‘suggName’).value=’’;document.getElementById(‘suggText’).value=’’;
+tagPeople=[];renderTags();loadSuggestions();alert(‘✦ Sent!’);
+}
+
+// ── FILTER ──
+const GKW={
+kids:[‘kids’,‘children’,‘naatu’],sisters:[‘sister’,‘dee’,‘sibling’,‘behen’],
+brothers:[‘brother’,‘bhai’,‘sibling’],mothers:[‘mother’,‘saas’,‘maa’,‘aunti’,‘mausi’,‘chachi’],
+ladies:[‘ladies’,‘women’,‘rangila’,‘girl’,‘dee’],siblings:[‘sibling’,‘siblings’,‘brother’,‘sister’,‘dee’],
+dee_jiju:[‘dee’,‘jiju’,‘biwi’,‘hero’,‘maya’,‘husband’,‘tura’],unmarried:[‘unmarried’,‘shaadi’,‘laal’,‘yaad’]
+};
+
+function applyFilter(){
+const sv=(document.getElementById(‘filterSearch’)?.value||’’).toLowerCase().trim();
+let total=0;
+[‘sangeet’,‘baraat’,‘haldi’].forEach(ev=>{
+const pe=document.getElementById(‘perfs-’+ev);if(!pe)return;
+const cards=pe.querySelectorAll(’.perf-card’);let evn=0;
+cards.forEach(card=>{
+const ft=card.textContent.toLowerCase();let show=true;
+if(sv&&!ft.includes(sv))show=false;
+if(show&&activeGF){const kws=GKW[activeGF]||[];if(!kws.some(kw=>ft.includes(kw)))show=false;}
+card.classList.toggle(‘hidden’,!show);if(show)evn++;
+});
+total+=evn;
+if(evn>0&&(sv||activeGF)){const b=document.getElementById(‘ebody-’+ev);const ch=document.getElementById(‘ech-’+ev);if(b&&!b.classList.contains(‘open’)){b.classList.add(‘open’);ch?.classList.add(‘open’);}}
+});
+const has=sv||activeGF;
+document.getElementById(‘filterClear’)?.classList.toggle(‘show’,!!has);
+const fc=document.getElementById(‘filterCount’);if(fc)fc.textContent=has?total+t(‘found’):’’;
+}
+
+function setGF(el,group){
+if(activeGF===group){activeGF=null;el.classList.remove(‘active’);}
+else{document.querySelectorAll(’.fc’).forEach(c=>c.classList.remove(‘active’));activeGF=group;el.classList.add(‘active’);}
+applyFilter();
+}
+
+function clearFilter(){
+document.getElementById(‘filterSearch’).value=’’;activeGF=null;
+document.querySelectorAll(’.fc’).forEach(c=>c.classList.remove(‘active’));
+document.querySelectorAll(’.perf-card’).forEach(c=>c.classList.remove(‘hidden’));
+document.getElementById(‘filterClear’)?.classList.remove(‘show’);
+const fc=document.getElementById(‘filterCount’);if(fc)fc.textContent=’’;
+}
+
+// ── NAVIGATION ──
+function toggleEv(name){
+const b=document.getElementById(‘ebody-’+name);
+const ch=document.getElementById(‘ech-’+name);
+b.classList.toggle(‘open’);ch.classList.toggle(‘open’,b.classList.contains(‘open’));
+}
+
+function showSection(name){
+document.getElementById(‘heroSection’).style.display=‘none’;
+document.getElementById(‘mainNav’).style.display=‘flex’;
+document.getElementById(‘subnav’).style.display=‘flex’;
+document.getElementById(‘bottomNav’).style.display=‘flex’;
+[‘events’,‘roles’,‘team’,‘gallery’,‘suggest’,‘changes’,‘info’].forEach(s=>{
+document.getElementById(‘sec-’+s)?.classList.remove(‘visible’);
+document.getElementById(‘bn-’+s)?.classList.remove(‘active’);
+document.getElementById(‘nav-’+s)?.classList.remove(‘active’);
+});
+document.getElementById(‘sec-’+name)?.classList.add(‘visible’);
+document.getElementById(‘bn-’+name)?.classList.add(‘active’);
+document.getElementById(‘nav-’+name)?.classList.add(‘active’);
+if(name===‘roles’)renderRoles();
+if(name===‘team’)renderTeam();
+if(name===‘suggest’)loadSuggestions();
+if(name===‘changes’)loadChangeLog();
+if(name===‘gallery’)loadGallery();
+window.scrollTo(0,0);
+}
+
+function copyLink(){navigator.clipboard.writeText(‘https://shreyadubey-studio.github.io/priyanka-shubham-wedding’).then(()=>alert(‘✦ Link copied!’));}
+
+function esc(t){return String(t??’’).replace(/&/g,’&’).replace(/</g,’<’).replace(/>/g,’>’);}
+function escJs(t){return String(t??’’).replace(/’/g,”\’”).replace(/”/g,’\”’);}
+
+// ── AUTO RESTORE ──
+(async function(){
+const saved=localStorage.getItem(SK);
+if(saved){
+try{
+const session=JSON.parse(saved);
+if(session?.id){
+const{data}=await sb.from(‘users’).select(’*’).eq(‘id’,session.id).single();
+if(data){cu=data;startApp();return;}
+}
+}catch(e){}
+localStorage.removeItem(SK);
+}
+document.getElementById(‘loginScreen’).style.display=‘flex’;
+applyLang();
+})();
+</script>
+
 </body>
 </html>
