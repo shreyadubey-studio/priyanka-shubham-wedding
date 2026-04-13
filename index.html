@@ -1,0 +1,1062 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Priyanka &amp; Shubham · Vivah 2025</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500;600&family=Noto+Sans+Devanagari:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
+body{font-family:'Jost',sans-serif;background:#1A0A0C;color:rgba(232,193,122,0.9);min-height:100vh;}
+
+/* LOADING */
+#app{display:none;}
+#splash{position:fixed;inset:0;background:#1A0A0C;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;z-index:9999;}
+#splash h1{font-family:‘Cormorant Garamond’,serif;font-size:42px;font-weight:300;color:rgba(232,193,122,0.92);text-align:center;line-height:0.9;}
+#splash p{font-size:11px;letter-spacing:0.3em;text-transform:uppercase;color:rgba(196,151,74,0.45);}
+
+/* LOGIN */
+#login{min-height:100vh;background:radial-gradient(ellipse at 20% 10%,rgba(196,151,74,0.15) 0%,transparent 50%),linear-gradient(145deg,#1A0A0C 0%,#2E1418 40%,#1E0E10 100%);display:flex;align-items:center;justify-content:center;padding:20px;}
+.lcard{background:rgba(255,255,255,0.03);border:1px solid rgba(196,151,74,0.2);border-radius:22px;padding:36px 26px 28px;width:100%;max-width:360px;backdrop-filter:blur(20px);text-align:center;position:relative;}
+.lcard::before{content:’’;position:absolute;top:0;left:15%;right:15%;height:1px;background:linear-gradient(90deg,transparent,rgba(196,151,74,0.6),transparent);}
+.lang-row{display:flex;justify-content:flex-end;margin-bottom:16px;}
+.lang-btn{display:flex;align-items:center;gap:4px;background:rgba(196,151,74,0.1);border:1px solid rgba(196,151,74,0.2);border-radius:999px;padding:5px 11px;cursor:pointer;font-size:11px;font-weight:600;color:rgba(232,193,122,0.7);user-select:none;}
+.l-logo{font-family:‘Cormorant Garamond’,serif;font-weight:300;font-size:38px;color:rgba(232,193,122,0.95);line-height:0.9;margin-bottom:4px;}
+.l-logo .amp{display:block;font-style:italic;font-size:26px;color:rgba(196,151,74,0.75);margin:3px 0;}
+.l-sub{font-size:10px;letter-spacing:0.28em;text-transform:uppercase;color:rgba(232,193,122,0.28);margin-bottom:3px;}
+.l-date{font-family:‘Cormorant Garamond’,serif;font-style:italic;font-size:13px;color:rgba(232,193,122,0.2);margin-bottom:22px;}
+.l-tabs{display:flex;gap:5px;margin-bottom:16px;background:rgba(255,255,255,0.04);border-radius:10px;padding:3px;}
+.l-tab{flex:1;padding:8px;border-radius:8px;border:none;background:transparent;color:rgba(232,193,122,0.38);font-family:‘Jost’,sans-serif;font-size:12px;font-weight:600;cursor:pointer;transition:all .2s;}
+.l-tab.active{background:rgba(196,151,74,0.18);color:rgba(232,193,122,0.92);}
+.l-inp{width:100%;background:rgba(255,255,255,0.04);border:1px solid rgba(196,151,74,0.2);border-radius:10px;padding:12px 14px;font-size:13px;font-family:‘Jost’,sans-serif;color:rgba(232,193,122,0.88);outline:none;margin-bottom:8px;}
+.l-inp::placeholder{color:rgba(232,193,122,0.2);}
+.l-inp:focus{border-color:rgba(196,151,74,0.5);}
+.l-btn{width:100%;background:linear-gradient(135deg,#8B6B35,#C4974A);color:#1A0A0C;border:none;border-radius:10px;padding:13px;font-family:‘Jost’,sans-serif;font-size:13px;font-weight:700;cursor:pointer;letter-spacing:0.07em;margin-bottom:7px;box-shadow:0 8px 22px rgba(139,107,53,0.4);}
+.l-ghost{width:100%;background:transparent;color:rgba(232,193,122,0.4);border:1px solid rgba(196,151,74,0.14);border-radius:10px;padding:11px;font-family:‘Jost’,sans-serif;font-size:12px;cursor:pointer;}
+.l-err{font-size:12px;color:#F4A0A8;margin-top:7px;display:none;background:rgba(180,50,60,0.12);border-radius:8px;padding:8px;}
+.l-err.on{display:block;}
+.l-spin{font-size:11px;color:rgba(196,151,74,0.4);margin-top:7px;display:none;}
+.l-spin.on{display:block;}
+
+/* NAV */
+.nav{position:sticky;top:0;z-index:200;height:54px;background:rgba(26,10,12,0.96);backdrop-filter:blur(20px);border-bottom:1px solid rgba(196,151,74,0.15);padding:0 14px;display:flex;align-items:center;justify-content:space-between;}
+.nav-brand{font-family:‘Cormorant Garamond’,serif;font-style:italic;font-size:17px;color:rgba(232,193,122,0.82);}
+.nav-r{display:flex;align-items:center;gap:6px;}
+.nav-pill{font-size:11px;color:rgba(232,193,122,0.55);background:rgba(196,151,74,0.08);border:1px solid rgba(196,151,74,0.12);border-radius:999px;padding:4px 10px;max-width:90px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.nav-lang{display:flex;align-items:center;gap:4px;background:rgba(196,151,74,0.08);border:1px solid rgba(196,151,74,0.14);border-radius:999px;padding:4px 9px;cursor:pointer;font-size:11px;font-weight:600;color:rgba(232,193,122,0.7);user-select:none;}
+.nav-out{font-size:11px;background:rgba(196,151,74,0.1);border:1px solid rgba(196,151,74,0.2);color:rgba(232,193,122,0.7);border-radius:8px;padding:5px 10px;cursor:pointer;font-family:‘Jost’,sans-serif;}
+.subnav{position:sticky;top:54px;z-index:199;background:rgba(26,10,12,0.92);backdrop-filter:blur(18px);border-bottom:1px solid rgba(196,151,74,0.1);display:flex;padding:0 5px;overflow-x:auto;scrollbar-width:none;}
+.subnav::-webkit-scrollbar{display:none;}
+.subnav button{background:none;border:none;color:rgba(232,193,122,0.3);font-family:‘Jost’,sans-serif;font-size:11px;font-weight:500;padding:11px 11px;white-space:nowrap;cursor:pointer;border-bottom:2px solid transparent;transition:all .2s;}
+.subnav button.active{color:rgba(232,193,122,0.9);border-bottom-color:rgba(196,151,74,0.6);}
+
+/* HERO */
+.hero{min-height:100vh;background:radial-gradient(ellipse at 20% 10%,rgba(196,151,74,0.12) 0%,transparent 55%),linear-gradient(155deg,#1A0A0C 0%,#2A1215 35%,#0E0508 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:40px 24px 120px;position:relative;overflow:hidden;}
+.hero::before{content:’’;position:absolute;inset:0;background-image:radial-gradient(circle,rgba(196,151,74,0.05) 1px,transparent 1px);background-size:44px 44px;pointer-events:none;}
+.h-eye{font-size:10px;font-weight:500;letter-spacing:0.34em;text-transform:uppercase;color:rgba(196,151,74,0.6);margin-bottom:20px;}
+.h-names{font-family:‘Cormorant Garamond’,serif;font-weight:300;font-size:clamp(52px,14vw,108px);line-height:0.88;}
+.h-bride{color:rgba(232,193,122,0.95);}
+.h-amp{display:block;font-style:italic;font-size:clamp(30px,8vw,62px);color:rgba(196,151,74,0.7);margin:5px 0;}
+.h-groom{color:rgba(253,240,225,0.8);}
+.h-div{display:flex;align-items:center;gap:14px;margin:22px 0;}
+.h-line{height:1px;width:55px;background:linear-gradient(90deg,transparent,rgba(196,151,74,0.5));}
+.h-line.r{background:linear-gradient(90deg,rgba(196,151,74,0.5),transparent);}
+.h-gem{font-size:13px;color:rgba(196,151,74,0.55);letter-spacing:4px;}
+.h-date{font-family:‘Cormorant Garamond’,serif;font-style:italic;font-size:17px;color:rgba(232,193,122,0.55);letter-spacing:0.06em;}
+.h-venue{font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:rgba(253,240,225,0.2);margin-top:7px;}
+.h-cta{position:absolute;bottom:46px;left:50%;transform:translateX(-50%);cursor:pointer;background:rgba(196,151,74,0.1);border:1px solid rgba(196,151,74,0.24);border-radius:999px;padding:12px 28px;text-align:center;white-space:nowrap;}
+.h-cta-en{font-size:12px;color:rgba(232,193,122,0.8);font-weight:500;letter-spacing:0.07em;}
+.h-cta-hi{font-size:11px;color:rgba(232,193,122,0.35);font-family:‘Noto Sans Devanagari’,sans-serif;}
+
+/* SECTIONS */
+.cwrap{background:#1A0A0C;min-height:60vh;padding-bottom:80px;}
+.sec{display:none;max-width:720px;margin:0 auto;padding:26px 15px 38px;}
+.sec.on{display:block;}
+.s-eye{font-size:10px;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;color:rgba(196,151,74,0.7);margin-bottom:5px;}
+.s-title{font-family:‘Cormorant Garamond’,serif;font-size:clamp(28px,7vw,44px);font-weight:300;line-height:1.05;margin-bottom:5px;}
+.s-title em{font-style:italic;color:rgba(196,151,74,0.85);}
+.s-sub{color:rgba(232,193,122,0.4);font-size:13px;line-height:1.7;margin-bottom:22px;}
+
+/* CARDS */
+.card{background:#231010;border:1px solid rgba(196,151,74,0.18);border-radius:18px;margin-bottom:12px;overflow:hidden;}
+.card-head{padding:16px 18px;cursor:pointer;display:flex;align-items:center;gap:12px;}
+.card-head:hover{background:rgba(196,151,74,0.06);}
+.card-icon{width:42px;height:42px;border-radius:12px;flex-shrink:0;background:rgba(196,151,74,0.1);border:1px solid rgba(196,151,74,0.2);display:flex;align-items:center;justify-content:center;font-size:18px;}
+.card-info{flex:1;}
+.card-sub{font-size:11px;color:rgba(232,193,122,0.38);margin-bottom:2px;font-family:‘Noto Sans Devanagari’,sans-serif;}
+.card-title{font-family:‘Cormorant Garamond’,serif;font-size:19px;font-weight:500;color:rgba(232,193,122,0.92);}
+.card-meta{display:flex;flex-wrap:wrap;gap:4px;margin-top:4px;}
+.ctag{font-size:10px;padding:2px 8px;border-radius:999px;background:rgba(196,151,74,0.1);color:rgba(196,151,74,0.8);border:1px solid rgba(196,151,74,0.2);}
+.ctag.g{background:rgba(196,151,74,0.15);color:rgba(232,193,122,0.75);}
+.card-chev{font-size:15px;color:rgba(196,151,74,0.5);transition:transform .25s;flex-shrink:0;}
+.card-chev.open{transform:rotate(180deg);}
+.card-body{display:none;border-top:1px solid rgba(196,151,74,0.12);padding:16px 18px;}
+.card-body.open{display:block;}
+.card-desc{font-size:13px;color:rgba(232,193,122,0.45);line-height:1.65;margin-bottom:14px;}
+.step-lbl{font-size:10px;font-weight:600;letter-spacing:0.17em;text-transform:uppercase;color:rgba(196,151,74,0.6);margin-bottom:9px;}
+.step{display:flex;gap:11px;padding:9px 0;border-bottom:1px solid rgba(196,151,74,0.08);}
+.step:last-child{border-bottom:none;}
+.step-n{width:22px;height:22px;border-radius:50%;flex-shrink:0;background:rgba(196,151,74,0.1);border:1px solid rgba(196,151,74,0.2);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:rgba(196,151,74,0.8);}
+.step-name{font-weight:600;font-size:13px;color:rgba(232,193,122,0.88);margin-bottom:2px;}
+.step-det{font-size:12px;color:rgba(232,193,122,0.4);}
+
+/* FILTER */
+.fbar{background:#231010;border:1px solid rgba(196,151,74,0.16);border-radius:16px;padding:14px;margin-bottom:16px;}
+.f-title{font-size:10px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:rgba(196,151,74,0.65);margin-bottom:9px;}
+.f-inp{width:100%;border:1px solid rgba(196,151,74,0.2);background:#1A0A0C;border-radius:9px;padding:9px 13px;font-size:13px;font-family:‘Jost’,sans-serif;color:rgba(232,193,122,0.88);outline:none;margin-bottom:9px;}
+.f-inp:focus{border-color:rgba(196,151,74,0.5);}
+.f-inp::placeholder{color:rgba(232,193,122,0.2);}
+.chips{display:flex;flex-wrap:wrap;gap:5px;}
+.chip{font-size:11px;padding:5px 11px;border-radius:999px;background:rgba(196,151,74,0.07);border:1px solid rgba(196,151,74,0.18);color:rgba(232,193,122,0.45);cursor:pointer;transition:all .2s;}
+.chip.on{background:rgba(196,151,74,0.2);color:rgba(232,193,122,0.9);border-color:rgba(196,151,74,0.4);}
+.f-clear{font-size:11px;color:rgba(196,151,74,0.7);cursor:pointer;background:none;border:none;font-family:‘Jost’,sans-serif;font-weight:600;margin-top:7px;padding:0;display:none;}
+.f-clear.on{display:block;}
+.f-cnt{font-size:11px;color:rgba(232,193,122,0.35);margin-top:5px;}
+
+/* PERF CARDS */
+.psec{margin-top:16px;}
+.plbl{font-family:‘Cormorant Garamond’,serif;font-size:18px;color:rgba(232,193,122,0.88);margin-bottom:11px;display:flex;align-items:center;gap:7px;}
+.ebadge{font-size:10px;background:rgba(196,151,74,0.12);color:rgba(196,151,74,0.8);border-radius:999px;padding:2px 7px;border:1px solid rgba(196,151,74,0.22);font-family:‘Jost’,sans-serif;font-weight:600;}
+.pc{background:#2E1418;border:1px solid rgba(196,151,74,0.16);border-radius:14px;padding:13px 15px;margin-bottom:9px;position:relative;}
+.pc.hidden{display:none;}
+.pc-num{position:absolute;top:11px;right:11px;width:21px;height:21px;border-radius:50%;background:linear-gradient(135deg,#8B6B35,#C4974A);color:#1A0A0C;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;}
+.pc-song{font-family:‘Cormorant Garamond’,serif;font-size:16px;color:rgba(232,193,122,0.95);margin-bottom:3px;padding-right:26px;}
+.pc-cat{font-size:11px;color:rgba(196,151,74,0.75);font-weight:600;margin-bottom:9px;}
+.pc-grid{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:9px;}
+@media(max-width:460px){.pc-grid{grid-template-columns:1fr;}}
+.pf{background:#1A0A0C;border:1px solid rgba(196,151,74,0.12);border-radius:9px;padding:7px 9px;}
+.pfl{font-size:9px;font-weight:600;letter-spacing:0.13em;text-transform:uppercase;color:rgba(196,151,74,0.6);margin-bottom:2px;}
+.pfv{font-size:12px;color:rgba(232,193,122,0.82);}
+.pfv.tbu{color:rgba(232,193,122,0.28);font-style:italic;}
+.pc-dan{background:#1A0A0C;border:1px solid rgba(196,151,74,0.12);border-radius:9px;padding:7px 9px;margin-bottom:9px;}
+.pc-links{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:9px;}
+.pc-link{display:inline-flex;align-items:center;gap:4px;font-size:11px;padding:5px 10px;border-radius:999px;background:rgba(196,151,74,0.1);color:rgba(232,193,122,0.82);text-decoration:none;border:1px solid rgba(196,151,74,0.2);}
+.pstat{display:inline-flex;align-items:center;gap:4px;font-size:11px;font-weight:600;padding:3px 9px;border-radius:999px;}
+.sr{background:rgba(46,125,50,0.2);color:#90EDA0;}
+.sp{background:rgba(245,127,23,0.15);color:#FFB74D;}
+.sn2{background:rgba(255,255,255,0.05);color:rgba(232,193,122,0.38);}
+.st{background:rgba(196,151,74,0.1);color:rgba(196,151,74,0.75);}
+.pupdated{font-size:10px;color:rgba(232,193,122,0.28);margin-top:5px;font-style:italic;}
+
+/* EDIT FORM */
+.ebtn{background:rgba(196,151,74,0.1);border:1px solid rgba(196,151,74,0.22);color:rgba(196,151,74,0.8);border-radius:8px;padding:5px 11px;font-size:11px;font-weight:600;cursor:pointer;margin-top:7px;font-family:‘Jost’,sans-serif;}
+.eform{background:#2E1418;border:1px solid rgba(196,151,74,0.18);border-top:3px solid rgba(196,151,74,0.6);border-radius:11px;padding:13px;margin-top:9px;display:none;}
+.eform.open{display:block;}
+.erow{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:7px;}
+@media(max-width:460px){.erow{grid-template-columns:1fr;}}
+.el{font-size:10px;font-weight:600;color:rgba(232,193,122,0.38);letter-spacing:0.09em;text-transform:uppercase;margin-bottom:3px;}
+.ei{width:100%;border:1px solid rgba(196,151,74,0.2);background:#1A0A0C;border-radius:9px;padding:8px 10px;font-size:12px;font-family:‘Jost’,sans-serif;color:rgba(232,193,122,0.88);outline:none;}
+.ei:focus{border-color:rgba(196,151,74,0.5);}
+.bsave{background:linear-gradient(135deg,#8B6B35,#C4974A);color:#1A0A0C;border:none;border-radius:9px;padding:9px 15px;font-family:‘Jost’,sans-serif;font-size:12px;font-weight:700;cursor:pointer;margin-right:7px;}
+.bcancel{background:rgba(255,255,255,0.04);color:rgba(232,193,122,0.4);border:1px solid rgba(196,151,74,0.16);border-radius:9px;padding:9px 13px;font-family:‘Jost’,sans-serif;font-size:12px;cursor:pointer;}
+.badd{background:linear-gradient(135deg,#8B6B35,#C4974A);color:#1A0A0C;border:none;border-radius:9px;padding:8px 13px;font-family:‘Jost’,sans-serif;font-size:12px;font-weight:700;cursor:pointer;}
+
+/* ROLES */
+.rbanner{background:linear-gradient(135deg,#0E0508 0%,#2E1418 100%);border-radius:18px;padding:20px 22px;margin-bottom:18px;border:1px solid rgba(196,151,74,0.2);}
+.rbanner h3{font-family:‘Cormorant Garamond’,serif;font-size:21px;font-weight:400;font-style:italic;margin-bottom:3px;color:rgba(232,193,122,0.88);}
+.rbanner p{font-size:12px;color:rgba(232,193,122,0.38);line-height:1.6;}
+.rcat-lbl{font-size:10px;font-weight:600;letter-spacing:0.17em;text-transform:uppercase;color:rgba(196,151,74,0.65);margin-bottom:7px;margin-top:14px;}
+.rgrid{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+@media(max-width:460px){.rgrid{grid-template-columns:1fr;}}
+.rcard{background:#231010;border:1px solid rgba(196,151,74,0.16);border-radius:14px;padding:12px 13px;}
+.rtop{display:flex;gap:9px;align-items:flex-start;margin-bottom:7px;}
+.rico{font-size:20px;flex-shrink:0;margin-top:2px;}
+.rname{font-family:‘Cormorant Garamond’,serif;font-size:15px;color:rgba(232,193,122,0.9);margin-bottom:2px;}
+.rtag{font-size:11px;color:rgba(232,193,122,0.38);line-height:1.4;}
+.rexp{font-size:10px;color:rgba(196,151,74,0.7);font-weight:600;cursor:pointer;margin-bottom:7px;background:none;border:none;font-family:‘Jost’,sans-serif;padding:0;}
+.rdet{display:none;background:rgba(196,151,74,0.07);border-radius:8px;padding:8px 10px;margin-bottom:9px;}
+.rdet.open{display:block;}
+.rdi{font-size:11px;color:rgba(232,193,122,0.55);line-height:1.6;padding:1px 0;}
+.rdi::before{content:’◆ ’;color:rgba(196,151,74,0.5);font-size:7px;vertical-align:middle;}
+.rrow{display:flex;align-items:center;justify-content:space-between;gap:7px;}
+.rcnt{font-size:11px;color:rgba(232,193,122,0.35);}
+.bint{font-size:11px;font-weight:600;padding:5px 11px;border-radius:999px;border:1px solid rgba(196,151,74,0.22);background:rgba(196,151,74,0.08);color:rgba(232,193,122,0.78);cursor:pointer;font-family:‘Jost’,sans-serif;}
+.bint.mine{background:rgba(196,151,74,0.2);color:rgba(232,193,122,0.95);border-color:rgba(196,151,74,0.4);}
+.ichips{display:flex;flex-wrap:wrap;gap:4px;margin-top:6px;}
+.ichip{font-size:10px;padding:2px 7px;border-radius:999px;background:rgba(196,151,74,0.08);border:1px solid rgba(196,151,74,0.18);color:rgba(232,193,122,0.55);}
+.ichip.me{background:rgba(196,151,74,0.2);color:rgba(232,193,122,0.9);}
+.rsugg{font-size:11px;color:rgba(232,193,122,0.4);padding:4px 7px;background:rgba(255,255,255,0.03);border-radius:7px;margin-top:3px;border:1px solid rgba(196,151,74,0.12);}
+.bsugg{font-size:10px;color:rgba(196,151,74,0.7);font-weight:600;cursor:pointer;margin-top:4px;background:none;border:none;font-family:‘Jost’,sans-serif;padding:0;}
+.siw{margin-top:4px;display:none;}
+.siw.open{display:flex;gap:5px;}
+.smi{flex:1;border:1px solid rgba(196,151,74,0.2);background:#1A0A0C;border-radius:7px;padding:6px 9px;font-size:12px;font-family:‘Jost’,sans-serif;color:rgba(232,193,122,0.88);outline:none;}
+.smb{background:rgba(196,151,74,0.2);color:rgba(232,193,122,0.9);border:none;border-radius:7px;padding:6px 11px;font-size:12px;cursor:pointer;}
+.arbox{background:#231010;border:1px dashed rgba(196,151,74,0.2);border-radius:14px;padding:14px;margin-top:16px;}
+.arbox h4{font-family:‘Cormorant Garamond’,serif;font-size:17px;color:rgba(232,193,122,0.88);margin-bottom:3px;}
+.arbox p{font-size:12px;color:rgba(232,193,122,0.35);margin-bottom:11px;}
+.arow{display:flex;gap:6px;flex-wrap:wrap;}
+.ari{flex:1;min-width:100px;border:1px solid rgba(196,151,74,0.2);background:#1A0A0C;border-radius:9px;padding:8px 10px;font-size:12px;font-family:‘Jost’,sans-serif;color:rgba(232,193,122,0.88);outline:none;}
+
+/* TEAM */
+.tgrid{display:grid;grid-template-columns:1fr 1fr;gap:11px;margin-bottom:18px;}
+@media(max-width:460px){.tgrid{grid-template-columns:1fr;}}
+.tcard{background:#231010;border:1px solid rgba(196,151,74,0.16);border-radius:18px;padding:17px;text-align:center;}
+.tav{width:66px;height:66px;border-radius:50%;margin:0 auto 9px;overflow:hidden;border:2px solid rgba(196,151,74,0.28);background:rgba(196,151,74,0.1);display:flex;align-items:center;justify-content:center;cursor:pointer;position:relative;}
+.tav img{width:100%;height:100%;object-fit:cover;}
+.tinit{font-family:‘Cormorant Garamond’,serif;font-size:24px;color:rgba(196,151,74,0.8);}
+.tedit{position:absolute;bottom:0;right:0;background:#C4974A;border-radius:50%;width:18px;height:18px;display:flex;align-items:center;justify-content:center;font-size:9px;}
+.tname{font-family:‘Cormorant Garamond’,serif;font-size:15px;color:rgba(232,193,122,0.92);margin-bottom:3px;}
+.tbadge{display:inline-block;font-size:10px;padding:2px 7px;border-radius:999px;margin-bottom:5px;font-weight:600;}
+.tbadge.admin{background:rgba(196,151,74,0.12);color:rgba(196,151,74,0.85);}
+.tbadge.coordinator{background:rgba(46,125,50,0.18);color:#90EDA0;}
+.tbadge.member{background:rgba(255,255,255,0.05);color:rgba(232,193,122,0.35);}
+.troles{font-size:11px;color:rgba(232,193,122,0.35);line-height:1.5;}
+
+/* GALLERY */
+.gup{background:#231010;border:1px dashed rgba(196,151,74,0.22);border-radius:16px;padding:22px;text-align:center;cursor:pointer;margin-bottom:14px;}
+.gup:hover{background:rgba(196,151,74,0.07);}
+.gup-ico{font-size:28px;margin-bottom:7px;}
+.gup h4{font-family:‘Cormorant Garamond’,serif;font-size:17px;color:rgba(232,193,122,0.85);margin-bottom:3px;}
+.gup p{font-size:12px;color:rgba(232,193,122,0.35);}
+.gform{background:#2E1418;border:1px solid rgba(196,151,74,0.18);border-top:3px solid rgba(196,151,74,0.6);border-radius:14px;padding:14px;margin-bottom:14px;display:none;}
+.gform.open{display:block;}
+.gfilt{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:13px;}
+.ggrid{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-bottom:14px;}
+.gi{aspect-ratio:1;border-radius:12px;overflow:hidden;cursor:pointer;position:relative;background:rgba(196,151,74,0.08);border:1px solid rgba(196,151,74,0.18);}
+.gi img{width:100%;height:100%;object-fit:cover;transition:transform .3s;}
+.gi:hover img{transform:scale(1.06);}
+.gi-ov{position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(14,5,8,.75));opacity:0;transition:opacity .2s;display:flex;align-items:flex-end;padding:7px;}
+.gi:hover .gi-ov{opacity:1;}
+.gi-cap{font-size:11px;color:rgba(232,193,122,0.85);line-height:1.3;}
+.ep-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:8px;}
+.ep-thumb{aspect-ratio:1;border-radius:10px;overflow:hidden;cursor:pointer;background:rgba(196,151,74,0.08);border:1px solid rgba(196,151,74,0.16);}
+.ep-thumb img{width:100%;height:100%;object-fit:cover;}
+.ep-add{width:100%;background:rgba(196,151,74,0.07);border:1px dashed rgba(196,151,74,0.2);border-radius:10px;padding:10px;font-family:‘Jost’,sans-serif;font-size:12px;color:rgba(196,151,74,0.7);cursor:pointer;text-align:center;margin-top:4px;}
+.ep-sec{margin-top:15px;}
+.ep-lbl{font-size:10px;font-weight:600;letter-spacing:0.17em;text-transform:uppercase;color:rgba(196,151,74,0.6);margin-bottom:8px;}
+
+/* LIGHTBOX */
+.lb{position:fixed;inset:0;z-index:500;background:rgba(14,5,8,.96);backdrop-filter:blur(18px);display:none;align-items:center;justify-content:center;flex-direction:column;gap:10px;padding:20px;}
+.lb.open{display:flex;}
+.lb-img{max-width:100%;max-height:74vh;border-radius:14px;object-fit:contain;}
+.lb-close{position:absolute;top:18px;right:18px;background:rgba(255,255,255,0.08);border:none;color:rgba(232,193,122,0.7);border-radius:50%;width:38px;height:38px;font-size:17px;cursor:pointer;}
+.lb-cap{text-align:center;color:rgba(232,193,122,0.5);font-size:13px;max-width:360px;}
+
+/* CHANGE LOG */
+.citem{background:#231010;border:1px solid rgba(196,151,74,0.16);border-radius:12px;padding:11px 13px;margin-bottom:7px;}
+.ci-h{display:flex;align-items:center;gap:9px;margin-bottom:4px;}
+.ci-av{width:26px;height:26px;border-radius:50%;background:rgba(196,151,74,0.15);color:rgba(196,151,74,0.85);display:flex;align-items:center;justify-content:center;font-family:‘Cormorant Garamond’,serif;font-size:13px;font-weight:600;flex-shrink:0;}
+.ci-name{font-weight:600;font-size:13px;color:rgba(232,193,122,0.85);}
+.ci-time{font-size:10px;color:rgba(232,193,122,0.3);}
+.ci-desc{font-size:12px;color:rgba(232,193,122,0.5);line-height:1.5;}
+.cb{display:inline-block;font-size:10px;padding:2px 6px;border-radius:999px;font-weight:600;margin-right:3px;}
+.cb.u{background:rgba(245,127,23,0.15);color:#FFB74D;}
+.cb.i{background:rgba(46,125,50,0.18);color:#90EDA0;}
+.cb.d{background:rgba(198,40,40,0.18);color:#EF9A9A;}
+
+/* SUGGESTIONS */
+.sfcard{background:#231010;border:1px solid rgba(196,151,74,0.16);border-top:3px solid rgba(196,151,74,0.5);border-radius:16px;padding:17px;margin-bottom:16px;}
+.sfcard h4{font-family:‘Cormorant Garamond’,serif;font-size:17px;color:rgba(232,193,122,0.88);margin-bottom:3px;}
+.sfcard p{font-size:12px;color:rgba(232,193,122,0.35);margin-bottom:13px;}
+.finp{width:100%;border:1px solid rgba(196,151,74,0.2);background:#1A0A0C;border-radius:10px;padding:10px 12px;font-size:13px;font-family:‘Jost’,sans-serif;color:rgba(232,193,122,0.88);outline:none;margin-bottom:8px;}
+.finp:focus{border-color:rgba(196,151,74,0.5);}
+.finp::placeholder{color:rgba(232,193,122,0.2);}
+.bprim{width:100%;background:linear-gradient(135deg,#8B6B35,#C4974A);color:#1A0A0C;border:none;border-radius:10px;padding:12px;font-family:‘Jost’,sans-serif;font-size:13px;font-weight:700;cursor:pointer;}
+.scard{background:#231010;border:1px solid rgba(196,151,74,0.16);border-radius:13px;padding:13px;margin-bottom:9px;}
+.sc-h{display:flex;align-items:center;gap:9px;margin-bottom:7px;}
+.sc-av{width:32px;height:32px;border-radius:50%;background:rgba(196,151,74,0.12);color:rgba(196,151,74,0.8);display:flex;align-items:center;justify-content:center;font-family:‘Cormorant Garamond’,serif;font-size:15px;font-weight:600;flex-shrink:0;}
+.sc-auth{font-weight:600;font-size:13px;color:rgba(232,193,122,0.88);}
+.sc-time{font-size:10px;color:rgba(232,193,122,0.3);}
+.sc-txt{font-size:13px;color:rgba(232,193,122,0.55);line-height:1.6;margin-bottom:7px;}
+.tpill{font-size:11px;padding:2px 7px;border-radius:999px;background:rgba(196,151,74,0.1);color:rgba(196,151,74,0.8);border:1px solid rgba(196,151,74,0.2);font-weight:600;}
+.atags{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:8px;}
+.atag{font-size:11px;padding:3px 8px;border-radius:999px;background:rgba(196,151,74,0.18);color:rgba(232,193,122,0.9);font-weight:500;display:flex;align-items:center;gap:3px;cursor:pointer;}
+.twrap{position:relative;margin-bottom:8px;}
+.tdrop{position:absolute;top:100%;left:0;right:0;z-index:50;background:#2E1418;border:1px solid rgba(196,151,74,0.2);border-radius:9px;display:none;}
+.tdrop.on{display:block;}
+.tdi{padding:8px 11px;font-size:13px;cursor:pointer;color:rgba(232,193,122,0.8);border-bottom:1px solid rgba(196,151,74,0.1);}
+.tdi:hover{background:rgba(196,151,74,0.08);}
+.tdi:last-child{border-bottom:none;}
+
+/* INFO */
+.igrid{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:13px;}
+@media(max-width:460px){.igrid{grid-template-columns:1fr;}}
+.icard{background:#231010;border:1px solid rgba(196,151,74,0.16);border-radius:14px;padding:14px;}
+.i-ico{font-size:21px;margin-bottom:7px;}
+.i-lbl{font-size:10px;font-weight:600;letter-spacing:0.13em;text-transform:uppercase;color:rgba(196,151,74,0.65);margin-bottom:3px;}
+.i-val{font-family:‘Cormorant Garamond’,serif;font-size:17px;color:rgba(232,193,122,0.9);margin-bottom:3px;}
+.i-sub{font-size:12px;color:rgba(232,193,122,0.38);line-height:1.5;}
+.dcard{background:linear-gradient(135deg,#0E0508,#2E1418);border-radius:16px;padding:18px;margin-bottom:13px;border:1px solid rgba(196,151,74,0.2);}
+.dcard .i-lbl{color:rgba(196,151,74,0.65);}
+.dcard .i-val{color:rgba(232,193,122,0.9);font-size:18px;}
+.dcard .i-sub{color:rgba(232,193,122,0.35);}
+.lkcard{background:linear-gradient(135deg,#0E0508,#231010);border-radius:14px;padding:14px;margin-bottom:13px;border:1px solid rgba(196,151,74,0.15);}
+.lkcard .i-lbl{color:rgba(196,151,74,0.65);}
+.lkcard .i-val{color:rgba(232,193,122,0.85);font-size:15px;margin-bottom:7px;}
+.lkurl{font-size:12px;color:rgba(196,151,74,0.8);word-break:break-all;line-height:1.5;text-decoration:underline;text-underline-offset:3px;}
+.cpbtn{display:inline-block;margin-top:7px;padding:5px 13px;background:rgba(196,151,74,0.12);color:rgba(232,193,122,0.75);border:1px solid rgba(196,151,74,0.22);border-radius:7px;font-size:11px;font-weight:600;cursor:pointer;}
+.clcard{background:#231010;border:1px solid rgba(196,151,74,0.16);border-left:3px solid rgba(196,151,74,0.5);border-radius:14px;padding:14px;margin-bottom:13px;}
+.clcard .i-lbl{color:rgba(196,151,74,0.65);}
+.clcard .i-val{font-size:14px;margin-bottom:8px;color:rgba(232,193,122,0.85);}
+.clcard .i-sub{line-height:2.1;color:rgba(232,193,122,0.45);}
+.ctcard{background:linear-gradient(135deg,rgba(196,151,74,0.08),#2E1418);border:1px solid rgba(196,151,74,0.2);border-radius:16px;padding:20px;margin-top:18px;text-align:center;}
+.ct-eye{font-size:10px;font-weight:600;letter-spacing:0.17em;text-transform:uppercase;color:rgba(196,151,74,0.65);margin-bottom:5px;}
+.ct-tit{font-family:‘Cormorant Garamond’,serif;font-size:15px;font-weight:300;color:rgba(232,193,122,0.45);margin-bottom:3px;}
+.ct-name{font-family:‘Cormorant Garamond’,serif;font-size:21px;color:rgba(232,193,122,0.9);margin-bottom:3px;}
+.ct-ph{font-size:16px;font-weight:600;color:rgba(232,193,122,0.85);letter-spacing:0.04em;margin-bottom:12px;}
+.ct-btn{display:inline-block;background:linear-gradient(135deg,#8B6B35,#C4974A);color:#1A0A0C;border:none;border-radius:999px;padding:11px 26px;font-family:‘Jost’,sans-serif;font-size:13px;font-weight:700;cursor:pointer;text-decoration:none;}
+
+/* MISC */
+.empty{text-align:center;padding:24px 14px;background:#231010;border:1px dashed rgba(196,151,74,0.18);border-radius:14px;color:rgba(232,193,122,0.35);font-size:13px;}
+.spin{text-align:center;padding:22px;color:rgba(232,193,122,0.35);font-size:13px;}
+
+/* BOTTOM NAV */
+.bnav{position:fixed;bottom:0;left:0;right:0;z-index:100;background:rgba(14,5,8,.97);backdrop-filter:blur(18px);border-top:1px solid rgba(196,151,74,0.12);display:flex;padding:5px 2px 13px;gap:1px;}
+.bnav button{flex:1;background:none;border:none;color:rgba(232,193,122,0.25);font-family:‘Jost’,sans-serif;font-size:9px;font-weight:500;padding:6px 2px;border-radius:9px;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:3px;letter-spacing:0.03em;}
+.bnav button .bi{font-size:16px;}
+.bnav button.on{color:rgba(232,193,122,0.88);background:rgba(196,151,74,0.1);}
+
+#photoInput,#galleryPhotoInput,#eventPhotoInput{display:none;}
+</style>
+
+</head>
+<body>
+
+<div id="splash"><h1>Priyanka<br/><span style="font-style:italic;font-size:27px;color:rgba(196,151,74,0.7);">&amp;</span><br/>Shubham</h1><p id="splashTxt">Loading…</p></div>
+
+<div id="app">
+<!-- LOGIN -->
+<div id="login" style="display:none;">
+  <div class="lcard">
+    <div class="lang-row"><div class="lang-btn" id="lLangBtn" onclick="toggleLang()"><span id="lLE">EN</span><span style="color:rgba(196,151,74,0.3);margin:0 3px;">|</span><span id="lLH" style="font-family:'Noto Sans Devanagari',sans-serif;">हि</span></div></div>
+    <div style="display:flex;align-items:center;gap:10px;justify-content:center;margin-bottom:16px;"><div style="height:1px;width:32px;background:linear-gradient(90deg,transparent,rgba(196,151,74,0.4));"></div><div style="font-size:9px;color:rgba(196,151,74,0.5);letter-spacing:3px;">◆ ◆ ◆</div><div style="height:1px;width:32px;background:linear-gradient(90deg,rgba(196,151,74,0.4),transparent);"></div></div>
+    <div class="l-logo">Priyanka<span class="amp">&amp;</span>Shubham</div>
+    <div class="l-sub" id="ltag">विवाह उत्सव</div>
+    <div class="l-date">१ – ३ जुलाई २०२५ · रायपुर</div>
+    <div class="l-tabs"><div class="l-tab active" id="tab-l" onclick="switchTab('l')">Login</div><div class="l-tab" id="tab-r" onclick="switchTab('r')">Join Team</div></div>
+    <div id="fL">
+      <input class="l-inp" id="lU" placeholder="Username"/><input class="l-inp" id="lP" type="password" placeholder="Password"/>
+      <button class="l-btn" id="lEnter" onclick="doLogin()">✦ प्रवेश करें</button>
+      <button class="l-ghost" id="lGuest" onclick="doGuest()">👁 Guest के रूप में देखें</button>
+    </div>
+    <div id="fR" style="display:none;">
+      <input class="l-inp" id="rN" placeholder="आपका पूरा नाम"/><input class="l-inp" id="rPh" placeholder="WhatsApp नंबर" type="tel"/>
+      <input class="l-inp" id="rU" placeholder="Username"/><input class="l-inp" id="rPw" type="password" placeholder="Password चुनें"/>
+      <input class="l-inp" id="rT" type="password" placeholder="Team Password"/>
+      <button class="l-btn" id="rJoin" onclick="doReg()">✦ टीम में शामिल हों</button>
+      <button class="l-ghost" id="rGuest" onclick="doGuest()">👁 Guest के रूप में देखें</button>
+    </div>
+    <div class="l-err" id="lErr"></div>
+    <div class="l-spin" id="lSpin">⏳ लोड हो रहा है…</div>
+  </div>
+</div>
+
+<!-- HERO -->
+
+<div id="heroSec" style="display:none;">
+  <div class="hero">
+    <div class="h-eye" id="hEye">एक यादगार विवाह उत्सव</div>
+    <div class="h-names"><span class="h-bride">Priyanka</span><span class="h-amp">&amp;</span><span class="h-groom">Shubham</span></div>
+    <div class="h-div"><div class="h-line"></div><div class="h-gem">◆ ◆ ◆</div><div class="h-line r"></div></div>
+    <div class="h-date">१ – ३ जुलाई २०२५ · रायपुर</div>
+    <div class="h-venue">✦ Royal Club, Chhattisgarh ✦</div>
+    <div class="h-cta" onclick="showSec('events')"><div class="h-cta-en" id="hCta">Explore the Wedding</div><div class="h-cta-hi" id="hCtaHi">विवरण के लिए यहाँ क्लिक करें</div></div>
+  </div>
+</div>
+
+<!-- NAV -->
+
+<div class="nav" id="nav" style="display:none;">
+  <div class="nav-brand">Priyanka &amp; Shubham</div>
+  <div class="nav-r">
+    <div class="nav-pill" id="navPill"></div>
+    <div class="nav-lang" id="nLangBtn" onclick="toggleLang()"><span id="nLE">EN</span><span style="color:rgba(196,151,74,0.2);margin:0 3px;">|</span><span id="nLH" style="font-family:'Noto Sans Devanagari',sans-serif;">हि</span></div>
+    <button class="nav-out" id="navOut" onclick="doLogout()">बाहर</button>
+  </div>
+</div>
+<div class="subnav" id="subnav" style="display:none;">
+  <button onclick="showSec('events')" id="sn-events">🗓 कार्यक्रम</button>
+  <button onclick="showSec('roles')" id="sn-roles">✋ भूमिका</button>
+  <button onclick="showSec('team')" id="sn-team">👥 टीम</button>
+  <button onclick="showSec('gallery')" id="sn-gallery">📸 Gallery</button>
+  <button onclick="showSec('suggest')" id="sn-suggest">💡 सुझाव</button>
+  <button onclick="showSec('changes')" id="sn-changes" style="display:none;">📋 Changes</button>
+  <button onclick="showSec('info')" id="sn-info">ℹ Info</button>
+</div>
+
+<div class="cwrap">
+
+<!-- EVENTS -->
+
+<div class="sec" id="sec-events">
+  <div class="s-eye">विवाह उत्सव</div>
+  <div class="s-title">सभी <em>कार्यक्रम</em></div>
+  <div class="s-sub">हर कार्यक्रम पर क्लिक करके विस्तृत जानकारी देखें।</div>
+  <div class="fbar">
+    <div class="f-title">🔍 गाने खोजें</div>
+    <input class="f-inp" id="fInp" placeholder="अपना नाम या गाने का नाम लिखें…" oninput="applyFilter()"/>
+    <div class="chips">
+      <div class="chip" onclick="toggleGF(this,'kids')">👶 Kids</div>
+      <div class="chip" onclick="toggleGF(this,'sisters')">👩 Sisters</div>
+      <div class="chip" onclick="toggleGF(this,'brothers')">👨 Brothers</div>
+      <div class="chip" onclick="toggleGF(this,'mothers')">👩‍👧 Mothers</div>
+      <div class="chip" onclick="toggleGF(this,'ladies')">💃 Ladies</div>
+      <div class="chip" onclick="toggleGF(this,'siblings')">🤝 Siblings</div>
+      <div class="chip" onclick="toggleGF(this,'dee_jiju')">🥂 Dee &amp; Jiju</div>
+      <div class="chip" onclick="toggleGF(this,'unmarried')">💍 Unmarried</div>
+    </div>
+    <button class="f-clear" id="fClear" onclick="clearFilter()">✕ Filter हटाएँ</button>
+    <div class="f-cnt" id="fCnt"></div>
+  </div>
+
+  <div class="card"><div class="card-head" onclick="toggleCard('eng')"><div class="card-icon">💍</div><div class="card-info"><div class="card-sub" id="cs-eng">सगाई</div><div class="card-title">Engagement</div><div class="card-meta"><div class="ctag">🕐 Coming Soon</div></div></div><div class="card-chev" id="cc-eng">▾</div></div>
+    <div class="card-body" id="cb-eng"><div class="card-desc">उनके हमेशा की शुरुआत। तारीख जल्द घोषित होगी।</div><div class="step-lbl">OVERVIEW</div><div class="step"><div class="step-n">1</div><div><div class="step-name">Date &amp; Venue</div><div class="step-det">To be announced</div></div></div><div class="step"><div class="step-n">2</div><div><div class="step-name">Ring Ceremony</div><div class="step-det">Photography, family</div></div></div><div class="ep-sec"><div class="ep-lbl">PHOTOS</div><div class="ep-grid" id="ep-eng"></div><button class="ep-add epb" onclick="openEvPhoto('eng')" style="display:none;">📷 Add Photo</button></div></div>
+  </div>
+
+  <div class="card"><div class="card-head" onclick="toggleCard('mehndi')"><div class="card-icon">🌸</div><div class="card-info"><div class="card-sub" id="cs-mehndi">मेहंदी की शाम</div><div class="card-title">Mehndi Night</div><div class="card-meta"><div class="ctag">📅 1 July</div><div class="ctag">🕖 7–11 PM</div><div class="ctag g">📍 Shubham's Home</div></div></div><div class="card-chev" id="cc-mehndi">▾</div></div>
+    <div class="card-body" id="cb-mehndi"><div class="card-desc">संगीत, हँसी और नृत्य से भरी मेहंदी की सुहानी शाम।</div><div class="step-lbl">OVERVIEW</div><div class="step"><div class="step-n">1</div><div><div class="step-name">Mehndi Application</div><div class="step-det">Ladies taking turns</div></div></div><div class="step"><div class="step-n">2</div><div><div class="step-name">Music &amp; Dance</div><div class="step-det">DJ, songs, dancing</div></div></div><div class="step"><div class="step-n">3</div><div><div class="step-name">Photography</div><div class="step-det">Reels team ready</div></div></div><div class="ep-sec"><div class="ep-lbl">PHOTOS</div><div class="ep-grid" id="ep-mehndi"></div><button class="ep-add epb" onclick="openEvPhoto('mehndi')" style="display:none;">📷 Add Photo</button></div></div>
+  </div>
+
+  <div class="card"><div class="card-head" onclick="toggleCard('haldi')"><div class="card-icon">🌿</div><div class="card-info"><div class="card-sub" id="cs-haldi">हल्दी रस्म</div><div class="card-title">Haldi</div><div class="card-meta"><div class="ctag">📅 2 July</div><div class="ctag">🕚 11AM–2PM</div><div class="ctag g">📍 Royal Club</div></div></div><div class="card-chev" id="cc-haldi">▾</div></div>
+    <div class="card-body" id="cb-haldi"><div class="card-desc">पवित्र हल्दी की रस्म — परिवार के साथ खुशी का पल।</div><div class="step-lbl">OVERVIEW</div><div class="step"><div class="step-n">1</div><div><div class="step-name">Décor &amp; Prep</div><div class="step-det">Arrive 1 hour early</div></div></div><div class="step"><div class="step-n">2</div><div><div class="step-name">Haldi Ceremony</div><div class="step-det">Family takes turns</div></div></div><div class="psec"><div class="plbl">🎵 Songs <span class="ebadge" id="eb1" style="display:none;">✏️ Editor</span></div><div id="pp-haldi"><div class="spin">Loading…</div></div></div><div class="ep-sec"><div class="ep-lbl">PHOTOS</div><div class="ep-grid" id="ep-haldi"></div><button class="ep-add epb" onclick="openEvPhoto('haldi')" style="display:none;">📷 Add Photo</button></div></div>
+  </div>
+
+  <div class="card"><div class="card-head" onclick="toggleCard('sangeet')"><div class="card-icon">🎉</div><div class="card-info"><div class="card-sub" id="cs-sangeet">संगीत समारोह</div><div class="card-title">Sangeet</div><div class="card-meta"><div class="ctag">📅 2 July</div><div class="ctag">🕔 5–8 PM</div><div class="ctag g">📍 Royal Club</div></div></div><div class="card-chev" id="cc-sangeet">▾</div></div>
+    <div class="card-body" id="cb-sangeet"><div class="card-desc">नृत्य प्रदर्शन और उत्सव की भव्य शाम! 🎤</div><div class="step-lbl">OVERVIEW</div><div class="step"><div class="step-n">1</div><div><div class="step-name">Sound Check</div><div class="step-det">2 hours early</div></div></div><div class="step"><div class="step-n">2</div><div><div class="step-name">Performances</div><div class="step-det">In sequence as listed</div></div></div><div class="step"><div class="step-n">3</div><div><div class="step-name">Sangeet Ending</div><div class="step-det">Tere Dware — everyone together</div></div></div>
+      <div class="psec"><div class="plbl">🎵 Performances <span class="ebadge" id="eb2" style="display:none;">✏️ Editor</span></div><div id="pp-sangeet"><div class="spin">Loading…</div></div><div id="apBtn" style="display:none;margin-top:9px;"><button class="badd" onclick="showAP()">+ Add Performance</button></div>
+        <div id="apf" class="eform" style="margin-top:9px;">
+          <div class="erow"><div><div class="el">Song Name</div><input class="ei" id="ns-song" placeholder="Song name"/></div><div><div class="el">Category</div><input class="ei" id="ns-cat" placeholder="e.g. Siblings Love"/></div></div>
+          <div class="erow"><div><div class="el">Seq #</div><input class="ei" id="ns-seq" placeholder="22"/></div><div><div class="el">Duration</div><input class="ei" id="ns-dur" placeholder="3 mins"/></div></div>
+          <div class="erow"><div><div class="el">Dance Lead</div><input class="ei" id="ns-lead" placeholder="Name"/></div><div><div class="el">Status</div><select class="ei" id="ns-stat"><option value="tbu">TBU</option><option value="notstarted">Not Started</option><option value="progress">In Progress</option><option value="ready">Ready</option></select></div></div>
+          <div style="margin-bottom:7px;"><div class="el">Dancers</div><input class="ei" id="ns-dan" placeholder="Shreni, Shreya"/></div>
+          <div style="margin-bottom:7px;"><div class="el">Choreo Link</div><input class="ei" id="ns-link" placeholder="https://instagram.com/..."/></div>
+          <div style="margin-bottom:7px;"><div class="el">Outfit</div><input class="ei" id="ns-out" placeholder="e.g. Pink &amp; Gold"/></div>
+          <div style="margin-bottom:7px;"><div class="el">Event</div><select class="ei" id="ns-ev"><option value="sangeet">🎉 Sangeet</option><option value="baraat">🐎 Baraat</option><option value="haldi">🌿 Haldi</option><option value="mehndi">🌸 Mehndi</option><option value="reception">🥂 Reception</option></select></div>
+          <div style="margin-bottom:11px;"><div class="el">Notes</div><input class="ei" id="ns-notes" placeholder="e.g. Surprise entry"/></div>
+          <button class="bsave" onclick="saveNewPerf()">✓ Save</button><button class="bcancel" onclick="hideAP()">Cancel</button>
+        </div>
+      </div>
+      <div class="ep-sec"><div class="ep-lbl">PHOTOS</div><div class="ep-grid" id="ep-sangeet"></div><button class="ep-add epb" onclick="openEvPhoto('sangeet')" style="display:none;">📷 Add Photo</button></div>
+    </div>
+  </div>
+
+  <div class="card"><div class="card-head" onclick="toggleCard('baraat')"><div class="card-icon">🐎</div><div class="card-info"><div class="card-sub" id="cs-baraat">बारात</div><div class="card-title">Baraat</div><div class="card-meta"><div class="ctag">📅 3 July</div><div class="ctag">🕓 4–6 PM</div><div class="ctag g">📍 Royal Club</div></div></div><div class="card-chev" id="cc-baraat">▾</div></div>
+    <div class="card-body" id="cb-baraat"><div class="card-desc">भव्य बारात — ढोल, नृत्य और पूरी ऊर्जा!</div><div class="step-lbl">OVERVIEW</div><div class="step"><div class="step-n">1</div><div><div class="step-name">Opening</div><div class="step-det">Hum Ladke Hain — baraat starts</div></div></div><div class="step"><div class="step-n">2</div><div><div class="step-name">Groom on Horse</div><div class="step-det">Ghodi Chadh Gaya</div></div></div><div class="psec"><div class="plbl">🎵 Baraat Songs</div><div id="pp-baraat"><div class="spin">Loading…</div></div></div><div class="ep-sec"><div class="ep-lbl">PHOTOS</div><div class="ep-grid" id="ep-baraat"></div><button class="ep-add epb" onclick="openEvPhoto('baraat')" style="display:none;">📷 Add Photo</button></div></div>
+  </div>
+
+  <div class="card"><div class="card-head" onclick="toggleCard('vivah')"><div class="card-icon">🔥</div><div class="card-info"><div class="card-sub" id="cs-vivah">विवाह संस्कार</div><div class="card-title">Vivah</div><div class="card-meta"><div class="ctag">📅 3 July</div><div class="ctag">🕖 7–11 PM</div><div class="ctag g">📍 Royal Club</div></div></div><div class="card-chev" id="cc-vivah">▾</div></div>
+    <div class="card-body" id="cb-vivah"><div class="card-desc">सात फेरों की पावन रस्म। ✨</div><div class="step-lbl">OVERVIEW</div><div class="step"><div class="step-n">1</div><div><div class="step-name">Jaymala</div><div class="step-det">Varmala ceremony</div></div></div><div class="step"><div class="step-n">2</div><div><div class="step-name">Saat Phere</div><div class="step-det">Sacred vows with Pandit ji</div></div></div><div class="step"><div class="step-n">3</div><div><div class="step-name">Vidaai</div><div class="step-det">Emotional farewell</div></div></div><div class="ep-sec"><div class="ep-lbl">PHOTOS</div><div class="ep-grid" id="ep-vivah"></div><button class="ep-add epb" onclick="openEvPhoto('vivah')" style="display:none;">📷 Add Photo</button></div></div>
+  </div>
+
+  <div class="card"><div class="card-head" onclick="toggleCard('reception')"><div class="card-icon">🥂</div><div class="card-info"><div class="card-sub" id="cs-reception">स्वागत समारोह</div><div class="card-title">Reception</div><div class="card-meta"><div class="ctag">📅 3 July</div><div class="ctag">🕖 7–11 PM</div><div class="ctag g">📍 Royal Club</div></div></div><div class="card-chev" id="cc-reception">▾</div></div>
+    <div class="card-body" id="cb-reception"><div class="card-desc">१०००+ मेहमानों के साथ भव्य स्वागत! 🎊</div><div class="step-lbl">OVERVIEW</div><div class="step"><div class="step-n">1</div><div><div class="step-name">Welcome Guests</div><div class="step-det">Welcome team at entrance</div></div></div><div class="step"><div class="step-n">2</div><div><div class="step-name">Dining</div><div class="step-det">Catering team at counters</div></div></div><div class="ep-sec"><div class="ep-lbl">PHOTOS</div><div class="ep-grid" id="ep-reception"></div><button class="ep-add epb" onclick="openEvPhoto('reception')" style="display:none;">📷 Add Photo</button></div></div>
+  </div>
+</div>
+
+<!-- ROLES -->
+
+<div class="sec" id="sec-roles">
+  <div class="s-eye">भूमिका</div><div class="s-title">अपनी <em>भूमिका</em> चुनें</div><div class="s-sub">जो भूमिका आप लेना चाहते हैं, उसमें रुचि दिखाएँ।</div>
+  <div class="rbanner"><h3>आप इस विवाह को यादगार बनाते हैं ✦</h3><p>भूमिका चुनें, विवरण पढ़ें। दूसरे सुझाव भी दे सकते हैं।</p></div>
+  <div id="rolesC"></div>
+  <div class="arbox"><h4>✦ नई भूमिका जोड़ें</h4><p>कोई भूमिका नहीं दिखी? यहाँ जोड़ें!</p><div class="arow"><input class="ari" id="arName" placeholder="भूमिका का नाम"/><input class="ari" id="arDesc" placeholder="छोटा विवरण"/><button class="badd" onclick="addCustomRole()">+ जोड़ें</button></div></div>
+</div>
+
+<!-- TEAM -->
+
+<div class="sec" id="sec-team">
+  <div class="s-eye">विवाह टीम</div><div class="s-title">हमारी <em>टीम</em></div><div class="s-sub">Management team के सभी सदस्य।</div>
+  <div class="tgrid" id="teamGrid"></div>
+  <div class="empty" id="teamEmpty" style="display:none;">No members yet.</div>
+</div>
+
+<!-- GALLERY -->
+
+<div class="sec" id="sec-gallery">
+  <div class="s-eye">Photos</div><div class="s-title">Wedding <em>Gallery</em></div><div class="s-sub">All wedding memories. Click to view, tag and caption.</div>
+  <div class="gup" id="gupCard" onclick="document.getElementById('galleryPhotoInput').click()"><div class="gup-ico">📷</div><h4>Add a Photo</h4><p>Tap to upload. Tag people and add a caption.</p></div>
+  <div class="gform" id="gupForm">
+    <div class="el" style="margin-bottom:5px;">Caption</div><input class="ei" style="width:100%;margin-bottom:8px;" id="gCap" placeholder="Caption (optional)"/>
+    <div class="el" style="margin-bottom:4px;">Event</div><select class="ei" style="width:100%;margin-bottom:8px;" id="gEv"><option value="">General</option><option value="mehndi">🌸 Mehndi</option><option value="haldi">🌿 Haldi</option><option value="sangeet">🎉 Sangeet</option><option value="baraat">🐎 Baraat</option><option value="vivah">🔥 Vivah</option><option value="reception">🥂 Reception</option></select>
+    <div class="el" style="margin-bottom:4px;">Tag People</div>
+    <div class="twrap" style="margin-bottom:7px;"><input class="ei" style="width:100%;" id="gTagInp" placeholder="@tag someone" oninput="showGTS()" onblur="hideGTS()"/><div class="tdrop" id="gTagDrop"></div></div>
+    <div class="atags" id="gTags"></div>
+    <div style="display:flex;gap:7px;"><button class="bsave" style="flex:1;" onclick="submitGPhoto()">📤 Upload</button><button class="bcancel" onclick="cancelGUp()">Cancel</button></div>
+  </div>
+  <div class="gfilt" id="gFilt"><div class="chip on" onclick="setGF(this,'')">All</div><div class="chip" onclick="setGF(this,'mehndi')">🌸 Mehndi</div><div class="chip" onclick="setGF(this,'haldi')">🌿 Haldi</div><div class="chip" onclick="setGF(this,'sangeet')">🎉 Sangeet</div><div class="chip" onclick="setGF(this,'baraat')">🐎 Baraat</div><div class="chip" onclick="setGF(this,'vivah')">🔥 Vivah</div><div class="chip" onclick="setGF(this,'reception')">🥂 Reception</div></div>
+  <div class="ggrid" id="gGrid"><div class="spin" style="grid-column:1/-1;">Loading…</div></div>
+</div>
+
+<!-- CHANGES -->
+
+<div class="sec" id="sec-changes">
+  <div class="s-eye">Change Log</div><div class="s-title">Who, <em>What, When</em></div><div class="s-sub">Complete record of all changes.</div>
+  <div id="chLog"><div class="spin">Loading…</div></div>
+</div>
+
+<!-- SUGGESTIONS -->
+
+<div class="sec" id="sec-suggest">
+  <div class="s-eye">सुझाव</div><div class="s-title">आपके <em>सुझाव</em></div><div class="s-sub">कोई भी विचार, आइडिया यहाँ लिखें।</div>
+  <div class="sfcard"><h4>✦ अपना सुझाव लिखें</h4><p>@नाम लिखकर टैग करें।</p><input class="finp" id="sgName" placeholder="आपका नाम"/><textarea class="finp" id="sgText" rows="3" placeholder="आपका सुझाव…"></textarea><div class="twrap"><input class="finp" style="margin:0;" id="sgTagInp" placeholder="@किसी को टैग करें" oninput="showSTS()" onblur="hideSTS()"/><div class="tdrop" id="sgTagDrop"></div></div><div class="atags" id="sgTags"></div><button class="bprim" onclick="submitSugg()">✦ सुझाव भेजें</button></div>
+  <div id="suggList"></div>
+</div>
+
+<!-- INFO -->
+
+<div class="sec" id="sec-info">
+  <div class="s-eye">जानकारी</div><div class="s-title">विवाह का <em>विवरण</em></div><div class="s-sub">रायपुर पहुँचने से पहले यह सब जान लें।</div>
+  <div class="dcard"><div class="i-ico">👗</div><div class="i-lbl">DRESS CODE</div><div class="i-val">Traditional Indian Attire</div><div class="i-sub">Ladies: Lehenga / Saree · Gents: Sherwani / Kurta</div></div>
+  <div class="igrid">
+    <div class="icard"><div class="i-ico">📍</div><div class="i-lbl">VENUE</div><div class="i-val">Royal Club</div><div class="i-sub">Raipur, Chhattisgarh</div></div>
+    <div class="icard"><div class="i-ico">👥</div><div class="i-lbl">GUESTS</div><div class="i-val">~1000</div><div class="i-sub">Grand traditional wedding</div></div>
+    <div class="icard"><div class="i-ico">📅</div><div class="i-lbl">DATES</div><div class="i-val">1–3 July</div><div class="i-sub">2025 · Three days</div></div>
+    <div class="icard"><div class="i-ico">🌸</div><div class="i-lbl">EVENTS</div><div class="i-val">7 Functions</div><div class="i-sub">Mehndi · Haldi · Sangeet · Baraat · Vivah · Reception</div></div>
+  </div>
+  <div class="lkcard"><div class="i-ico">🔗</div><div class="i-lbl">WEBSITE</div><div class="i-val">Share this link</div><div class="lkurl">https://shreyadubey-studio.github.io/priyanka-shubham-wedding</div><div class="cpbtn" onclick="copyLink()">📋 Copy Link</div></div>
+  <div class="clcard"><div class="i-lbl">COUSIN CHECKLIST</div><div class="i-val">Day-of Tips</div><div class="i-sub">🌸 Claim your role on this website<br/>✦ Arrive 1 hour before your event<br/>🌸 Keep your phone fully charged<br/>✦ Family briefing the night before<br/>🌸 Coordinate outfit colour with team<br/>✦ Have fun — it's a celebration! 🎊</div></div>
+  <div class="ctcard"><div class="ct-eye">Website Related Issues</div><div class="ct-tit">Contact</div><div class="ct-name">Shreya Dubey</div><div class="ct-ph">+91 91095 27063</div><a class="ct-btn" href="tel:+919109527063">📞 Call Shreya</a></div>
+</div>
+
+</div><!-- cwrap -->
+
+<div class="bnav" id="bnav" style="display:none;">
+  <button id="bn-events" onclick="showSec('events')"><span class="bi">🗓️</span>Events</button>
+  <button id="bn-roles" onclick="showSec('roles')"><span class="bi">✋</span>Roles</button>
+  <button id="bn-team" onclick="showSec('team')"><span class="bi">👥</span>Team</button>
+  <button id="bn-gallery" onclick="showSec('gallery')"><span class="bi">📸</span>Gallery</button>
+  <button id="bn-suggest" onclick="showSec('suggest')"><span class="bi">💡</span>Suggest</button>
+  <button id="bn-info" onclick="showSec('info')"><span class="bi">ℹ️</span>Info</button>
+</div>
+
+<!-- LIGHTBOX -->
+
+<div class="lb" id="lb"><button class="lb-close" onclick="closeLb()">✕</button><img class="lb-img" id="lbImg" src="" alt=""/><div class="lb-cap" id="lbCap"></div></div>
+
+</div><!-- app -->
+
+<input type="file" id="photoInput" accept="image/*" onchange="handleAvatarUpload(event)"/>
+<input type="file" id="galleryPhotoInput" accept="image/*" onchange="handleGalleryFile(event)"/>
+<input type="file" id="eventPhotoInput" accept="image/*" onchange="handleEventPhotoFile(event)"/>
+
+<script>
+// ── CONFIG ──
+var URL='https://fwbbfsfjgmuuzqymxtdv.supabase.co/rest/v1/';
+var KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZ3YmJmc2ZqZ211dXpxeW14dGR2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzYwMTUxMDksImV4cCI6MjA5MTU5MTEwOX0.npnpwd1SirAHyHH1JahMcKyEsvJb5MrPXEzdPAPpC-0';
+var TP='4567', SK='ps_v10';
+var cu=null, lang=localStorage.getItem('ps_lang')||'hi';
+var tagPpl=[], photoTags=[], pgf=null, pef=null, pen=null, gFilter='';
+var allPhotos=[], allInts={}, allRSuggs={}, customRoles=[];
+var AGF=null;
+
+// ── API ──
+function api(method, table, params, body){
+  var h={'apikey':KEY,'Authorization':'Bearer '+KEY,'Content-Type':'application/json'};
+  if(method==='POST'||method==='PATCH') h['Prefer']='return=representation';
+  var url=URL+table+(params?'?'+params:'');
+  var opts={method:method,headers:h};
+  if(body) opts.body=JSON.stringify(body);
+  return fetch(url,opts).then(function(r){
+    if(r.status===204) return [];
+    return r.json();
+  });
+}
+function get(table,params){ return api('GET',table,params); }
+function post(table,body){ return api('POST',table,null,Array.isArray(body)?body:[body]); }
+function patch(table,params,body){ return api('PATCH',table,params,body); }
+function del(table,params){ return api('DELETE',table,params); }
+
+// ── INIT ──
+window.addEventListener('load', function(){
+  document.getElementById('splashTxt').textContent='Loading…';
+  var saved=localStorage.getItem(SK);
+  if(saved){
+    try{
+      var sess=JSON.parse(saved);
+      if(sess&&sess.id){
+        get('users','select=*&id=eq.'+sess.id).then(function(data){
+          if(data&&data[0]){ cu=data[0]; startApp(); }
+          else{ localStorage.removeItem(SK); showLogin(); }
+        }).catch(function(){ showLogin(); });
+        return;
+      }
+    }catch(e){}
+    localStorage.removeItem(SK);
+  }
+  showLogin();
+});
+
+function showLogin(){
+  document.getElementById('splash').style.display='none';
+  document.getElementById('app').style.display='block';
+  document.getElementById('login').style.display='flex';
+}
+
+// ── AUTH ──
+function switchTab(t){
+  document.getElementById('tab-l').classList.toggle('active',t==='l');
+  document.getElementById('tab-r').classList.toggle('active',t==='r');
+  document.getElementById('fL').style.display=t==='l'?'block':'none';
+  document.getElementById('fR').style.display=t==='r'?'block':'none';
+  document.getElementById('lErr').classList.remove('on');
+}
+function showErr(m){ var e=document.getElementById('lErr'); e.textContent=m; e.classList.add('on'); }
+function showSpin(v){ document.getElementById('lSpin').classList.toggle('on',v); }
+
+function doLogin(){
+  var u=document.getElementById('lU').value.trim().toLowerCase();
+  var p=document.getElementById('lP').value;
+  if(!u||!p){ showErr('Username और password दोनों लिखें।'); return; }
+  showSpin(true);
+  get('users','select=*&username=eq.'+encodeURIComponent(u)+'&password_hash=eq.'+encodeURIComponent(p)).then(function(data){
+    if(!data||!data[0]){ showErr('गलत username या password!'); showSpin(false); return; }
+    cu=data[0];
+    patch('users','id=eq.'+cu.id,{last_login:new Date().toISOString()});
+    localStorage.setItem(SK,JSON.stringify({id:cu.id,username:cu.username}));
+    showSpin(false); startApp();
+  }).catch(function(){ showErr('Connection error. Please try again.'); showSpin(false); });
+}
+
+function doReg(){
+  var fn=document.getElementById('rN').value.trim();
+  var ph=document.getElementById('rPh').value.trim();
+  var u=document.getElementById('rU').value.trim().toLowerCase();
+  var pw=document.getElementById('rPw').value;
+  var tp=document.getElementById('rT').value;
+  if(!fn||!ph||!u||!pw){ showErr('सभी fields भरें।'); return; }
+  if(tp!==TP){ showErr('गलत Team Password!'); return; }
+  showSpin(true);
+  get('users','select=id&username=eq.'+encodeURIComponent(u)).then(function(data){
+    if(data&&data[0]){ showErr('यह username पहले से लिया गया है।'); showSpin(false); return; }
+    post('users',{username:u,password_hash:pw,full_name:fn,phone:ph,role:'member'}).then(function(d){
+      if(!d||!d[0]){ showErr('Registration failed.'); showSpin(false); return; }
+      cu=d[0];
+      localStorage.setItem(SK,JSON.stringify({id:cu.id,username:cu.username}));
+      showSpin(false); startApp();
+    });
+  }).catch(function(){ showErr('Connection error.'); showSpin(false); });
+}
+
+function doGuest(){ cu={id:'guest',username:'guest',full_name:'Guest',role:'guest'}; startApp(); }
+
+function doLogout(){
+  cu=null; localStorage.removeItem(SK);
+  document.getElementById('app').style.display='block';
+  document.getElementById('login').style.display='flex';
+  document.getElementById('nav').style.display='none';
+  document.getElementById('subnav').style.display='none';
+  document.getElementById('bnav').style.display='none';
+  document.getElementById('heroSec').style.display='none';
+  ['events','roles','team','gallery','suggest','changes','info'].forEach(function(s){
+    var el=document.getElementById('sec-'+s); if(el) el.classList.remove('on');
+  });
+}
+
+// ── START ──
+function startApp(){
+  document.getElementById('splash').style.display='none';
+  document.getElementById('app').style.display='block';
+  document.getElementById('login').style.display='none';
+  document.getElementById('heroSec').style.display='block';
+  var isAdmin=cu.role==='admin';
+  var canEdit=cu.role!=='guest';
+  var dn=cu.role==='admin'?(cu.full_name||cu.username).split(' ')[0]:(cu.full_name||cu.username);
+  document.getElementById('navPill').textContent=dn;
+  document.querySelectorAll('.ebadge').forEach(function(el){ el.style.display=canEdit?'inline':'none'; });
+  var apb=document.getElementById('apBtn'); if(apb) apb.style.display=canEdit?'block':'none';
+  if(isAdmin) document.getElementById('sn-changes').style.display='block';
+  document.querySelectorAll('.epb').forEach(function(el){ el.style.display=canEdit?'block':'none'; });
+  loadAllPerfs();
+  loadRoleInterests();
+  loadCustomRoles();
+  loadGallery();
+  startPolling();
+}
+
+function startPolling(){
+  setInterval(function(){
+    if(document.getElementById('sec-events').classList.contains('on')){
+      ['sangeet','baraat','haldi'].forEach(loadPerfs);
+    }
+    if(document.getElementById('sec-gallery').classList.contains('on')) loadGallery();
+  }, 10000);
+}
+
+// ── LANG ──
+function toggleLang(){
+  lang=lang==='hi'?'en':'hi';
+  localStorage.setItem('ps_lang',lang);
+  applyLang();
+}
+function applyLang(){
+  var hi=lang==='hi';
+  // update login lang button
+  document.getElementById('lLE').style.color=hi?'rgba(232,193,122,0.3)':'rgba(232,193,122,0.9)';
+  document.getElementById('lLH').style.color=hi?'rgba(232,193,122,0.9)':'rgba(232,193,122,0.3)';
+  document.getElementById('nLE').style.color=hi?'rgba(232,193,122,0.3)':'rgba(232,193,122,0.9)';
+  document.getElementById('nLH').style.color=hi?'rgba(232,193,122,0.9)':'rgba(232,193,122,0.3)';
+}
+
+// ── ROLES DATA ──
+var ROLES=[
+  {id:'gm1',ico:'🤵',name:'Groomsman 1',cat:'👑 Groomsmen & Groomswomen',tag:'दूल्हे का पहला साथी',det:['हर रस्म में शुभम के साथ रहें','Sherwani / coordinated outfit']},
+  {id:'gm2',ico:'🤵',name:'Groomsman 2',cat:'👑 Groomsmen & Groomswomen',tag:'दूल्हे का दूसरा साथी',det:['Sherwani / coordinated outfit','बारात में साथ चलें']},
+  {id:'gm3',ico:'🤵',name:'Groomsman 3',cat:'👑 Groomsmen & Groomswomen',tag:'दूल्हे का तीसरा साथी',det:['Sherwani / coordinated outfit']},
+  {id:'gw1',ico:'💃',name:'Groomswoman 1',cat:'👑 Groomsmen & Groomswomen',tag:'दुल्हन की पहली सहेली',det:['हर रस्म में प्रियंका के पास रहें','Lehenga / coordinated outfit']},
+  {id:'gw2',ico:'💃',name:'Groomswoman 2',cat:'👑 Groomsmen & Groomswomen',tag:'दुल्हन की दूसरी सहेली',det:['Lehenga / coordinated outfit','संगीत में dance performance']},
+  {id:'gw3',ico:'💃',name:'Groomswoman 3',cat:'👑 Groomsmen & Groomswomen',tag:'दुल्हन की तीसरी सहेली',det:['Lehenga / coordinated outfit']},
+  {id:'baraat1',ico:'🐎',name:'बारात लीडर',cat:'🎊 बारात व रस्में',tag:'बारात में सबसे आगे',det:['बारात में सबसे आगे चलें','ढोल के साथ नृत्य']},
+  {id:'baraat2',ico:'💃',name:'बारात डांसर',cat:'🎊 बारात व रस्में',tag:'बारात में नृत्य ऊर्जा',det:['पूरी बारात में ऊर्जा बनाएँ']},
+  {id:'pheras',ico:'🌸',name:'रस्म सहयोगी',cat:'🎊 बारात व रस्में',tag:'पूजा सामग्री तैयार रखें',det:['पूजा सामग्री पहले से तैयार','शांत और organized रहें']},
+  {id:'gsh',ico:'🤵',name:'दूल्हे का साया',cat:'🎊 बारात व रस्में',tag:'शुभम के साथ हर पल',det:['पूरे दिन शुभम के साथ रहें']},
+  {id:'wel1',ico:'🙏',name:'स्वागत करता',cat:'🚪 मेहमान प्रबंधन',tag:'दरवाजे पर गर्मजोशी से',det:['Main gate पर स्वागत']},
+  {id:'wel2',ico:'👴',name:'VIP होस्ट',cat:'🚪 मेहमान प्रबंधन',tag:'बुजुर्गों का ध्यान',det:['बुजुर्गों को personally escort करें']},
+  {id:'seat',ico:'🪑',name:'बैठक व्यवस्था',cat:'🚪 मेहमान प्रबंधन',tag:'मेहमान मार्गदर्शन',det:['Seating plan पहले से समझें']},
+  {id:'kids',ico:'👶',name:'बच्चों की देखभाल',cat:'🚪 मेहमान प्रबंधन',tag:'बच्चों को सुरक्षित रखें',det:['Stage से बच्चे दूर रखें']},
+  {id:'cat',ico:'🍛',name:'खाना इंचार्ज',cat:'🍽️ खाना व लॉजिस्टिक्स',tag:'कैटरर समन्वय',det:['Food counters भरे रखें']},
+  {id:'vend',ico:'📋',name:'वेंडर समन्वयक',cat:'🍽️ खाना व लॉजिस्टिक्स',tag:'सभी वेंडर से संपर्क',det:['DJ, decorator contact']},
+  {id:'gift',ico:'🎁',name:'उपहार प्रबंधक',cat:'🍽️ खाना व लॉजिस्टिक्स',tag:'उपहार एकत्र व सुरक्षित',det:['Cash envelopes safe रखें']},
+  {id:'flt',ico:'⚡',name:'फ्लोटिंग हेल्पर',cat:'🍽️ खाना व लॉजिस्टिक्स',tag:'जहाँ जरूरत, वहाँ दौड़ें',det:['Most flexible role']},
+  {id:'mc',ico:'🎤',name:'MC / एंकर',cat:'🎉 मनोरंजन व मीडिया',tag:'संगीत व रिसेप्शन होस्ट',det:['Script पहले से तैयार','Energetic और funny']},
+  {id:'dance',ico:'🕺',name:'डांस लीड',cat:'🎉 मनोरंजन व मीडिया',tag:'नृत्य प्रस्तुति आयोजन',det:['सभी dance groups coordinate करें']},
+  {id:'dj',ico:'🎵',name:'DJ समन्वयक',cat:'🎉 मनोरंजन व मीडिया',tag:'सही वक्त पर सही गाना',det:['Complete song list और sequence दें']},
+  {id:'reels',ico:'📸',name:'रील्स & फोटो',cat:'🎉 मनोरंजन व मीडिया',tag:'यादगार पल कैद करें',det:['Phone पूरा charged रखें']},
+  {id:'audio',ico:'🎧',name:'Audio & Track Manager',cat:'💻 Tech & Media',tag:'सभी tracks ready रखें',det:['Edited tracks collect करें','DJ को सही format में दें','Master playlist बनाएँ']},
+  {id:'web',ico:'💻',name:'Website Manager',cat:'💻 Tech & Media',tag:'Website updated रखें',det:['Performance details update करें','Team members को help करें']}
+];
+
+// ── PERFORMANCES ──
+var SL={ready:'✅ Ready',progress:'⏳ In Progress',notstarted:'🔴 Not Started',tbu:'📝 TBU'};
+var SC={ready:'sr',progress:'sp',notstarted:'sn2',tbu:'st'};
+
+function loadAllPerfs(){ ['sangeet','baraat','haldi'].forEach(loadPerfs); }
+function loadPerfs(ev){
+  var el=document.getElementById('pp-'+ev); if(!el) return;
+  get('performances','select=*&event=eq.'+ev+'&order=seq.asc').then(function(data){
+    renderPerfs(ev, data||[]);
+  }).catch(function(){ el.innerHTML='<div class="empty">Error loading.</div>'; });
+}
+function renderPerfs(ev, perfs){
+  var el=document.getElementById('pp-'+ev); if(!el) return;
+  if(!perfs.length){ el.innerHTML='<div class="empty">No performances yet.</div>'; return; }
+  var ce=cu&&cu.role!=='guest';
+  el.innerHTML=perfs.map(function(p){
+    var html='<div class="pc" id="pc-'+p.id+'">';
+    html+='<div class="pc-num">'+e(p.seq||'?')+'</div>';
+    html+='<div class="pc-song">'+e(p.song)+'</div>';
+    html+='<div class="pc-cat">'+e(p.category||'')+'</div>';
+    html+='<div class="pc-grid">';
+    html+='<div class="pf"><div class="pfl">Dance Lead</div><div class="pfv'+(p.lead?'':' tbu')+'">'+e(p.lead||'TBU')+'</div></div>';
+    html+='<div class="pf"><div class="pfl">Duration</div><div class="pfv'+(p.duration?'':' tbu')+'">'+(p.duration?p.duration+' mins':'TBU')+'</div></div>';
+    html+='<div class="pf"><div class="pfl">Track Ready</div><div class="pfv'+(p.track_ready?'':' tbu')+'">'+e(p.track_ready||'TBU')+'</div></div>';
+    html+='<div class="pf"><div class="pfl">Finalized</div><div class="pfv'+(p.song_finalized?'':' tbu')+'">'+e(p.song_finalized||'TBU')+'</div></div>';
+    html+='</div>';
+    html+='<div class="pc-dan"><div class="pfl">Dancers</div><div class="pfv'+(p.dancers?'':' tbu')+'">'+e(p.dancers||'TBU')+'</div></div>';
+    if(p.outfit||p.notes){ html+='<div class="pc-grid">'; if(p.outfit) html+='<div class="pf"><div class="pfl">Outfit</div><div class="pfv">'+e(p.outfit)+'</div></div>'; if(p.notes) html+='<div class="pf"><div class="pfl">Notes</div><div class="pfv">'+e(p.notes)+'</div></div>'; html+='</div>'; }
+    if(p.link) html+='<div class="pc-links"><a class="pc-link" href="'+e(p.link)+'" target="_blank">🎬 Choreo Ref</a>'+(p.link2?'<a class="pc-link" href="'+e(p.link2)+'" target="_blank">🎬 Ref 2</a>':'')+'</div>';
+    html+='<span class="pstat '+(SC[p.practice_status]||'st')+'">'+(SL[p.practice_status]||'📝 TBU')+'</span>';
+    if(p.updated_by) html+='<div class="pupdated">✏️ Last updated by: '+e(p.updated_by)+'</div>';
+    if(ce){
+      html+='<button class="ebtn" onclick="toggleEdit(\''+p.id+'\')">✏️ Edit</button>';
+      html+='<div class="eform" id="ef-'+p.id+'">';
+      html+='<div class="erow"><div><div class="el">Song</div><input class="ei" id="es-'+p.id+'" value="'+e(p.song)+'"/></div><div><div class="el">Category</div><input class="ei" id="ec-'+p.id+'" value="'+e(p.category||'')+'"/></div></div>';
+      html+='<div class="erow"><div><div class="el">Seq #</div><input class="ei" id="eq-'+p.id+'" value="'+(p.seq||'')+'"/></div><div><div class="el">Duration</div><input class="ei" id="ed-'+p.id+'" value="'+(p.duration||'')+'"/></div></div>';
+      html+='<div class="erow"><div><div class="el">Dance Lead</div><input class="ei" id="el-'+p.id+'" value="'+e(p.lead||'')+'"/></div><div><div class="el">Status</div><select class="ei" id="est-'+p.id+'"><option value="tbu"'+(p.practice_status==='tbu'?' selected':'')+'>TBU</option><option value="notstarted"'+(p.practice_status==='notstarted'?' selected':'')+'>Not Started</option><option value="progress"'+(p.practice_status==='progress'?' selected':'')+'>In Progress</option><option value="ready"'+(p.practice_status==='ready'?' selected':'')+'>Ready</option></select></div></div>';
+      html+='<div style="margin-bottom:7px;"><div class="el">Dancers</div><input class="ei" id="edn-'+p.id+'" value="'+e(p.dancers||'')+'"/></div>';
+      html+='<div class="erow"><div><div class="el">Outfit</div><input class="ei" id="eo-'+p.id+'" value="'+e(p.outfit||'')+'"/></div><div><div class="el">Track Ready</div><select class="ei" id="etr-'+p.id+'"><option value=""'+(p.track_ready?'':' selected')+'>TBU</option><option value="Yes"'+(p.track_ready==='Yes'?' selected':'')+'>Yes</option><option value="No"'+(p.track_ready==='No'?' selected':'')+'>No</option></select></div></div>';
+      html+='<div class="erow"><div><div class="el">Finalized</div><select class="ei" id="ef2-'+p.id+'"><option value=""'+(p.song_finalized?'':' selected')+'>TBU</option><option value="Yes"'+(p.song_finalized==='Yes'?' selected':'')+'>Yes</option><option value="No"'+(p.song_finalized==='No'?' selected':'')+'>No</option></select></div><div><div class="el">Practice Plan</div><input class="ei" id="epp-'+p.id+'" value="'+e(p.practice_plan||'')+'"/></div></div>';
+      html+='<div style="margin-bottom:7px;"><div class="el">Choreo Link 1</div><input class="ei" id="ek-'+p.id+'" value="'+e(p.link||'')+'"/></div>';
+      html+='<div style="margin-bottom:7px;"><div class="el">Choreo Link 2</div><input class="ei" id="ek2-'+p.id+'" value="'+e(p.link2||'')+'"/></div>';
+      html+='<div style="margin-bottom:7px;"><div class="el">🔄 Move to Event</div><select class="ei" id="eev-'+p.id+'" style="background:#1A0A0C;"><option value="sangeet"'+(ev==='sangeet'?' selected':'')+'>🎉 Sangeet</option><option value="baraat"'+(ev==='baraat'?' selected':'')+'>🐎 Baraat</option><option value="haldi"'+(ev==='haldi'?' selected':'')+'>🌿 Haldi</option><option value="mehndi"'+(ev==='mehndi'?' selected':'')+'>🌸 Mehndi</option><option value="reception"'+(ev==='reception'?' selected':'')+'>🥂 Reception</option></select></div>';
+      html+='<div style="margin-bottom:11px;"><div class="el">Notes</div><input class="ei" id="en-'+p.id+'" value="'+e(p.notes||'')+'"/></div>';
+      html+='<button class="bsave" onclick="saveEdit(\''+p.id+'\',\''+ev+'\')">✓ Save</button><button class="bcancel" onclick="toggleEdit(\''+p.id+'\')">Cancel</button>';
+      html+='</div>';
+    }
+    html+='</div>';
+    return html;
+  }).join('');
+  applyFilter();
+}
+function toggleEdit(id){ var f=document.getElementById('ef-'+id); if(f) f.classList.toggle('open'); }
+function saveEdit(id,ev){
+  var nev=document.getElementById('eev-'+id).value;
+  var u={song:document.getElementById('es-'+id).value.trim(),category:document.getElementById('ec-'+id).value.trim(),seq:parseInt(document.getElementById('eq-'+id).value)||1,duration:document.getElementById('ed-'+id).value.trim(),lead:document.getElementById('el-'+id).value.trim(),practice_status:document.getElementById('est-'+id).value,dancers:document.getElementById('edn-'+id).value.trim(),outfit:document.getElementById('eo-'+id).value.trim(),track_ready:document.getElementById('etr-'+id).value,song_finalized:document.getElementById('ef2-'+id).value,practice_plan:document.getElementById('epp-'+id).value.trim(),link:document.getElementById('ek-'+id).value.trim(),link2:document.getElementById('ek2-'+id).value.trim(),notes:document.getElementById('en-'+id).value.trim(),updated_at:new Date().toISOString(),updated_by:cu.full_name||cu.username,event:nev};
+  patch('performances','id=eq.'+id,u).then(function(){
+    logCh('performances',id,'update',{song:u.song,status:u.practice_status,event:u.event});
+    if(nev!==ev){loadPerfs(ev);loadPerfs(nev);alert('✓ Moved to '+nev+'!');}
+    else{loadPerfs(ev);alert('✓ Saved!');}
+  }).catch(function(e){ alert('Error: '+e.message); });
+}
+function showAP(){ document.getElementById('apf').classList.add('open'); }
+function hideAP(){ document.getElementById('apf').classList.remove('open'); }
+function saveNewPerf(){
+  var song=document.getElementById('ns-song').value.trim(); if(!song){alert('Enter song name!');return;}
+  var tev=document.getElementById('ns-ev').value||'sangeet';
+  var p={id:tev[0]+Date.now(),event:tev,seq:parseInt(document.getElementById('ns-seq').value)||99,song:song,category:document.getElementById('ns-cat').value.trim(),duration:document.getElementById('ns-dur').value.trim(),lead:document.getElementById('ns-lead').value.trim(),practice_status:document.getElementById('ns-stat').value,dancers:document.getElementById('ns-dan').value.trim(),link:document.getElementById('ns-link').value.trim(),outfit:document.getElementById('ns-out').value.trim(),notes:document.getElementById('ns-notes').value.trim(),updated_by:cu.full_name||cu.username,updated_at:new Date().toISOString()};
+  post('performances',p).then(function(){
+    logCh('performances',p.id,'insert',{song:song,event:tev});
+    hideAP(); loadPerfs(tev);
+    ['ns-song','ns-cat','ns-seq','ns-dur','ns-lead','ns-dan','ns-link','ns-out','ns-notes'].forEach(function(id){var el=document.getElementById(id);if(el)el.value='';});
+    alert('✓ Added!');
+  });
+}
+
+// ── CHANGE LOG ──
+function logCh(tbl,rid,action,vals){ try{post('change_log',{table_name:tbl,record_id:String(rid),action:action,changed_by:cu.username||'?',changed_by_name:cu.full_name||cu.username,new_values:vals,created_at:new Date().toISOString()});}catch(e){} }
+function loadChangeLog(){
+  var el=document.getElementById('chLog'); if(!el) return;
+  get('change_log','select=*&order=created_at.desc&limit=50').then(function(data){
+    if(!data||!data.length){el.innerHTML='<div class="empty">No changes yet.</div>';return;}
+    var am={update:'u',insert:'i',delete:'d'};
+    el.innerHTML=data.map(function(c){
+      var d=new Date(c.created_at),ti=d.toLocaleDateString('en-IN')+' '+d.toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit'});
+      var v=c.new_values||{},desc=v.song?' "'+e(v.song)+'"':'';
+      if(v.event)desc+=' → '+v.event;if(v.status)desc+=' · '+v.status;
+      return '<div class="citem"><div class="ci-h"><div class="ci-av">'+(c.changed_by_name||'?').charAt(0).toUpperCase()+'</div><div><div class="ci-name">'+e(c.changed_by_name||c.changed_by)+'</div><div class="ci-time">'+ti+'</div></div></div><div class="ci-desc"><span class="cb '+(am[c.action]||'u')+'">'+c.action+'</span><b>'+c.table_name+'</b>'+desc+'</div></div>';
+    }).join('');
+  });
+}
+
+// ── ROLES ──
+function loadRoleInterests(){
+  get('role_interests','select=*').then(function(data){
+    allInts={};(data||[]).forEach(function(i){if(!allInts[i.role_id])allInts[i.role_id]=[];allInts[i.role_id].push(i);});
+    get('role_suggestions','select=*').then(function(data2){
+      allRSuggs={};(data2||[]).forEach(function(s){if(!allRSuggs[s.role_id])allRSuggs[s.role_id]=[];allRSuggs[s.role_id].push(s);});
+      if(document.getElementById('sec-roles').classList.contains('on')) renderRoles();
+    });
+  });
+}
+function loadCustomRoles(){ get('custom_roles','select=*&order=created_at.asc').then(function(d){customRoles=d||[];}); }
+function getAllRoles(){ return ROLES.concat(customRoles.map(function(r){return {id:r.id,ico:'✦',name:r.name,cat:'✦ Family Added',tag:r.tagline||r.role_desc||'',det:[r.role_desc||''],custom:true};})); }
+function renderRoles(){
+  var cont=document.getElementById('rolesC');if(!cont)return;
+  var all=getAllRoles(),ci=cu&&cu.role!=='guest',cats={};
+  all.forEach(function(r){if(!cats[r.cat])cats[r.cat]=[];cats[r.cat].push(r);});
+  var html='';
+  Object.keys(cats).forEach(function(cat){
+    html+='<div class="rcat-lbl">'+e(cat)+'</div><div class="rgrid">';
+    cats[cat].forEach(function(r){
+      var ints=allInts[r.id]||[],iM=ints.some(function(i){return i.user_id===cu&&cu.id;}),suggs=allRSuggs[r.id]||[];
+      html+='<div class="rcard"><div class="rtop"><div class="rico">'+r.ico+'</div><div><div class="rname">'+e(r.name)+'</div><div class="rtag">'+e(r.tag||'')+'</div></div></div>';
+      html+='<button class="rexp" onclick="toggleRD(\''+r.id+'\')">📋 Details ▾</button>';
+      html+='<div class="rdet" id="rd-'+r.id+'">'+(r.det||[]).map(function(d){return '<div class="rdi">'+e(d)+'</div>';}).join('')+'</div>';
+      html+='<div class="rrow"><div class="rcnt">'+ints.length+' interested</div>'+(ci?'<button class="bint'+(iM?' mine':'')+'" onclick="toggleRI(\''+r.id+'\','+(iM?'true':'false')+')">'+(iM?'✓ Mine':'+')+'</button>':'<span style="font-size:10px;color:rgba(232,193,122,0.25);">Login</span>')+'</div>';
+      if(ints.length) html+='<div class="ichips">'+ints.map(function(i){return '<span class="ichip'+(i.user_id===(cu&&cu.id)?' me':'')+'">'+ e(i.full_name)+'</span>';}).join('')+'</div>';
+      if(suggs.length) html+=suggs.map(function(s){return '<div class="rsugg">💬 <b>'+e(s.suggester_name)+'</b> → '+e(s.suggested_name)+'</div>';}).join('');
+      if(ci) html+='<button class="bsugg" onclick="toggleSI(\''+r.id+'\')">💡 Suggest someone</button><div class="siw" id="si-'+r.id+'"><input class="smi" id="sn-'+r.id+'" placeholder="Name?"/><button class="smb" onclick="submitRS(\''+r.id+'\')">Suggest</button></div>';
+      html+='</div>';
+    });
+    html+='</div>';
+  });
+  cont.innerHTML=html;
+}
+function toggleRD(id){var el=document.getElementById('rd-'+id);if(el)el.classList.toggle('open');}
+function toggleSI(id){var el=document.getElementById('si-'+id);if(el)el.classList.toggle('open');}
+function toggleRI(roleId,isMine){
+  if(!cu||cu.role==='guest')return;
+  var p=isMine?del('role_interests','role_id=eq.'+roleId+'&user_id=eq.'+cu.id):post('role_interests',{role_id:roleId,user_id:cu.id,username:cu.username,full_name:cu.full_name});
+  p.then(function(){logCh('role_interests',roleId,isMine?'delete':'insert',{role:roleId,user:cu.full_name});loadRoleInterests();});
+}
+function submitRS(roleId){
+  var n=document.getElementById('sn-'+roleId);if(!n||!n.value.trim()){alert('Enter a name!');return;}
+  post('role_suggestions',{role_id:roleId,suggester_username:cu.username,suggester_name:cu.full_name,suggested_name:n.value.trim()}).then(function(){n.value='';var si=document.getElementById('si-'+roleId);if(si)si.classList.remove('open');loadRoleInterests();alert('✦ Suggested!');});
+}
+function addCustomRole(){
+  var name=document.getElementById('arName').value.trim(),desc=document.getElementById('arDesc').value.trim();
+  if(!name){alert('Enter role name!');return;}
+  post('custom_roles',{id:'custom_'+Date.now(),name:name,role_desc:desc,tagline:desc||'',created_by:cu.username}).then(function(){
+    document.getElementById('arName').value='';document.getElementById('arDesc').value='';
+    loadCustomRoles();setTimeout(renderRoles,500);alert('✦ Role added!');
+  });
+}
+
+// ── TEAM ──
+function renderTeam(){
+  var grid=document.getElementById('teamGrid'),empty=document.getElementById('teamEmpty');if(!grid)return;
+  get('users','select=*&role=neq.guest&order=created_at.asc').then(function(data){
+    if(!data||!data.length){grid.innerHTML='';empty.style.display='block';return;}
+    empty.style.display='none';
+    var all=getAllRoles();
+    grid.innerHTML=data.map(function(m){
+      var isMe=cu&&cu.id===m.id;
+      var dn=m.role==='admin'?(m.full_name||m.username).split(' ')[0]:(m.full_name||m.username);
+      var showBadge=m.role!=='admin';
+      var myR=Object.keys(allInts).filter(function(rid){return(allInts[rid]||[]).some(function(i){return i.user_id===m.id;});}).map(function(rid){var r=all.find(function(x){return x.id===rid;});return r?r.name:null;}).filter(Boolean);
+      return '<div class="tcard"><div class="tav" onclick="'+(isMe?'triggerAv()':'')+'">'+(m.photo_url?'<img src="'+e(m.photo_url)+'" alt="'+e(dn)+'"/>':'<div class="tinit">'+dn.charAt(0).toUpperCase()+'</div>')+(isMe?'<div class="tedit">📷</div>':'')+'</div><div class="tname">'+e(dn)+'</div>'+(showBadge?'<div class="tbadge '+m.role+'">'+m.role+'</div>':'')+(myR.length?'<div class="troles">'+myR.slice(0,3).join(' · ')+'</div>':'')+'</div>';
+    }).join('');
+  });
+}
+function triggerAv(){document.getElementById('photoInput').click();}
+function handleAvatarUpload(ev){
+  var file=ev.target.files[0];if(!file)return;
+  var reader=new FileReader();
+  reader.onload=function(e2){
+    patch('users','id=eq.'+cu.id,{photo_url:e2.target.result}).then(function(){cu.photo_url=e2.target.result;renderTeam();});
+  };
+  reader.readAsDataURL(file);
+}
+
+// ── GALLERY ──
+function loadGallery(){
+  get('event_photos','select=*&order=created_at.desc').then(function(data){
+    allPhotos=data||[];renderGallery(gFilter);loadAllEvPhotos();
+  });
+}
+function renderGallery(filter){
+  var grid=document.getElementById('gGrid');if(!grid)return;
+  var photos=filter?allPhotos.filter(function(p){return p.event_name===filter;}):allPhotos;
+  if(!photos.length){grid.innerHTML='<div class="empty" style="grid-column:1/-1;">No photos yet. Be the first! 📸</div>';return;}
+  grid.innerHTML=photos.map(function(p){
+    return '<div class="gi" onclick="openLb(\''+ej(p.photo_url)+'\',\''+ej(p.caption||'')+'\')"><img src="'+e(p.photo_url)+'" loading="lazy"/><div class="gi-ov"><div class="gi-cap">'+e(p.caption||'')+'</div></div></div>';
+  }).join('');
+}
+function setGF(el,filter){
+  gFilter=filter;
+  document.querySelectorAll('#gFilt .chip').forEach(function(c){c.classList.remove('on');});
+  el.classList.add('on');renderGallery(filter);
+}
+function loadAllEvPhotos(){
+  ['eng','mehndi','haldi','sangeet','baraat','vivah','reception'].forEach(function(ev){
+    var grid=document.getElementById('ep-'+ev);if(!grid)return;
+    var evName=ev==='eng'?'engagement':ev;
+    var photos=allPhotos.filter(function(p){return p.event_name===evName||p.event_name===ev;});
+    grid.innerHTML=photos.map(function(p){return '<div class="ep-thumb" onclick="openLb(\''+ej(p.photo_url)+'\',\''+ej(p.caption||'')+'\')"><img src="'+e(p.photo_url)+'" loading="lazy"/></div>';}).join('');
+  });
+}
+function openLb(url,cap){document.getElementById('lbImg').src=url;document.getElementById('lbCap').textContent=cap||'';document.getElementById('lb').classList.add('open');document.body.style.overflow='hidden';}
+function closeLb(){document.getElementById('lb').classList.remove('open');document.body.style.overflow='';}
+document.getElementById('lb').addEventListener('click',function(ev){if(ev.target===document.getElementById('lb'))closeLb();});
+
+function handleGalleryFile(ev){
+  var file=ev.target.files[0];if(!file)return;
+  if(!cu||cu.role==='guest'){alert('Please login to add photos.');return;}
+  pgf=file;document.getElementById('gupForm').classList.add('open');document.getElementById('gupCard').style.display='none';
+}
+function cancelGUp(){pgf=null;photoTags=[];document.getElementById('gupForm').classList.remove('open');document.getElementById('gupCard').style.display='block';document.getElementById('gCap').value='';renderGTags();}
+function submitGPhoto(){
+  if(!pgf){alert('No file selected.');return;}
+  var reader=new FileReader();
+  reader.onload=function(ev2){
+    post('event_photos',{photo_url:ev2.target.result,caption:document.getElementById('gCap').value.trim()||null,event_name:document.getElementById('gEv').value||null,uploaded_by:cu.username,uploaded_by_name:cu.full_name||cu.username,tags:photoTags.length?photoTags:null}).then(function(){cancelGUp();loadGallery();alert('✦ Photo added!');});
+  };
+  reader.readAsDataURL(pgf);
+}
+function openEvPhoto(ev){
+  if(!cu||cu.role==='guest'){alert('Please login.');return;}
+  pen=ev==='eng'?'engagement':ev;document.getElementById('eventPhotoInput').click();
+}
+function handleEventPhotoFile(ev){
+  var file=ev.target.files[0];if(!file)return;
+  var reader=new FileReader();
+  reader.onload=function(e2){
+    var cap=prompt('Caption (optional):');
+    post('event_photos',{photo_url:e2.target.result,event_name:pen,caption:cap||null,uploaded_by:cu.username,uploaded_by_name:cu.full_name||cu.username}).then(function(){loadGallery();alert('✦ Photo added!');pef=null;pen=null;document.getElementById('eventPhotoInput').value='';});
+  };
+  reader.readAsDataURL(file);
+}
+function showGTS(){
+  var inp=document.getElementById('gTagInp').value.trim(),drop=document.getElementById('gTagDrop');
+  if(!inp){drop.classList.remove('on');return;}
+  get('users','select=full_name&role=neq.guest').then(function(data){
+    var names=(data||[]).map(function(u){return u.full_name;}).filter(function(n){return n.toLowerCase().includes(inp.toLowerCase())&&!photoTags.includes(n);});
+    if(!names.length){drop.classList.remove('on');return;}
+    drop.innerHTML=names.slice(0,5).map(function(n){return '<div class="tdi" onmousedown="addPT(\''+ej(n)+'\')">'+e(n)+'</div>';}).join('');
+    drop.classList.add('on');
+  });
+}
+function hideGTS(){setTimeout(function(){var d=document.getElementById('gTagDrop');if(d)d.classList.remove('on');},200);}
+function addPT(n){if(photoTags.includes(n))return;photoTags.push(n);document.getElementById('gTagInp').value='';renderGTags();}
+function removePT(n){photoTags=photoTags.filter(function(t){return t!==n;});renderGTags();}
+function renderGTags(){document.getElementById('gTags').innerHTML=photoTags.map(function(t){return '<div class="atag" onclick="removePT(\''+ej(t)+'\')">@'+e(t)+' ✕</div>';}).join('');}
+
+// ── SUGGESTIONS ──
+function loadSuggestions(){
+  var el=document.getElementById('suggList');if(!el)return;
+  get('suggestions','select=*&order=created_at.desc&limit=30').then(function(data){
+    if(!data||!data.length){el.innerHTML='<div class="empty">No suggestions yet. 💡</div>';return;}
+    el.innerHTML=data.map(function(s){
+      var d=new Date(s.created_at),ti=d.toLocaleDateString('en-IN')+' '+d.toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit'});
+      return '<div class="scard"><div class="sc-h"><div class="sc-av">'+s.author.charAt(0).toUpperCase()+'</div><div><div class="sc-auth">'+e(s.author)+'</div><div class="sc-time">'+ti+'</div></div></div><div class="sc-txt">'+e(s.suggestion_text||s.text||'')+'</div>'+(s.tags&&s.tags.length?'<div style="display:flex;flex-wrap:wrap;gap:4px;">'+s.tags.map(function(t){return '<span class="tpill">@'+e(t)+'</span>';}).join('')+'</div>':'')+'</div>';
+    }).join('');
+  });
+}
+function showSTS(){
+  var inp=document.getElementById('sgTagInp').value.trim(),drop=document.getElementById('sgTagDrop');
+  if(!inp){drop.classList.remove('on');return;}
+  get('users','select=full_name&role=neq.guest').then(function(data){
+    var names=(data||[]).map(function(u){return u.full_name;}).filter(function(n){return n.toLowerCase().includes(inp.toLowerCase())&&!tagPpl.includes(n);});
+    if(!names.length){drop.classList.remove('on');return;}
+    drop.innerHTML=names.slice(0,5).map(function(n){return '<div class="tdi" onmousedown="addST(\''+ej(n)+'\')">'+e(n)+'</div>';}).join('');
+    drop.classList.add('on');
+  });
+}
+function hideSTS(){setTimeout(function(){var d=document.getElementById('sgTagDrop');if(d)d.classList.remove('on');},200);}
+function addST(n){if(tagPpl.includes(n))return;tagPpl.push(n);document.getElementById('sgTagInp').value='';renderSTags();}
+function removeST(n){tagPpl=tagPpl.filter(function(t){return t!==n;});renderSTags();}
+function renderSTags(){document.getElementById('sgTags').innerHTML=tagPpl.map(function(t){return '<div class="atag" onclick="removeST(\''+ej(t)+'\')">@'+e(t)+' ✕</div>';}).join('');}
+function submitSugg(){
+  var author=document.getElementById('sgName').value.trim(),text=document.getElementById('sgText').value.trim();
+  if(!author||!text){alert('Please enter name and suggestion!');return;}
+  post('suggestions',{author:author,suggestion_text:text,tags:tagPpl}).then(function(){document.getElementById('sgName').value='';document.getElementById('sgText').value='';tagPpl=[];renderSTags();loadSuggestions();alert('✦ Sent!');});
+}
+
+// ── FILTER ──
+var GK={kids:['kids','children','naatu'],sisters:['sister','dee','sibling'],brothers:['brother','bhai','sibling'],mothers:['mother','saas','maa','aunti','mausi'],ladies:['ladies','women','rangila','girl','dee'],siblings:['sibling','siblings','brother','sister','dee'],dee_jiju:['dee','jiju','biwi','hero','maya','husband'],unmarried:['unmarried','shaadi','laal','yaad']};
+function applyFilter(){
+  var sv=(document.getElementById('fInp')&&document.getElementById('fInp').value||'').toLowerCase().trim();
+  var tot=0;
+  ['sangeet','baraat','haldi'].forEach(function(ev){
+    var el=document.getElementById('pp-'+ev);if(!el)return;
+    var cards=el.querySelectorAll('.pc'),c=0;
+    cards.forEach(function(card){
+      var ft=card.textContent.toLowerCase(),show=true;
+      if(sv&&!ft.includes(sv))show=false;
+      if(show&&AGF){var kws=GK[AGF]||[];if(!kws.some(function(kw){return ft.includes(kw);}))show=false;}
+      card.classList.toggle('hidden',!show);if(show)c++;
+    });
+    tot+=c;
+    if(c>0&&(sv||AGF)){var body=document.getElementById('cb-'+ev),ch=document.getElementById('cc-'+ev);if(body&&!body.classList.contains('open')){body.classList.add('open');if(ch)ch.classList.add('open');}}
+  });
+  var has=sv||AGF;
+  var fc=document.getElementById('fClear');if(fc)fc.classList.toggle('on',!!has);
+  var cnt=document.getElementById('fCnt');if(cnt)cnt.textContent=has?tot+' songs found':'';
+}
+function toggleGF(el,group){
+  if(AGF===group){AGF=null;el.classList.remove('on');}
+  else{document.querySelectorAll('.chips .chip').forEach(function(c){c.classList.remove('on');});AGF=group;el.classList.add('on');}
+  applyFilter();
+}
+function clearFilter(){
+  var fi=document.getElementById('fInp');if(fi)fi.value='';
+  AGF=null;document.querySelectorAll('.chips .chip').forEach(function(c){c.classList.remove('on');});
+  document.querySelectorAll('.pc').forEach(function(c){c.classList.remove('hidden');});
+  var fc=document.getElementById('fClear');if(fc)fc.classList.remove('on');
+  var cnt=document.getElementById('fCnt');if(cnt)cnt.textContent='';
+}
+
+// ── NAV ──
+function toggleCard(name){
+  var body=document.getElementById('cb-'+name),ch=document.getElementById('cc-'+name);
+  if(body)body.classList.toggle('open');
+  if(ch)ch.classList.toggle('open',body&&body.classList.contains('open'));
+}
+function showSec(name){
+  document.getElementById('heroSec').style.display='none';
+  document.getElementById('nav').style.display='flex';
+  document.getElementById('subnav').style.display='flex';
+  document.getElementById('bnav').style.display='flex';
+  ['events','roles','team','gallery','suggest','changes','info'].forEach(function(s){
+    var sec=document.getElementById('sec-'+s);if(sec)sec.classList.remove('on');
+    var bn=document.getElementById('bn-'+s);if(bn)bn.classList.remove('on');
+    var sn=document.getElementById('sn-'+s);if(sn)sn.classList.remove('active');
+  });
+  var sec=document.getElementById('sec-'+name);if(sec)sec.classList.add('on');
+  var bn=document.getElementById('bn-'+name);if(bn)bn.classList.add('on');
+  var sn=document.getElementById('sn-'+name);if(sn)sn.classList.add('active');
+  if(name==='roles')renderRoles();
+  if(name==='team')renderTeam();
+  if(name==='suggest')loadSuggestions();
+  if(name==='changes')loadChangeLog();
+  if(name==='gallery')loadGallery();
+  window.scrollTo(0,0);
+}
+
+function copyLink(){navigator.clipboard.writeText('https://shreyadubey-studio.github.io/priyanka-shubham-wedding').then(function(){alert('✦ Link copied!');});}
+function e(t){return String(t==null?'':t).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+function ej(t){return String(t==null?'':t).replace(/\\/g,'\\\\').replace(/'/g,"\\'").replace(/"/g,'\\"');}
+</script>
+
+</body>
+</html>
