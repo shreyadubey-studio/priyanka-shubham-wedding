@@ -558,7 +558,7 @@ function patch(table,params,body){ return api('PATCH',table,params,body); }
 function del(table,params){ return api('DELETE',table,params); }
 
 // ── INIT ──
-window.addEventListener('load', function(){
+document.addEventListener('DOMContentLoaded', function(){
   var done = false;
   function go(){ if(done) return; done=true; showLogin(); }
 
