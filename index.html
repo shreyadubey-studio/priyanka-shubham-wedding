@@ -1,23 +1,1567 @@
 <!DOCTYPE html>
 
-<html>
+<html lang="hi">
 <head>
 <meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Priyanka &amp; Shubham · Vivah 2025</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Jost:wght@300;400;500;600&family=Noto+Sans+Devanagari:wght@300;400;500&display=swap" rel="stylesheet"/>
+
 <style>
-body{background:#1A0A0C;display:flex;align-items:center;justify-content:center;min-height:100vh;margin:0;}
-.box{background:rgba(253,250,245,0.05);border:1px solid rgba(196,151,74,0.3);border-radius:20px;padding:40px;text-align:center;color:rgba(232,193,122,0.9);font-family:Georgia,serif;}
-h1{font-size:36px;font-weight:300;margin-bottom:10px;}
-p{font-size:14px;opacity:0.6;}
+:root{
+  --rose:#B76E79;--rose-deep:#8B4A52;--rose-light:#D4959E;--rose-pale:#FDF0F1;--rose-soft:#F5D5D8;
+  --gold:#C4974A;--gold-deep:#8B6B35;--gold-light:#E8C17A;--gold-pale:#FDF8EE;--gold-soft:#F0DDB0;
+  --ivory:#FDFAF5;--ivory-deep:#F5F0E8;--warm-white:#FFFEFB;
+  --text:#2A1A1C;--text-mid:#5A3A3E;--muted:#9A7A7E;--line:#EAD8DA;
+  --shadow-sm:0 2px 12px rgba(180,100,110,0.08);
+  --shadow:0 8px 32px rgba(180,100,110,0.12);
+  --shadow-lg:0 20px 60px rgba(180,100,110,0.18);
+  --dark:#1A0A0C;--dark-mid:#2E1418;
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
+html{scroll-behavior:smooth;}
+body{font-family:'Jost',sans-serif;background:var(--ivory);color:var(--text);min-height:100vh;}
+
+/* LOGIN */
+.login-screen{min-height:100vh;background:radial-gradient(ellipse at 20% 10%,rgba(196,151,74,0.15) 0%,transparent 50%),radial-gradient(ellipse at 80% 90%,rgba(183,110,121,0.12) 0%,transparent 50%),linear-gradient(145deg,#1A0A0C 0%,#2E1418 40%,#1E0E10 100%);display:flex;align-items:center;justify-content:center;padding:20px;position:relative;overflow:hidden;}
+.login-screen::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle,rgba(196,151,74,0.06) 1px,transparent 1px),radial-gradient(circle,rgba(183,110,121,0.04) 1px,transparent 1px);background-size:48px 48px,24px 24px;background-position:0 0,12px 12px;pointer-events:none;}
+.lf{position:absolute;pointer-events:none;opacity:0.06;animation:floatUp 12s ease-in-out infinite;}
+.lf:nth-child(1){bottom:10%;left:8%;font-size:60px;animation-delay:0s;}
+.lf:nth-child(2){bottom:20%;right:10%;font-size:40px;animation-delay:3s;}
+.lf:nth-child(3){top:15%;left:12%;font-size:30px;animation-delay:6s;}
+.lf:nth-child(4){top:10%;right:8%;font-size:50px;animation-delay:9s;}
+@keyframes floatUp{0%,100%{transform:translateY(0) rotate(0deg);}50%{transform:translateY(-20px) rotate(8deg);}}
+.login-card{background:rgba(253,250,245,0.03);border:1px solid rgba(196,151,74,0.2);border-radius:24px;padding:40px 28px 32px;width:100%;max-width:360px;backdrop-filter:blur(30px);-webkit-backdrop-filter:blur(30px);text-align:center;position:relative;z-index:1;box-shadow:0 40px 80px rgba(0,0,0,0.4),inset 0 1px 0 rgba(196,151,74,0.15);}
+.login-card::before{content:'';position:absolute;top:0;left:15%;right:15%;height:1px;background:linear-gradient(90deg,transparent,rgba(196,151,74,0.6),transparent);}
+.login-lang-row{display:flex;justify-content:flex-end;margin-bottom:20px;}
+.lang-btn{display:flex;align-items:center;gap:5px;background:rgba(196,151,74,0.1);border:1px solid rgba(196,151,74,0.2);border-radius:999px;padding:5px 12px;cursor:pointer;font-size:11px;font-weight:600;font-family:'Jost',sans-serif;transition:all 0.2s;user-select:none;}
+.lang-btn:hover{background:rgba(196,151,74,0.18);}
+.le{color:rgba(232,193,122,0.9);}
+.lh{color:rgba(232,193,122,0.35);font-family:'Noto Sans Devanagari',sans-serif;}
+.ls{color:rgba(196,151,74,0.3);}
+.lang-btn.hi .le{color:rgba(232,193,122,0.35);}
+.lang-btn.hi .lh{color:rgba(232,193,122,0.9);}
+.login-orn{display:flex;align-items:center;gap:12px;justify-content:center;margin-bottom:20px;}
+.lo-line{height:1px;width:36px;background:linear-gradient(90deg,transparent,rgba(196,151,74,0.4));}
+.lo-line.r{background:linear-gradient(90deg,rgba(196,151,74,0.4),transparent);}
+.lo-gem{font-size:10px;color:rgba(196,151,74,0.5);letter-spacing:3px;}
+.login-logo{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:40px;color:rgba(232,193,122,0.95);line-height:0.9;margin-bottom:5px;text-shadow:0 0 40px rgba(196,151,74,0.3);}
+.login-logo .amp{display:block;font-style:italic;font-size:28px;color:rgba(183,110,121,0.8);margin:3px 0;}
+.login-eyebrow{font-size:10px;letter-spacing:0.3em;text-transform:uppercase;color:rgba(232,193,122,0.3);margin-bottom:4px;}
+.login-date{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:13px;color:rgba(232,193,122,0.22);margin-bottom:28px;}
+.login-tabs{display:flex;gap:6px;margin-bottom:18px;background:rgba(255,255,255,0.04);border-radius:12px;padding:4px;}
+.login-tab{flex:1;padding:9px;border-radius:9px;border:none;background:transparent;color:rgba(232,193,122,0.4);font-family:'Jost',sans-serif;font-size:12px;font-weight:600;cursor:pointer;transition:all 0.2s;}
+.login-tab.active{background:rgba(196,151,74,0.2);color:rgba(232,193,122,0.95);}
+.login-input{width:100%;background:rgba(253,250,245,0.04);border:1px solid rgba(196,151,74,0.18);border-radius:11px;padding:12px 14px;font-size:13px;font-family:'Jost',sans-serif;color:rgba(253,250,245,0.85);outline:none;margin-bottom:8px;transition:all 0.2s;}
+.login-input::placeholder{color:rgba(232,193,122,0.2);}
+.login-input:focus{border-color:rgba(196,151,74,0.5);background:rgba(253,250,245,0.07);}
+.login-btn{width:100%;background:linear-gradient(135deg,var(--rose-deep),var(--rose));color:white;border:none;border-radius:11px;padding:13px;font-family:'Jost',sans-serif;font-size:13px;font-weight:600;cursor:pointer;letter-spacing:0.08em;margin-bottom:8px;box-shadow:0 8px 24px rgba(139,74,82,0.4);transition:all 0.2s;}
+.login-btn:hover{opacity:0.92;}
+.login-guest-btn{width:100%;background:transparent;color:rgba(232,193,122,0.45);border:1px solid rgba(196,151,74,0.15);border-radius:11px;padding:11px;font-family:'Jost',sans-serif;font-size:12px;cursor:pointer;transition:all 0.2s;}
+.login-guest-btn:hover{background:rgba(196,151,74,0.08);color:rgba(232,193,122,0.65);}
+.login-error{font-size:12px;color:#F4A0A8;margin-top:8px;display:none;background:rgba(180,50,60,0.12);border-radius:8px;padding:8px;}
+.login-error.show{display:block;}
+.login-loading{font-size:11px;color:rgba(232,193,122,0.4);margin-top:8px;display:none;}
+.login-loading.show{display:block;}
+
+/* HERO */
+.hero{min-height:100vh;min-height:100svh;background:radial-gradient(ellipse at 20% 10%,rgba(196,151,74,0.12) 0%,transparent 55%),radial-gradient(ellipse at 80% 90%,rgba(183,110,121,0.1) 0%,transparent 55%),linear-gradient(155deg,#1A0A0C 0%,#2A1215 35%,#1E0E12 70%,#0E0508 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:40px 24px 130px;position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle,rgba(196,151,74,0.05) 1px,transparent 1px);background-size:44px 44px;pointer-events:none;}
+.hero::after{content:'';position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:140%;height:180px;background:linear-gradient(180deg,transparent,rgba(253,250,245,0.025));border-radius:50% 50% 0 0/100% 100% 0 0;pointer-events:none;}
+.hp{position:absolute;pointer-events:none;opacity:0.07;animation:petalFloat 10s ease-in-out infinite;}
+.hp:nth-child(1){top:6%;left:5%;font-size:48px;animation-delay:0s;}
+.hp:nth-child(2){top:12%;right:7%;font-size:28px;animation-delay:2s;}
+.hp:nth-child(3){bottom:22%;left:4%;font-size:36px;animation-delay:4s;}
+.hp:nth-child(4){bottom:16%;right:6%;font-size:42px;animation-delay:6s;}
+.hp:nth-child(5){top:42%;left:2%;font-size:20px;animation-delay:3s;}
+.hp:nth-child(6){top:30%;right:2%;font-size:24px;animation-delay:7s;}
+@keyframes petalFloat{0%,100%{transform:translateY(0) rotate(0deg);opacity:0.07;}50%{transform:translateY(-22px) rotate(15deg);opacity:0.15;}}
+.hero-eyebrow{font-size:10px;font-weight:500;letter-spacing:0.36em;text-transform:uppercase;color:rgba(196,151,74,0.65);margin-bottom:22px;animation:riseIn 1s ease both;}
+.hero-names{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(56px,15vw,120px);line-height:0.88;animation:riseIn 1s 0.15s ease both;}
+.hb{color:rgba(232,193,122,0.95);}
+.ha{display:block;font-style:italic;font-size:clamp(32px,9vw,68px);color:rgba(183,110,121,0.75);margin:6px 0;}
+.hg{color:rgba(253,240,225,0.85);}
+.hero-div{display:flex;align-items:center;gap:16px;margin:24px 0;animation:riseIn 1s 0.3s ease both;}
+.hd-line{height:1px;width:60px;background:linear-gradient(90deg,transparent,rgba(196,151,74,0.5));}
+.hd-line.r{background:linear-gradient(90deg,rgba(196,151,74,0.5),transparent);}
+.hd-gem{font-size:14px;color:rgba(196,151,74,0.6);letter-spacing:4px;}
+.hero-date{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:18px;color:rgba(232,193,122,0.6);letter-spacing:0.06em;animation:riseIn 1s 0.4s ease both;}
+.hero-venue{font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:rgba(253,240,225,0.25);margin-top:8px;animation:riseIn 1s 0.5s ease both;}
+.hero-cta{position:absolute;bottom:48px;left:50%;transform:translateX(-50%);animation:riseIn 1s 0.7s ease both;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:8px;background:rgba(196,151,74,0.1);border:1px solid rgba(196,151,74,0.25);border-radius:999px;padding:12px 28px;backdrop-filter:blur(12px);transition:all 0.25s;white-space:nowrap;}
+.hero-cta:hover{background:rgba(196,151,74,0.18);border-color:rgba(196,151,74,0.4);}
+.hero-cta-en{font-size:12px;color:rgba(232,193,122,0.85);font-weight:500;letter-spacing:0.08em;}
+.hero-cta-hi{font-size:11px;color:rgba(232,193,122,0.4);font-family:'Noto Sans Devanagari',sans-serif;}
+.cta-arrow{font-size:14px;color:rgba(196,151,74,0.6);animation:arrowBounce 2s ease infinite;}
+@keyframes arrowBounce{0%,100%{transform:translateY(0);}50%{transform:translateY(5px);}}
+@keyframes riseIn{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:translateY(0);}}
+
+/* NAV */
+.nav{position:sticky;top:0;z-index:200;height:56px;background:rgba(26,10,12,0.94);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-bottom:1px solid rgba(196,151,74,0.15);padding:0 14px;display:flex;align-items:center;justify-content:space-between;}
+.nav-brand{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:17px;color:rgba(232,193,122,0.85);white-space:nowrap;display:flex;align-items:center;gap:7px;}
+.rt-dot{width:5px;height:5px;border-radius:50%;background:#6DBF78;animation:pulseDot 2.5s ease infinite;}
+@keyframes pulseDot{0%,100%{opacity:1;}50%{opacity:0.35;}}
+.nav-right{display:flex;align-items:center;gap:6px;}
+.nav-user-pill{font-size:11px;color:rgba(232,193,122,0.6);background:rgba(196,151,74,0.08);border:1px solid rgba(196,151,74,0.12);border-radius:999px;padding:4px 10px;white-space:nowrap;max-width:100px;overflow:hidden;text-overflow:ellipsis;}
+.nav-lang-btn{display:flex;align-items:center;gap:4px;background:rgba(196,151,74,0.08);border:1px solid rgba(196,151,74,0.15);border-radius:999px;padding:4px 9px;cursor:pointer;font-size:11px;font-weight:600;transition:all 0.2s;user-select:none;}
+.nav-lang-btn .le{color:rgba(232,193,122,0.85);}
+.nav-lang-btn .lh{color:rgba(232,193,122,0.3);font-family:'Noto Sans Devanagari',sans-serif;}
+.nav-lang-btn .ls{color:rgba(196,151,74,0.2);}
+.nav-lang-btn.hi .le{color:rgba(232,193,122,0.3);}
+.nav-lang-btn.hi .lh{color:rgba(232,193,122,0.85);}
+.nav-logout-btn{font-size:11px;background:rgba(183,110,121,0.12);border:1px solid rgba(183,110,121,0.2);color:rgba(212,149,158,0.8);border-radius:8px;padding:5px 10px;cursor:pointer;font-family:'Jost',sans-serif;transition:all 0.2s;}
+.nav-logout-btn:hover{background:rgba(183,110,121,0.22);}
+.subnav{position:sticky;top:56px;z-index:199;background:rgba(26,10,12,0.9);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid rgba(196,151,74,0.1);display:flex;padding:0 6px;overflow-x:auto;scrollbar-width:none;}
+.subnav::-webkit-scrollbar{display:none;}
+.subnav button{background:none;border:none;color:rgba(232,193,122,0.3);font-family:'Jost',sans-serif;font-size:11px;font-weight:500;padding:11px 12px;white-space:nowrap;cursor:pointer;border-bottom:2px solid transparent;transition:all 0.2s;letter-spacing:0.04em;}
+.subnav button:hover{color:rgba(232,193,122,0.65);}
+.subnav button.active{color:rgba(232,193,122,0.95);border-bottom-color:rgba(196,151,74,0.6);}
+
+/* CONTENT */
+.content-wrap{background:var(--ivory);min-height:60vh;padding-bottom:80px;}
+.section{display:none;max-width:720px;margin:0 auto;padding:28px 16px 40px;animation:sectionIn 0.32s ease both;}
+.section.visible{display:block;}
+@keyframes sectionIn{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+.sec-eyebrow{font-size:10px;font-weight:600;letter-spacing:0.24em;text-transform:uppercase;color:var(--rose);margin-bottom:6px;}
+.sec-title{font-family:'Cormorant Garamond',serif;font-size:clamp(30px,7vw,48px);font-weight:300;line-height:1.05;margin-bottom:6px;color:var(--text);}
+.sec-title em{font-style:italic;color:var(--rose);}
+.sec-sub{color:var(--muted);font-size:13px;line-height:1.7;margin-bottom:24px;}
+
+/* FILTER */
+.filter-bar{background:var(--warm-white);border:1px solid var(--line);border-radius:18px;padding:16px;margin-bottom:18px;box-shadow:var(--shadow-sm);}
+.filter-title{font-size:10px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--rose);margin-bottom:10px;}
+.filter-search{width:100%;border:1.5px solid var(--line);background:var(--ivory);border-radius:10px;padding:10px 14px;font-size:13px;font-family:'Jost',sans-serif;color:var(--text);outline:none;margin-bottom:10px;transition:border-color 0.2s;}
+.filter-search:focus{border-color:var(--rose);}
+.filter-chips{display:flex;flex-wrap:wrap;gap:6px;}
+.filter-chip{font-size:11px;padding:5px 12px;border-radius:999px;background:var(--ivory-deep);border:1.5px solid var(--line);color:var(--muted);cursor:pointer;transition:all 0.2s;font-weight:500;}
+.filter-chip:hover{border-color:var(--rose-light);color:var(--rose-deep);}
+.filter-chip.active{background:var(--rose);color:white;border-color:var(--rose);}
+.filter-clear{font-size:11px;color:var(--rose);cursor:pointer;background:none;border:none;font-family:'Jost',sans-serif;font-weight:600;margin-top:8px;padding:0;display:none;}
+.filter-clear.show{display:block;}
+.filter-count{font-size:11px;color:var(--muted);margin-top:6px;}
+
+/* EVENT CARDS */
+.event-card{background:var(--warm-white);border:1px solid var(--line);border-radius:20px;margin-bottom:14px;overflow:hidden;box-shadow:var(--shadow-sm);transition:box-shadow 0.2s;}
+.event-card:hover{box-shadow:var(--shadow);}
+.ev-header{padding:18px 20px;cursor:pointer;display:flex;align-items:center;gap:14px;transition:background 0.2s;}
+.ev-header:hover{background:var(--rose-pale);}
+.ev-icon{width:46px;height:46px;border-radius:14px;flex-shrink:0;background:linear-gradient(135deg,var(--rose-pale),var(--rose-soft));border:1px solid var(--rose-soft);display:flex;align-items:center;justify-content:center;font-size:20px;}
+.ev-info{flex:1;}
+.ev-subtitle{font-size:11px;color:var(--muted);margin-bottom:2px;font-family:'Noto Sans Devanagari',sans-serif;}
+.ev-title{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:500;color:var(--text);}
+.ev-meta{display:flex;flex-wrap:wrap;gap:5px;margin-top:5px;}
+.etag{font-size:10px;padding:3px 9px;border-radius:999px;font-weight:500;background:var(--gold-pale);color:var(--gold-deep);border:1px solid var(--gold-soft);}
+.etag.rose{background:var(--rose-pale);color:var(--rose-deep);border-color:var(--rose-soft);}
+.etag.muted{background:var(--ivory-deep);color:var(--muted);border-color:var(--line);}
+.ev-chevron{font-size:16px;color:var(--rose-light);transition:transform 0.25s;flex-shrink:0;}
+.ev-chevron.open{transform:rotate(180deg);}
+.ev-body{display:none;border-top:1px solid var(--line);padding:18px 20px;}
+.ev-body.open{display:block;}
+.ev-desc{font-size:13px;color:var(--muted);line-height:1.65;margin-bottom:16px;}
+.steps-lbl{font-size:10px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;}
+.step{display:flex;gap:12px;padding:10px 0;border-bottom:1px solid rgba(234,216,218,0.5);}
+.step:last-child{border-bottom:none;}
+.step-n{width:24px;height:24px;border-radius:50%;flex-shrink:0;background:var(--gold-pale);border:1px solid var(--gold-soft);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:var(--gold-deep);}
+.step-info{flex:1;}
+.step-name{font-weight:600;font-size:13px;color:var(--text);margin-bottom:2px;}
+.step-det{font-size:12px;color:var(--muted);}
+
+/* EVENT PHOTOS */
+.ev-photos{margin-top:18px;}
+.ev-photos-lbl{font-size:10px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(--rose);margin-bottom:10px;}
+.ev-photos-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:10px;}
+.ev-photo-thumb{aspect-ratio:1;border-radius:12px;overflow:hidden;cursor:pointer;background:var(--rose-pale);border:1px solid var(--rose-soft);position:relative;}
+.ev-photo-thumb img{width:100%;height:100%;object-fit:cover;transition:transform 0.3s;}
+.ev-photo-thumb:hover img{transform:scale(1.06);}
+.add-ev-photo-btn{width:100%;background:var(--rose-pale);border:1.5px dashed var(--rose-soft);border-radius:12px;padding:12px;font-family:'Jost',sans-serif;font-size:12px;color:var(--rose);font-weight:600;cursor:pointer;transition:all 0.2s;text-align:center;}
+.add-ev-photo-btn:hover{background:var(--rose-soft);border-style:solid;}
+
+/* PERF CARDS */
+.perf-sec{margin-top:18px;}
+.perf-lbl{font-family:'Cormorant Garamond',serif;font-size:19px;font-weight:500;color:var(--text);margin-bottom:12px;display:flex;align-items:center;gap:8px;}
+.ed-badge{font-size:10px;background:var(--gold-pale);color:var(--gold-deep);border-radius:999px;padding:2px 8px;border:1px solid var(--gold-soft);font-family:'Jost',sans-serif;font-weight:600;}
+.perf-card{background:var(--ivory-deep);border:1px solid var(--line);border-radius:16px;padding:14px 16px;margin-bottom:10px;position:relative;transition:box-shadow 0.2s;}
+.perf-card:hover{box-shadow:var(--shadow-sm);}
+.perf-card.hidden{display:none;}
+.p-num{position:absolute;top:12px;right:12px;width:22px;height:22px;border-radius:50%;background:linear-gradient(135deg,var(--rose-deep),var(--rose));color:white;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;}
+.p-song{font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:500;color:var(--text);margin-bottom:3px;padding-right:28px;}
+.p-cat{font-size:11px;color:var(--rose);font-weight:600;margin-bottom:10px;letter-spacing:0.04em;}
+.p-fields{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px;}
+@media(max-width:460px){.p-fields{grid-template-columns:1fr;}}
+.pf{background:var(--warm-white);border:1px solid var(--line);border-radius:10px;padding:8px 10px;}
+.pfl{font-size:9px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold);margin-bottom:2px;}
+.pfv{font-size:12px;color:var(--text);line-height:1.4;}
+.pfv.tbu{color:var(--muted);font-style:italic;}
+.p-dancers{background:var(--warm-white);border:1px solid var(--line);border-radius:10px;padding:8px 10px;margin-bottom:10px;}
+.p-links{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px;}
+.p-link{display:inline-flex;align-items:center;gap:4px;font-size:11px;padding:5px 10px;border-radius:999px;background:var(--rose-pale);color:var(--rose-deep);text-decoration:none;font-weight:500;border:1px solid var(--rose-soft);transition:all 0.2s;}
+.p-link:hover{background:var(--rose-soft);}
+.p-status{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:600;padding:4px 10px;border-radius:999px;}
+.s-ready{background:#E8F5E9;color:#2E7D32;}
+.s-progress{background:#FFF8E1;color:#F57F17;}
+.s-notstarted{background:var(--ivory-deep);color:var(--muted);}
+.s-tbu{background:var(--gold-pale);color:var(--gold-deep);}
+.p-updated{font-size:10px;color:var(--muted);margin-top:6px;font-style:italic;}
+.edit-btn{background:var(--gold-pale);border:1px solid var(--gold-soft);color:var(--gold-deep);border-radius:8px;padding:6px 12px;font-size:11px;font-weight:600;cursor:pointer;margin-top:8px;font-family:'Jost',sans-serif;transition:all 0.2s;}
+.edit-btn:hover{background:var(--gold-soft);}
+.edit-form{background:var(--warm-white);border:1px solid var(--line);border-top:3px solid var(--rose);border-radius:12px;padding:14px;margin-top:10px;display:none;}
+.edit-form.open{display:block;animation:sectionIn 0.25s ease;}
+.edit-row{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px;}
+@media(max-width:460px){.edit-row{grid-template-columns:1fr;}}
+.el{font-size:10px;font-weight:600;color:var(--muted);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:3px;}
+.ei{width:100%;border:1.5px solid var(--line);background:var(--ivory);border-radius:10px;padding:9px 11px;font-size:12px;font-family:'Jost',sans-serif;color:var(--text);outline:none;transition:border-color 0.2s;}
+.ei:focus{border-color:var(--rose);}
+.btn-save{background:linear-gradient(135deg,var(--rose-deep),var(--rose));color:white;border:none;border-radius:10px;padding:10px 16px;font-family:'Jost',sans-serif;font-size:12px;font-weight:600;cursor:pointer;margin-right:8px;box-shadow:0 4px 12px rgba(139,74,82,0.3);}
+.btn-cancel{background:var(--ivory-deep);color:var(--muted);border:1px solid var(--line);border-radius:10px;padding:10px 14px;font-family:'Jost',sans-serif;font-size:12px;cursor:pointer;}
+.btn-add{background:linear-gradient(135deg,var(--gold-deep),var(--gold));color:white;border:none;border-radius:10px;padding:9px 14px;font-family:'Jost',sans-serif;font-size:12px;font-weight:600;cursor:pointer;white-space:nowrap;box-shadow:0 4px 12px rgba(139,107,53,0.3);}
+
+/* ROLES */
+.roles-banner{background:linear-gradient(135deg,var(--dark) 0%,var(--dark-mid) 100%);border-radius:20px;padding:22px 24px;color:white;margin-bottom:20px;position:relative;overflow:hidden;border:1px solid rgba(196,151,74,0.2);}
+.roles-banner::after{content:'✦';position:absolute;right:20px;top:50%;transform:translateY(-50%);font-size:70px;opacity:0.05;color:var(--gold-light);}
+.roles-banner h3{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:400;font-style:italic;margin-bottom:4px;color:rgba(232,193,122,0.9);}
+.roles-banner p{font-size:12px;opacity:0.6;line-height:1.6;}
+.role-cat{margin-bottom:22px;}
+.role-cat-lbl{font-size:10px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:8px;}
+.role-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px;}
+@media(max-width:460px){.role-grid{grid-template-columns:1fr;}}
+.role-card{background:var(--warm-white);border:1.5px solid var(--line);border-radius:16px;padding:13px 14px;transition:all 0.2s;}
+.role-card:hover{border-color:var(--rose-soft);box-shadow:var(--shadow-sm);}
+.role-top{display:flex;gap:10px;align-items:flex-start;margin-bottom:8px;}
+.role-icon{font-size:22px;flex-shrink:0;margin-top:2px;}
+.role-n{font-family:'Cormorant Garamond',serif;font-size:15px;font-weight:500;color:var(--text);margin-bottom:2px;}
+.role-tag{font-size:11px;color:var(--muted);line-height:1.4;}
+.role-expand{font-size:10px;color:var(--gold);font-weight:600;cursor:pointer;margin-bottom:8px;display:inline-flex;align-items:center;gap:3px;}
+.role-details{display:none;background:var(--gold-pale);border-radius:9px;padding:9px 11px;margin-bottom:10px;}
+.role-details.open{display:block;animation:sectionIn 0.2s ease;}
+.role-di{font-size:11px;color:var(--text-mid);line-height:1.6;padding:2px 0;}
+.role-di::before{content:'◆ ';color:var(--gold);font-size:7px;vertical-align:middle;}
+.role-interest-row{display:flex;align-items:center;justify-content:space-between;gap:8px;}
+.interest-count{font-size:11px;color:var(--muted);}
+.btn-interest{font-size:11px;font-weight:600;padding:6px 12px;border-radius:999px;border:1.5px solid var(--rose-soft);background:var(--rose-pale);color:var(--rose-deep);cursor:pointer;transition:all 0.2s;font-family:'Jost',sans-serif;}
+.btn-interest:hover{background:var(--rose-soft);}
+.btn-interest.mine{background:var(--rose);color:white;border-color:var(--rose);}
+.int-chips{display:flex;flex-wrap:wrap;gap:4px;margin-top:7px;}
+.int-chip{font-size:10px;padding:3px 8px;border-radius:999px;background:var(--ivory-deep);border:1px solid var(--line);color:var(--muted);}
+.int-chip.me{background:var(--rose);color:white;border-color:var(--rose);}
+.role-suggs{margin-top:7px;}
+.role-sugg{font-size:11px;color:var(--muted);padding:5px 8px;background:var(--ivory-deep);border-radius:8px;margin-top:4px;border:1px solid var(--line);}
+.sugg-role-btn{font-size:10px;color:var(--rose);font-weight:600;cursor:pointer;margin-top:5px;background:none;border:none;font-family:'Jost',sans-serif;padding:0;}
+.sugg-iw{margin-top:5px;display:none;}
+.sugg-iw.open{display:flex;gap:6px;}
+.sugg-mi{flex:1;border:1px solid var(--line);background:var(--ivory);border-radius:8px;padding:7px 10px;font-size:12px;font-family:'Jost',sans-serif;color:var(--text);outline:none;}
+.sugg-mb{background:var(--rose);color:white;border:none;border-radius:8px;padding:7px 12px;font-size:12px;cursor:pointer;}
+.add-role-box{background:var(--warm-white);border:1.5px dashed var(--line);border-radius:16px;padding:16px;margin-bottom:20px;}
+.add-role-box h4{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:400;color:var(--text);margin-bottom:3px;}
+.add-role-box p{font-size:12px;color:var(--muted);margin-bottom:12px;}
+.add-role-row{display:flex;gap:7px;flex-wrap:wrap;}
+.ari{flex:1;min-width:110px;border:1.5px solid var(--line);background:var(--ivory);border-radius:10px;padding:9px 11px;font-size:12px;font-family:'Jost',sans-serif;color:var(--text);outline:none;}
+.ari:focus{border-color:var(--rose);}
+
+/* TEAM */
+.team-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px;}
+@media(max-width:460px){.team-grid{grid-template-columns:1fr;}}
+.team-card{background:var(--warm-white);border:1px solid var(--line);border-radius:20px;padding:18px;text-align:center;box-shadow:var(--shadow-sm);transition:box-shadow 0.2s;}
+.team-card:hover{box-shadow:var(--shadow);}
+.t-avatar{width:70px;height:70px;border-radius:50%;margin:0 auto 10px;overflow:hidden;border:2.5px solid var(--rose-soft);background:linear-gradient(135deg,var(--rose-pale),var(--rose-soft));display:flex;align-items:center;justify-content:center;cursor:pointer;position:relative;box-shadow:0 4px 14px rgba(183,110,121,0.2);}
+.t-avatar img{width:100%;height:100%;object-fit:cover;}
+.t-initial{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:500;color:var(--rose-deep);}
+.t-edit{position:absolute;bottom:0;right:0;background:var(--rose);border-radius:50%;width:20px;height:20px;display:flex;align-items:center;justify-content:center;font-size:10px;box-shadow:0 2px 6px rgba(0,0,0,0.2);}
+.t-name{font-family:'Cormorant Garamond',serif;font-size:16px;font-weight:500;color:var(--text);margin-bottom:3px;}
+.t-badge{display:inline-block;font-size:10px;padding:2px 8px;border-radius:999px;margin-bottom:6px;font-weight:600;}
+.t-badge.admin{background:var(--gold-pale);color:var(--gold-deep);}
+.t-badge.coordinator{background:#E8F5E9;color:#2E7D32;}
+.t-badge.member{background:var(--ivory-deep);color:var(--muted);}
+.t-roles{margin-top:4px;font-size:11px;color:var(--muted);line-height:1.5;}
+
+/* GALLERY */
+.gallery-upload-card{background:var(--warm-white);border:1.5px dashed var(--rose-soft);border-radius:18px;padding:24px;text-align:center;cursor:pointer;transition:all 0.2s;margin-bottom:16px;}
+.gallery-upload-card:hover{background:var(--rose-pale);border-style:solid;}
+.gallery-upload-icon{font-size:32px;margin-bottom:8px;}
+.gallery-upload-card h4{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:400;color:var(--text);margin-bottom:4px;}
+.gallery-upload-card p{font-size:12px;color:var(--muted);}
+.photo-upload-form{background:var(--warm-white);border:1px solid var(--line);border-top:3px solid var(--rose);border-radius:16px;padding:16px;margin-bottom:16px;display:none;}
+.photo-upload-form.open{display:block;animation:sectionIn 0.3s ease;}
+.gallery-filter{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px;}
+.gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:16px;}
+.gallery-item{aspect-ratio:1;border-radius:14px;overflow:hidden;cursor:pointer;position:relative;background:var(--rose-pale);border:1px solid var(--rose-soft);}
+.gallery-item img{width:100%;height:100%;object-fit:cover;transition:transform 0.3s;}
+.gallery-item:hover img{transform:scale(1.06);}
+.gallery-overlay{position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(26,10,12,0.75));opacity:0;transition:opacity 0.2s;display:flex;align-items:flex-end;padding:8px;}
+.gallery-item:hover .gallery-overlay{opacity:1;}
+.gallery-caption{font-size:11px;color:white;font-weight:500;line-height:1.3;}
+.lightbox{position:fixed;inset:0;z-index:500;background:rgba(26,10,12,0.95);backdrop-filter:blur(20px);display:none;align-items:center;justify-content:center;padding:20px;flex-direction:column;gap:12px;}
+.lightbox.open{display:flex;animation:sectionIn 0.3s ease;}
+.lb-img{max-width:100%;max-height:75vh;border-radius:16px;object-fit:contain;box-shadow:var(--shadow-lg);}
+.lb-close{position:absolute;top:20px;right:20px;background:rgba(255,255,255,0.1);border:none;color:white;border-radius:50%;width:40px;height:40px;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background 0.2s;}
+.lb-close:hover{background:rgba(255,255,255,0.2);}
+.lb-caption{text-align:center;color:rgba(255,255,255,0.7);font-size:13px;max-width:400px;}
+
+/* CHANGE LOG */
+.change-item{background:var(--warm-white);border:1px solid var(--line);border-radius:14px;padding:12px 14px;margin-bottom:8px;}
+.ci-header{display:flex;align-items:center;gap:10px;margin-bottom:4px;}
+.ci-avatar{width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,var(--rose-pale),var(--rose-soft));color:var(--rose-deep);display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:14px;font-weight:600;flex-shrink:0;}
+.ci-name{font-weight:600;font-size:13px;color:var(--text);}
+.ci-time{font-size:10px;color:var(--muted);}
+.ci-desc{font-size:12px;color:var(--text-mid);line-height:1.5;}
+.ci-badge{display:inline-block;font-size:10px;padding:2px 7px;border-radius:999px;font-weight:600;margin-right:4px;}
+.cb-update{background:#FFF8E1;color:#F57F17;}
+.cb-insert{background:#E8F5E9;color:#2E7D32;}
+.cb-delete{background:#FFEBEE;color:#C62828;}
+
+/* SUGGESTIONS */
+.sugg-form-card{background:var(--warm-white);border:1px solid var(--line);border-top:3px solid var(--rose);border-radius:18px;padding:18px;margin-bottom:18px;box-shadow:var(--shadow-sm);}
+.sugg-form-card h4{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:400;color:var(--text);margin-bottom:3px;}
+.sugg-form-card p{font-size:12px;color:var(--muted);margin-bottom:14px;}
+.form-input{width:100%;border:1.5px solid var(--line);background:var(--ivory);border-radius:11px;padding:11px 13px;font-size:13px;font-family:'Jost',sans-serif;color:var(--text);outline:none;margin-bottom:9px;transition:border-color 0.2s;}
+.form-input:focus{border-color:var(--rose);}
+.btn-primary{width:100%;background:linear-gradient(135deg,var(--rose-deep),var(--rose));color:white;border:none;border-radius:11px;padding:13px;font-family:'Jost',sans-serif;font-size:13px;font-weight:600;cursor:pointer;box-shadow:0 8px 20px rgba(139,74,82,0.3);}
+.sugg-card{background:var(--warm-white);border:1px solid var(--line);border-radius:14px;padding:14px;margin-bottom:10px;box-shadow:var(--shadow-sm);}
+.sc-header{display:flex;align-items:center;gap:10px;margin-bottom:8px;}
+.sc-avatar{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,var(--rose-pale),var(--rose-soft));color:var(--rose-deep);display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:16px;font-weight:600;flex-shrink:0;}
+.sc-author{font-weight:600;font-size:13px;color:var(--text);}
+.sc-time{font-size:10px;color:var(--muted);}
+.sc-text{font-size:13px;color:var(--text-mid);line-height:1.6;margin-bottom:8px;}
+.tag-pill{font-size:11px;padding:3px 8px;border-radius:999px;background:var(--rose-pale);color:var(--rose-deep);border:1px solid var(--rose-soft);font-weight:600;}
+.added-tags{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:9px;}
+.added-tag{font-size:11px;padding:4px 9px;border-radius:999px;background:var(--rose);color:white;font-weight:500;display:flex;align-items:center;gap:4px;cursor:pointer;}
+.tag-wrap{position:relative;margin-bottom:9px;}
+.tag-drop{position:absolute;top:100%;left:0;right:0;z-index:50;background:white;border:1px solid var(--line);border-radius:10px;box-shadow:var(--shadow);display:none;}
+.tag-drop.show{display:block;}
+.tag-drop-item{padding:9px 12px;font-size:13px;cursor:pointer;border-bottom:1px solid var(--line);}
+.tag-drop-item:hover{background:var(--rose-pale);}
+.tag-drop-item:last-child{border-bottom:none;}
+
+/* INFO */
+.info-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px;}
+@media(max-width:460px){.info-grid{grid-template-columns:1fr;}}
+.info-card{background:var(--warm-white);border:1px solid var(--line);border-radius:16px;padding:16px;box-shadow:var(--shadow-sm);}
+.info-icon{font-size:24px;margin-bottom:8px;}
+.info-lbl{font-size:10px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--rose);margin-bottom:3px;}
+.info-val{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:500;margin-bottom:3px;color:var(--text);}
+.info-sub{font-size:12px;color:var(--muted);line-height:1.5;}
+.dress-card{background:linear-gradient(135deg,var(--dark) 0%,var(--dark-mid) 100%);border-radius:18px;padding:20px;margin-bottom:14px;border:1px solid rgba(196,151,74,0.2);position:relative;overflow:hidden;}
+.dress-card::after{content:'🌸✦';position:absolute;right:14px;top:50%;transform:translateY(-50%);font-size:36px;opacity:0.12;letter-spacing:4px;}
+.dress-card .info-lbl{color:rgba(232,193,122,0.7);}
+.dress-card .info-val{color:rgba(232,193,122,0.9);font-size:19px;}
+.dress-card .info-sub{color:rgba(253,240,225,0.45);}
+.link-card{background:linear-gradient(135deg,var(--dark),var(--dark-mid));border-radius:16px;padding:16px;margin-bottom:14px;border:1px solid rgba(196,151,74,0.15);}
+.link-card .info-lbl{color:rgba(232,193,122,0.7);}
+.link-card .info-val{color:rgba(232,193,122,0.9);font-size:15px;margin-bottom:8px;}
+.link-url{font-size:12px;color:rgba(196,151,74,0.7);word-break:break-all;line-height:1.5;}
+.copy-btn{display:inline-block;margin-top:8px;padding:6px 14px;background:rgba(196,151,74,0.15);color:rgba(232,193,122,0.8);border:1px solid rgba(196,151,74,0.25);border-radius:8px;font-size:11px;font-weight:600;cursor:pointer;transition:all 0.2s;}
+.copy-btn:hover{background:rgba(196,151,74,0.25);}
+.checklist-card{background:var(--warm-white);border:1px solid var(--line);border-left:3px solid var(--rose);border-radius:16px;padding:16px;margin-bottom:14px;}
+.checklist-card .info-lbl{color:var(--rose);}
+.checklist-card .info-val{font-size:15px;margin-bottom:9px;color:var(--text);}
+.checklist-card .info-sub{line-height:2.1;}
+.contact-card{background:linear-gradient(135deg,var(--rose-pale),var(--ivory-deep));border:1px solid var(--rose-soft);border-radius:18px;padding:22px;margin-top:20px;text-align:center;}
+.cc-eyebrow{font-size:10px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(--rose);margin-bottom:6px;}
+.cc-title{font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:300;color:var(--text-mid);margin-bottom:4px;}
+.cc-name{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:500;color:var(--rose-deep);margin-bottom:4px;}
+.cc-phone{font-size:17px;font-weight:600;color:var(--text);letter-spacing:0.04em;margin-bottom:14px;}
+.cc-btn{display:inline-block;background:linear-gradient(135deg,var(--rose-deep),var(--rose));color:white;border:none;border-radius:999px;padding:12px 28px;font-family:'Jost',sans-serif;font-size:13px;font-weight:600;cursor:pointer;text-decoration:none;box-shadow:0 6px 18px rgba(139,74,82,0.3);transition:opacity 0.2s;}
+.cc-btn:hover{opacity:0.9;}
+
+/* MISC */
+.empty-state{text-align:center;padding:28px 16px;background:var(--warm-white);border:1.5px dashed var(--line);border-radius:16px;color:var(--muted);font-size:13px;}
+.loading-spin{text-align:center;padding:24px;color:var(--muted);font-size:13px;}
+.divider{text-align:center;font-size:12px;letter-spacing:14px;opacity:0.15;margin:22px 0 18px;color:var(--rose);}
+
+/* BOTTOM NAV */
+.bottom-nav{position:fixed;bottom:0;left:0;right:0;z-index:100;background:rgba(26,10,12,0.96);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-top:1px solid rgba(196,151,74,0.12);display:flex;padding:6px 2px 14px;gap:1px;}
+.bottom-nav button{flex:1;background:none;border:none;color:rgba(232,193,122,0.28);font-family:'Jost',sans-serif;font-size:9px;font-weight:500;padding:7px 2px;border-radius:10px;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:3px;transition:all 0.2s;letter-spacing:0.03em;}
+.bottom-nav button .bi{font-size:16px;}
+.bottom-nav button.active{color:rgba(232,193,122,0.9);background:rgba(196,151,74,0.12);}
+
+#photoInput,#galleryPhotoInput,#eventPhotoInput{display:none;}
 </style>
+
 </head>
 <body>
-<div class="box">
-  <h1>Priyanka &amp; Shubham</h1>
-  <p id="status">Testing...</p>
+
+<!-- LOGIN -->
+
+<div id="loginScreen" style="display:none;">
+<div class="login-screen">
+  <div class="lf">🌸</div><div class="lf">✦</div><div class="lf">🌼</div><div class="lf">◆</div>
+  <div class="login-card">
+    <div class="login-lang-row">
+      <div class="lang-btn hi" id="loginLangBtn" onclick="toggleLang()">
+        <span class="le">EN</span><span class="ls">|</span><span class="lh">हि</span>
+      </div>
+    </div>
+    <div class="login-orn"><div class="lo-line"></div><div class="lo-gem">◆ ◆ ◆</div><div class="lo-line r"></div></div>
+    <div class="login-logo">Priyanka<span class="amp">&amp;</span>Shubham</div>
+    <div class="login-eyebrow" id="ltag">विवाह उत्सव</div>
+    <div class="login-date">१ – ३ जुलाई २०२५ · रायपुर</div>
+    <div class="login-tabs">
+      <div class="login-tab active" id="tab-login" onclick="switchTab('login')">Login</div>
+      <div class="login-tab" id="tab-register" onclick="switchTab('register')">Join Team</div>
+    </div>
+    <div id="formLogin">
+      <input class="login-input" id="loginUsername" placeholder="Username"/>
+      <input class="login-input" id="loginPassword" type="password" placeholder="Password"/>
+      <button class="login-btn" id="loginEnterBtn" onclick="doLogin()">✦ &nbsp;प्रवेश करें</button>
+      <button class="login-guest-btn" id="loginGuestBtn" onclick="doGuest()">👁 &nbsp;Guest के रूप में देखें</button>
+    </div>
+    <div id="formRegister" style="display:none;">
+      <input class="login-input" id="regFullName" placeholder="आपका पूरा नाम"/>
+      <input class="login-input" id="regPhone" placeholder="WhatsApp नंबर" type="tel"/>
+      <input class="login-input" id="regUsername" placeholder="Username"/>
+      <input class="login-input" id="regPassword" type="password" placeholder="Password चुनें"/>
+      <input class="login-input" id="regTeamPass" type="password" placeholder="Team Password"/>
+      <button class="login-btn" id="joinTeamBtn" onclick="doRegister()">✦ &nbsp;टीम में शामिल हों</button>
+      <button class="login-guest-btn" id="joinGuestBtn" onclick="doGuest()">👁 &nbsp;Guest के रूप में देखें</button>
+    </div>
+    <div class="login-error" id="loginError"></div>
+    <div class="login-loading" id="loginLoading">⏳ लोड हो रहा है…</div>
+  </div>
 </div>
+</div>
+
+<input type="file" id="photoInput" accept="image/*" onchange="handleAvatarUpload(event)"/>
+<input type="file" id="galleryPhotoInput" accept="image/*" onchange="handleGalleryFileSelect(event)"/>
+<input type="file" id="eventPhotoInput" accept="image/*" onchange="handleEventPhotoFileSelect(event)"/>
+
+<!-- LIGHTBOX -->
+
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <button class="lb-close" onclick="closeLightbox()">✕</button>
+  <img class="lb-img" id="lbImg" src="" alt=""/>
+  <div class="lb-caption" id="lbCaption"></div>
+</div>
+
+<!-- MAIN APP -->
+
+<div id="mainApp" style="display:none;">
+
+<!-- HERO -->
+
+<div class="hero" id="heroSection">
+  <div class="hp">🌸</div><div class="hp">✦</div><div class="hp">🌼</div>
+  <div class="hp">◆</div><div class="hp">🌸</div><div class="hp">✦</div>
+  <div class="hero-eyebrow" id="heroEyebrow">एक यादगार विवाह उत्सव</div>
+  <div class="hero-names">
+    <span class="hb">Priyanka</span>
+    <span class="ha">&amp;</span>
+    <span class="hg">Shubham</span>
+  </div>
+  <div class="hero-div">
+    <div class="hd-line"></div><div class="hd-gem">◆ ◆ ◆</div><div class="hd-line r"></div>
+  </div>
+  <div class="hero-date">१ – ३ जुलाई २०२५ · रायपुर</div>
+  <div class="hero-venue">✦ Royal Club, Chhattisgarh ✦</div>
+  <div class="hero-cta" onclick="showSection('events')">
+    <div class="cta-arrow">▾</div>
+    <div class="hero-cta-en" id="heroCtaEn">Explore the Wedding</div>
+    <div class="hero-cta-hi" id="heroCtaHi">विवरण के लिए यहाँ क्लिक करें</div>
+  </div>
+</div>
+
+<!-- NAV -->
+
+<div class="nav" id="mainNav" style="display:none;">
+  <div class="nav-brand">
+    Priyanka &amp; Shubham
+    <span class="rt-dot" id="rtDot" style="display:none;"></span>
+  </div>
+  <div class="nav-right">
+    <div class="nav-user-pill" id="navUserPill"></div>
+    <div class="nav-lang-btn hi" id="navLangBtn" onclick="toggleLang()">
+      <span class="le">EN</span><span class="ls">|</span><span class="lh">हि</span>
+    </div>
+    <button class="nav-logout-btn" id="navLogoutBtn" onclick="doLogout()">बाहर</button>
+  </div>
+</div>
+<div class="subnav" id="subnav" style="display:none;">
+  <button onclick="showSection('events')" id="nav-events">🗓 कार्यक्रम</button>
+  <button onclick="showSection('roles')" id="nav-roles">✋ भूमिका</button>
+  <button onclick="showSection('team')" id="nav-team">👥 टीम</button>
+  <button onclick="showSection('gallery')" id="nav-gallery">📸 Gallery</button>
+  <button onclick="showSection('suggest')" id="nav-suggest">💡 सुझाव</button>
+  <button onclick="showSection('changes')" id="nav-changes" style="display:none;">📋 Changes</button>
+  <button onclick="showSection('info')" id="nav-info">ℹ Info</button>
+</div>
+
+<div class="content-wrap">
+
+<!-- EVENTS -->
+
+<div class="section" id="sec-events">
+  <div class="sec-eyebrow" id="eventsSecTag">विवाह उत्सव</div>
+  <div class="sec-title" id="eventsSecTitle">सभी <em>कार्यक्रम</em></div>
+  <div class="sec-sub" id="eventsSecSub">हर कार्यक्रम पर क्लिक करके विस्तृत जानकारी देखें।</div>
+  <div class="filter-bar">
+    <div class="filter-title" id="filterBarTitle">🔍 गाने खोजें</div>
+    <input class="filter-search" id="filterSearch" placeholder="अपना नाम या गाने का नाम लिखें…" oninput="applyFilter()"/>
+    <div class="filter-chips">
+      <div class="filter-chip" onclick="toggleGroupFilter(this,'kids')">👶 Kids</div>
+      <div class="filter-chip" onclick="toggleGroupFilter(this,'sisters')">👩 Sisters</div>
+      <div class="filter-chip" onclick="toggleGroupFilter(this,'brothers')">👨 Brothers</div>
+      <div class="filter-chip" onclick="toggleGroupFilter(this,'mothers')">👩‍👧 Mothers</div>
+      <div class="filter-chip" onclick="toggleGroupFilter(this,'ladies')">💃 Ladies</div>
+      <div class="filter-chip" onclick="toggleGroupFilter(this,'siblings')">🤝 Siblings</div>
+      <div class="filter-chip" onclick="toggleGroupFilter(this,'dee_jiju')">🥂 Dee &amp; Jiju</div>
+      <div class="filter-chip" onclick="toggleGroupFilter(this,'unmarried')">💍 Unmarried</div>
+    </div>
+    <button class="filter-clear" id="filterClear" onclick="clearFilter()">✕ Filter हटाएँ</button>
+    <div class="filter-count" id="filterCount"></div>
+  </div>
+
+  <div class="event-card">
+    <div class="ev-header" onclick="toggleEvent('engagement')"><div class="ev-icon">💍</div><div class="ev-info"><div class="ev-subtitle" id="evs-engagement">सगाई</div><div class="ev-title">Engagement</div><div class="ev-meta"><div class="etag muted">🕐 Coming Soon</div></div></div><div class="ev-chevron" id="ch-engagement">▾</div></div>
+    <div class="ev-body" id="body-engagement">
+      <div class="ev-desc">उनके हमेशा की शुरुआत। तारीख जल्द घोषित होगी। 💍</div>
+      <div class="steps-lbl">OVERVIEW</div>
+      <div class="step"><div class="step-n">1</div><div class="step-info"><div class="step-name">Date &amp; Venue</div><div class="step-det">To be announced</div></div></div>
+      <div class="step"><div class="step-n">2</div><div class="step-info"><div class="step-name">Ring Ceremony</div><div class="step-det">Photography, family gathering</div></div></div>
+      <div class="ev-photos"><div class="ev-photos-lbl">PHOTOS</div><div class="ev-photos-grid" id="ephoto-engagement"></div><button class="add-ev-photo-btn" onclick="openEventPhotoUpload('engagement')" id="ephoto-btn-engagement" style="display:none;">📷 Add Photo</button></div>
+    </div>
+  </div>
+
+  <div class="event-card">
+    <div class="ev-header" onclick="toggleEvent('mehndi')"><div class="ev-icon">🌸</div><div class="ev-info"><div class="ev-subtitle" id="evs-mehndi">मेहंदी की शाम</div><div class="ev-title">Mehndi Night</div><div class="ev-meta"><div class="etag">📅 1 July</div><div class="etag">🕖 7–11 PM</div><div class="etag rose">📍 Shubham's Home</div></div></div><div class="ev-chevron" id="ch-mehndi">▾</div></div>
+    <div class="ev-body" id="body-mehndi">
+      <div class="ev-desc">संगीत, हँसी और नृत्य से भरी मेहंदी की सुहानी शाम।</div>
+      <div class="steps-lbl">OVERVIEW</div>
+      <div class="step"><div class="step-n">1</div><div class="step-info"><div class="step-name">Mehndi Application</div><div class="step-det">Ladies taking turns</div></div></div>
+      <div class="step"><div class="step-n">2</div><div class="step-info"><div class="step-name">Music &amp; Dance</div><div class="step-det">DJ, songs, dancing</div></div></div>
+      <div class="step"><div class="step-n">3</div><div class="step-info"><div class="step-name">Photography</div><div class="step-det">Reels team ready</div></div></div>
+      <div class="ev-photos"><div class="ev-photos-lbl">PHOTOS</div><div class="ev-photos-grid" id="ephoto-mehndi"></div><button class="add-ev-photo-btn" onclick="openEventPhotoUpload('mehndi')" id="ephoto-btn-mehndi" style="display:none;">📷 Add Photo</button></div>
+    </div>
+  </div>
+
+  <div class="event-card">
+    <div class="ev-header" onclick="toggleEvent('haldi')"><div class="ev-icon">🌿</div><div class="ev-info"><div class="ev-subtitle" id="evs-haldi">हल्दी रस्म</div><div class="ev-title">Haldi</div><div class="ev-meta"><div class="etag">📅 2 July</div><div class="etag">🕚 11 AM–2 PM</div><div class="etag rose">📍 Royal Club</div></div></div><div class="ev-chevron" id="ch-haldi">▾</div></div>
+    <div class="ev-body" id="body-haldi">
+      <div class="ev-desc">पवित्र हल्दी की रस्म — परिवार के साथ खुशी का पल।</div>
+      <div class="steps-lbl">OVERVIEW</div>
+      <div class="step"><div class="step-n">1</div><div class="step-info"><div class="step-name">Décor &amp; Prep</div><div class="step-det">Arrive 1 hour early</div></div></div>
+      <div class="step"><div class="step-n">2</div><div class="step-info"><div class="step-name">Haldi Ceremony</div><div class="step-det">Family takes turns</div></div></div>
+      <div class="step"><div class="step-n">3</div><div class="step-info"><div class="step-name">Baraat Songs</div><div class="step-det">Ghodi Chadh Gaya sequence</div></div></div>
+      <div class="perf-sec"><div class="perf-lbl">🎵 Songs <span id="editorBadge" class="ed-badge" style="display:none;">✏️ Editor</span></div><div id="perfs-haldi"><div class="loading-spin">Loading…</div></div></div>
+      <div class="ev-photos"><div class="ev-photos-lbl">PHOTOS</div><div class="ev-photos-grid" id="ephoto-haldi"></div><button class="add-ev-photo-btn" onclick="openEventPhotoUpload('haldi')" id="ephoto-btn-haldi" style="display:none;">📷 Add Photo</button></div>
+    </div>
+  </div>
+
+  <div class="event-card">
+    <div class="ev-header" onclick="toggleEvent('sangeet')"><div class="ev-icon">🎉</div><div class="ev-info"><div class="ev-subtitle" id="evs-sangeet">संगीत समारोह</div><div class="ev-title">Sangeet</div><div class="ev-meta"><div class="etag">📅 2 July</div><div class="etag">🕔 5–8 PM</div><div class="etag rose">📍 Royal Club</div></div></div><div class="ev-chevron" id="ch-sangeet">▾</div></div>
+    <div class="ev-body" id="body-sangeet">
+      <div class="ev-desc">नृत्य प्रदर्शन और उत्सव की भव्य शाम! 🎤</div>
+      <div class="steps-lbl">OVERVIEW</div>
+      <div class="step"><div class="step-n">1</div><div class="step-info"><div class="step-name">Sound Check</div><div class="step-det">2 hours early — DJ, mic, lights</div></div></div>
+      <div class="step"><div class="step-n">2</div><div class="step-info"><div class="step-name">Performances</div><div class="step-det">In sequence as listed below</div></div></div>
+      <div class="step"><div class="step-n">3</div><div class="step-info"><div class="step-name">Sangeet Ending</div><div class="step-det">Tere Dware Pe Aayi Barat — everyone together</div></div></div>
+      <div class="perf-sec">
+        <div class="perf-lbl">🎵 Performances <span id="editorBadge2" class="ed-badge" style="display:none;">✏️ Editor</span></div>
+        <div id="perfs-sangeet"><div class="loading-spin">Loading…</div></div>
+        <div id="addPerfBtn" style="display:none;margin-top:10px;"><button class="btn-add" onclick="showAddPerf('sangeet')">+ Add Performance</button></div>
+        <div id="addPerfForm-sangeet" class="edit-form" style="margin-top:10px;">
+          <div class="edit-row"><div><div class="el">Song Name</div><input class="ei" id="new-song-sangeet" placeholder="Song name"/></div><div><div class="el">Category</div><input class="ei" id="new-cat-sangeet" placeholder="e.g. Siblings Love"/></div></div>
+          <div class="edit-row"><div><div class="el">Seq #</div><input class="ei" id="new-seq-sangeet" placeholder="22"/></div><div><div class="el">Duration</div><input class="ei" id="new-dur-sangeet" placeholder="3 mins"/></div></div>
+          <div class="edit-row"><div><div class="el">Dance Lead</div><input class="ei" id="new-lead-sangeet" placeholder="Name"/></div><div><div class="el">Status</div><select class="ei" id="new-status-sangeet"><option value="tbu">To be updated</option><option value="notstarted">Not Started</option><option value="progress">In Progress</option><option value="ready">Ready</option></select></div></div>
+          <div style="margin-bottom:8px;"><div class="el">Dancers</div><input class="ei" id="new-dancers-sangeet" placeholder="Shreni, Shreya"/></div>
+          <div style="margin-bottom:8px;"><div class="el">Choreo Link</div><input class="ei" id="new-link-sangeet" placeholder="https://instagram.com/..."/></div>
+          <div style="margin-bottom:8px;"><div class="el">Outfit Theme</div><input class="ei" id="new-outfit-sangeet" placeholder="e.g. Pink &amp; Gold"/></div>
+          <div style="margin-bottom:8px;"><div class="el">Event</div><select class="ei" id="new-event-sangeet"><option value="sangeet">🎉 Sangeet</option><option value="baraat">🐎 Baraat</option><option value="haldi">🌿 Haldi</option><option value="mehndi">🌸 Mehndi</option><option value="reception">🥂 Reception</option></select></div>
+          <div style="margin-bottom:12px;"><div class="el">Special Notes</div><input class="ei" id="new-notes-sangeet" placeholder="e.g. Surprise entry"/></div>
+          <button class="btn-save" onclick="saveNewPerf('sangeet')">✓ Save</button>
+          <button class="btn-cancel" onclick="hideAddPerf('sangeet')">Cancel</button>
+        </div>
+      </div>
+      <div class="ev-photos"><div class="ev-photos-lbl">PHOTOS</div><div class="ev-photos-grid" id="ephoto-sangeet"></div><button class="add-ev-photo-btn" onclick="openEventPhotoUpload('sangeet')" id="ephoto-btn-sangeet" style="display:none;">📷 Add Photo</button></div>
+    </div>
+  </div>
+
+  <div class="event-card">
+    <div class="ev-header" onclick="toggleEvent('baraat')"><div class="ev-icon">🐎</div><div class="ev-info"><div class="ev-subtitle" id="evs-baraat">बारात</div><div class="ev-title">Baraat</div><div class="ev-meta"><div class="etag">📅 3 July</div><div class="etag">🕓 4–6 PM</div><div class="etag rose">📍 Royal Club</div></div></div><div class="ev-chevron" id="ch-baraat">▾</div></div>
+    <div class="ev-body" id="body-baraat">
+      <div class="ev-desc">भव्य बारात — ढोल, नृत्य और पूरी ऊर्जा!</div>
+      <div class="steps-lbl">OVERVIEW</div>
+      <div class="step"><div class="step-n">1</div><div class="step-info"><div class="step-name">Opening</div><div class="step-det">Hum Ladke Hain — baraat starts</div></div></div>
+      <div class="step"><div class="step-n">2</div><div class="step-info"><div class="step-name">Groom on Horse</div><div class="step-det">Ghodi Chadh Gaya</div></div></div>
+      <div class="perf-sec"><div class="perf-lbl">🎵 Baraat Songs</div><div id="perfs-baraat"><div class="loading-spin">Loading…</div></div></div>
+      <div class="ev-photos"><div class="ev-photos-lbl">PHOTOS</div><div class="ev-photos-grid" id="ephoto-baraat"></div><button class="add-ev-photo-btn" onclick="openEventPhotoUpload('baraat')" id="ephoto-btn-baraat" style="display:none;">📷 Add Photo</button></div>
+    </div>
+  </div>
+
+  <div class="event-card">
+    <div class="ev-header" onclick="toggleEvent('vivah')"><div class="ev-icon">🔥</div><div class="ev-info"><div class="ev-subtitle" id="evs-vivah">विवाह संस्कार</div><div class="ev-title">Vivah</div><div class="ev-meta"><div class="etag">📅 3 July</div><div class="etag">🕖 7–11 PM</div><div class="etag rose">📍 Royal Club</div></div></div><div class="ev-chevron" id="ch-vivah">▾</div></div>
+    <div class="ev-body" id="body-vivah">
+      <div class="ev-desc">सात फेरों की पावन रस्म — जीवन भर का यादगार पल। ✨</div>
+      <div class="steps-lbl">OVERVIEW</div>
+      <div class="step"><div class="step-n">1</div><div class="step-info"><div class="step-name">Jaymala</div><div class="step-det">Varmala ceremony</div></div></div>
+      <div class="step"><div class="step-n">2</div><div class="step-info"><div class="step-name">Saat Phere</div><div class="step-det">Sacred vows with pandit ji</div></div></div>
+      <div class="step"><div class="step-n">3</div><div class="step-info"><div class="step-name">Vidaai</div><div class="step-det">Emotional farewell</div></div></div>
+      <div class="ev-photos"><div class="ev-photos-lbl">PHOTOS</div><div class="ev-photos-grid" id="ephoto-vivah"></div><button class="add-ev-photo-btn" onclick="openEventPhotoUpload('vivah')" id="ephoto-btn-vivah" style="display:none;">📷 Add Photo</button></div>
+    </div>
+  </div>
+
+  <div class="event-card">
+    <div class="ev-header" onclick="toggleEvent('reception')"><div class="ev-icon">🥂</div><div class="ev-info"><div class="ev-subtitle" id="evs-reception">स्वागत समारोह</div><div class="ev-title">Reception</div><div class="ev-meta"><div class="etag">📅 3 July</div><div class="etag">🕖 7–11 PM</div><div class="etag rose">📍 Royal Club</div></div></div><div class="ev-chevron" id="ch-reception">▾</div></div>
+    <div class="ev-body" id="body-reception">
+      <div class="ev-desc">१०००+ मेहमानों के साथ भव्य स्वागत! 🎊</div>
+      <div class="steps-lbl">OVERVIEW</div>
+      <div class="step"><div class="step-n">1</div><div class="step-info"><div class="step-name">Welcome Guests</div><div class="step-det">Welcome team at entrance</div></div></div>
+      <div class="step"><div class="step-n">2</div><div class="step-info"><div class="step-name">Dining</div><div class="step-det">Catering team at counters</div></div></div>
+      <div class="step"><div class="step-n">3</div><div class="step-info"><div class="step-name">Photos &amp; Reels</div><div class="step-det">Media team active</div></div></div>
+      <div class="ev-photos"><div class="ev-photos-lbl">PHOTOS</div><div class="ev-photos-grid" id="ephoto-reception"></div><button class="add-ev-photo-btn" onclick="openEventPhotoUpload('reception')" id="ephoto-btn-reception" style="display:none;">📷 Add Photo</button></div>
+    </div>
+  </div>
+</div>
+
+<!-- ROLES -->
+
+<div class="section" id="sec-roles">
+  <div class="sec-eyebrow" id="rolesSecTag">भूमिका</div>
+  <div class="sec-title" id="rolesSecTitle">अपनी <em>भूमिका</em> चुनें</div>
+  <div class="sec-sub" id="rolesSecSub">जो भूमिका आप लेना चाहते हैं, उसमें रुचि दिखाएँ।</div>
+  <div class="roles-banner"><h3 id="rolesIntroH">आप इस विवाह को यादगार बनाते हैं ✦</h3><p id="rolesIntroP">भूमिका चुनें, विवरण पढ़ें। दूसरे सुझाव भी दे सकते हैं।</p></div>
+  <div id="rolesContainer"></div>
+  <div class="add-role-box">
+    <h4 id="addRoleTitle">✦ नई भूमिका जोड़ें</h4>
+    <p id="addRoleP">कोई भूमिका नहीं दिखी? यहाँ जोड़ें!</p>
+    <div class="add-role-row">
+      <input class="ari" id="customRoleName" placeholder="भूमिका का नाम"/>
+      <input class="ari" id="customRoleDesc" placeholder="छोटा विवरण"/>
+      <button class="btn-add" id="addRoleBtn" onclick="addCustomRole()">+ जोड़ें</button>
+    </div>
+  </div>
+</div>
+
+<!-- TEAM -->
+
+<div class="section" id="sec-team">
+  <div class="sec-eyebrow" id="teamSecTag">विवाह टीम</div>
+  <div class="sec-title" id="teamSecTitle">हमारी <em>टीम</em></div>
+  <div class="sec-sub" id="teamSecSub">Management team के सभी सदस्य।</div>
+  <div class="team-grid" id="teamGrid"></div>
+  <div class="empty-state" id="teamEmpty" style="display:none;">No members joined yet.</div>
+</div>
+
+<!-- GALLERY -->
+
+<div class="section" id="sec-gallery">
+  <div class="sec-eyebrow">Photos</div>
+  <div class="sec-title">Wedding <em>Gallery</em></div>
+  <div class="sec-sub" id="gallerySub">All wedding memories. Click to view, tag people, add captions.</div>
+  <div class="gallery-upload-card" id="galleryUploadCard" onclick="document.getElementById('galleryPhotoInput').click()">
+    <div class="gallery-upload-icon">📷</div>
+    <h4 id="uploadCardTitle">Add a Photo</h4>
+    <p id="uploadCardSub">Tap to upload. Tag people and add a caption.</p>
+  </div>
+  <div class="photo-upload-form" id="galleryUploadForm">
+    <div class="el" style="margin-bottom:6px;">Photo Details</div>
+    <input class="ei" style="width:100%;margin-bottom:8px;" id="photoCaptionInput" placeholder="Caption (optional)"/>
+    <div class="el" style="margin-bottom:4px;">Event</div>
+    <select class="ei" style="width:100%;margin-bottom:8px;" id="photoEventInput">
+      <option value="">General</option>
+      <option value="mehndi">🌸 Mehndi</option>
+      <option value="haldi">🌿 Haldi</option>
+      <option value="sangeet">🎉 Sangeet</option>
+      <option value="baraat">🐎 Baraat</option>
+      <option value="vivah">🔥 Vivah</option>
+      <option value="reception">🥂 Reception</option>
+    </select>
+    <div class="el" style="margin-bottom:4px;">Tag People</div>
+    <div class="tag-wrap" style="margin-bottom:8px;">
+      <input class="ei" style="width:100%;" id="photoTagInput" placeholder="@tag someone" oninput="showPhotoTagSugg()" onblur="hidePhotoTagSugg()"/>
+      <div class="tag-drop" id="photoTagDrop"></div>
+    </div>
+    <div class="added-tags" id="photoAddedTags"></div>
+    <div style="display:flex;gap:8px;">
+      <button class="btn-save" style="flex:1;" onclick="submitGalleryPhoto()">📤 Upload</button>
+      <button class="btn-cancel" onclick="cancelGalleryUpload()">Cancel</button>
+    </div>
+  </div>
+  <div class="gallery-filter" id="galleryFilter">
+    <div class="filter-chip active" onclick="filterGallery(this,'')">All</div>
+    <div class="filter-chip" onclick="filterGallery(this,'mehndi')">🌸 Mehndi</div>
+    <div class="filter-chip" onclick="filterGallery(this,'haldi')">🌿 Haldi</div>
+    <div class="filter-chip" onclick="filterGallery(this,'sangeet')">🎉 Sangeet</div>
+    <div class="filter-chip" onclick="filterGallery(this,'baraat')">🐎 Baraat</div>
+    <div class="filter-chip" onclick="filterGallery(this,'vivah')">🔥 Vivah</div>
+    <div class="filter-chip" onclick="filterGallery(this,'reception')">🥂 Reception</div>
+  </div>
+  <div class="gallery-grid" id="galleryGrid"><div class="loading-spin" style="grid-column:1/-1;">Loading…</div></div>
+</div>
+
+<!-- CHANGES -->
+
+<div class="section" id="sec-changes">
+  <div class="sec-eyebrow">Change Log</div>
+  <div class="sec-title">Who, <em>What, When</em></div>
+  <div class="sec-sub">Complete record of all changes.</div>
+  <div id="changeLogList"><div class="loading-spin">Loading…</div></div>
+</div>
+
+<!-- SUGGESTIONS -->
+
+<div class="section" id="sec-suggest">
+  <div class="sec-eyebrow" id="suggestSecTag">सुझाव</div>
+  <div class="sec-title" id="suggestSecTitle">आपके <em>सुझाव</em></div>
+  <div class="sec-sub" id="suggestSecSub">कोई भी विचार, आइडिया यहाँ लिखें।</div>
+  <div class="sugg-form-card">
+    <h4 id="suggestFormH">✦ अपना सुझाव लिखें</h4>
+    <p id="suggestFormP">@नाम लिखकर टैग करें।</p>
+    <input class="form-input" id="suggName" placeholder="आपका नाम"/>
+    <textarea class="form-input" id="suggText" rows="3" placeholder="आपका सुझाव…"></textarea>
+    <div class="tag-wrap">
+      <input class="form-input" style="margin:0;" id="tagInput" placeholder="@किसी को टैग करें" oninput="showTagSugg()" onblur="hideTagSugg()"/>
+      <div class="tag-drop" id="tagDrop"></div>
+    </div>
+    <div class="added-tags" id="addedTags"></div>
+    <button class="btn-primary" id="suggestSendBtn" onclick="submitSuggestion()">✦ सुझाव भेजें</button>
+  </div>
+  <div id="suggestionsList"></div>
+</div>
+
+<!-- INFO -->
+
+<div class="section" id="sec-info">
+  <div class="sec-eyebrow" id="infoSecTag">जानकारी</div>
+  <div class="sec-title" id="infoSecTitle">विवाह का <em>विवरण</em></div>
+  <div class="sec-sub" id="infoSecSub">रायपुर पहुँचने से पहले यह सब जान लें।</div>
+  <div class="dress-card">
+    <div class="info-icon">👗</div>
+    <div class="info-lbl">DRESS CODE</div>
+    <div class="info-val">Traditional Indian Attire</div>
+    <div class="info-sub">Ladies: Lehenga / Saree &nbsp;·&nbsp; Gents: Sherwani / Kurta<br/>Coordinate colours in WhatsApp group! 🌸</div>
+  </div>
+  <div class="info-grid">
+    <div class="info-card"><div class="info-icon">📍</div><div class="info-lbl">VENUE</div><div class="info-val">Royal Club</div><div class="info-sub">Raipur, Chhattisgarh</div></div>
+    <div class="info-card"><div class="info-icon">👥</div><div class="info-lbl">GUESTS</div><div class="info-val">~1000</div><div class="info-sub">Grand traditional wedding</div></div>
+    <div class="info-card"><div class="info-icon">📅</div><div class="info-lbl">DATES</div><div class="info-val">1–3 July</div><div class="info-sub">2025 · Three days</div></div>
+    <div class="info-card"><div class="info-icon">🌸</div><div class="info-lbl">EVENTS</div><div class="info-val">7 Functions</div><div class="info-sub">Engagement · Mehndi · Haldi · Sangeet · Baraat · Vivah · Reception</div></div>
+  </div>
+  <div class="link-card">
+    <div class="info-icon">🔗</div>
+    <div class="info-lbl">WEBSITE</div>
+    <div class="info-val">Share this link</div>
+    <div class="link-url">https://shreyadubey-studio.github.io/priyanka-shubham-wedding</div>
+    <div class="copy-btn" onclick="copyLink()">📋 Copy Link</div>
+  </div>
+  <div class="checklist-card">
+    <div class="info-lbl">COUSIN CHECKLIST</div>
+    <div class="info-val" style="font-size:15px;margin-bottom:9px;color:var(--text);">Day-of Tips</div>
+    <div class="info-sub">🌸 &nbsp;Claim your role on this website<br/>✦ &nbsp;Arrive 1 hour before your event<br/>🌸 &nbsp;Keep your phone fully charged<br/>✦ &nbsp;Family briefing the night before<br/>🌸 &nbsp;Coordinate outfit colour with team<br/>✦ &nbsp;Have fun — it's a celebration! 🎊</div>
+  </div>
+  <div class="contact-card">
+    <div class="cc-eyebrow">Website Related Issues</div>
+    <div class="cc-title">Contact</div>
+    <div class="cc-name">Shreya Dubey</div>
+    <div class="cc-phone">+91 91095 27063</div>
+    <a class="cc-btn" href="tel:+919109527063">📞 Call Shreya</a>
+  </div>
+</div>
+
+</div><!-- content-wrap -->
+
+<div class="bottom-nav" id="bottomNav" style="display:none;">
+  <button id="bn-events" onclick="showSection('events')"><span class="bi">🗓️</span><span id="bnEvents">Events</span></button>
+  <button id="bn-roles" onclick="showSection('roles')"><span class="bi">✋</span><span id="bnRoles">Roles</span></button>
+  <button id="bn-team" onclick="showSection('team')"><span class="bi">👥</span><span id="bnTeam">Team</span></button>
+  <button id="bn-gallery" onclick="showSection('gallery')"><span class="bi">📸</span><span id="bnGallery">Gallery</span></button>
+  <button id="bn-suggest" onclick="showSection('suggest')"><span class="bi">💡</span><span id="bnSuggest">Suggest</span></button>
+  <button id="bn-info" onclick="showSection('info')"><span class="bi">ℹ️</span><span id="bnInfo">Info</span></button>
+</div>
+
+</div><!-- mainApp -->
 <script>
-document.getElementById('status').textContent = 'JS is working! ✅';
+const TEAM_PASS='4567';
+const SK='prishubh_v8';
+
+// ── MINI SUPABASE CLIENT (no CDN needed) ──
+var SURL=‘https://fwbbfsfjgmuuzqymxtdv.supabase.co’;
+var SKEY=‘eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZ3YmJmc2ZqZ211dXpxeW14dGR2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzYwMTUxMDksImV4cCI6MjA5MTU5MTEwOX0.npnpwd1SirAHyHH1JahMcKyEsvJb5MrPXEzdPAPpC-0’;
+
+function sbFetch(method, path, body){
+var opts = {
+method: method,
+headers: {
+‘apikey’: SKEY,
+‘Authorization’: ‘Bearer ‘+SKEY,
+‘Content-Type’: ‘application/json’,
+‘Prefer’: method===‘POST’&&!path.includes(‘select=’)&&body?‘return=representation’:‘return=representation’
+}
+};
+if(body) opts.body = JSON.stringify(body);
+return fetch(SURL+’/rest/v1/’+path, opts).then(function(r){
+if(!r.ok) return r.json().then(function(e){ throw e; });
+var ct = r.headers.get(‘content-type’)||’’;
+if(ct.includes(‘json’)) return r.json();
+return r.text();
+});
+}
+
+// Query builder
+function from(table){
+var _table=table, _filters=[], _order=null, _limit=null, _single=false, _select=’*’;
+var builder = {
+select: function(cols){ _select=cols||’*’; return builder; },
+eq: function(col,val){ _filters.push(col+’=eq.’+encodeURIComponent(val)); return builder; },
+neq: function(col,val){ _filters.push(col+’=neq.’+encodeURIComponent(val)); return builder; },
+order: function(col,opts){ _order=col+(opts&&opts.ascending===false?’.desc’:’.asc’); return builder; },
+limit: function(n){ _limit=n; return builder; },
+single: function(){ _single=true; return builder; },
+then: function(resolve,reject){
+var path=_table+’?select=’+_select;
+if(_filters.length) path+=’&’+_filters.join(’&’);
+if(_order) path+=’&order=’+_order;
+if(_limit) path+=’&limit=’+_limit;
+if(_single) path+=’&limit=1’;
+return sbFetch(‘GET’,path).then(function(data){
+var result = Array.isArray(data)?data:[];
+if(_single){
+return resolve({data:result.length?result[0]:null, error:null});
+}
+return resolve({data:result, error:null});
+}).catch(function(err){
+if(reject) reject({data:null,error:err});
+else resolve({data:null,error:err});
+});
+},
+insert: function(body){
+var rows = Array.isArray(body)?body:[body];
+return {
+select: function(){ return this; },
+single: function(){ _single=true; return this; },
+then: function(resolve,reject){
+sbFetch(‘POST’,_table+’?select=*’, rows).then(function(data){
+var result = Array.isArray(data)?data:[];
+if(_single) return resolve({data:result[0]||null,error:null});
+return resolve({data:result,error:null});
+}).catch(function(err){
+if(reject) reject({data:null,error:err});
+else resolve({data:null,error:err});
+});
+}
+};
+},
+update: function(body){
+var _upd=body;
+return {
+eq: function(col,val){ _filters.push(col+’=eq.’+encodeURIComponent(val)); return this; },
+then: function(resolve,reject){
+var path=_table+’?’+_filters.join(’&’);
+sbFetch(‘PATCH’,path,_upd).then(function(data){
+resolve({data:data,error:null});
+}).catch(function(err){
+if(reject) reject({data:null,error:err});
+else resolve({data:null,error:err});
+});
+}
+};
+},
+delete: function(){
+return {
+eq: function(col,val){ _filters.push(col+’=eq.’+encodeURIComponent(val)); return this; },
+then: function(resolve,reject){
+var path=_table+’?’+_filters.join(’&’);
+sbFetch(‘DELETE’,path).then(function(data){
+resolve({data:data,error:null});
+}).catch(function(err){
+if(reject) reject({data:null,error:err});
+else resolve({data:null,error:err});
+});
+}
+};
+}
+};
+return builder;
+}
+
+// Realtime via polling (no websocket CDN needed)
+var rtPollers = [];
+function channel(name){
+return {
+on: function(){ return this; },
+subscribe: function(){ return this; }
+};
+}
+function removeChannel(){}
+
+// Poll for changes every 8 seconds
+function startPolling(){
+setInterval(function(){
+if(document.getElementById(‘sec-events’) && document.getElementById(‘sec-events’).classList.contains(‘on’)){
+[‘sangeet’,‘baraat’,‘haldi’].forEach(function(ev){ loadPerfs(ev); });
+}
+if(document.getElementById(‘sec-gallery’) && document.getElementById(‘sec-gallery’).classList.contains(‘on’)){
+loadGallery();
+}
+}, 8000);
+}
+
+let CU=null,taggedPeople=[],photoTags=[],activeGroupFilter=null,realtimeSubs=[];
+let pendingGalleryFile=null,pendingEventFile=null,pendingEventName=null;
+let currentGalleryFilter=’’;
+let lang=localStorage.getItem(‘prishubh_lang’)||‘hi’;
+
+const T={
+en:{
+loginTab:‘Login’,joinTab:‘Join Team’,uPh:‘Username’,pPh:‘Password’,
+enterBtn:‘✦  Enter’,guestBtn:‘👁  View as Guest’,
+fnPh:‘Your full name’,phonePh:‘WhatsApp number’,uPh2:‘Username’,
+cpPh:‘Choose password’,tpPh:‘Team Password’,joinBtn:‘✦  Join the Team’,
+loading:‘⏳ Loading…’,logout:‘Logout’,
+evTag:‘Wedding Events’,evTitle:’All ‘,evTitleEm:‘Events’,
+evSub:‘Click on each event for detailed information.’,
+fTitle:‘🔍 Search Songs’,fPh:‘Type your name or song name…’,fClear:‘✕ Clear Filter’,
+rTag:‘Roles’,rTitle:‘Choose Your ‘,rTitleEm:‘Role’,
+rSub:‘Show interest in a role. Will be confirmed later.’,
+rIntroH:‘You make this wedding memorable ✦’,
+rIntroP:‘Choose a role, read details. Others can suggest too.’,
+arTitle:‘✦ Add New Role’,arP:“Don’t see your role? Add here!”,
+arNamePh:‘Role name’,arDescPh:‘Short description’,arBtn:’+ Add’,
+tTag:‘Wedding Team’,tTitle:‘Our ‘,tTitleEm:‘Team’,tSub:‘All management team members.’,
+gSub:‘All wedding memories. Click to view, tag and comment.’,
+upTitle:‘Add a Photo’,upSub:‘Tap to upload. Tag people and add a caption.’,
+sgTag:‘Suggestions’,sgTitle:‘Your ‘,sgTitleEm:‘Suggestions’,
+sgSub:‘Share any idea here. Tag someone with @name!’,
+sgH:‘✦ Write a Suggestion’,sgP:‘Tag someone with @name.’,
+sgNPh:‘Your name’,sgTPh:‘Your suggestion…’,tagPh:’@Tag someone’,
+sgBtn:‘✦ Send Suggestion’,sgEmpty:‘No suggestions yet. 💡’,
+iTag:‘Information’,iTitle:‘Wedding ‘,iTitleEm:‘Details’,
+iSub:‘Everything you need before arriving in Raipur.’,
+copyBtn:‘📋 Copy Link’,
+iCount:’ interested’,loginMsg:‘Login to interact’,
+luBy:‘✏️ Last updated by: ‘,noPerfs:‘No performances yet.’,
+sFound:’ songs found’,
+bnEv:‘Events’,bnRo:‘Roles’,bnTe:‘Team’,bnGa:‘Gallery’,bnSu:‘Suggest’,bnIn:‘Info’,
+evHindi:{engagement:‘Engagement’,mehndi:‘Mehndi Night’,haldi:‘Haldi’,sangeet:‘Sangeet’,baraat:‘Baraat’,vivah:‘Vivah’,reception:‘Reception’},
+heroEyebrow:‘A Memorable Wedding Celebration’,heroCtaEn:‘Explore the Wedding’,heroCtaHi:’’,
+errBoth:‘Please enter username and password.’,errWrong:‘Wrong username or password!’,
+errFill:‘Please fill all fields.’,errTeamPass:‘Wrong Team Password!’,
+errTaken:‘Username already taken.’,errConn:‘Connection error. Try again.’,
+},
+hi:{
+loginTab:‘Login’,joinTab:‘टीम में शामिल हों’,uPh:‘Username’,pPh:‘Password’,
+enterBtn:‘✦  प्रवेश करें’,guestBtn:‘👁  Guest के रूप में देखें’,
+fnPh:‘आपका पूरा नाम’,phonePh:‘WhatsApp नंबर’,uPh2:‘Username’,
+cpPh:‘Password चुनें’,tpPh:‘Team Password’,joinBtn:‘✦  टीम में शामिल हों’,
+loading:‘⏳ लोड हो रहा है…’,logout:‘बाहर’,
+evTag:‘विवाह उत्सव’,evTitle:’सभी ’,evTitleEm:‘कार्यक्रम’,
+evSub:‘हर कार्यक्रम पर क्लिक करके विस्तृत जानकारी देखें।’,
+fTitle:‘🔍 गाने खोजें’,fPh:‘अपना नाम या गाने का नाम लिखें…’,fClear:‘✕ Filter हटाएँ’,
+rTag:‘भूमिका’,rTitle:‘अपनी ‘,rTitleEm:‘भूमिका चुनें’,
+rSub:‘जो भूमिका आप लेना चाहते हैं, उसमें रुचि दिखाएँ।’,
+rIntroH:‘आप इस विवाह को यादगार बनाते हैं ✦’,
+rIntroP:‘भूमिका चुनें, विवरण पढ़ें। दूसरे सुझाव भी दे सकते हैं।’,
+arTitle:‘✦ नई भूमिका जोड़ें’,arP:‘कोई भूमिका नहीं दिखी? यहाँ जोड़ें!’,
+arNamePh:‘भूमिका का नाम’,arDescPh:‘छोटा विवरण’,arBtn:’+ जोड़ें’,
+tTag:‘विवाह टीम’,tTitle:‘हमारी ‘,tTitleEm:‘टीम’,tSub:‘Management team के सभी सदस्य।’,
+gSub:‘सभी यादगार पल यहाँ। Click करके देखें, tag करें।’,
+upTitle:‘Photo जोड़ें’,upSub:‘Upload करें। लोगों को tag करें।’,
+sgTag:‘सुझाव’,sgTitle:‘आपके ‘,sgTitleEm:‘सुझाव’,
+sgSub:‘कोई भी विचार, आइडिया यहाँ लिखें। @नाम से किसी को टैग करें!’,
+sgH:‘✦ अपना सुझाव लिखें’,sgP:’@नाम लिखकर टैग करें।’,
+sgNPh:‘आपका नाम’,sgTPh:‘आपका सुझाव…’,tagPh:’@किसी को टैग करें’,
+sgBtn:‘✦ सुझाव भेजें’,sgEmpty:‘अभी कोई सुझाव नहीं। 💡’,
+iTag:‘जानकारी’,iTitle:‘विवाह का ‘,iTitleEm:‘विवरण’,
+iSub:‘रायपुर पहुँचने से पहले यह सब जान लें।’,
+copyBtn:‘📋 लिंक कॉपी करें’,
+iCount:’ रुचि’,loginMsg:‘Login करें’,
+luBy:‘✏️ Last updated by: ‘,noPerfs:‘अभी कोई परफॉर्मेंस नहीं।’,
+sFound:’ गाने मिले’,
+bnEv:‘कार्यक्रम’,bnRo:‘भूमिका’,bnTe:‘टीम’,bnGa:‘Gallery’,bnSu:‘सुझाव’,bnIn:‘Info’,
+evHindi:{engagement:‘सगाई’,mehndi:‘मेहंदी की शाम’,haldi:‘हल्दी रस्म’,sangeet:‘संगीत समारोह’,baraat:‘बारात’,vivah:‘विवाह संस्कार’,reception:‘स्वागत समारोह’},
+heroEyebrow:‘एक यादगार विवाह उत्सव’,heroCtaEn:‘Explore the Wedding’,heroCtaHi:‘विवरण के लिए यहाँ क्लिक करें’,
+errBoth:‘Username और password दोनों लिखें।’,errWrong:‘गलत username या password!’,
+errFill:‘सभी fields भरें।’,errTeamPass:‘गलत Team Password!’,
+errTaken:‘यह username पहले से लिया गया है।’,errConn:‘Connection error. Try again.’,
+}
+};
+function t(k){return T[lang][k]||T.en[k]||k;}
+
+function toggleLang(){
+lang=lang===‘hi’?‘en’:‘hi’;
+localStorage.setItem(‘prishubh_lang’,lang);
+applyLang();
+}
+
+function applyLang(){
+const isHi=lang===‘hi’;
+document.querySelectorAll(’.lang-btn,.nav-lang-btn’).forEach(el=>el.classList.toggle(‘hi’,isHi));
+// Login
+s(‘tab-login’,t(‘loginTab’)); s(‘tab-register’,t(‘joinTab’));
+ph(‘loginUsername’,t(‘uPh’)); ph(‘loginPassword’,t(‘pPh’));
+s(‘loginEnterBtn’,t(‘enterBtn’)); s(‘loginGuestBtn’,t(‘guestBtn’));
+ph(‘regFullName’,t(‘fnPh’)); ph(‘regPhone’,t(‘phonePh’));
+ph(‘regUsername’,t(‘uPh2’)); ph(‘regPassword’,t(‘cpPh’));
+ph(‘regTeamPass’,t(‘tpPh’)); s(‘joinTeamBtn’,t(‘joinBtn’));
+s(‘joinGuestBtn’,t(‘guestBtn’)); s(‘loginLoading’,t(‘loading’));
+// Nav
+s(‘navLogoutBtn’,t(‘logout’));
+// Hero
+s(‘heroEyebrow’,t(‘heroEyebrow’)); s(‘heroCtaEn’,t(‘heroCtaEn’)); s(‘heroCtaHi’,t(‘heroCtaHi’));
+// Sections
+s(‘eventsSecTag’,t(‘evTag’)); sti(‘eventsSecTitle’,t(‘evTitle’),t(‘evTitleEm’)); s(‘eventsSecSub’,t(‘evSub’));
+s(‘filterBarTitle’,t(‘fTitle’)); ph(‘filterSearch’,t(‘fPh’)); s(‘filterClear’,t(‘fClear’));
+s(‘rolesSecTag’,t(‘rTag’)); sti(‘rolesSecTitle’,t(‘rTitle’),t(‘rTitleEm’)); s(‘rolesSecSub’,t(‘rSub’));
+s(‘rolesIntroH’,t(‘rIntroH’)); s(‘rolesIntroP’,t(‘rIntroP’));
+s(‘addRoleTitle’,t(‘arTitle’)); s(‘addRoleP’,t(‘arP’));
+ph(‘customRoleName’,t(‘arNamePh’)); ph(‘customRoleDesc’,t(‘arDescPh’)); s(‘addRoleBtn’,t(‘arBtn’));
+s(‘teamSecTag’,t(‘tTag’)); sti(‘teamSecTitle’,t(‘tTitle’),t(‘tTitleEm’)); s(‘teamSecSub’,t(‘tSub’));
+s(‘gallerySub’,t(‘gSub’)); s(‘uploadCardTitle’,t(‘upTitle’)); s(‘uploadCardSub’,t(‘upSub’));
+s(‘suggestSecTag’,t(‘sgTag’)); sti(‘suggestSecTitle’,t(‘sgTitle’),t(‘sgTitleEm’)); s(‘suggestSecSub’,t(‘sgSub’));
+s(‘suggestFormH’,t(‘sgH’)); s(‘suggestFormP’,t(‘sgP’));
+ph(‘suggName’,t(‘sgNPh’)); ph(‘suggText’,t(‘sgTPh’)); ph(‘tagInput’,t(‘tagPh’));
+s(‘suggestSendBtn’,t(‘sgBtn’));
+s(‘infoSecTag’,t(‘iTag’)); sti(‘infoSecTitle’,t(‘iTitle’),t(‘iTitleEm’)); s(‘infoSecSub’,t(‘iSub’));
+// Event subtitles
+const eh=t(‘evHindi’);
+Object.keys(eh).forEach(ev=>{const el=document.getElementById(‘evs-’+ev);if(el)el.textContent=eh[ev];});
+// Bottom nav
+s(‘bnEvents’,t(‘bnEv’)); s(‘bnRoles’,t(‘bnRo’)); s(‘bnTeam’,t(‘bnTe’));
+s(‘bnGallery’,t(‘bnGa’)); s(‘bnSuggest’,t(‘bnSu’)); s(‘bnInfo’,t(‘bnIn’));
+// Subnav
+const sn=document.getElementById(‘subnav’);
+if(sn){
+const btns=sn.querySelectorAll(‘button’);
+const labels=[’🗓 ’+t(‘bnEv’),’✋ ’+t(‘bnRo’),’👥 ’+t(‘bnTe’),’📸 ’+t(‘bnGa’),‘💡 ‘+t(‘bnSu’),‘📋 Changes’,‘ℹ ‘+t(‘bnIn’)];
+btns.forEach((b,i)=>{if(labels[i])b.textContent=labels[i];});
+}
+if(document.getElementById(‘sec-roles’)?.classList.contains(‘visible’))renderRoles();
+}
+function s(id,txt){const el=document.getElementById(id);if(el)el.textContent=txt;}
+function ph(id,txt){const el=document.getElementById(id);if(el)el.placeholder=txt;}
+function sti(id,main,em){const el=document.getElementById(id);if(el)el.innerHTML=main+’<em>’+em+’</em>’;}
+
+// ROLES
+const ROLES=[
+{id:‘gm1’,icon:‘🤵’,name:‘Groomsman 1’,cat:‘👑 Groomsmen & Groomswomen’,tagline:‘दूल्हे का पहला साथी’,details:[‘हर रस्म में शुभम के साथ रहें’,‘Sherwani / coordinated outfit’,‘शादी के दिन एक घंटे पहले पहुँचें’]},
+{id:‘gm2’,icon:‘🤵’,name:‘Groomsman 2’,cat:‘👑 Groomsmen & Groomswomen’,tagline:‘दूल्हे का दूसरा साथी’,details:[‘मंच पर हमेशा मौजूद रहें’,‘Sherwani / coordinated outfit’]},
+{id:‘gm3’,icon:‘🤵’,name:‘Groomsman 3’,cat:‘👑 Groomsmen & Groomswomen’,tagline:‘दूल्हे का तीसरा साथी’,details:[‘Sherwani / coordinated outfit’,‘बारात में साथ चलें’]},
+{id:‘gw1’,icon:‘💃’,name:‘Groomswoman 1’,cat:‘👑 Groomsmen & Groomswomen’,tagline:‘दुल्हन की पहली सहेली’,details:[‘हर रस्म में प्रियंका के पास रहें’,‘Lehenga / coordinated outfit’]},
+{id:‘gw2’,icon:‘💃’,name:‘Groomswoman 2’,cat:‘👑 Groomsmen & Groomswomen’,tagline:‘दुल्हन की दूसरी सहेली’,details:[‘Lehenga / coordinated outfit’,‘संगीत में dance performance’]},
+{id:‘gw3’,icon:‘💃’,name:‘Groomswoman 3’,cat:‘👑 Groomsmen & Groomswomen’,tagline:‘दुल्हन की तीसरी सहेली’,details:[‘Lehenga / coordinated outfit’,‘विदाई में support’]},
+{id:‘baraat1’,icon:‘🐎’,name:‘बारात लीडर’,cat:‘🎊 बारात व रस्में’,tagline:‘बारात में सबसे आगे’,details:[‘बारात में सबसे आगे चलें’,‘ढोल के साथ नृत्य करें’,‘बारात से 30 मिनट पहले तैयार’]},
+{id:‘baraat2’,icon:‘💃’,name:‘बारात डांसर’,cat:‘🎊 बारात व रस्में’,tagline:‘बारात में नृत्य ऊर्जा’,details:[‘पूरी बारात में ऊर्जा बनाएँ’,‘Comfortable dancing outfit’]},
+{id:‘pheras’,icon:‘🌸’,name:‘रस्म सहयोगी’,cat:‘🎊 बारात व रस्में’,tagline:‘पूजा सामग्री तैयार रखें’,details:[‘पूजा सामग्री list पहले से लें’,‘शांत और organized रहें’]},
+{id:‘groom_shadow’,icon:‘🤵’,name:‘दूल्हे का साया’,cat:‘🎊 बारात व रस्में’,tagline:‘शुभम के साथ हर पल’,details:[‘पूरे दिन शुभम के साथ रहें’,‘Emergency में तुरंत action’]},
+{id:‘welcome1’,icon:‘🙏’,name:‘स्वागत करता’,cat:‘🚪 मेहमान प्रबंधन’,tagline:‘दरवाजे पर गर्मजोशी से’,details:[‘Main gate पर स्वागत’,‘मुस्कुराहट और विनम्रता’]},
+{id:‘welcome2’,icon:‘👴’,name:‘VIP होस्ट’,cat:‘🚪 मेहमान प्रबंधन’,tagline:‘बुजुर्गों का व्यक्तिगत ध्यान’,details:[‘बुजुर्गों को personally escort करें’,‘VIP list पहले से बनाएँ’]},
+{id:‘seating’,icon:‘🪑’,name:‘बैठक व्यवस्था’,cat:‘🚪 मेहमान प्रबंधन’,tagline:‘मेहमान मार्गदर्शन’,details:[‘Seating plan पहले से समझें’]},
+{id:‘kids’,icon:‘👶’,name:‘बच्चों की देखभाल’,cat:‘🚪 मेहमान प्रबंधन’,tagline:‘बच्चों को सुरक्षित रखें’,details:[‘Stage से बच्चे दूर रखें’]},
+{id:‘catering’,icon:‘🍛’,name:‘खाना इंचार्ज’,cat:‘🍽️ खाना व लॉजिस्टिक्स’,tagline:‘कैटरर समन्वय’,details:[‘Food counters भरे रखें’,‘Guest complaints resolve करें’]},
+{id:‘vendor’,icon:‘📋’,name:‘वेंडर समन्वयक’,cat:‘🍽️ खाना व लॉजिस्टिक्स’,tagline:‘सभी वेंडर से संपर्क’,details:[‘Photographer, DJ, decorator contact’]},
+{id:‘gifts’,icon:‘🎁’,name:‘उपहार प्रबंधक’,cat:‘🍽️ खाना व लॉजिस्टिक्स’,tagline:‘उपहार एकत्र व सुरक्षित’,details:[‘Cash envelopes safe box में’]},
+{id:‘float’,icon:‘⚡’,name:‘फ्लोटिंग हेल्पर’,cat:‘🍽️ खाना व लॉजिस्टिक्स’,tagline:‘जहाँ जरूरत, वहाँ दौड़ें’,details:[‘Most flexible role’]},
+{id:‘mc’,icon:‘🎤’,name:‘MC / एंकर’,cat:‘🎉 मनोरंजन व मीडिया’,tagline:‘संगीत व रिसेप्शन होस्ट’,details:[‘Script और cues पहले से तैयार’,‘Energetic और funny’]},
+{id:‘dance’,icon:‘🕺’,name:‘डांस लीड’,cat:‘🎉 मनोरंजन व मीडिया’,tagline:‘नृत्य प्रस्तुति आयोजन’,details:[‘सभी dance groups coordinate करें’]},
+{id:‘dj_coord’,icon:‘🎵’,name:‘DJ समन्वयक’,cat:‘🎉 मनोरंजन व मीडिया’,tagline:‘सही वक्त पर सही गाना’,details:[‘Complete song list और sequence दें’]},
+{id:‘reels’,icon:‘📸’,name:‘रील्स & फोटो’,cat:‘🎉 मनोरंजन व मीडिया’,tagline:‘यादगार पलों को कैद करें’,details:[‘Phone पूरा charged रखें’,‘Candid moments capture करें’]},
+{id:‘audio_track’,icon:‘🎧’,name:‘Audio & Track Manager’,cat:‘💻 Tech & Media’,tagline:‘सभी tracks ready रखें’,details:[‘सभी edited song tracks collect करें’,‘DJ को सही format में files दें’,‘Master playlist बनाएँ’,‘Sangeet पर DJ का single point contact’]},
+{id:‘website_mgr’,icon:‘💻’,name:‘Website Manager’,cat:‘💻 Tech & Media’,tagline:‘Website updated रखें’,details:[‘Performance details update करें’,‘Team members को login में help करें’,‘Day-of website queries handle करें’]}
+];
+
+// LOGIN
+function switchTab(tab){
+document.getElementById(‘tab-login’).classList.toggle(‘active’,tab===‘login’);
+document.getElementById(‘tab-register’).classList.toggle(‘active’,tab===‘register’);
+document.getElementById(‘formLogin’).style.display=tab===‘login’?‘block’:‘none’;
+document.getElementById(‘formRegister’).style.display=tab===‘register’?‘block’:‘none’;
+document.getElementById(‘loginError’).classList.remove(‘show’);
+}
+function showErr(msg){const e=document.getElementById(‘loginError’);e.textContent=msg;e.classList.add(‘show’);}
+function showLoad(v){document.getElementById(‘loginLoading’).classList.toggle(‘show’,v);}
+
+async function doLogin(){
+const u=document.getElementById(‘loginUsername’).value.trim().toLowerCase();
+const p=document.getElementById(‘loginPassword’).value;
+if(!u||!p){showErr(t(‘errBoth’));return;}
+showLoad(true);
+try{
+const{data,error}=await from(‘users’).select(’*’).eq(‘username’,u).eq(‘password_hash’,p).single();
+if(error||!data){showErr(t(‘errWrong’));showLoad(false);return;}
+await from(‘users’).update({last_login:new Date().toISOString()}).eq(‘id’,data.id);
+CU=data;
+localStorage.setItem(SK,JSON.stringify({id:data.id,username:data.username}));
+showLoad(false);startApp();
+}catch(e){showErr(t(‘errConn’));showLoad(false);}
+}
+async function doRegister(){
+const fn=document.getElementById(‘regFullName’).value.trim();
+const ph=document.getElementById(‘regPhone’).value.trim();
+const u=document.getElementById(‘regUsername’).value.trim().toLowerCase();
+const pw=document.getElementById(‘regPassword’).value;
+const tp=document.getElementById(‘regTeamPass’).value;
+if(!fn||!ph||!u||!pw){showErr(t(‘errFill’));return;}
+if(tp!==TEAM_PASS){showErr(t(‘errTeamPass’));return;}
+showLoad(true);
+try{
+const{data:ex}=await from(‘users’).select(‘id’).eq(‘username’,u).single();
+if(ex){showErr(t(‘errTaken’));showLoad(false);return;}
+const{data,error}=await from(‘users’).insert({username:u,password_hash:pw,full_name:fn,phone:ph,role:‘member’}).select().single();
+if(error){showErr(’Error: ’+error.message);showLoad(false);return;}
+CU=data;
+localStorage.setItem(SK,JSON.stringify({id:data.id,username:data.username}));
+showLoad(false);startApp();
+}catch(e){showErr(t(‘errConn’));showLoad(false);}
+}
+async function doGuest(){CU={id:‘guest’,username:‘guest’,full_name:‘Guest’,role:‘guest’};startApp();}
+function doLogout(){
+CU=null;localStorage.removeItem(SK);
+realtimeSubs.forEach(s=>removeChannel(s));realtimeSubs=[];
+document.getElementById(‘loginScreen’).style.display=‘flex’;
+document.getElementById(‘mainApp’).style.display=‘none’;
+}
+
+// START APP
+async function startApp(){
+document.getElementById(‘loginScreen’).style.display=‘none’;
+document.getElementById(‘mainApp’).style.display=‘block’;
+const isAdmin=CU.role===‘admin’;
+const canEdit=![‘guest’].includes(CU.role);
+// Show first name only for admin (Shreya) — no role badge
+const displayName = CU.role===‘admin’ ? (CU.full_name||CU.username).split(’ ‘)[0] : (CU.full_name||CU.username);
+document.getElementById(‘navUserPill’).textContent=displayName;
+document.querySelectorAll(’.ed-badge’).forEach(el=>el.style.display=canEdit?‘inline’:‘none’);
+if(document.getElementById(‘addPerfBtn’))document.getElementById(‘addPerfBtn’).style.display=canEdit?‘block’:‘none’;
+if(isAdmin)document.getElementById(‘nav-changes’).style.display=‘block’;
+// Show add photo buttons if logged in
+document.querySelectorAll(’[id^=“ephoto-btn-”]’).forEach(el=>el.style.display=canEdit?‘block’:‘none’);
+if(!canEdit)document.getElementById(‘galleryUploadCard’).style.pointerEvents=‘none’;
+await loadAllPerfs();
+await loadRoleInterests();
+await loadCustomRoles();
+await loadGallery();
+setupRealtime();
+applyLang();
+}
+
+// REALTIME
+function setupRealtime(){
+const dot=document.getElementById(‘rtDot’);if(dot)dot.style.display=‘inline-block’;
+const ps=channel(‘perfs’).on(‘postgres_changes’,{event:’*’,schema:‘public’,table:‘performances’},(p)=>{
+const ev=p.new?.event||p.old?.event;if(ev)loadPerfs(ev);
+}).subscribe();
+const gs=channel(‘gallery’).on(‘postgres_changes’,{event:’*’,schema:‘public’,table:‘event_photos’},()=>{
+loadGallery();loadAllEventPhotos();
+}).subscribe();
+realtimeSubs=[ps,gs];
+}
+
+// PERFORMANCES
+const SL={ready:‘✅ Ready’,progress:‘⏳ In Progress’,notstarted:‘🔴 Not Started’,tbu:‘📝 TBU’};
+const SC={ready:‘s-ready’,progress:‘s-progress’,notstarted:‘s-notstarted’,tbu:‘s-tbu’};
+
+async function loadAllPerfs(){await Promise.all([‘sangeet’,‘baraat’,‘haldi’].map(e=>loadPerfs(e)));}
+async function loadPerfs(ev){
+const el=document.getElementById(‘perfs-’+ev);if(!el)return;
+const{data,error}=await from(‘performances’).select(’*’).eq(‘event’,ev).order(‘seq’);
+if(error){el.innerHTML=’<div class="empty-state">Error loading.</div>’;return;}
+renderPerfs(ev,data||[]);
+}
+function renderPerfs(ev,perfs){
+const el=document.getElementById(‘perfs-’+ev);if(!el)return;
+if(!perfs.length){el.innerHTML=’<div class="empty-state">’+t(‘noPerfs’)+’</div>’;return;}
+const canEdit=CU&&![‘guest’].includes(CU.role);
+el.innerHTML=perfs.map(p=>` <div class="perf-card" id="pc-${p.id}"> <div class="p-num">${p.seq||'?'}</div> <div class="p-song">${esc(p.song)}</div> <div class="p-cat">${esc(p.category||'')}</div> <div class="p-fields"> <div class="pf"><div class="pfl">Dance Lead</div><div class="pfv ${!p.lead?'tbu':''}">${esc(p.lead)||'TBU'}</div></div> <div class="pf"><div class="pfl">Duration</div><div class="pfv ${!p.duration?'tbu':''}">${p.duration?p.duration+' mins':'TBU'}</div></div> <div class="pf"><div class="pfl">Track Ready</div><div class="pfv ${!p.track_ready?'tbu':''}">${esc(p.track_ready)||'TBU'}</div></div> <div class="pf"><div class="pfl">Finalized</div><div class="pfv ${!p.song_finalized?'tbu':''}">${esc(p.song_finalized)||'TBU'}</div></div> </div> <div class="p-dancers"><div class="pfl">Dancers</div><div class="pfv ${!p.dancers?'tbu':''}">${esc(p.dancers)||'TBU'}</div></div> ${(p.outfit||p.notes)?`<div class="p-fields">${p.outfit?`<div class="pf"><div class="pfl">Outfit</div><div class="pfv">${esc(p.outfit)}</div></div>`:’’} ${p.notes?`<div class="pf"><div class="pfl">Notes</div><div class="pfv">${esc(p.notes)}</div></div>`:’’}</div>`:''} ${p.link?`<div class="p-links"><a class="p-link" href="${esc(p.link)}" target="_blank">🎬 Choreo Ref</a>${p.link2?`<a class="p-link" href="${esc(p.link2)}" target="_blank">🎬 Ref 2</a>`:’’}</div>`:''} <span class="p-status ${SC[p.practice_status]||'s-tbu'}">${SL[p.practice_status]||'📝 TBU'}</span> ${p.updated_by?`<div class="p-updated">${t(‘luBy’)}${esc(p.updated_by)}</div>`:''} ${canEdit?`<button class="edit-btn" onclick="toggleEditForm('${p.id}','${ev}')">✏️ Edit</button>`:''} <div class="edit-form" id="ef-${p.id}"> <div class="edit-row"><div><div class="el">Song</div><input class="ei" id="es-${p.id}" value="${esc(p.song)}"/></div><div><div class="el">Category</div><input class="ei" id="ec-${p.id}" value="${esc(p.category||'')}"/></div></div> <div class="edit-row"><div><div class="el">Seq #</div><input class="ei" id="eq-${p.id}" value="${p.seq||''}"/></div><div><div class="el">Duration</div><input class="ei" id="ed-${p.id}" value="${p.duration||''}"/></div></div> <div class="edit-row"><div><div class="el">Dance Lead</div><input class="ei" id="el-${p.id}" value="${esc(p.lead||'')}"/></div><div><div class="el">Status</div><select class="ei" id="est-${p.id}"><option value="tbu" ${p.practice_status==='tbu'?'selected':''}>TBU</option><option value="notstarted" ${p.practice_status==='notstarted'?'selected':''}>Not Started</option><option value="progress" ${p.practice_status==='progress'?'selected':''}>In Progress</option><option value="ready" ${p.practice_status==='ready'?'selected':''}>Ready</option></select></div></div> <div style="margin-bottom:8px;"><div class="el">Dancers</div><input class="ei" id="edn-${p.id}" value="${esc(p.dancers||'')}"/></div> <div class="edit-row"><div><div class="el">Outfit</div><input class="ei" id="eo-${p.id}" value="${esc(p.outfit||'')}"/></div><div><div class="el">Track Ready</div><select class="ei" id="etr-${p.id}"><option value="" ${!p.track_ready?'selected':''}>TBU</option><option value="Yes" ${p.track_ready==='Yes'?'selected':''}>Yes</option><option value="No" ${p.track_ready==='No'?'selected':''}>No</option></select></div></div> <div class="edit-row"><div><div class="el">Finalized</div><select class="ei" id="ef2-${p.id}"><option value="" ${!p.song_finalized?'selected':''}>TBU</option><option value="Yes" ${p.song_finalized==='Yes'?'selected':''}>Yes</option><option value="No" ${p.song_finalized==='No'?'selected':''}>No</option></select></div><div><div class="el">Practice Plan</div><input class="ei" id="epp-${p.id}" value="${esc(p.practice_plan||'')}"/></div></div> <div style="margin-bottom:8px;"><div class="el">Choreo Link 1</div><input class="ei" id="ek-${p.id}" value="${esc(p.link||'')}"/></div> <div style="margin-bottom:8px;"><div class="el">Choreo Link 2</div><input class="ei" id="ek2-${p.id}" value="${esc(p.link2||'')}"/></div> <div style="margin-bottom:8px;"><div class="el">🔄 Move to Event</div><select class="ei" id="eev-${p.id}" style="background:white;"><option value="sangeet" ${ev==='sangeet'?'selected':''}>🎉 Sangeet</option><option value="baraat" ${ev==='baraat'?'selected':''}>🐎 Baraat</option><option value="haldi" ${ev==='haldi'?'selected':''}>🌿 Haldi</option><option value="mehndi" ${ev==='mehndi'?'selected':''}>🌸 Mehndi</option><option value="reception" ${ev==='reception'?'selected':''}>🥂 Reception</option></select></div> <div style="margin-bottom:12px;"><div class="el">Notes</div><input class="ei" id="en-${p.id}" value="${esc(p.notes||'')}"/></div> <button class="btn-save" onclick="saveEdit('${p.id}','${ev}')">✓ Save</button> <button class="btn-cancel" onclick="toggleEditForm('${p.id}','${ev}')">Cancel</button> </div> </div>`).join(’’);
+applyFilter();
+}
+function toggleEditForm(id,ev){document.getElementById(‘ef-’+id).classList.toggle(‘open’);}
+async function saveEdit(id,ev){
+const newEv=document.getElementById(‘eev-’+id).value;
+const updates={
+song:document.getElementById(‘es-’+id).value.trim(),
+category:document.getElementById(‘ec-’+id).value.trim(),
+seq:parseInt(document.getElementById(‘eq-’+id).value)||1,
+duration:document.getElementById(‘ed-’+id).value.trim(),
+lead:document.getElementById(‘el-’+id).value.trim(),
+practice_status:document.getElementById(‘est-’+id).value,
+dancers:document.getElementById(‘edn-’+id).value.trim(),
+outfit:document.getElementById(‘eo-’+id).value.trim(),
+track_ready:document.getElementById(‘etr-’+id).value,
+song_finalized:document.getElementById(‘ef2-’+id).value,
+practice_plan:document.getElementById(‘epp-’+id).value.trim(),
+link:document.getElementById(‘ek-’+id).value.trim(),
+link2:document.getElementById(‘ek2-’+id).value.trim(),
+notes:document.getElementById(‘en-’+id).value.trim(),
+updated_at:new Date().toISOString(),
+updated_by:CU.full_name||CU.username,
+event:newEv
+};
+const{error}=await from(‘performances’).update(updates).eq(‘id’,id);
+if(error){alert(’Error: ’+error.message);return;}
+await logChange(‘performances’,id,‘update’,{song:updates.song,status:updates.practice_status,event:updates.event});
+if(newEv!==ev){await loadPerfs(ev);await loadPerfs(newEv);alert(‘✓ Moved to ‘+newEv+’!’);}
+else{await loadPerfs(ev);alert(‘✓ Saved!’);}
+}
+function showAddPerf(e){document.getElementById(‘addPerfForm-’+e).classList.add(‘open’);}
+function hideAddPerf(e){document.getElementById(‘addPerfForm-’+e).classList.remove(‘open’);}
+async function saveNewPerf(ev){
+const song=document.getElementById(‘new-song-’+ev).value.trim();
+if(!song){alert(‘Enter song name!’);return;}
+const tev=document.getElementById(‘new-event-’+ev)?.value||ev;
+const p={id:tev[0]+Date.now(),event:tev,seq:parseInt(document.getElementById(‘new-seq-’+ev).value)||99,song,category:document.getElementById(‘new-cat-’+ev).value.trim(),duration:document.getElementById(‘new-dur-’+ev).value.trim(),lead:document.getElementById(‘new-lead-’+ev).value.trim(),practice_status:document.getElementById(‘new-status-’+ev).value,dancers:document.getElementById(‘new-dancers-’+ev).value.trim(),link:document.getElementById(‘new-link-’+ev).value.trim(),outfit:document.getElementById(‘new-outfit-’+ev).value.trim(),notes:document.getElementById(‘new-notes-’+ev).value.trim(),updated_by:CU.full_name||CU.username,updated_at:new Date().toISOString()};
+const{error}=await from(‘performances’).insert(p);
+if(error){alert(‘Error: ‘+error.message);return;}
+await logChange(‘performances’,p.id,‘insert’,{song,event:tev});
+hideAddPerf(ev);await loadPerfs(tev);
+[‘new-song-’,‘new-cat-’,‘new-seq-’,‘new-dur-’,‘new-lead-’,‘new-dancers-’,‘new-link-’,‘new-outfit-’,‘new-notes-’].forEach(f=>{const el=document.getElementById(f+ev);if(el)el.value=’’;});
+alert(‘✓ Added!’);
+}
+
+// CHANGE LOG
+async function logChange(tbl,rid,action,vals){
+try{await from(‘change_log’).insert({table_name:tbl,record_id:String(rid),action,changed_by:CU.username||’?’,changed_by_name:CU.full_name||CU.username,new_values:vals,created_at:new Date().toISOString()});}
+catch(e){}
+}
+async function loadChangeLog(){
+const el=document.getElementById(‘changeLogList’);if(!el)return;
+const{data,error}=await from(‘change_log’).select(’*’).order(‘created_at’,{ascending:false}).limit(50);
+if(error||!data?.length){el.innerHTML=’<div class="empty-state">No changes yet.</div>’;return;}
+const aC={update:‘cb-update’,insert:‘cb-insert’,delete:‘cb-delete’};
+el.innerHTML=data.map(c=>{
+const d=new Date(c.created_at);
+const ti=d.toLocaleDateString(‘en-IN’)+’ ‘+d.toLocaleTimeString(‘en-IN’,{hour:‘2-digit’,minute:‘2-digit’});
+const v=c.new_values||{};
+let desc=v.song?` "${esc(v.song)}"`:’’ ;
+if(v.event)desc+=` → ${v.event}`;if(v.status)desc+=` · ${v.status}`;
+return `<div class="change-item"><div class="ci-header"><div class="ci-avatar">${(c.changed_by_name||'?').charAt(0).toUpperCase()}</div><div><div class="ci-name">${esc(c.changed_by_name||c.changed_by)}</div><div class="ci-time">${ti}</div></div></div><div class="ci-desc"><span class="ci-badge ${aC[c.action]||'cb-update'}">${c.action}</span><b>${c.table_name}</b>${desc}</div></div>`;
+}).join(’’);
+}
+
+// ROLES
+let allInterests={},allRoleSuggs={},customRolesDB=[];
+async function loadRoleInterests(){
+const{data}=await from(‘role_interests’).select(’*’);
+allInterests={};(data||[]).forEach(i=>{if(!allInterests[i.role_id])allInterests[i.role_id]=[];allInterests[i.role_id].push(i);});
+const{data:sg}=await from(‘role_suggestions’).select(’*’);
+allRoleSuggs={};(sg||[]).forEach(s=>{if(!allRoleSuggs[s.role_id])allRoleSuggs[s.role_id]=[];allRoleSuggs[s.role_id].push(s);});
+if(document.getElementById(‘sec-roles’)?.classList.contains(‘visible’))renderRoles();
+}
+async function loadCustomRoles(){const{data}=await from(‘custom_roles’).select(’*’).order(‘created_at’);customRolesDB=data||[];}
+function getAllRoles(){return[…ROLES.map(r=>({…r,custom:false})),…customRolesDB.map(r=>({id:r.id,icon:‘✦’,name:r.name,cat:‘✦ Family Added’,tagline:r.tagline||r.role_desc||’’,details:[r.role_desc||’’],custom:true}))];}
+function renderRoles(){
+const container=document.getElementById(‘rolesContainer’);if(!container)return;
+const allR=getAllRoles();
+const canInt=CU&&CU.role!==‘guest’;
+const cats={};allR.forEach(r=>{if(!cats[r.cat])cats[r.cat]=[];cats[r.cat].push(r);});
+let html=’’;
+Object.entries(cats).forEach(([cat,roles])=>{
+html+=`<div class="role-cat"><div class="role-cat-lbl">${esc(cat)}</div><div class="role-grid">`;
+roles.forEach(r=>{
+const ints=allInterests[r.id]||[];
+const iM=ints.some(i=>i.user_id===CU?.id);
+const suggs=allRoleSuggs[r.id]||[];
+html+=`<div class="role-card"> <div class="role-top"><div class="role-icon">${r.icon}</div><div><div class="role-n">${esc(r.name)}</div><div class="role-tag">${esc(r.tagline||'')}</div></div></div> <div class="role-expand" onclick="toggleRD('${r.id}')">📋 Details ▾</div> <div class="role-details" id="rd-${r.id}">${r.details.map(d=>`<div class="role-di">${esc(d)}</div>`).join('')}</div> <div class="role-interest-row"><div class="interest-count">${ints.length} ${t('iCount')}</div>${canInt?`<button class="btn-interest ${iM?'mine':''}" onclick="toggleInt('${r.id}',${iM})">${iM?‘✓ ‘+t(‘iCount’).trim():’+’}</button>`:`<span style="font-size:10px;color:var(--muted);">${t(‘loginMsg’)}</span>`}</div> ${ints.length?`<div class="int-chips">${ints.map(i=>`<span class="int-chip ${i.user_id===CU?.id?'me':''}">${esc(i.full_name)}</span>`).join(’’)}</div>`:''} ${suggs.length?`<div class="role-suggs">${suggs.map(s=>`<div class="role-sugg">💬 <b>${esc(s.suggester_name)}</b> → <b>${esc(s.suggested_name)}</b></div>`).join(’’)}</div>`:''} ${canInt?`<button class="sugg-role-btn" onclick="toggleSI('${r.id}')">💡 Suggest someone</button><div class="sugg-iw" id="si-${r.id}"><input class="sugg-mi" id="sn-${r.id}" placeholder="Name?"/><button class="sugg-mb" onclick="submitRoleSugg('${r.id}')">Suggest</button></div>`:''} </div>`;
+});
+html+=`</div></div>`;
+});
+container.innerHTML=html;
+}
+function toggleRD(id){document.getElementById(‘rd-’+id)?.classList.toggle(‘open’);}
+function toggleSI(id){document.getElementById(‘si-’+id)?.classList.toggle(‘open’);}
+async function toggleInt(roleId,isMine){
+if(!CU||CU.role===‘guest’)return;
+if(isMine){await from(‘role_interests’).delete().eq(‘role_id’,roleId).eq(‘user_id’,CU.id);}
+else{await from(‘role_interests’).insert({role_id:roleId,user_id:CU.id,username:CU.username,full_name:CU.full_name});}
+await logChange(‘role_interests’,roleId,isMine?‘delete’:‘insert’,{role:roleId,user:CU.full_name});
+await loadRoleInterests();
+}
+async function submitRoleSugg(roleId){
+const n=document.getElementById(‘sn-’+roleId)?.value.trim();
+if(!n){alert(‘Enter a name!’);return;}
+await from(‘role_suggestions’).insert({role_id:roleId,suggester_username:CU.username,suggester_name:CU.full_name,suggested_name:n});
+document.getElementById(‘sn-’+roleId).value=’’;document.getElementById(‘si-’+roleId)?.classList.remove(‘open’);
+await loadRoleInterests();alert(‘✦ Suggested!’);
+}
+async function addCustomRole(){
+const name=document.getElementById(‘customRoleName’).value.trim();
+const desc=document.getElementById(‘customRoleDesc’).value.trim();
+if(!name){alert(‘Enter role name!’);return;}
+const{error}=await from(‘custom_roles’).insert({id:‘custom_’+Date.now(),name,role_desc:desc,tagline:desc||’’,created_by:CU.username});
+if(error){alert(‘Error: ‘+error.message);return;}
+document.getElementById(‘customRoleName’).value=’’;document.getElementById(‘customRoleDesc’).value=’’;
+await loadCustomRoles();renderRoles();alert(‘✦ Role added!’);
+}
+
+// TEAM
+async function renderTeam(){
+const grid=document.getElementById(‘teamGrid’);const empty=document.getElementById(‘teamEmpty’);
+if(!grid)return;
+const{data}=await from(‘users’).select(’*’).neq(‘role’,‘guest’).order(‘created_at’);
+if(!data?.length){grid.innerHTML=’’;empty.style.display=‘block’;return;}
+empty.style.display=‘none’;
+const allR=getAllRoles();
+grid.innerHTML=data.map(m=>{
+const isMe=CU&&CU.id===m.id;
+const myInts=Object.entries(allInterests).filter(([rid,arr])=>arr.some(i=>i.user_id===m.id)).map(([rid])=>{const r=allR.find(x=>x.id===rid);return r?.name;}).filter(Boolean);
+// Show first name only for admin, no admin badge
+const displayName = m.role===‘admin’ ? (m.full_name||m.username).split(’ ‘)[0] : (m.full_name||m.username);
+const showBadge = m.role !== ‘admin’; // hide admin badge from team view
+return `<div class="team-card"> <div class="t-avatar" onclick="${isMe?'triggerAvatarUpload()':''}"> ${m.photo_url?`<img src="${esc(m.photo_url)}" alt="${esc(displayName)}"/>`:`<div class="t-initial">${displayName.charAt(0).toUpperCase()}</div>`} ${isMe?`<div class="t-edit">📷</div>`:''} </div> <div class="t-name">${esc(displayName)}</div> ${showBadge?`<div class="t-badge ${m.role}">${m.role}</div>`:''} ${myInts.length?`<div class="t-roles">${myInts.slice(0,3).join(’ · ‘)}</div>`:''} </div>`;
+}).join(’’);
+}
+function triggerAvatarUpload(){document.getElementById(‘photoInput’).click();}
+async function handleAvatarUpload(event){
+const file=event.target.files[0];if(!file)return;
+const reader=new FileReader();
+reader.onload=async function(e){
+await from(‘users’).update({photo_url:e.target.result}).eq(‘id’,CU.id);
+CU.photo_url=e.target.result;renderTeam();
+};reader.readAsDataURL(file);
+}
+
+// GALLERY & EVENT PHOTOS
+let allPhotos=[];
+async function loadGallery(){
+const{data}=await from(‘event_photos’).select(’*’).order(‘created_at’,{ascending:false});
+allPhotos=data||[];
+renderGallery(currentGalleryFilter);
+loadAllEventPhotos();
+}
+function renderGallery(filter){
+const grid=document.getElementById(‘galleryGrid’);if(!grid)return;
+const photos=filter?allPhotos.filter(p=>p.event_name===filter):allPhotos;
+if(!photos.length){grid.innerHTML=’<div class="empty-state" style="grid-column:1/-1;">No photos yet. Be the first to add one! 📸</div>’;return;}
+grid.innerHTML=photos.map(p=>` <div class="gallery-item" onclick="openLightbox('${esc(p.photo_url)}','${esc(p.caption||'')}')"> <img src="${esc(p.photo_url)}" alt="${esc(p.caption||'Photo')}" loading="lazy"/> <div class="gallery-overlay"><div class="gallery-caption">${esc(p.caption||'')}${p.tags?.length?' · '+p.tags.map(t=>'@'+esc(t)).join(' '):''}</div></div> </div>`).join(’’);
+}
+function filterGallery(el,filter){
+currentGalleryFilter=filter;
+document.querySelectorAll(’#galleryFilter .filter-chip’).forEach(c=>c.classList.remove(‘active’));
+el.classList.add(‘active’);
+renderGallery(filter);
+}
+function loadAllEventPhotos(){
+[‘engagement’,‘mehndi’,‘haldi’,‘sangeet’,‘baraat’,‘vivah’,‘reception’].forEach(ev=>{
+const grid=document.getElementById(‘ephoto-’+ev);if(!grid)return;
+const photos=allPhotos.filter(p=>p.event_name===ev);
+grid.innerHTML=photos.map(p=>`<div class="ev-photo-thumb" onclick="openLightbox('${esc(p.photo_url)}','${esc(p.caption||'')}')"><img src="${esc(p.photo_url)}" loading="lazy"/></div>`).join(’’);
+});
+}
+function openLightbox(url,cap){
+document.getElementById(‘lbImg’).src=url;
+document.getElementById(‘lbCaption’).textContent=cap||’’;
+document.getElementById(‘lightbox’).classList.add(‘open’);
+document.body.style.overflow=‘hidden’;
+}
+function closeLightbox(e){
+if(e&&e.target!==document.getElementById(‘lightbox’)&&e.target!==document.querySelector(’.lb-close’))return;
+document.getElementById(‘lightbox’).classList.remove(‘open’);
+document.body.style.overflow=’’;
+}
+document.getElementById(‘lightbox’).addEventListener(‘click’,closeLightbox);
+
+// Gallery upload
+function handleGalleryFileSelect(event){
+const file=event.target.files[0];if(!file)return;
+if(!CU||CU.role===‘guest’){alert(‘Please login to add photos.’);return;}
+pendingGalleryFile=file;
+document.getElementById(‘galleryUploadForm’).classList.add(‘open’);
+document.getElementById(‘galleryUploadCard’).style.display=‘none’;
+}
+function cancelGalleryUpload(){
+pendingGalleryFile=null;photoTags=[];
+document.getElementById(‘galleryUploadForm’).classList.remove(‘open’);
+document.getElementById(‘galleryUploadCard’).style.display=‘block’;
+document.getElementById(‘photoCaptionInput’).value=’’;
+document.getElementById(‘photoTagInput’).value=’’;
+renderPhotoTags();
+}
+async function submitGalleryPhoto(){
+if(!pendingGalleryFile){alert(‘No file selected.’);return;}
+const reader=new FileReader();
+reader.onload=async function(e){
+const photoData={
+photo_url:e.target.result,
+caption:document.getElementById(‘photoCaptionInput’).value.trim()||null,
+event_name:document.getElementById(‘photoEventInput’).value||null,
+uploaded_by:CU.username,uploaded_by_name:CU.full_name||CU.username,
+tags:photoTags.length?photoTags:null
+};
+const{error}=await from(‘event_photos’).insert(photoData);
+if(error){alert(’Error: ’+error.message);return;}
+cancelGalleryUpload();await loadGallery();alert(‘✦ Photo added!’);
+};
+reader.readAsDataURL(pendingGalleryFile);
+}
+
+// Event photo upload
+function openEventPhotoUpload(ev){
+if(!CU||CU.role===‘guest’){alert(‘Please login to add photos.’);return;}
+pendingEventName=ev;
+document.getElementById(‘eventPhotoInput’).click();
+}
+function handleEventPhotoFileSelect(event){
+const file=event.target.files[0];if(!file)return;
+pendingEventFile=file;
+const reader=new FileReader();
+reader.onload=async function(e){
+const cap=prompt(‘Add a caption (optional):’);
+const{error}=await from(‘event_photos’).insert({photo_url:e.target.result,event_name:pendingEventName,caption:cap||null,uploaded_by:CU.username,uploaded_by_name:CU.full_name||CU.username});
+if(error){alert(‘Error: ‘+error.message);return;}
+await loadGallery();alert(‘✦ Photo added!’);
+pendingEventFile=null;pendingEventName=null;
+document.getElementById(‘eventPhotoInput’).value=’’;
+};
+reader.readAsDataURL(file);
+}
+
+// Photo tagging
+async function showPhotoTagSugg(){
+const input=document.getElementById(‘photoTagInput’).value.trim();
+const drop=document.getElementById(‘photoTagDrop’);
+if(!input){drop.classList.remove(‘show’);return;}
+const{data}=await from(‘users’).select(‘full_name’).neq(‘role’,‘guest’);
+const names=(data||[]).map(u=>u.full_name).filter(n=>n.toLowerCase().includes(input.toLowerCase())&&!photoTags.includes(n));
+if(!names.length){drop.classList.remove(‘show’);return;}
+drop.innerHTML=names.slice(0,5).map(n=>`<div class="tag-drop-item" onmousedown="addPhotoTag('${escJ(n)}')">${esc(n)}</div>`).join(’’);
+drop.classList.add(‘show’);
+}
+function hidePhotoTagSugg(){setTimeout(()=>document.getElementById(‘photoTagDrop’)?.classList.remove(‘show’),200);}
+function addPhotoTag(n){if(photoTags.includes(n))return;photoTags.push(n);document.getElementById(‘photoTagInput’).value=’’;renderPhotoTags();}
+function removePhotoTag(n){photoTags=photoTags.filter(t=>t!==n);renderPhotoTags();}
+function renderPhotoTags(){document.getElementById(‘photoAddedTags’).innerHTML=photoTags.map(t=>`<div class="added-tag" onclick="removePhotoTag('${escJ(t)}')">@${esc(t)} ✕</div>`).join(’’);}
+
+// SUGGESTIONS
+async function loadSuggestions(){
+const el=document.getElementById(‘suggestionsList’);if(!el)return;
+const{data}=await from(‘suggestions’).select(’*’).order(‘created_at’,{ascending:false}).limit(30);
+if(!data?.length){el.innerHTML=`<div class="empty-state">${t('sgEmpty')}</div>`;return;}
+el.innerHTML=data.map(s=>{
+const d=new Date(s.created_at);
+const ti=d.toLocaleDateString(‘en-IN’)+’ ‘+d.toLocaleTimeString(‘en-IN’,{hour:‘2-digit’,minute:‘2-digit’});
+return `<div class="sugg-card"><div class="sc-header"><div class="sc-avatar">${s.author.charAt(0).toUpperCase()}</div><div><div class="sc-author">${esc(s.author)}</div><div class="sc-time">${ti}</div></div></div><div class="sc-text">${esc(s.suggestion_text||s.text||'')}</div>${s.tags?.length?`<div style="display:flex;flex-wrap:wrap;gap:5px;">${s.tags.map(t=>`<span class="tag-pill">@${esc(t)}</span>`).join(’’)}</div>`:''}</div>`;
+}).join(’’);
+}
+async function showTagSugg(){
+const input=document.getElementById(‘tagInput’).value.trim();
+const drop=document.getElementById(‘tagDrop’);
+if(!input){drop.classList.remove(‘show’);return;}
+const{data}=await from(‘users’).select(‘full_name’).neq(‘role’,‘guest’);
+const names=(data||[]).map(u=>u.full_name).filter(n=>n.toLowerCase().includes(input.toLowerCase())&&!taggedPeople.includes(n));
+if(!names.length){drop.classList.remove(‘show’);return;}
+drop.innerHTML=names.slice(0,5).map(n=>`<div class="tag-drop-item" onmousedown="addTag('${escJ(n)}')">${esc(n)}</div>`).join(’’);
+drop.classList.add(‘show’);
+}
+function hideTagSugg(){setTimeout(()=>document.getElementById(‘tagDrop’)?.classList.remove(‘show’),200);}
+function addTag(n){if(taggedPeople.includes(n))return;taggedPeople.push(n);document.getElementById(‘tagInput’).value=’’;renderTags();}
+function removeTag(n){taggedPeople=taggedPeople.filter(x=>x!==n);renderTags();}
+function renderTags(){document.getElementById(‘addedTags’).innerHTML=taggedPeople.map(t=>`<div class="added-tag" onclick="removeTag('${escJ(t)}')">@${esc(t)} ✕</div>`).join(’’);}
+async function submitSuggestion(){
+const author=document.getElementById(‘suggName’).value.trim();
+const text=document.getElementById(‘suggText’).value.trim();
+if(!author||!text){alert(‘Please enter name and suggestion!’);return;}
+await from(‘suggestions’).insert({author,suggestion_text:text,tags:taggedPeople});
+document.getElementById(‘suggName’).value=’’;document.getElementById(‘suggText’).value=’’;
+taggedPeople=[];renderTags();loadSuggestions();alert(‘✦ Sent!’);
+}
+
+// FILTER
+const GK={
+kids:[‘kids’,‘children’,‘naatu’],sisters:[‘sister’,‘dee’,‘sibling’],
+brothers:[‘brother’,‘bhai’,‘sibling’],mothers:[‘mother’,‘saas’,‘maa’,‘aunti’,‘mausi’],
+ladies:[‘ladies’,‘women’,‘rangila’,‘girl’,‘dee’],
+siblings:[‘sibling’,‘siblings’,‘brother’,‘sister’,‘dee’],
+dee_jiju:[‘dee’,‘jiju’,‘biwi’,‘hero’,‘maya’,‘husband’],
+unmarried:[‘unmarried’,‘shaadi’,‘laal’,‘yaad’]
+};
+function applyFilter(){
+const sv=(document.getElementById(‘filterSearch’)?.value||’’).toLowerCase().trim();
+let tot=0;
+[‘sangeet’,‘baraat’,‘haldi’].forEach(ev=>{
+const el=document.getElementById(‘perfs-’+ev);if(!el)return;
+const cards=el.querySelectorAll(’.perf-card’);let c=0;
+cards.forEach(card=>{
+const ft=card.textContent.toLowerCase();
+let show=true;
+if(sv&&!ft.includes(sv))show=false;
+if(show&&activeGroupFilter){const kws=GK[activeGroupFilter]||[];if(!kws.some(kw=>ft.includes(kw)))show=false;}
+card.classList.toggle(‘hidden’,!show);if(show)c++;
+});
+tot+=c;
+if(c>0&&(sv||activeGroupFilter)){
+const body=document.getElementById(‘body-’+ev);const ch=document.getElementById(‘ch-’+ev);
+if(body&&!body.classList.contains(‘open’)){body.classList.add(‘open’);ch?.classList.add(‘open’);}
+}
+});
+const has=sv||activeGroupFilter;
+document.getElementById(‘filterClear’)?.classList.toggle(‘show’,!!has);
+const fc=document.getElementById(‘filterCount’);if(fc)fc.textContent=has?tot+’ ‘+t(‘sFound’):’’;
+}
+function toggleGroupFilter(el,group){
+if(activeGroupFilter===group){activeGroupFilter=null;el.classList.remove(‘active’);}
+else{document.querySelectorAll(’.filter-chip’).forEach(c=>c.classList.remove(‘active’));activeGroupFilter=group;el.classList.add(‘active’);}
+applyFilter();
+}
+function clearFilter(){
+document.getElementById(‘filterSearch’).value=’’;activeGroupFilter=null;
+document.querySelectorAll(’.filter-chip’).forEach(c=>c.classList.remove(‘active’));
+document.querySelectorAll(’.perf-card’).forEach(c=>c.classList.remove(‘hidden’));
+document.getElementById(‘filterClear’)?.classList.remove(‘show’);
+const fc=document.getElementById(‘filterCount’);if(fc)fc.textContent=’’;
+}
+
+// NAV
+function toggleEvent(name){
+const body=document.getElementById(‘body-’+name);const ch=document.getElementById(‘ch-’+name);
+body.classList.toggle(‘open’);ch.classList.toggle(‘open’,body.classList.contains(‘open’));
+}
+function showSection(name){
+document.getElementById(‘heroSection’).style.display=‘none’;
+document.getElementById(‘mainNav’).style.display=‘flex’;
+document.getElementById(‘subnav’).style.display=‘flex’;
+document.getElementById(‘bottomNav’).style.display=‘flex’;
+[‘events’,‘roles’,‘team’,‘gallery’,‘suggest’,‘changes’,‘info’].forEach(s=>{
+document.getElementById(‘sec-’+s)?.classList.remove(‘visible’);
+document.getElementById(‘bn-’+s)?.classList.remove(‘active’);
+document.getElementById(‘nav-’+s)?.classList.remove(‘active’);
+});
+document.getElementById(‘sec-’+name)?.classList.add(‘visible’);
+document.getElementById(‘bn-’+name)?.classList.add(‘active’);
+document.getElementById(‘nav-’+name)?.classList.add(‘active’);
+if(name===‘roles’)renderRoles();
+if(name===‘team’)renderTeam();
+if(name===‘suggest’)loadSuggestions();
+if(name===‘changes’)loadChangeLog();
+if(name===‘gallery’){loadGallery();}
+window.scrollTo(0,0);
+}
+
+function copyLink(){navigator.clipboard.writeText(‘https://shreyadubey-studio.github.io/priyanka-shubham-wedding’).then(()=>alert(‘✦ Link copied!’));}
+function esc(t){return String(t??’’).replace(/&/g,’&’).replace(/</g,’<’).replace(/>/g,’>’);}
+function escJ(t){return String(t??’’).replace(/’/g,”\’”).replace(/”/g,’\”’);}
+
+// AUTO RESTORE SESSION
+async function initApp(){
+
+const saved=localStorage.getItem(SK);
+if(saved){
+try{
+const sess=JSON.parse(saved);
+if(sess?.id){
+const{data}=await from(‘users’).select(’*’).eq(‘id’,sess.id).single();
+if(data){CU=data;startApp();return;}
+}
+}catch(e){}
+localStorage.removeItem(SK);
+}
+document.getElementById(‘loginScreen’).style.display=‘flex’;
+applyLang();
+}
+// Start the app
+document.addEventListener(‘DOMContentLoaded’, function(){ initApp(); });
+
+// Called when Supabase CDN loads successfully
+function sbLoaded(){
+sb = supabase.createClient(SURL, SKEY);
+initApp();
+}
+function sbFailed(){
+// Try unpkg fallback
+var s=document.createElement(‘script’);
+
+s.onload=function(){ sb=supabase.createClient(SURL,SKEY); initApp(); };
+s.onerror=function(){
+document.getElementById(‘loginScreen’).style.display=‘flex’;
+document.getElementById(‘loginScreen’).innerHTML=’<div style="min-height:100vh;background:#1A0A0C;display:flex;align-items:center;justify-content:center;padding:20px;"><div style="background:rgba(253,250,245,0.05);border:1px solid rgba(196,151,74,0.3);border-radius:20px;padding:30px;text-align:center;color:rgba(232,193,122,0.9);font-family:Georgia,serif;max-width:320px;"><div style="font-size:32px;font-weight:300;margin-bottom:8px;">Priyanka & Shubham</div><p style="font-size:13px;opacity:0.6;margin-bottom:16px;">Could not load app. Please check your internet connection and try again.</p><button onclick="location.reload()" style="background:linear-gradient(135deg,#8B4A52,#B76E79);color:white;border:none;border-radius:10px;padding:12px 24px;font-size:13px;cursor:pointer;">Reload</button></div></div>’;
+};
+document.head.appendChild(s);
+}
 </script>
+
 </body>
 </html>
