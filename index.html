@@ -804,17 +804,13 @@ function renderRoles(){
         html+='<div class="el" style="margin-bottom:3px;">Name</div><input class="ei" id="ren-'+r.id+'" value="'+e(r.name)+'" style="width:100%;margin-bottom:6px;"/>';
         html+='<div class="el" style="margin-bottom:3px;">Tagline</div><input class="ei" id="ret-'+r.id+'" value="'+e(r.tag||'')+'" style="width:100%;margin-bottom:6px;"/>';
         html+='<div class="el" style="margin-bottom:3px;">Description (one line each)</div><textarea class="ei" id="red-'+r.id+'" rows="3" style="width:100%;margin-bottom:8px;resize:vertical;">'+(r.det||[]).join('\n')+'</textarea>';
-
-```
-    html+='<button class="bsave" data-save-r="'+r.id+'" data-save-custom="'+!!r.custom+'">✓ Save</button><button class="bcancel" data-cancel-r="'+r.id+'">Cancel</button>';
+        html+='<button class="bsave" data-save-r="'+r.id+'" data-save-custom="'+!!r.custom+'">✓ Save</button><button class="bcancel" data-cancel-r="'+r.id+'">Cancel</button>';
+        html+='</div>';
+      }
+      html+='</div>';
+    });
     html+='</div>';
-  }
-  html+='</div>';
-});
-html+='</div>';
-```
-
-});
+  });
 cont.innerHTML=html;
 }
 
