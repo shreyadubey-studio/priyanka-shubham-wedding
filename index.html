@@ -541,7 +541,7 @@ window.addEventListener('unhandledrejection', function(e) {
 </script>
 
 <script>
-// ── CONFIG ──
+// -- CONFIG --
 // Attach login buttons after DOM ready - belt AND suspenders approach
 var SB='https://fwbbfsfjgmuuzqymxtdv.supabase.co/rest/v1/';
 var KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZ3YmJmc2ZqZ211dXpxeW14dGR2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzYwMTUxMDksImV4cCI6MjA5MTU5MTEwOX0.npnpwd1SirAHyHH1JahMcKyEsvJb5MrPXEzdPAPpC-0';
@@ -549,7 +549,7 @@ var TP='4567',SK='ps_v12';
 var cu=null,lang='hi',allPhotos=[],allInts={},allApprovals={},allRSuggs={},customRoles=[];
 var tagPpl=[],photoTags=[],pgf=null,pef=null,pen=null,gFilter='',AGF=null;
 
-// ── API ──
+// -- API --
 function api(m,t,q,b){
   var h={'apikey':KEY,'Authorization':'Bearer '+KEY};
   if(m==='POST'||m==='PATCH'){h['Content-Type']='application/json';h['Prefer']='return=representation';}
@@ -567,7 +567,7 @@ var post=function(t,b){return api('POST',t,null,b);};
 var patch=function(t,q,b){return api('PATCH',t,q,b);};
 var del=function(t,q){return api('DELETE',t,q);};
 
-// ── ATTACH ALL BUTTON LISTENERS ──
+// -- ATTACH ALL BUTTON LISTENERS --
 // Script is at bottom of body so DOM is ready
 (function attachListeners(){
   var el;
@@ -589,13 +589,13 @@ var del=function(t,q){return api('DELETE',t,q);};
         if(!inp)return;
         var show=inp.type==='password';
         inp.type=show?'text':'password';
-        eye.textContent=show?'🙈':'👁';
+        eye.textContent=show?'[X]':'[Eye]';
       });
     })(eyes[i]);
   }
 })();
 
-// ── LOGIN — NO WAITING, show immediately ──
+// -- LOGIN ? NO WAITING, show immediately --
 // loginWrap already visible in HTML
 // Try auto-restore in background, don't block UI
 (function tryRestore(){
@@ -624,7 +624,7 @@ var del=function(t,q){return api('DELETE',t,q);};
   }catch(ex){localStorage.removeItem(SK);}
 })();
 
-// ── AUTH ──
+// -- AUTH --
 function sTab(t){
   document.getElementById('tl').classList.toggle('on',t==='l');
   document.getElementById('tr').classList.toggle('on',t==='r');
@@ -637,29 +637,29 @@ function showErr(m){var e=document.getElementById('lErr');e.textContent=m;e.clas
 function doLogin(){
   var u=(document.getElementById('lU').value||'').trim().toLowerCase();
   var p=(document.getElementById('lP').value||'');
-  if(!u||!p){showErr('Username और password दोनों लिखें।');return;}
+  if(!u||!p){showErr('Username ?? password ????? ??????');return;}
   var btn=document.getElementById('loginBtn');
-  if(btn){btn.textContent='⏳ Loading…';btn.disabled=true;}
+  if(btn){btn.textContent='? Loading?';btn.disabled=true;}
   get('users','select=*&username=eq.'+encodeURIComponent(u)+'&password_hash=eq.'+encodeURIComponent(p))
   .then(function(d){
-    if(btn){btn.textContent='✦ प्रवेश करें';btn.disabled=false;}
-    if(!d||!d[0]){showErr('गलत username या password!');return;}
+    if(btn){btn.textContent='* ?????? ????';btn.disabled=false;}
+    if(!d||!d[0]){showErr('??? username ?? password!');return;}
     cu=d[0];
     localStorage.setItem(SK,JSON.stringify({id:cu.id}));
     startApp();
   })
   .catch(function(err){
-    if(btn){btn.textContent='✦ प्रवेश करें';btn.disabled=false;}
+    if(btn){btn.textContent='* ?????? ????';btn.disabled=false;}
     showErr('Connection error. Check internet and try again.');
   });
 }
 function doReg(){
   var fn=document.getElementById('rN').value.trim(),ph=document.getElementById('rPh').value.trim();
   var u=document.getElementById('rU').value.trim().toLowerCase(),pw=document.getElementById('rPw').value,tp=document.getElementById('rT').value;
-  if(!fn||!ph||!u||!pw){showErr('सभी fields भरें।');return;}
-  if(tp!==TP){showErr('गलत Team Password!');return;}
+  if(!fn||!ph||!u||!pw){showErr('??? fields ?????');return;}
+  if(tp!==TP){showErr('??? Team Password!');return;}
   get('users','select=id&username=eq.'+encodeURIComponent(u)).then(function(d){
-    if(d&&d[0]){showErr('यह username पहले से लिया गया है।');return;}
+    if(d&&d[0]){showErr('?? username ???? ?? ???? ??? ???');return;}
     post('users',{username:u,password_hash:pw,full_name:fn,phone:ph,role:'member'}).then(function(r){
       if(!r||!r[0]){showErr('Error. Try again.');return;}
       cu=r[0];localStorage.setItem(SK,JSON.stringify({id:cu.id}));startApp();
@@ -673,7 +673,7 @@ function doLogout(){
   document.getElementById('loginWrap').style.display='flex';
 }
 
-// ── START APP ──
+// -- START APP --
 function startApp(){
   try{
   document.getElementById('loginWrap').style.display='none';
@@ -697,7 +697,7 @@ function startApp(){
   }
 }
 
-// ── LANG ──
+// -- LANG --
 function toggleLang(){
   lang=lang==='hi'?'en':'hi';
   var hi=lang==='hi';
@@ -707,8 +707,8 @@ function toggleLang(){
   document.getElementById('nLH').style.color=hi?'rgba(232,193,122,.9)':'rgba(232,193,122,.3)';
 }
 
-// ── PERFORMANCES ──
-var SL={ready:'✅ Ready',progress:'⏳ In Progress',notstarted:'🔴 Not Started',tbu:'📝 TBU'};
+// -- PERFORMANCES --
+var SL={ready:'[OK] Ready',progress:'? In Progress',notstarted:'? Not Started',tbu:'? TBU'};
 var SC={ready:'sr',progress:'sp',notstarted:'snn',tbu:'st'};
 function loadAllPerfs(){['sangeet','baraat','haldi'].forEach(loadPerfs);}
 function loadPerfs(ev){
@@ -732,21 +732,21 @@ function renderPerfs(ev,perfs){
     h+='</div>';
     h+='<div class="pc-dan"><div class="pfl">Dancers</div><div class="pfv'+(p.dancers?'':' na')+'">'+e(p.dancers||'TBU')+'</div></div>';
     if(p.outfit||p.notes)h+='<div class="pg">'+(p.outfit?'<div class="pf"><div class="pfl">Outfit</div><div class="pfv">'+e(p.outfit)+'</div></div>':'')+(p.notes?'<div class="pf"><div class="pfl">Notes</div><div class="pfv">'+e(p.notes)+'</div></div>':'')+'</div>';
-    if(p.link)h+='<a class="pc-lnk" href="'+e(p.link)+'" target="_blank">🎬 Choreo</a>';
-    h+='<span class="pstat '+(SC[p.practice_status]||'st')+'">'+(SL[p.practice_status]||'📝 TBU')+'</span>';
-    if(p.updated_by)h+='<div class="pupd">✏️ '+e(p.updated_by)+'</div>';
+    if(p.link)h+='<a class="pc-lnk" href="'+e(p.link)+'" target="_blank">[Video] Choreo</a>';
+    h+='<span class="pstat '+(SC[p.practice_status]||'st')+'">'+(SL[p.practice_status]||'? TBU')+'</span>';
+    if(p.updated_by)h+='<div class="pupd">[Edit] '+e(p.updated_by)+'</div>';
     if(ce){
-      h+='<button class="ebtn" data-pid="'+p.id+'" data-pev="'+ev+'">✏️ Edit</button>';
+      h+='<button class="ebtn" data-pid="'+p.id+'" data-pev="'+ev+'">[Edit] Edit</button>';
       h+='<div class="eform" id="ef-'+p.id+'">';
       h+='<div class="erow"><div><div class="el">Song</div><input class="ei" id="es-'+p.id+'" value="'+e(p.song)+'"/></div><div><div class="el">Category</div><input class="ei" id="ec-'+p.id+'" value="'+e(p.category||'')+'"/></div></div>';
       h+='<div class="erow"><div><div class="el">Seq</div><input class="ei" id="eq-'+p.id+'" value="'+(p.seq||'')+'"/></div><div><div class="el">Duration</div><input class="ei" id="ed-'+p.id+'" value="'+(p.duration||'')+'"/></div></div>';
       h+='<div class="erow"><div><div class="el">Lead</div><input class="ei" id="el-'+p.id+'" value="'+e(p.lead||'')+'"/></div><div><div class="el">Status</div><select class="ei" id="est-'+p.id+'"><option value="tbu"'+(p.practice_status==='tbu'?' selected':'')+'>TBU</option><option value="notstarted"'+(p.practice_status==='notstarted'?' selected':'')+'>Not Started</option><option value="progress"'+(p.practice_status==='progress'?' selected':'')+'>In Progress</option><option value="ready"'+(p.practice_status==='ready'?' selected':'')+'>Ready</option></select></div></div>';
       h+='<div style="margin-bottom:6px;"><div class="el">Dancers</div><input class="ei" id="edn-'+p.id+'" value="'+e(p.dancers||'')+'"/></div>';
       h+='<div class="erow"><div><div class="el">Outfit</div><input class="ei" id="eo-'+p.id+'" value="'+e(p.outfit||'')+'"/></div><div><div class="el">Track</div><select class="ei" id="etr-'+p.id+'"><option value=""'+(p.track_ready?'':' selected')+'>TBU</option><option value="Yes"'+(p.track_ready==="Yes"?' selected':'')+'>Yes</option><option value="No"'+(p.track_ready==="No"?' selected':'')+'>No</option></select></div></div>';
-      h+='<div class="erow"><div><div class="el">Finalized</div><select class="ei" id="ef2-'+p.id+'"><option value=""'+(p.song_finalized?'':' selected')+'>TBU</option><option value="Yes"'+(p.song_finalized==="Yes"?' selected':'')+'>Yes</option><option value="No"'+(p.song_finalized==="No"?' selected':'')+'>No</option></select></div><div><div class="el">Move to</div><select class="ei" id="eev-'+p.id+'" style="background:#1A0A0C;"><option value="sangeet"'+(ev==='sangeet'?' selected':'')+'>🎉 Sangeet</option><option value="baraat"'+(ev==='baraat'?' selected':'')+'>🐎 Baraat</option><option value="haldi"'+(ev==='haldi'?' selected':'')+'>🌿 Haldi</option><option value="mehndi"'+(ev==='mehndi'?' selected':'')+'>🌸 Mehndi</option><option value="reception"'+(ev==='reception'?' selected':'')+'>🥂 Reception</option></select></div></div>';
+      h+='<div class="erow"><div><div class="el">Finalized</div><select class="ei" id="ef2-'+p.id+'"><option value=""'+(p.song_finalized?'':' selected')+'>TBU</option><option value="Yes"'+(p.song_finalized==="Yes"?' selected':'')+'>Yes</option><option value="No"'+(p.song_finalized==="No"?' selected':'')+'>No</option></select></div><div><div class="el">Move to</div><select class="ei" id="eev-'+p.id+'" style="background:#1A0A0C;"><option value="sangeet"'+(ev==='sangeet'?' selected':'')+'>? Sangeet</option><option value="baraat"'+(ev==='baraat'?' selected':'')+'>? Baraat</option><option value="haldi"'+(ev==='haldi'?' selected':'')+'>? Haldi</option><option value="mehndi"'+(ev==='mehndi'?' selected':'')+'>? Mehndi</option><option value="reception"'+(ev==='reception'?' selected':'')+'>? Reception</option></select></div></div>';
       h+='<div style="margin-bottom:6px;"><div class="el">Choreo Link</div><input class="ei" id="ek-'+p.id+'" value="'+e(p.link||'')+'"/></div>';
       h+='<div style="margin-bottom:10px;"><div class="el">Notes</div><input class="ei" id="en-'+p.id+'" value="'+e(p.notes||'')+'"/></div>';
-      h+='<button class="bsave" data-save="'+p.id+'" data-sev="'+ev+'">✓ Save</button><button class="bcancel" data-cancel="'+p.id+'">Cancel</button>';
+      h+='<button class="bsave" data-save="'+p.id+'" data-sev="'+ev+'">OK Save</button><button class="bcancel" data-cancel="'+p.id+'">Cancel</button>';
       h+='</div>';
     }
     h+='</div>';
@@ -766,7 +766,7 @@ function saveEdit(id,ev){
   var u={song:document.getElementById('es-'+id).value.trim(),category:document.getElementById('ec-'+id).value.trim(),seq:parseInt(document.getElementById('eq-'+id).value)||1,duration:document.getElementById('ed-'+id).value.trim(),lead:document.getElementById('el-'+id).value.trim(),practice_status:document.getElementById('est-'+id).value,dancers:document.getElementById('edn-'+id).value.trim(),outfit:document.getElementById('eo-'+id).value.trim(),track_ready:document.getElementById('etr-'+id).value,song_finalized:document.getElementById('ef2-'+id).value,link:document.getElementById('ek-'+id).value.trim(),notes:document.getElementById('en-'+id).value.trim(),updated_at:new Date().toISOString(),updated_by:cu.full_name||cu.username,event:nev};
   patch('performances','id=eq.'+id,u).then(function(){
     logCh('performances',id,'update',{song:u.song,status:u.practice_status,event:nev});
-    if(nev!==ev){loadPerfs(ev);loadPerfs(nev);alert('✓ Moved to '+nev+'!');}else{loadPerfs(ev);alert('✓ Saved!');}
+    if(nev!==ev){loadPerfs(ev);loadPerfs(nev);alert('OK Moved to '+nev+'!');}else{loadPerfs(ev);alert('OK Saved!');}
   });
 }
 function showAP(){document.getElementById('apf').classList.add('open');}
@@ -775,10 +775,10 @@ function saveNewPerf(){
   var song=document.getElementById('ns-song').value.trim();if(!song){alert('Enter song name!');return;}
   var tev=document.getElementById('ns-ev').value||'sangeet';
   var p={id:tev[0]+Date.now(),event:tev,seq:parseInt(document.getElementById('ns-seq').value)||99,song:song,category:document.getElementById('ns-cat').value.trim(),duration:document.getElementById('ns-dur').value.trim(),lead:document.getElementById('ns-lead').value.trim(),practice_status:document.getElementById('ns-stat').value,dancers:document.getElementById('ns-dan').value.trim(),link:document.getElementById('ns-link').value.trim(),outfit:document.getElementById('ns-out').value.trim(),notes:document.getElementById('ns-notes').value.trim(),updated_by:cu.full_name||cu.username,updated_at:new Date().toISOString()};
-  post('performances',p).then(function(){logCh('performances',p.id,'insert',{song:song,event:tev});hideAP();loadPerfs(tev);['ns-song','ns-cat','ns-seq','ns-dur','ns-lead','ns-dan','ns-link','ns-out','ns-notes'].forEach(function(i){var el=document.getElementById(i);if(el)el.value='';});alert('✓ Added!');});
+  post('performances',p).then(function(){logCh('performances',p.id,'insert',{song:song,event:tev});hideAP();loadPerfs(tev);['ns-song','ns-cat','ns-seq','ns-dur','ns-lead','ns-dan','ns-link','ns-out','ns-notes'].forEach(function(i){var el=document.getElementById(i);if(el)el.value='';});alert('OK Added!');});
 }
 
-// ── CHANGE LOG ──
+// -- CHANGE LOG --
 function logCh(tbl,rid,act,v){try{post('change_log',{table_name:tbl,record_id:String(rid),action:act,changed_by:cu.username,changed_by_name:cu.full_name||cu.username,new_values:v,created_at:new Date().toISOString()});}catch(x){}}
 function loadChangeLog(){
   var el=document.getElementById('chLog');if(!el)return;
@@ -787,38 +787,38 @@ function loadChangeLog(){
     var am={update:'cb-u',insert:'cb-i',delete:'cb-d'};
     el.innerHTML=d.map(function(c){
       var dt=new Date(c.created_at),ti=dt.toLocaleDateString('en-IN')+' '+dt.toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit'});
-      var v=c.new_values||{},desc=v.song?' "'+e(v.song)+'"':'';if(v.event)desc+=' → '+v.event;
+      var v=c.new_values||{},desc=v.song?' "'+e(v.song)+'"':'';if(v.event)desc+=' ? '+v.event;
       return '<div class="citem"><div class="ci-h"><div class="ci-av">'+(c.changed_by_name||'?').charAt(0).toUpperCase()+'</div><div><div class="ci-nm">'+e(c.changed_by_name||c.changed_by)+'</div><div class="ci-t">'+ti+'</div></div></div><div class="ci-d"><span class="cbadge '+(am[c.action]||'cb-u')+'">'+c.action+'</span>'+e(c.table_name)+desc+'</div></div>';
     }).join('');
   });
 }
 
-// ── ROLES ──
+// -- ROLES --
 var ROLES=[
-  {id:'gm1',ico:'🤵',name:'Groomsman 1',cat:'👑 Groomsmen & Groomswomen',tag:'दूल्हे का पहला साथी',det:['हर रस्म में शुभम के साथ','Sherwani / coordinated outfit']},
-  {id:'gm2',ico:'🤵',name:'Groomsman 2',cat:'👑 Groomsmen & Groomswomen',tag:'दूल्हे का दूसरा साथी',det:['Sherwani / coordinated outfit','बारात में साथ चलें']},
-  {id:'gm3',ico:'🤵',name:'Groomsman 3',cat:'👑 Groomsmen & Groomswomen',tag:'दूल्हे का तीसरा साथी',det:['Sherwani / coordinated outfit']},
-  {id:'gw1',ico:'💃',name:'Groomswoman 1',cat:'👑 Groomsmen & Groomswomen',tag:'दुल्हन की पहली सहेली',det:['हर रस्म में प्रियंका के पास','Lehenga / coordinated outfit']},
-  {id:'gw2',ico:'💃',name:'Groomswoman 2',cat:'👑 Groomsmen & Groomswomen',tag:'दुल्हन की दूसरी सहेली',det:['Lehenga / coordinated outfit','संगीत में dance']},
-  {id:'gw3',ico:'💃',name:'Groomswoman 3',cat:'👑 Groomsmen & Groomswomen',tag:'दुल्हन की तीसरी सहेली',det:['Lehenga / coordinated outfit']},
-  {id:'baraat1',ico:'🐎',name:'बारात लीडर',cat:'🎊 बारात व रस्में',tag:'बारात में सबसे आगे',det:['बारात में सबसे आगे चलें','ढोल के साथ नृत्य']},
-  {id:'baraat2',ico:'💃',name:'बारात डांसर',cat:'🎊 बारात व रस्में',tag:'बारात में नृत्य ऊर्जा',det:['पूरी बारात में ऊर्जा बनाएँ']},
-  {id:'pheras',ico:'🌸',name:'रस्म सहयोगी',cat:'🎊 बारात व रस्में',tag:'पूजा सामग्री तैयार',det:['पूजा सामग्री पहले से तैयार']},
-  {id:'gsh',ico:'🤵',name:'दूल्हे का साया',cat:'🎊 बारात व रस्में',tag:'शुभम के साथ हर पल',det:['पूरे दिन शुभम के साथ']},
-  {id:'wel1',ico:'🙏',name:'स्वागत करता',cat:'🚪 मेहमान प्रबंधन',tag:'दरवाजे पर गर्मजोशी से',det:['Main gate पर स्वागत']},
-  {id:'wel2',ico:'👴',name:'VIP होस्ट',cat:'🚪 मेहमान प्रबंधन',tag:'बुजुर्गों का ध्यान',det:['बुजुर्गों को personally escort']},
-  {id:'seat',ico:'🪑',name:'बैठक व्यवस्था',cat:'🚪 मेहमान प्रबंधन',tag:'मेहमान मार्गदर्शन',det:['Seating plan समझें']},
-  {id:'kids',ico:'👶',name:'बच्चों की देखभाल',cat:'🚪 मेहमान प्रबंधन',tag:'बच्चों को सुरक्षित रखें',det:['Stage से बच्चे दूर रखें']},
-  {id:'cat',ico:'🍛',name:'खाना इंचार्ज',cat:'🍽️ खाना व लॉजिस्टिक्स',tag:'कैटरर समन्वय',det:['Food counters भरे रखें']},
-  {id:'vend',ico:'📋',name:'वेंडर समन्वयक',cat:'🍽️ खाना व लॉजिस्टिक्स',tag:'सभी वेंडर से संपर्क',det:['DJ, decorator contact']},
-  {id:'gift',ico:'🎁',name:'उपहार प्रबंधक',cat:'🍽️ खाना व लॉजिस्टिक्स',tag:'उपहार एकत्र व सुरक्षित',det:['Cash envelopes safe रखें']},
-  {id:'flt',ico:'⚡',name:'फ्लोटिंग हेल्पर',cat:'🍽️ खाना व लॉजिस्टिक्स',tag:'जहाँ जरूरत वहाँ दौड़ें',det:['Most flexible role']},
-  {id:'mc',ico:'🎤',name:'MC / एंकर',cat:'🎉 मनोरंजन व मीडिया',tag:'संगीत व रिसेप्शन होस्ट',det:['Script पहले से तैयार','Energetic और funny']},
-  {id:'dance',ico:'🕺',name:'डांस लीड',cat:'🎉 मनोरंजन व मीडिया',tag:'नृत्य प्रस्तुति आयोजन',det:['सभी dance groups coordinate']},
-  {id:'dj',ico:'🎵',name:'DJ समन्वयक',cat:'🎉 मनोरंजन व मीडिया',tag:'सही वक्त पर सही गाना',det:['Complete song list दें']},
-  {id:'reels',ico:'📸',name:'रील्स & फोटो',cat:'🎉 मनोरंजन व मीडिया',tag:'यादगार पल कैद करें',det:['Phone पूरा charged रखें']},
-  {id:'audio',ico:'🎧',name:'Audio & Track Manager',cat:'💻 Tech & Media',tag:'सभी tracks ready रखें',det:['Edited tracks collect करें','DJ को सही format में दें','Master playlist बनाएँ']},
-  {id:'web',ico:'💻',name:'Website Manager',cat:'💻 Tech & Media',tag:'Website updated रखें',det:['Performance details update करें','Team members को help करें']}
+  {id:'gm1',ico:'?',name:'Groomsman 1',cat:'? Groomsmen & Groomswomen',tag:'?????? ?? ???? ????',det:['?? ???? ??? ???? ?? ???','Sherwani / coordinated outfit']},
+  {id:'gm2',ico:'?',name:'Groomsman 2',cat:'? Groomsmen & Groomswomen',tag:'?????? ?? ????? ????',det:['Sherwani / coordinated outfit','????? ??? ??? ????']},
+  {id:'gm3',ico:'?',name:'Groomsman 3',cat:'? Groomsmen & Groomswomen',tag:'?????? ?? ????? ????',det:['Sherwani / coordinated outfit']},
+  {id:'gw1',ico:'?',name:'Groomswoman 1',cat:'? Groomsmen & Groomswomen',tag:'?????? ?? ???? ?????',det:['?? ???? ??? ???????? ?? ???','Lehenga / coordinated outfit']},
+  {id:'gw2',ico:'?',name:'Groomswoman 2',cat:'? Groomsmen & Groomswomen',tag:'?????? ?? ????? ?????',det:['Lehenga / coordinated outfit','????? ??? dance']},
+  {id:'gw3',ico:'?',name:'Groomswoman 3',cat:'? Groomsmen & Groomswomen',tag:'?????? ?? ????? ?????',det:['Lehenga / coordinated outfit']},
+  {id:'baraat1',ico:'?',name:'????? ????',cat:'? ????? ? ??????',tag:'????? ??? ???? ???',det:['????? ??? ???? ??? ????','??? ?? ??? ?????']},
+  {id:'baraat2',ico:'?',name:'????? ?????',cat:'? ????? ? ??????',tag:'????? ??? ????? ?????',det:['???? ????? ??? ????? ?????']},
+  {id:'pheras',ico:'?',name:'???? ??????',cat:'? ????? ? ??????',tag:'???? ??????? ?????',det:['???? ??????? ???? ?? ?????']},
+  {id:'gsh',ico:'?',name:'?????? ?? ????',cat:'? ????? ? ??????',tag:'???? ?? ??? ?? ??',det:['???? ??? ???? ?? ???']},
+  {id:'wel1',ico:'?',name:'?????? ????',cat:'? ?????? ???????',tag:'?????? ?? ???????? ??',det:['Main gate ?? ??????']},
+  {id:'wel2',ico:'?',name:'VIP ?????',cat:'? ?????? ???????',tag:'????????? ?? ?????',det:['????????? ?? personally escort']},
+  {id:'seat',ico:'?',name:'???? ????????',cat:'? ?????? ???????',tag:'?????? ??????????',det:['Seating plan ?????']},
+  {id:'kids',ico:'?',name:'?????? ?? ??????',cat:'? ?????? ???????',tag:'?????? ?? ???????? ????',det:['Stage ?? ????? ??? ????']},
+  {id:'cat',ico:'?',name:'???? ???????',cat:'?? ???? ? ???????????',tag:'????? ??????',det:['Food counters ??? ????']},
+  {id:'vend',ico:'[i]',name:'????? ???????',cat:'?? ???? ? ???????????',tag:'??? ????? ?? ??????',det:['DJ, decorator contact']},
+  {id:'gift',ico:'?',name:'????? ???????',cat:'?? ???? ? ???????????',tag:'????? ????? ? ????????',det:['Cash envelopes safe ????']},
+  {id:'flt',ico:'?',name:'???????? ??????',cat:'?? ???? ? ???????????',tag:'???? ????? ???? ??????',det:['Most flexible role']},
+  {id:'mc',ico:'[Mic]',name:'MC / ????',cat:'? ??????? ? ??????',tag:'????? ? ???????? ?????',det:['Script ???? ?? ?????','Energetic ?? funny']},
+  {id:'dance',ico:'?',name:'???? ???',cat:'? ??????? ? ??????',tag:'????? ????????? ?????',det:['??? dance groups coordinate']},
+  {id:'dj',ico:'[Music]',name:'DJ ???????',cat:'? ??????? ? ??????',tag:'??? ???? ?? ??? ????',det:['Complete song list ???']},
+  {id:'reels',ico:'?',name:'????? & ????',cat:'? ??????? ? ??????',tag:'?????? ?? ??? ????',det:['Phone ???? charged ????']},
+  {id:'audio',ico:'?',name:'Audio & Track Manager',cat:'? Tech & Media',tag:'??? tracks ready ????',det:['Edited tracks collect ????','DJ ?? ??? format ??? ???','Master playlist ?????']},
+  {id:'web',ico:'?',name:'Website Manager',cat:'? Tech & Media',tag:'Website updated ????',det:['Performance details update ????','Team members ?? help ????']}
 ];
 
 function loadRoleData(){
@@ -834,7 +834,7 @@ function loadRoleData(){
   });
 }
 function getAllRoles(){
-  return ROLES.concat(customRoles.map(function(r){return {id:r.id,ico:'✦',name:r.name,cat:'✦ Family Added',tag:r.tagline||r.role_desc||'',det:[r.role_desc||''],custom:true};}));
+  return ROLES.concat(customRoles.map(function(r){return {id:r.id,ico:'*',name:r.name,cat:'* Family Added',tag:r.tagline||r.role_desc||'',det:[r.role_desc||''],custom:true};}));
 }
 function renderRoles(){
   var cont=document.getElementById('rolesC');if(!cont)return;
@@ -854,14 +854,14 @@ function renderRoles(){
       // Header
       html+='<div class="rtop"><div class="rico">'+r.ico+'</div><div><div class="rname">'+e(r.name)+'</div><div class="rtag">'+e(r.tag||'')+'</div></div></div>';
       // Details toggle
-      html+='<button style="font-size:10px;color:rgba(196,151,74,.7);font-weight:600;cursor:pointer;background:none;border:none;font-family:Jost,sans-serif;padding:0;margin-bottom:6px;" data-rd="'+r.id+'">📋 Details ▾</button>';
+      html+='<button style="font-size:10px;color:rgba(196,151,74,.7);font-weight:600;cursor:pointer;background:none;border:none;font-family:Jost,sans-serif;padding:0;margin-bottom:6px;" data-rd="'+r.id+'">[i] Details ?</button>';
       html+='<div class="rdet" id="rd-'+r.id+'">'+(r.det||[]).map(function(d){return '<div class="rdi">'+e(d)+'</div>';}).join('')+'</div>';
       // Assigned chips
       if(approvals.length){
         html+='<div style="display:flex;flex-wrap:wrap;gap:3px;margin-bottom:7px;">';
         approvals.forEach(function(a){
-          html+='<div class="a-chip">✅ '+e(a.full_name);
-          if(isAdmin)html+='<span class="x" data-rem-app="'+r.id+'" data-rem-uid="'+a.user_id+'">✕</span>';
+          html+='<div class="a-chip">[OK] '+e(a.full_name);
+          if(isAdmin)html+='<span class="x" data-rem-app="'+r.id+'" data-rem-uid="'+a.user_id+'">X</span>';
           html+='</div>';
         });
         html+='</div>';
@@ -871,9 +871,9 @@ function renderRoles(){
       if(isAdmin&&pending.length){
         html+='<div class="r-int-lbl">Waiting ('+pending.length+')</div>';
         pending.forEach(function(i){
-          html+='<div class="ip-row"><span class="ip-name">🌼 '+e(i.full_name)+'</span><div class="ip-btns">';
-          html+='<button class="b-assign" data-assign-rid="'+r.id+'" data-assign-uid="'+i.user_id+'" data-assign-nm="'+ej(i.full_name)+'" data-assign-un="'+ej(i.username||'')+'">✓ Assign</button>';
-          html+='<button class="b-rem-int" data-rem-int-rid="'+r.id+'" data-rem-int-uid="'+i.user_id+'">✕</button>';
+          html+='<div class="ip-row"><span class="ip-name">* '+e(i.full_name)+'</span><div class="ip-btns">';
+          html+='<button class="b-assign" data-assign-rid="'+r.id+'" data-assign-uid="'+i.user_id+'" data-assign-nm="'+ej(i.full_name)+'" data-assign-un="'+ej(i.username||'')+'">OK Assign</button>';
+          html+='<button class="b-rem-int" data-rem-int-rid="'+r.id+'" data-rem-int-uid="'+i.user_id+'">X</button>';
           html+='</div></div>';
         });
       } else if(!isAdmin&&pending.length){
@@ -881,20 +881,20 @@ function renderRoles(){
       }
       // Interest button for non-admin
       if(canInt&&!isAdmin){
-        html+='<button class="b-int'+(iM?' on':'')+'" data-int-rid="'+r.id+'" data-int-mine="'+iM+'">'+(iM?'🌼 Interested ✓  (tap to remove)':'🌼 Interested?')+'</button>';
+        html+='<button class="b-int'+(iM?' on':'')+'" data-int-rid="'+r.id+'" data-int-mine="'+iM+'">'+(iM?'* Interested OK  (tap to remove)':'* Interested?')+'</button>';
       }
-      if(isAdmin)html+='<div style="font-size:10px;color:rgba(232,193,122,.28);margin-top:5px;">'+ints.length+' interested · '+approvals.length+' assigned</div>';
+      if(isAdmin)html+='<div style="font-size:10px;color:rgba(232,193,122,.28);margin-top:5px;">'+ints.length+' interested ? '+approvals.length+' assigned</div>';
       html+='</div>';
       // Admin controls
       if(isAdmin){
-        html+='<div class="r-admin"><button class="b-edit-r" data-edit-r="'+r.id+'">✏️ Edit</button><button class="b-del-r" data-del-r="'+r.id+'" data-del-custom="'+!!r.custom+'">🗑 Delete</button></div>';
+        html+='<div class="r-admin"><button class="b-edit-r" data-edit-r="'+r.id+'">[Edit] Edit</button><button class="b-del-r" data-del-r="'+r.id+'" data-del-custom="'+!!r.custom+'">[X] Delete</button></div>';
         html+='<div class="r-edit-form" id="ref-'+r.id+'">';
         html+='<div class="el" style="margin-bottom:3px;">Name</div><input class="ei" id="ren-'+r.id+'" value="'+e(r.name)+'" style="width:100%;margin-bottom:6px;"/>';
         html+='<div class="el" style="margin-bottom:3px;">Tagline</div><input class="ei" id="ret-'+r.id+'" value="'+e(r.tag||'')+'" style="width:100%;margin-bottom:6px;"/>';
         html+='<div class="el" style="margin-bottom:3px;">Description (one line each)</div><textarea class="ei" id="red-'+r.id+'" rows="3" style="width:100%;margin-bottom:8px;resize:vertical;">'+(r.det||[]).join('\n')+'</textarea>';
 
 ```
-    html+='<button class="bsave" data-save-r="'+r.id+'" data-save-custom="'+!!r.custom+'">✓ Save</button><button class="bcancel" data-cancel-r="'+r.id+'">Cancel</button>';
+    html+='<button class="bsave" data-save-r="'+r.id+'" data-save-custom="'+!!r.custom+'">OK Save</button><button class="bcancel" data-cancel-r="'+r.id+'">Cancel</button>';
     html+='</div>';
   }
   html+='</div>';
@@ -922,7 +922,7 @@ return;
 if(t.dataset.assignRid){
 post(‘role_approvals’,{role_id:t.dataset.assignRid,user_id:t.dataset.assignUid,username:t.dataset.assignUn,full_name:t.dataset.assignNm,approved_by:cu.full_name,approved_at:new Date().toISOString()}).then(function(){
 logCh(‘role_approvals’,t.dataset.assignRid,‘insert’,{role:t.dataset.assignRid,assigned_to:t.dataset.assignNm});
-loadRoleData();alert(‘✦ ‘+t.dataset.assignNm+’ assigned!’);
+loadRoleData();alert(’* ‘+t.dataset.assignNm+’ assigned!’);
 });
 return;
 }
@@ -950,12 +950,12 @@ var detEl=document.getElementById(‘red-’+id);
 var det=detEl?detEl.value.split(’\n’).map(function(s){return s.trim();}).filter(Boolean):[];
 if(!nm){alert(‘Name cannot be empty!’);return;}
 if(isC){
-patch(‘custom_roles’,‘id=eq.’+id,{name:nm,tagline:tg,role_desc:det.join(’ | ‘)}).then(function(){loadRoleData();alert(‘✦ Saved!’);});
+patch(‘custom_roles’,‘id=eq.’+id,{name:nm,tagline:tg,role_desc:det.join(’ | ‘)}).then(function(){loadRoleData();alert(’* Saved!’);});
 } else {
 var r=ROLES.find(function(x){return x.id===id;});
 if(r){r.name=nm;r.tag=tg;r.det=det.length?det:r.det;}
 var f=document.getElementById(‘ref-’+id);if(f)f.classList.remove(‘open’);
-renderRoles();alert(‘✦ Updated!’);
+renderRoles();alert(’* Updated!’);
 }
 return;
 }
@@ -965,8 +965,8 @@ if(!confirm(‘Delete this role and all interests?’))return;
 var id=t.dataset.delR,isC=t.dataset.delCustom===‘true’;
 del(‘role_interests’,‘role_id=eq.’+id);
 del(‘role_approvals’,‘role_id=eq.’+id);
-if(isC){del(‘custom_roles’,‘id=eq.’+id).then(function(){loadRoleData();alert(‘✦ Deleted!’);});}
-else{var idx=ROLES.findIndex(function(r){return r.id===id;});if(idx>-1)ROLES.splice(idx,1);loadRoleData();alert(‘✦ Deleted!’);}
+if(isC){del(‘custom_roles’,‘id=eq.’+id).then(function(){loadRoleData();alert(’* Deleted!’);});}
+else{var idx=ROLES.findIndex(function(r){return r.id===id;});if(idx>-1)ROLES.splice(idx,1);loadRoleData();alert(’* Deleted!’);}
 return;
 }
 // Gallery filter chips
@@ -988,11 +988,11 @@ function addCustomRole(){
 var nm=document.getElementById(‘arName’).value.trim(),desc=document.getElementById(‘arDesc’).value.trim();
 if(!nm){alert(‘Enter role name!’);return;}
 post(‘custom_roles’,{id:‘custom_’+Date.now(),name:nm,role_desc:desc,tagline:desc,created_by:cu.username}).then(function(){
-document.getElementById(‘arName’).value=’’;document.getElementById(‘arDesc’).value=’’;loadRoleData();alert(‘✦ Added!’);
+document.getElementById(‘arName’).value=’’;document.getElementById(‘arDesc’).value=’’;loadRoleData();alert(’* Added!’);
 });
 }
 
-// ── TEAM ──
+// – TEAM –
 function renderTeam(){
 var grid=document.getElementById(‘teamGrid’),empty=document.getElementById(‘teamEmpty’);
 get(‘users’,‘select=*&role=neq.guest&order=created_at.asc’).then(function(d){
@@ -1006,10 +1006,10 @@ var showBadge=m.role!==‘admin’;
 var myR=Object.keys(allInts).filter(function(rid){return(allInts[rid]||[]).some(function(i){return i.user_id===m.id;});}).map(function(rid){var r=all.find(function(x){return x.id===rid;});return r?r.name:null;}).filter(Boolean);
 return ‘<div class="tcard"><div class=“tav” onclick=”’+(isMe?“document.getElementById(‘photoInput’).click()”:’’)+’”>’+
 (m.photo_url?’<img src="'+e(m.photo_url)+'" alt="'+e(dn)+'"/>’:’<div class="tinit">’+dn.charAt(0).toUpperCase()+’</div>’)+
-(isMe?’<div class="tedit">📷</div>’:’’)+
+(isMe?’<div class="tedit">[Photo]</div>’:’’)+
 ‘</div><div class="tname">’+e(dn)+’</div>’+
 (showBadge?’<div class="tbadge '+m.role+'">’+m.role+’</div>’:’’)+
-(myR.length?’<div class="troles">’+myR.slice(0,3).join(’ · ‘)+’</div>’:’’)+
+(myR.length?’<div class="troles">’+myR.slice(0,3).join(’ ? ‘)+’</div>’:’’)+
 ‘</div>’;
 }).join(’’);
 });
@@ -1021,7 +1021,7 @@ r.onload=function(e2){patch(‘users’,‘id=eq.’+cu.id,{photo_url:e2.target.
 r.readAsDataURL(file);
 }
 
-// ── GALLERY ──
+// – GALLERY –
 function loadGallery(){
 get(‘event_photos’,‘select=*&order=created_at.desc’).then(function(d){
 allPhotos=d||[];renderGallery(gFilter);loadAllEvPhotos();
@@ -1030,7 +1030,7 @@ allPhotos=d||[];renderGallery(gFilter);loadAllEvPhotos();
 function renderGallery(filter){
 var grid=document.getElementById(‘gGrid’);if(!grid)return;
 var ph=filter?allPhotos.filter(function(p){return p.event_name===filter;}):allPhotos;
-if(!ph.length){grid.innerHTML=’<div class="empty" style="grid-column:1/-1;">No photos yet. Be the first! 📸</div>’;return;}
+if(!ph.length){grid.innerHTML=’<div class="empty" style="grid-column:1/-1;">No photos yet. Be the first! ?</div>’;return;}
 grid.innerHTML=ph.map(function(p){
 return ‘<div class="gi" data-lb-url="'+ej(p.photo_url)+'" data-lb-cap="'+ej(p.caption||'')+'"><img src="'+e(p.photo_url)+'" loading="lazy"/><div class="gi-ov"><div class="gi-cap">’+e(p.caption||’’)+’</div></div></div>’;
 }).join(’’);
@@ -1065,7 +1065,7 @@ function submitGPhoto(){
 if(!pgf)return;
 var r=new FileReader();
 r.onload=function(e2){
-post(‘event_photos’,{photo_url:e2.target.result,caption:document.getElementById(‘gCap’).value.trim()||null,event_name:document.getElementById(‘gEv’).value||null,uploaded_by:cu.username,uploaded_by_name:cu.full_name||cu.username,tags:photoTags.length?photoTags:null}).then(function(){cancelGUp();loadGallery();alert(‘✦ Photo added!’);});
+post(‘event_photos’,{photo_url:e2.target.result,caption:document.getElementById(‘gCap’).value.trim()||null,event_name:document.getElementById(‘gEv’).value||null,uploaded_by:cu.username,uploaded_by_name:cu.full_name||cu.username,tags:photoTags.length?photoTags:null}).then(function(){cancelGUp();loadGallery();alert(’* Photo added!’);});
 };
 r.readAsDataURL(pgf);
 }
@@ -1078,7 +1078,7 @@ var file=ev.target.files[0];if(!file)return;
 var r=new FileReader();
 r.onload=function(e2){
 var cap=prompt(‘Caption (optional):’);
-post(‘event_photos’,{photo_url:e2.target.result,event_name:pen,caption:cap||null,uploaded_by:cu.username,uploaded_by_name:cu.full_name||cu.username}).then(function(){loadGallery();pen=null;document.getElementById(‘ePhotoInput’).value=’’;alert(‘✦ Added!’);});
+post(‘event_photos’,{photo_url:e2.target.result,event_name:pen,caption:cap||null,uploaded_by:cu.username,uploaded_by_name:cu.full_name||cu.username}).then(function(){loadGallery();pen=null;document.getElementById(‘ePhotoInput’).value=’’;alert(’* Added!’);});
 };
 r.readAsDataURL(file);
 }
@@ -1095,14 +1095,14 @@ drop.classList.add(‘on’);
 function hideGTS(){setTimeout(function(){var d=document.getElementById(‘gTagDrop’);if(d)d.classList.remove(‘on’);},200);}
 function addPT(n){if(photoTags.includes(n))return;photoTags.push(n);document.getElementById(‘gTagInp’).value=’’;renderGTags();}
 function removePT(n){photoTags=photoTags.filter(function(t){return t!==n;});renderGTags();}
-function renderGTags(){document.getElementById(‘gTags’).innerHTML=photoTags.map(function(t){return ‘<div class="atag" onclick="removePT(\''+ej(t)+'\')">@’+e(t)+’ ✕</div>’;}).join(’’);}
+function renderGTags(){document.getElementById(‘gTags’).innerHTML=photoTags.map(function(t){return ‘<div class="atag" onclick="removePT(\''+ej(t)+'\')">@’+e(t)+’ X</div>’;}).join(’’);}
 
-// ── SUGGESTIONS ──
+// – SUGGESTIONS –
 var tagPpl=[],sgTags=[];
 function loadSuggestions(){
 var el=document.getElementById(‘suggList’);if(!el)return;
 get(‘suggestions’,‘select=*&order=created_at.desc&limit=30’).then(function(d){
-if(!d||!d.length){el.innerHTML=’<div class="empty">No suggestions yet. 💡</div>’;return;}
+if(!d||!d.length){el.innerHTML=’<div class="empty">No suggestions yet. [Idea]</div>’;return;}
 el.innerHTML=d.map(function(s){
 var dt=new Date(s.created_at),ti=dt.toLocaleDateString(‘en-IN’)+’ ‘+dt.toLocaleTimeString(‘en-IN’,{hour:‘2-digit’,minute:‘2-digit’});
 return ‘<div class="scard"><div class="sc-h"><div class="sc-av">’+s.author.charAt(0).toUpperCase()+’</div><div><div class="sc-au">’+e(s.author)+’</div><div class="sc-t">’+ti+’</div></div></div><div class="sc-tx">’+e(s.suggestion_text||s.text||’’)+’</div>’+(s.tags&&s.tags.length?’<div style="display:flex;flex-wrap:wrap;gap:4px;">’+s.tags.map(function(t){return ‘<span class="tpill">@’+e(t)+’</span>’;}).join(’’)+’</div>’:’’)+’</div>’;
@@ -1122,14 +1122,14 @@ drop.classList.add(‘on’);
 function hideSTS(){setTimeout(function(){var d=document.getElementById(‘sgTgDrop’);if(d)d.classList.remove(‘on’);},200);}
 function addST(n){if(sgTags.includes(n))return;sgTags.push(n);document.getElementById(‘sgTgInp’).value=’’;renderSTags();}
 function removeST(n){sgTags=sgTags.filter(function(t){return t!==n;});renderSTags();}
-function renderSTags(){document.getElementById(‘sgTgs’).innerHTML=sgTags.map(function(t){return ‘<div class="atag" onclick="removeST(\''+ej(t)+'\')">@’+e(t)+’ ✕</div>’;}).join(’’);}
+function renderSTags(){document.getElementById(‘sgTgs’).innerHTML=sgTags.map(function(t){return ‘<div class="atag" onclick="removeST(\''+ej(t)+'\')">@’+e(t)+’ X</div>’;}).join(’’);}
 function submitSugg(){
 var author=document.getElementById(‘sgNm’).value.trim(),text=document.getElementById(‘sgTx’).value.trim();
-if(!author||!text){alert(‘Name और suggestion दोनों लिखें!’);return;}
-post(‘suggestions’,{author:author,suggestion_text:text,tags:sgTags}).then(function(){document.getElementById(‘sgNm’).value=’’;document.getElementById(‘sgTx’).value=’’;sgTags=[];renderSTags();loadSuggestions();alert(‘✦ Sent!’);});
+if(!author||!text){alert(‘Name ?? suggestion ????? ?????!’);return;}
+post(‘suggestions’,{author:author,suggestion_text:text,tags:sgTags}).then(function(){document.getElementById(‘sgNm’).value=’’;document.getElementById(‘sgTx’).value=’’;sgTags=[];renderSTags();loadSuggestions();alert(’* Sent!’);});
 }
 
-// ── FILTER ──
+// – FILTER –
 var GK={kids:[‘kids’,‘children’,‘naatu’],sisters:[‘sister’,‘dee’,‘sibling’],brothers:[‘brother’,‘bhai’,‘sibling’],mothers:[‘mother’,‘saas’,‘maa’,‘aunti’],ladies:[‘ladies’,‘women’,‘rangila’,‘girl’],siblings:[‘sibling’,‘siblings’,‘brother’,‘sister’],dee_jiju:[‘dee’,‘jiju’,‘biwi’,‘hero’,‘maya’],unmarried:[‘unmarried’,‘shaadi’,‘laal’,‘yaad’]};
 function applyFilter(){
 var sv=(document.getElementById(‘fInp’).value||’’).toLowerCase().trim();
@@ -1158,7 +1158,7 @@ var fc=document.getElementById(‘fCl’);if(fc)fc.classList.remove(‘on’);
 var cnt=document.getElementById(‘fCnt’);if(cnt)cnt.textContent=’’;
 }
 
-// ── NAV ──
+// – NAV –
 function toggleCard(name){
 var body=document.getElementById(‘cb-’+name),ch=document.getElementById(‘cc-’+name);
 if(body)body.classList.toggle(‘open’);
@@ -1183,7 +1183,7 @@ if(name===‘gallery’)loadGallery();
 window.scrollTo(0,0);
 }
 
-function copyLink(){navigator.clipboard.writeText(‘https://shreyadubey-studio.github.io/priyanka-shubham-wedding’).then(function(){alert(‘✦ Link copied!’);});}
+function copyLink(){navigator.clipboard.writeText(‘https://shreyadubey-studio.github.io/priyanka-shubham-wedding’).then(function(){alert(’* Link copied!’);});}
 function e(t){return String(t==null?’’:t).replace(/&/g,’&’).replace(/</g,’<’).replace(/>/g,’>’).replace(/”/g,’"’);}
 function ej(t){return String(t==null?’’:t).replace(/\/g,’\\’).replace(/’/g,”\’”).replace(/”/g,’\”’);}
 </script>
