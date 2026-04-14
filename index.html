@@ -401,9 +401,10 @@
     .role-sug-btn{font-size:11px!important;padding:4px 12px!important;border-radius:999px!important;}
 
     /* ---- Song collapsible ---- */
-    .pc-header{display:flex;align-items:center;gap:8px;cursor:pointer;user-select:none;padding-bottom:0;}
+    .pc-header{display:flex;align-items:flex-start;gap:8px;cursor:pointer;user-select:none;padding-bottom:0;}
     .pc-header:active{opacity:.8;}
-    .pc-arrow{font-size:13px;color:rgba(196,151,74,.55);transition:transform .25s;margin-left:auto;flex-shrink:0;width:20px;text-align:center;}
+    .pc-num-col{display:flex;flex-direction:column;align-items:center;gap:4px;flex-shrink:0;}
+    .pc-arrow{font-size:11px;color:rgba(196,151,74,.55);transition:transform .25s;}
     .pc-arrow.open{transform:rotate(180deg);}
     .pc-body{display:none;padding-top:10px;}
     .pc-body.open{display:block;}
@@ -472,9 +473,16 @@
     .sugg-del-btn{background:rgba(198,40,40,.12);border-color:rgba(198,40,40,.18);color:#efb3b3;}
     .sugg-comment-inp{flex:1;min-width:140px;background:rgba(255,255,255,.04);border:1px solid rgba(196,151,74,.2);border-radius:8px;padding:6px 10px;font-size:11px;color:rgba(232,193,122,.9);font-family:'Jost',sans-serif;}
     .sugg-save-btn{cursor:pointer;border-radius:999px;font-size:11px;font-weight:600;padding:4px 10px;border:1px solid rgba(196,151,74,.3);background:rgba(196,151,74,.12);color:rgba(232,193,122,.85);font-family:'Jost',sans-serif;}
+    .sugg-status-btn{cursor:pointer;border-radius:999px;font-size:10px;font-weight:600;padding:3px 9px;border:1px solid rgba(196,151,74,.2);background:rgba(255,255,255,.03);color:rgba(232,193,122,.65);font-family:'Jost',sans-serif;}
+    .sugg-status-btn.active{background:rgba(196,151,74,.18);border-color:rgba(196,151,74,.4);color:rgba(232,193,122,.95);}
     .scard.done{opacity:.55;text-decoration:none;}
     .scard.done .sc-tx{text-decoration:line-through;color:rgba(232,193,122,.4);}
+    .scard.in-progress{border-left:3px solid rgba(196,151,74,.7);}
+    .scard.completed{opacity:.6;}
+    .scard.completed .sc-tx{text-decoration:line-through;color:rgba(232,193,122,.35);}
+    .scard.discarded{border-left:3px solid rgba(198,40,40,.5);opacity:.4;}
     .scard-comment{font-size:11px;color:rgba(196,151,74,.8);font-style:italic;margin-top:6px;padding:6px 8px;background:rgba(196,151,74,.07);border-radius:6px;border-left:2px solid rgba(196,151,74,.3);}
+    .role-sugg-badge{display:inline-block;font-size:9px;font-weight:700;letter-spacing:.06em;padding:2px 7px;border-radius:999px;background:rgba(196,151,74,.15);border:1px solid rgba(196,151,74,.3);color:rgba(232,193,122,.8);margin-left:5px;vertical-align:middle;}
   </style>
 </head>
 <body>
@@ -602,7 +610,8 @@
         </div>
 
         <div class="fbar">
-          <div class="f-ti">🔍 गाने खोजें</div>
+          <div class="f-ti" onclick="toggleFilterBar()" style="cursor:pointer;display:flex;align-items:center;gap:6px;">🔍 गाने खोजें <span id="fbarArrow" style="font-size:11px;transition:transform .25s;">▶</span></div>
+          <div id="fbarContent" style="display:none;">
           <input class="finp" id="fInp" placeholder="नाम, गाना, group या keyword लिखें…" oninput="applyFilter()" />
           <div class="chips" id="filterChips">
             <div class="chip" data-g="kids">👶 Kids</div>
@@ -616,13 +625,14 @@
           </div>
           <button class="f-cl" id="fCl" type="button" onclick="clearF()">✕ Filter हटाएँ</button>
           <div class="f-cnt" id="fCnt"></div>
-        </div>
-
-        <div id="eventsAdminBar" class="hide" style="margin-bottom:12px;">
-          <button class="badd" type="button" onclick="openCeremonyModal(null)">+ Add New Ceremony Card</button>
+          </div>
         </div>
 
         <div id="ceremonyList"><div class="spin">Loading ceremonies…</div></div>
+
+        <div id="eventsAdminBar" class="hide" style="margin-top:12px;">
+          <button class="badd" type="button" onclick="openCeremonyModal(null)">+ Add New Ceremony Card</button>
+        </div>
       </div>
 
       <!-- roles -->
@@ -635,11 +645,6 @@
           <p>Role चुनें, interest दिखाएँ, दूसरों को nominate करें, और support/like 🧡 दे सकते हैं।</p>
         </div>
         <div id="rolesC"><div class="spin">Loading roles…</div></div>
-        <div id="roleSuggestionsPanel" class="rbanner" style="margin-top:14px;margin-bottom:14px;display:none;">
-          <h3>📋 Received Role Suggestions</h3>
-          <p>Suggestions submitted by team members for various roles.</p>
-          <div id="roleSuggestionsList" style="margin-top:10px;"></div>
-        </div>
         <div class="arbox">
           <h4>✦ नई भूमिका जोड़ें</h4>
           <p>अगर कोई role missing हो, admin यहाँ से add कर सकती हैं।</p>
@@ -1568,9 +1573,9 @@
         var h = '<div class="pc" id="pc-' + p.id + '">';
         /* ── Collapsed header (always visible) ── */
         h += '<div class="pc-header" onclick="toggleSongBody(\'' + ej(p.id) + '\')">';
-        h += '<div class="pc-num">' + e(p.seq || '?') + '</div>';
+        h += '<div class="pc-num-col"><div class="pc-num">' + e(p.seq || '?') + '</div>';
+        h += '<div class="pc-arrow" id="' + arrowId + '">▼</div></div>';
         h += '<div class="pc-song">' + e(p.song) + '</div>';
-        h += '<div class="pc-arrow" id="' + arrowId + '">▼</div>';
         h += '</div>';
         /* ── Collapsible body ── */
         h += '<div class="pc-body" id="' + bodyId + '">';
@@ -2002,6 +2007,18 @@
       var cntEl = document.getElementById('fCnt'); if (cntEl) cntEl.textContent = '';
     }
 
+    function toggleFilterBar() {
+      var c = document.getElementById('fbarContent');
+      var a = document.getElementById('fbarArrow');
+      if (c.style.display === 'none') {
+        c.style.display = 'block';
+        a.style.transform = 'rotate(90deg)';
+      } else {
+        c.style.display = 'none';
+        a.style.transform = 'rotate(0deg)';
+      }
+    }
+
     /* ===========================
        ROLES
     =========================== */
@@ -2110,12 +2127,22 @@
             html += '<button class="b-int' + (iM ? ' on' : '') + '" type="button" data-int-rid="' + r.id + '" data-int-mine="' + iM + '">' + (iM ? '\ud83c\udf3c Interested \u2713 (tap to remove)' : '\ud83c\udf3c I\'m Interested') + '</button>';
           }
           if (suggs.length) {
-            html += '<div style="margin-top:8px;"><div style="font-size:9px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(196,151,74,.55);margin-bottom:5px;">Suggested</div><div style="display:flex;flex-wrap:wrap;gap:5px;">';
+            html += '<div style="margin-top:8px;"><div style="font-size:9px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(196,151,74,.55);margin-bottom:5px;">Suggested</div>';
             suggs.forEach(function(s) {
               var nm = s.suggested_name || s.full_name || '';
-              html += '<span style="display:inline-flex;align-items:center;font-size:11px;padding:3px 10px;border-radius:999px;background:rgba(196,151,74,.13);border:1px solid rgba(196,151,74,.28);color:rgba(232,193,122,.88);font-weight:600;">\ud83c\udf1f ' + e(nm) + '</span>';
+              var sugSupports = (roleSupports[r.id] || []).filter(function(sp) { return sp.target_user_id === (s.id || s.suggested_name); });
+              var sugSupportedByMe = cu && sugSupports.some(function(sp) { return sp.user_id === cu.id; });
+              html += '<div style="display:flex;align-items:center;gap:8px;padding:5px 0;border-bottom:1px solid rgba(196,151,74,.07);">';
+              html += '<span style="font-size:11px;flex:1;min-width:0;color:rgba(232,193,122,.88);font-weight:600;">\ud83c\udf1f ' + e(nm) + '</span>';
+              html += '<span style="font-size:10px;color:rgba(232,193,122,.35);">by ' + e(s.suggested_by || '') + '</span>';
+              if (canInt) {
+                html += '<button class="b-sug-like' + (sugSupportedByMe ? ' on' : '') + '" type="button" data-sug-like-rid="' + ej(r.id) + '" data-sug-like-nm="' + ej(nm) + '" data-sug-like-mine="' + sugSupportedByMe + '" title="Like this suggestion" style="background:none;border:none;cursor:pointer;font-size:13px;padding:2px 6px;border-radius:999px;background:rgba(196,151,74,.1);color:' + (sugSupportedByMe ? '#e8c17a' : 'rgba(232,193,122,.4)') + '">\ud83e\udde1 ' + sugSupports.length + '</button>';
+              } else {
+                html += '<span style="font-size:12px;color:rgba(232,193,122,.35);">\ud83e\udde1 ' + sugSupports.length + '</span>';
+              }
+              html += '</div>';
             });
-            html += '</div></div>';
+            html += '</div>';
           }
           if (canInt) {
             html += '<div class="role-suggest-row">';
@@ -2146,33 +2173,6 @@
       });
       cont.innerHTML = html;
       updateDashCount('roles');
-      // Show suggestions panel for admin/member
-      if (cu && cu.role !== 'guest') {
-        var panel = document.getElementById('roleSuggestionsPanel');
-        var list = document.getElementById('roleSuggestionsList');
-        if (panel && list) {
-          var allSugs = [];
-          Object.keys(roleSuggestions).forEach(function(rid) {
-            (roleSuggestions[rid] || []).forEach(function(s) {
-              allSugs.push(s);
-            });
-          });
-          if (allSugs.length > 0) {
-            panel.style.display = 'block';
-            var panelHtml = '';
-            allSugs.forEach(function(s) {
-              panelHtml += '<div style="display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid rgba(196,151,74,.1);">';
-              panelHtml += '<span style="font-size:11px;padding:3px 10px;border-radius:999px;background:rgba(196,151,74,.13);border:1px solid rgba(196,151,74,.28);color:rgba(232,193,122,.88);font-weight:600;">\ud83c\udf1f ' + e(s.suggested_name) + '</span>';
-              panelHtml += '<span style="font-size:11px;color:rgba(232,193,122,.4);">for <strong>' + e(s.role_id) + '</strong></span>';
-              panelHtml += '<span style="font-size:10px;color:rgba(232,193,122,.25);margin-left:auto;">by ' + e(s.suggested_by) + '</span>';
-              panelHtml += '</div>';
-            });
-            list.innerHTML = panelHtml;
-          } else {
-            panel.style.display = 'none';
-          }
-        }
-      }
     }
 
     function addCustomRole() {
@@ -2393,20 +2393,30 @@
         if (!d || !d.length) { el.innerHTML = '<div class="empty">No suggestions yet. Be the first! \u2736</div>'; return; }
         el.innerHTML = d.map(function(s) {
           var dt = new Date(s.created_at), ti = dt.toLocaleDateString('en-IN') + ' ' + dt.toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' });
-          var tagged = (s.tags || '').split(',').filter(Boolean).map(function(t) { return '<span class="tpill">@' + e(t.trim()) + '</span>'; }).join(' ');
-          var isDone = s.status === 'done';
+          var tags = (s.tags || '').split(',').filter(Boolean);
+          var isRoleSugg = tags.some(function(t) { return t.trim() === 'role-suggestion'; });
+          var tagged = tags.map(function(t) { return '<span class="tpill">@' + e(t.trim()) + '</span>'; }).join(' ');
+          var st = s.status || 'todo';
+          var statusClass = st === 'in-progress' ? ' in-progress' : st === 'completed' ? ' completed' : st === 'discarded' ? ' discarded' : st === 'done' ? ' done' : '';
           var commentHtml = s.admin_note ? '<div class="scard-comment">💬 ' + e(s.admin_note) + '</div>' : '';
-          var adminHtml = '';
-          if (isAdmin) {
-            adminHtml = '<div class="sugg-admin-row">';
-            adminHtml += '<button class="sugg-done-btn" onclick="suggMarkDone(\'' + ej(s.id) + '\',' + (isDone ? 'true' : 'false') + ')">' + (isDone ? '↩️ Undo Done' : '✅ Mark Done') + '</button>';
-            adminHtml += '<button class="sugg-del-btn" onclick="suggDelete(\'' + ej(s.id) + '\')">🗑️ Delete</button>';
-            adminHtml += '<input class="sugg-comment-inp" id="sc-' + s.id + '" placeholder="Add note…" value="' + attr(s.admin_note || '') + '"/>';
-            adminHtml += '<button class="sugg-save-btn" onclick="suggSaveNote(\'' + ej(s.id) + '\')">💬 Save</button>';
-            adminHtml += '</div>';
+          var ctrlHtml = '';
+          var canAct = cu && cu.role !== 'guest';
+          if (canAct) {
+            ctrlHtml = '<div class="sugg-admin-row">';
+            ctrlHtml += '<button class="sugg-status-btn' + (st==='todo'?' active':'') + '" onclick="setSuggStatus(\'' + ej(s.id) + '\',\'todo\')">📋 To Do</button>';
+            ctrlHtml += '<button class="sugg-status-btn' + (st==='in-progress'?' active':'') + '" onclick="setSuggStatus(\'' + ej(s.id) + '\',\'in-progress\')">🔄 In Progress</button>';
+            ctrlHtml += '<button class="sugg-status-btn' + (st==='completed'?' active':'') + '" onclick="setSuggStatus(\'' + ej(s.id) + '\',\'completed\')">✅ Completed</button>';
+            if (isAdmin) {
+              ctrlHtml += '<button class="sugg-status-btn' + (st==='discarded'?' active':'') + '" onclick="setSuggStatus(\'' + ej(s.id) + '\',\'discarded\')">🚫 Discard</button>';
+              ctrlHtml += '<button class="sugg-del-btn" onclick="suggDelete(\'' + ej(s.id) + '\')">🗑️ Delete</button>';
+              ctrlHtml += '<input class="sugg-comment-inp" id="sc-' + s.id + '" placeholder="Add note…" value="' + attr(s.admin_note || '') + '"/>';
+              ctrlHtml += '<button class="sugg-save-btn" onclick="suggSaveNote(\'' + ej(s.id) + '\')">💬 Save</button>';
+            }
+            ctrlHtml += '</div>';
           }
-          return '<div class="scard' + (isDone ? ' done' : '') + '" id="sc-card-' + s.id + '"><div class="sc-h"><div class="sc-av">' + (s.author || '?').charAt(0).toUpperCase() + '</div><div><div class="sc-au">' + e(s.author || 'Anonymous') + '</div><div class="sc-t">' + ti + '</div></div></div>' +
-            '<div class="sc-tx">' + e(s.text || '') + '</div>' + (tagged ? '<div style="margin-top:4px;">' + tagged + '</div>' : '') + commentHtml + adminHtml + '</div>';
+          var badge = isRoleSugg ? '<span class="role-sugg-badge">🌟 Role</span>' : '';
+          return '<div class="scard' + statusClass + '" id="sc-card-' + s.id + '"><div class="sc-h"><div class="sc-av">' + (s.author || '?').charAt(0).toUpperCase() + '</div><div><div class="sc-au">' + e(s.author || 'Anonymous') + badge + '</div><div class="sc-t">' + ti + '</div></div></div>' +
+            '<div class="sc-tx">' + e(s.text || '') + '</div>' + (tagged ? '<div style="margin-top:4px;">' + tagged + '</div>' : '') + commentHtml + ctrlHtml + '</div>';
         }).join('');
       });
     }
@@ -2415,6 +2425,16 @@
       var newStatus = isDone ? null : 'done';
       patch('suggestions', 'id=eq.' + sid, { status: newStatus }).then(function() {
         showToast(isDone ? 'Marked as pending.' : '✅ Marked done!');
+        loadSuggestions();
+      });
+    }
+
+    function setSuggStatus(sid, status) {
+      if (!cu || cu.role === 'guest') { showToast('Login required.'); return; }
+      if ((status === 'discarded') && cu.role !== 'admin') { showToast('Admin only.'); return; }
+      patch('suggestions', 'id=eq.' + sid, { status: status === 'todo' ? null : status }).then(function() {
+        var labels = { 'todo': '📋 To Do', 'in-progress': '🔄 In Progress', 'completed': '✅ Completed', 'discarded': '🚫 Discarded' };
+        showToast((labels[status] || status) + ' saved!');
         loadSuggestions();
       });
     }
@@ -2543,6 +2563,17 @@
       if (t.dataset.upPerf) { movePerfUp(t.dataset.upPerf, t.dataset.upPev); return; }
       if (t.dataset.dnPerf) { movePerfDn(t.dataset.dnPerf, t.dataset.dnPev); return; }
       if (t.dataset.sugRid) { submitRoleSuggestion(t.dataset.sugRid); return; }
+      if (t.dataset.sugLikeRid) {
+        if (!cu || cu.role === 'guest') { showToast('Please log in to like.'); return; }
+        var isMine = t.dataset.sugLikeMine === 'true';
+        var likeRid = t.dataset.sugLikeRid, likeNm = t.dataset.sugLikeNm;
+        if (isMine) {
+          del('role_supports', 'role_id=eq.' + likeRid + '&user_id=eq.' + cu.id + '&target_user_id=eq.' + likeNm).then(loadRoleData);
+        } else {
+          post('role_supports', { role_id: likeRid, user_id: cu.id, target_user_id: likeNm, username: cu.username, full_name: cu.full_name, created_at: new Date().toISOString() }).then(loadRoleData);
+        }
+        return;
+      }
       if (t.dataset.supRid) {
         var isMine = t.dataset.supMine === 'true';
         toggleRoleSupport(t.dataset.supRid, t.dataset.supUid, t.dataset.supNm, isMine); return;
