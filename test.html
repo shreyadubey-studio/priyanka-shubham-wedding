@@ -2254,7 +2254,10 @@
           h += '</div>';
           h += '<div class="tname">' + e(m.full_name || m.username) + '</div>';
           h += '<div class="tbadge ' + badge + '">' + badge + '</div>';
-          if (m.phone) h += '<div class="troles" style="font-size:12px;color:rgba(232,193,122,.5);">\ud83d\udcf1 ' + e(m.phone) + '</div>';
+          var isShreya = m.phone && (m.phone.indexOf('9109527063') !== -1 || m.username === 'shreya' || m.username === 'shreyadubey');
+          if (m.phone && (isShreya || (cu && cu.role === 'admin'))) {
+            h += '<div class="troles" style="font-size:12px;color:rgba(232,193,122,.5);">\ud83d\udcf1 ' + e(m.phone) + '</div>';
+          }
           if (roleNames) h += '<div class="troles">\u2736 ' + e(roleNames) + '</div>';
           h += '</div>';
           return h;
