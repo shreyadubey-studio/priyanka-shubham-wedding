@@ -628,8 +628,6 @@
 
       <!-- roles -->
       <div class="sec" id="sec-roles">
-        <div class="s-eye">भूमिका</div>
-        <div class="s-ti">अपनी <em>भूमिका</em> चुनें</div>
         <div class="s-sub">अपनी भूमिका चुनें ✦</div>
         <div id="rolesC"><div class="spin">Loading roles…</div></div>
         <div class="arbox">
@@ -1961,7 +1959,7 @@
           suggList.appendChild(row);
         }
         showToast('\u2705 ' + nm + ' suggested!');
-        setTimeout(loadRoleData, 5000);
+        // No setTimeout reload — optimistic card persists until admin approves/rejects
       });
     }
 
@@ -2378,8 +2376,20 @@
         headers: { 'apikey': KEY, 'Authorization': 'Bearer ' + KEY, 'Content-Type': file.type, 'x-upsert': 'true' },
         body: file
       }).then(function(r) {
-        return r.ok ? 'https://fwbbfsfjgmuuzqymxtdv.supabase.co/storage/v1/object/public/' + bkt + '/' + nm : null;
-      }).catch(function() { return null; });
+        if (r.ok) {
+          return 'https://fwbbfsfjgmuuzqymxtdv.supabase.co/storage/v1/object/public/' + bkt + '/' + nm;
+        } else {
+          return r.text().then(function(txt) {
+            console.error('Upload failed:', r.status, txt);
+            showToast('\u26a0\ufe0f Upload failed: ' + (r.status === 404 ? 'Storage bucket not found. Create "wedding-photos" bucket in Supabase.' : r.status === 403 ? 'Permission denied. Check storage policies.' : 'Error ' + r.status));
+            return null;
+          });
+        }
+      }).catch(function(err) {
+        console.error('Upload error:', err);
+        showToast('\u26a0\ufe0f Network error during upload.');
+        return null;
+      });
     }
 
     /* ===========================
@@ -2422,7 +2432,19 @@
       var el = document.getElementById('suggList'); if (!el) return;
       el.innerHTML = '<div class="spin">Loading\u2026</div>';
       var isAdmin = cu && cu.role === 'admin';
+      var LS_SUGG_BACKUP = 'ps_suggestions_backup';
       get('suggestions', 'select=*&order=created_at.desc&limit=40').then(function(d) {
+        var supabaseIds = {};
+        if (d && Array.isArray(d)) { d.forEach(function(s) { supabaseIds[s.id] = true; }); }
+        // Merge localStorage backup — show items not yet confirmed in Supabase
+        try {
+          var localSuggs = JSON.parse(localStorage.getItem(LS_SUGG_BACKUP) || '[]');
+          localSuggs.forEach(function(s) {
+            if (!supabaseIds[s.id]) {
+              (d = d || []).unshift(s);
+            }
+          });
+        } catch(x) {}
         if (!d || !d.length) { el.innerHTML = '<div class="empty">No suggestions yet. Be the first! \u2736</div>'; return; }
         el.innerHTML = d.map(function(s) {
           var dt = new Date(s.created_at), ti = dt.toLocaleDateString('en-IN') + ' ' + dt.toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' });
@@ -2519,7 +2541,14 @@
           list.insertBefore(tmp.firstChild, list.firstChild);
         }
         showToast('\u2713 Suggestion submitted!');
-        setTimeout(loadSuggestions, 5000);
+        // Save to localStorage as backup so suggestion survives page refresh
+        var LS_SUGG_BACKUP = 'ps_suggestions_backup';
+        try {
+          var localSuggestions = JSON.parse(localStorage.getItem(LS_SUGG_BACKUP) || '[]');
+          localSuggestions.unshift({ id: 'ls_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9), author: nm, text: tx, tags: tags, created_at: new Date().toISOString() });
+          localStorage.setItem(LS_SUGG_BACKUP, JSON.stringify(localSuggestions));
+        } catch(x) {}
+        // No setTimeout reload — optimistic card persists until resolved/deleted
       });
     }
 
