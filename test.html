@@ -611,7 +611,7 @@
             <div class="chip" data-g="mothers">👩‍👧 Mothers</div>
             <div class="chip" data-g="ladies">💃 Ladies</div>
             <div class="chip" data-g="siblings">🤝 Siblings</div>
-            <div class="chip" data-g="dee_jiju">🥂 Dee &amp; Jiju</div>
+            <div class="chip" data-g="dee_jiju">✨ Dee &amp; Jiju</div>
             <div class="chip" data-g="unmarried">💍 Unmarried</div>
           </div>
           <button class="f-cl" id="fCl" type="button" onclick="clearF()">✕ Filter हटाएँ</button>
@@ -902,7 +902,7 @@
             <option value="baraat">🐎 Baraat</option>
             <option value="haldi">🌿 Haldi</option>
             <option value="mehndi">🌸 Mehndi</option>
-            <option value="reception">🥂 Reception</option>
+            <option value="reception">✨ Reception</option>
           </select>
         </div>
       </div>
@@ -1093,7 +1093,7 @@
       },
       {
         id:'reception',
-        icon:'🥂',
+        icon:'✨',
         subtitle:'स्वागत समारोह',
         title:'Reception',
         date:'3 July',
@@ -2380,24 +2380,29 @@
 
     function uploadFile(file) {
       var bkt = 'wedding-photos';
-      var nm  = Date.now() + '_' + (file.name || 'photo.jpg').replace(/[^a-zA-Z0-9._-]/g, '_');
+      var rand = Math.random().toString(36).substring(2, 8);
+      var nm = Date.now() + '_' + rand + '_' + (file.name || 'photo.jpg').replace(/[^a-zA-Z0-9._-]/g, '_');
       return fetch('https://fwbbfsfjgmuuzqymxtdv.supabase.co/storage/v1/object/' + bkt + '/' + nm, {
         method: 'POST',
-        headers: { 'apikey': KEY, 'Authorization': 'Bearer ' + KEY, 'Content-Type': file.type, 'x-upsert': 'true' },
+        headers: {
+          'apikey': KEY,
+          'Authorization': 'Bearer ' + KEY,
+          'Content-Type': file.type || 'image/jpeg',
+          'x-upsert': 'true'
+        },
         body: file
       }).then(function(r) {
-        if (r.ok) {
-          return 'https://fwbbfsfjgmuuzqymxtdv.supabase.co/storage/v1/object/public/' + bkt + '/' + nm;
-        } else {
+        if (!r.ok) {
           return r.text().then(function(txt) {
-            console.error('Upload failed:', r.status, txt);
-            showToast('\u26a0\ufe0f Upload failed: ' + (r.status === 404 ? 'Storage bucket not found. Create "wedding-photos" bucket in Supabase.' : r.status === 403 ? 'Permission denied. Check storage policies.' : 'Error ' + r.status));
+            console.error('Upload error ' + r.status + ':', txt);
+            showToast('Upload error ' + r.status + ': ' + (txt || 'Unknown error').substring(0, 100));
             return null;
           });
         }
+        return 'https://fwbbfsfjgmuuzqymxtdv.supabase.co/storage/v1/object/public/' + bkt + '/' + nm;
       }).catch(function(err) {
-        console.error('Upload error:', err);
-        showToast('\u26a0\ufe0f Network error during upload.');
+        console.error('Upload network error:', err);
+        showToast('Network error: ' + (err.message || 'Upload failed'));
         return null;
       });
     }
