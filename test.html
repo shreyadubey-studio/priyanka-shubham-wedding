@@ -1558,7 +1558,9 @@
       var idx = perfs.findIndex(function(p) { return p.id === id; });
       if (idx <= 0) return;
       var above = perfs[idx - 1], cur = perfs[idx];
-      var seqA = above.seq || (idx), seqC = cur.seq || (idx + 1);
+      var seqA = above.seq != null ? above.seq : idx;
+      var seqC = cur.seq != null ? cur.seq : idx + 1;
+      if (seqA === seqC) { seqA = seqC - 1; }
       patch('performances', 'id=eq.' + above.id, { seq: seqC }).then(function() {
         patch('performances', 'id=eq.' + cur.id, { seq: seqA }).then(function() {
           logCh('performances', id, 'update', { action: 'reorder', event: ev });
@@ -1572,7 +1574,9 @@
       var idx = perfs.findIndex(function(p) { return p.id === id; });
       if (idx < 0 || idx >= perfs.length - 1) return;
       var below = perfs[idx + 1], cur = perfs[idx];
-      var seqB = below.seq || (idx + 2), seqC = cur.seq || (idx + 1);
+      var seqB = below.seq != null ? below.seq : idx + 2;
+      var seqC = cur.seq != null ? cur.seq : idx + 1;
+      if (seqB === seqC) { seqB = seqC + 1; }
       patch('performances', 'id=eq.' + below.id, { seq: seqC }).then(function() {
         patch('performances', 'id=eq.' + cur.id, { seq: seqB }).then(function() {
           logCh('performances', id, 'update', { action: 'reorder', event: ev });
