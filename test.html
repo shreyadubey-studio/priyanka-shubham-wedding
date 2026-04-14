@@ -643,8 +643,6 @@
 
       <!-- team -->
       <div class="sec" id="sec-team">
-        <div class="s-eye">विवाह टीम</div>
-        <div class="s-ti">हमारी <em>टीम</em></div>
         <div class="s-sub">हमारी टीम ✦</div>
         <div class="tgrid" id="teamGrid"></div>
         <div class="empty hide" id="teamEmpty">No members yet.</div>
@@ -652,8 +650,6 @@
 
       <!-- gallery -->
       <div class="sec" id="sec-gallery">
-        <div class="s-eye">Photos</div>
-        <div class="s-ti">Wedding <em>Gallery</em></div>
         <div class="s-sub">Wedding Gallery ✦</div>
 
         <div class="gup" id="gupCard" onclick="document.getElementById('gPhotoInput').click()">
@@ -684,16 +680,12 @@
 
       <!-- changes -->
       <div class="sec" id="sec-changes">
-        <div class="s-eye">Change Log</div>
-        <div class="s-ti">Who, <em>What, When</em></div>
         <div class="s-sub">Change Log ✦</div>
         <div id="chLog"><div class="spin">Loading changes…</div></div>
       </div>
 
       <!-- suggestion board -->
       <div class="sec" id="sec-suggest">
-        <div class="s-eye">सुझाव</div>
-        <div class="s-ti">आपके <em>सुझाव</em></div>
         <div class="s-sub">आपके सुझाव ✦</div>
         <div class="sfcard">
           <h4>✦ अपना सुझाव लिखें</h4>
@@ -722,8 +714,6 @@
 
       <!-- info -->
       <div class="sec" id="sec-info">
-        <div class="s-eye">जानकारी</div>
-        <div class="s-ti">विवाह का <em>विवरण</em></div>
         <div class="s-sub">विवरण ✦</div>
 
         <div class="dcard">
@@ -981,6 +971,19 @@
     var _gamesCache = {};
 
     var SECS = ['events','roles','team','gallery','suggest','changes','info','chat'];
+
+    var _dataLoaded = {};
+
+    // Keep-alive ping to prevent Supabase free tier from pausing
+    function keepAlive() {
+      fetch(SB + 'users?select=id&limit=1', {
+        headers: { 'apikey': KEY, 'Authorization': 'Bearer ' + KEY }
+      }).then(function() {
+        console.log('Keep-alive ping sent');
+      }).catch(function(err) { console.error('Keep-alive ping failed:', err); });
+    }
+    keepAlive(); // Ping on page load
+    setInterval(keepAlive, 6 * 60 * 60 * 1000); // Ping every 6 hours
 
     var GK = {
       kids:['kids','children','child','naatu'],
@@ -1269,9 +1272,13 @@
         });
       }
       loadCeremonies();
+      _dataLoaded['events'] = true;
       loadRoleData();
+      _dataLoaded['roles'] = true;
       loadGallery();
+      _dataLoaded['gallery'] = true;
       loadChat();
+      _dataLoaded['chat'] = true;
       startCountdown();
       updateDashCount('all');
       goSec('events');
@@ -2595,12 +2602,15 @@
       var sec = document.getElementById('sec-' + name); if (sec) sec.classList.add('on');
       var bn  = document.getElementById('bn-' + name);  if (bn)  bn.classList.add('on');
       var sn  = document.getElementById('sn-' + name);  if (sn)  sn.classList.add('on');
-      if (name === 'roles')   { if (!Object.keys(allInts).length) loadRoleData(); else renderRoles(); }
-      if (name === 'team')    renderTeam();
-      if (name === 'suggest') loadSuggestions();
-      if (name === 'changes') loadChangeLog();
-      if (name === 'gallery') loadGallery();
-      if (name === 'chat')    loadChat();
+      if (!_dataLoaded[name]) {
+        _dataLoaded[name] = true;
+        if (name === 'roles')   { if (!Object.keys(allInts).length) loadRoleData(); else renderRoles(); }
+        if (name === 'team')    renderTeam();
+        if (name === 'suggest') loadSuggestions();
+        if (name === 'changes') loadChangeLog();
+        if (name === 'gallery') loadGallery();
+        if (name === 'chat')    loadChat();
+      }
       window.scrollTo(0, 0);
     }
 
