@@ -111,19 +111,7 @@
       border-radius:999px;padding:4px 10px;
     }
 
-    .subnav{
-      position:sticky;top:56px;z-index:190;display:flex;overflow-x:auto;
-      padding:0 6px;background:rgba(14,5,8,.95);backdrop-filter:blur(18px);
-      border-bottom:1px solid rgba(196,151,74,.1);
-      scrollbar-width:none;
-    }
-    .subnav::-webkit-scrollbar{display:none}
-    .subnav button{
-      background:none;border:none;cursor:pointer;white-space:nowrap;
-      color:rgba(232,193,122,.34);font-size:11px;font-weight:500;padding:11px 12px;
-      border-bottom:2px solid transparent;
-    }
-    .subnav button.on{color:rgba(232,193,122,.92);border-bottom-color:rgba(196,151,74,.65)}
+
 
     .hero{
       min-height:100vh;
@@ -166,7 +154,8 @@
     .s-sub{color:rgba(232,193,122,.42);font-size:13px;line-height:1.7;margin-bottom:20px}
 
     /* card */
-    .card{background:#231010;border:1px solid rgba(196,151,74,.18);border-radius:18px;margin-bottom:12px;overflow:hidden}
+    .card{background:rgba(35,16,16,.65);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(196,151,74,.12);border-radius:18px;margin-bottom:12px;overflow:hidden;transition:all 0.2s ease}
+    .card:hover{border-color:rgba(196,151,74,.3);transform:translateY(-1px)}
     .ch{padding:15px 16px;display:flex;align-items:center;gap:12px;cursor:pointer}
     .ch:active{background:rgba(196,151,74,.06)}
     .c-ico{
@@ -196,7 +185,7 @@
 
     /* bars */
     .fbar,.sfcard,.rbanner,.arbox,.gup,.dcard,.lkcard,.clcard,.ctcard{
-      background:#231010;border:1px solid rgba(196,151,74,.16);border-radius:15px;
+      background:rgba(35,16,16,.65);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(196,151,74,.12);border-radius:15px;
     }
     .fbar,.sfcard,.rbanner,.arbox,.gup,.dcard,.lkcard,.clcard,.ctcard{padding:14px}
     .f-ti,.r-int-lbl,.ep-lbl,.rcat-lbl,.i-lbl,.ct-eye{
@@ -218,7 +207,8 @@
       font-size:10px;background:rgba(196,151,74,.12);border:1px solid rgba(196,151,74,.22);
       color:rgba(196,151,74,.82);padding:2px 7px;border-radius:999px;font-weight:600
     }
-    .pc{background:#2E1418;border:1px solid rgba(196,151,74,.15);border-radius:14px;padding:12px 14px;margin-bottom:9px;position:relative}
+    .pc{background:rgba(46,20,24,.65);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(196,151,74,.12);border-radius:14px;padding:12px 14px;margin-bottom:9px;position:relative;transition:all 0.2s ease}
+    .pc:hover{border-color:rgba(196,151,74,.3);transform:translateY(-1px)}
     .pc.hidden{display:none}
     .pc-num{
       position:absolute;top:10px;right:10px;width:20px;height:20px;border-radius:50%;
@@ -229,7 +219,7 @@
     .pc-cat{font-size:11px;color:rgba(196,151,74,.78);font-weight:600;margin-bottom:8px}
     .pg{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:8px}
     .pf,.pc-dan,.icard,.rcard,.tcard,.scard,.citem{
-      background:#231010;border:1px solid rgba(196,151,74,.14);border-radius:12px;padding:10px
+      background:rgba(35,16,16,.65);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(196,151,74,.12);border-radius:12px;padding:10px
     }
     .pfl{font-size:9px;font-weight:600;letter-spacing:.13em;text-transform:uppercase;color:rgba(196,151,74,.6);margin-bottom:2px}
     .pfv{font-size:12px;color:rgba(232,193,122,.84)}
@@ -264,7 +254,9 @@
     /* roles */
     .rbanner h3{font-family:'Cormorant Garamond',serif;font-size:21px;font-style:italic;font-weight:400;color:rgba(232,193,122,.9);margin-bottom:4px}
     .rbanner p,.arbox p{font-size:12px;color:rgba(232,193,122,.36);line-height:1.65}
-    .rgrid,.tgrid,.igrid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+    .rgrid,.tgrid,.igrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .rcard{padding:16px;transition:all 0.2s ease}
+    .rcard:hover{border-color:rgba(196,151,74,.3);transform:translateY(-1px)}
     .rtop{display:flex;gap:8px;align-items:flex-start;margin-bottom:6px}
     .rico{font-size:20px;flex-shrink:0;margin-top:1px}
     .rname{font-family:'Cormorant Garamond',serif;font-size:15px;color:rgba(232,193,122,.92)}
@@ -284,7 +276,8 @@
     .ip-btns{display:flex;gap:5px;flex-wrap:wrap}
 
     /* team */
-    .tcard{text-align:center}
+    .tcard{text-align:center;padding:16px;transition:all 0.2s ease}
+    .tcard:hover{border-color:rgba(196,151,74,.3);transform:translateY(-1px)}
     .tav{
       width:64px;height:64px;border-radius:50%;overflow:hidden;margin:0 auto 8px;cursor:pointer;position:relative;
       display:flex;align-items:center;justify-content:center;background:rgba(196,151,74,.1);border:2px solid rgba(196,151,74,.24)
@@ -479,15 +472,6 @@
       </div>
     </div>
 
-    <div class="subnav" id="subnav">
-      <button type="button" id="sn-events" onclick="goSec('events')">🗓 Events</button>
-      <button type="button" id="sn-roles" onclick="goSec('roles')">✋ Roles</button>
-      <button type="button" id="sn-team" onclick="goSec('team')">👥 Team</button>
-      <button type="button" id="sn-gallery" onclick="goSec('gallery')">📸 Gallery</button>
-      <button type="button" id="sn-suggest" onclick="goSec('suggest')">💡 Suggest</button>
-      <button type="button" id="sn-changes" class="hide" onclick="goSec('changes')">📋 Changes</button>
-      <button type="button" id="sn-info" onclick="goSec('info')">ℹ Info</button>
-    </div>
 
     <div class="hero" id="heroSec">
       <div class="h-eye">एक यादगार विवाह उत्सव</div>
@@ -509,13 +493,7 @@
     <div class="cwrap">
       <!-- events -->
       <div class="sec" id="sec-events">
-        <div class="s-eye">विवाह उत्सव</div>
-        <div class="s-ti">Sabhi <em>Vivah ke Rasme &amp; Karyakram</em></div>
-        <div class="s-sub">हर समारोह कार्ड पर क्लिक करके पूरा विवरण, गाने, क्रम और तैयारी देखें। Admin सब कुछ edit कर सकते हैं।</div>
-
-        <div class="warning" id="storageNote">
-          Test note: ceremony cards, role suggestions, and support/likes use shared Supabase tables if available. If those new tables are missing, the app will fall back to local browser storage for those specific features.
-        </div>
+        <div class="s-ti" style="margin-bottom:18px;">Vivah Utsav — <em>Rasme &amp; Karyakram</em> ✨</div>
 
         <div class="fbar">
           <div class="f-ti">🔍 गाने खोजें</div>
@@ -545,7 +523,7 @@
       <div class="sec" id="sec-roles">
         <div class="s-eye">भूमिका</div>
         <div class="s-ti">अपनी <em>भूमिका</em> चुनें</div>
-        <div class="s-sub">Multiple people किसी भी role में interest दिखा सकते हैं। आप किसी और को suggest भी कर सकते हैं और support/like 🧡 भी दे सकते हैं।</div>
+        <div class="s-sub">अपनी भूमिका चुनें ✦</div>
         <div class="rbanner">
           <h3>आप इस विवाह को यादगार बनाते हैं ✦</h3>
           <p>Role चुनें, interest दिखाएँ, दूसरों को nominate करें, और support/like 🧡 दे सकते हैं।</p>
@@ -566,7 +544,7 @@
       <div class="sec" id="sec-team">
         <div class="s-eye">विवाह टीम</div>
         <div class="s-ti">हमारी <em>टीम</em></div>
-        <div class="s-sub">Management team और role interest वाले सदस्य।</div>
+        <div class="s-sub">हमारी टीम ✦</div>
         <div class="tgrid" id="teamGrid"></div>
         <div class="empty hide" id="teamEmpty">No members yet.</div>
       </div>
@@ -575,7 +553,7 @@
       <div class="sec" id="sec-gallery">
         <div class="s-eye">Photos</div>
         <div class="s-ti">Wedding <em>Gallery</em></div>
-        <div class="s-sub">All wedding memories, references, and planning photos.</div>
+        <div class="s-sub">Wedding Gallery ✦</div>
 
         <div class="gup" id="gupCard" onclick="document.getElementById('gPhotoInput').click()">
           <h4>📷 Add a Photo</h4>
@@ -607,7 +585,7 @@
       <div class="sec" id="sec-changes">
         <div class="s-eye">Change Log</div>
         <div class="s-ti">Who, <em>What, When</em></div>
-        <div class="s-sub">All admin-level changes to cards, songs, roles, and assignments.</div>
+        <div class="s-sub">Change Log ✦</div>
         <div id="chLog"><div class="spin">Loading changes…</div></div>
       </div>
 
@@ -615,7 +593,7 @@
       <div class="sec" id="sec-suggest">
         <div class="s-eye">सुझाव</div>
         <div class="s-ti">आपके <em>सुझाव</em></div>
-        <div class="s-sub">Any idea, logistics suggestion, or coordination note can go here.</div>
+        <div class="s-sub">आपके सुझाव ✦</div>
         <div class="sfcard">
           <h4>✦ अपना सुझाव लिखें</h4>
           <p>@नाम लिखकर tag करें।</p>
@@ -631,11 +609,21 @@
         <div id="suggList"><div class="spin">Loading suggestions…</div></div>
       </div>
 
+      <!-- chat -->
+      <div class="sec" id="sec-chat">
+        <div class="s-ti" style="margin-bottom:18px;">Team <em>Chat</em> 💬</div>
+        <div id="chatMessages" style="max-height:60vh;overflow-y:auto;padding-bottom:12px;"></div>
+        <div style="display:flex;gap:8px;position:sticky;bottom:70px;background:#1A0A0C;padding:12px 0;">
+          <input class="linp" id="chatInput" placeholder="Type a message..." style="flex:1;margin:0;" />
+          <button class="bsave" type="button" onclick="sendChat()" style="padding:12px 20px;">Send</button>
+        </div>
+      </div>
+
       <!-- info -->
       <div class="sec" id="sec-info">
         <div class="s-eye">जानकारी</div>
         <div class="s-ti">विवाह का <em>विवरण</em></div>
-        <div class="s-sub">Planning, venue, access, and quick day-of reminders.</div>
+        <div class="s-sub">विवरण ✦</div>
 
         <div class="dcard">
           <div class="i-ico">👗</div>
@@ -708,6 +696,7 @@
       <button id="bn-team" type="button" onclick="goSec('team')"><span class="bi">👥</span>Team</button>
       <button id="bn-gallery" type="button" onclick="goSec('gallery')"><span class="bi">📸</span>Gallery</button>
       <button id="bn-suggest" type="button" onclick="goSec('suggest')"><span class="bi">💡</span>Suggest</button>
+      <button id="bn-chat" type="button" onclick="goSec('chat')"><span class="bi">💬</span>Chat</button>
       <button id="bn-info" type="button" onclick="goSec('info')"><span class="bi">ℹ️</span>Info</button>
     </div>
   </div>
@@ -888,7 +877,7 @@
     var pen = null;
     var _perfsCache = {};
 
-    var SECS = ['events','roles','team','gallery','suggest','changes','info'];
+    var SECS = ['events','roles','team','gallery','suggest','changes','info','chat'];
 
     var GK = {
       kids:['kids','children','child','naatu'],
@@ -1159,9 +1148,20 @@
       var snc = document.getElementById('sn-changes');
       if (snc) snc.classList.toggle('hide', !isAdmin);
       document.querySelectorAll('.epb').forEach(function(b) { b.classList.toggle('hide', !canEdit); });
+      if (cu.role === 'guest') {
+        var bnChat = document.getElementById('bn-chat');
+        if (bnChat) bnChat.classList.add('hide');
+      }
+      var chatInp = document.getElementById('chatInput');
+      if (chatInp) {
+        chatInp.addEventListener('keydown', function(ev) {
+          if (ev.key === 'Enter') sendChat();
+        });
+      }
       loadCeremonies();
       loadRoleData();
       loadGallery();
+      loadChat();
       goSec('events');
       setInterval(function() {
         var evSec = document.getElementById('sec-events');
@@ -1785,11 +1785,16 @@
             });
             html += '</div>';
           }
-          if (canInt && !isAdmin) {
-            html += '<button class="b-int' + (iM ? ' on' : '') + '" type="button" data-int-rid="' + r.id + '" data-int-mine="' + iM + '">' + (iM ? '\ud83c\udf3c Interested \u2713 (tap to remove)' : '\ud83c\udf3c Interested?') + '</button>';
+          if (canInt) {
+            html += '<button class="b-int' + (iM ? ' on' : '') + '" type="button" data-int-rid="' + r.id + '" data-int-mine="' + iM + '">' + (iM ? '\ud83c\udf3c Interested \u2713 (tap to remove)' : '\ud83c\udf3c I\'m Interested') + '</button>';
           }
           if (suggs.length) {
-            html += '<div style="margin-top:5px;font-size:10px;color:rgba(196,151,74,.55);">Suggested: ' + suggs.map(function(s) { return e(s.suggested_name || s.full_name || ''); }).join(', ') + '</div>';
+            html += '<div style="margin-top:8px;"><div style="font-size:9px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(196,151,74,.55);margin-bottom:5px;">Suggested</div><div style="display:flex;flex-wrap:wrap;gap:5px;">';
+            suggs.forEach(function(s) {
+              var nm = s.suggested_name || s.full_name || '';
+              html += '<span style="display:inline-flex;align-items:center;font-size:11px;padding:3px 10px;border-radius:999px;background:rgba(196,151,74,.13);border:1px solid rgba(196,151,74,.28);color:rgba(232,193,122,.88);font-weight:600;">\ud83c\udf1f ' + e(nm) + '</span>';
+            });
+            html += '</div></div>';
           }
           if (canInt) {
             html += '<div class="role-suggest-row">';
@@ -1854,7 +1859,7 @@
         var allR = getAllRoles();
         grid.innerHTML = members.map(function(m) {
           var initials = (m.full_name || m.username || '?').split(' ').map(function(w) { return w[0]; }).join('').slice(0, 2).toUpperCase();
-          var badge = m.role === 'admin' ? 'admin' : (m.role === 'coordinator' ? 'coordinator' : 'member');
+          var badge = 'member';
           var roleNames = Object.keys(allApprovals).filter(function(rid) {
             return (allApprovals[rid] || []).some(function(a) { return a.user_id === m.id; });
           }).map(function(rid) {
@@ -2106,6 +2111,7 @@
       if (name === 'suggest') loadSuggestions();
       if (name === 'changes') loadChangeLog();
       if (name === 'gallery') loadGallery();
+      if (name === 'chat')    loadChat();
       window.scrollTo(0, 0);
     }
 
@@ -2273,6 +2279,70 @@
         .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
         .replace(/"/g,'&quot;').replace(/'/g,'&#39;');
     }
+    /* ===========================
+       TEAM CHAT
+    =========================== */
+    var chatMessages = [];
+
+    function loadChat() {
+      get('chat_messages', 'select=*&order=created_at.asc&limit=100').then(function(d) {
+        if (d && d.length) {
+          chatMessages = d;
+        } else {
+          chatMessages = JSON.parse(localStorage.getItem('ps_chat') || '[]');
+        }
+        renderChat();
+      }).catch(function() {
+        chatMessages = JSON.parse(localStorage.getItem('ps_chat') || '[]');
+        renderChat();
+      });
+    }
+
+    function renderChat() {
+      var cont = document.getElementById('chatMessages');
+      if (!cont) return;
+      if (!chatMessages.length) {
+        cont.innerHTML = '<div class="empty">No messages yet. Start the conversation! 💬</div>';
+        return;
+      }
+      var html = '';
+      chatMessages.forEach(function(m) {
+        var isMe = cu && m.user_id === cu.id;
+        var time = m.created_at ? new Date(m.created_at).toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' }) : '';
+        var date = m.created_at ? new Date(m.created_at).toLocaleDateString('en-IN', { day: 'numeric', month: 'short' }) : '';
+        html += '<div style="display:flex;justify-content:' + (isMe ? 'flex-end' : 'flex-start') + ';margin-bottom:8px;">';
+        html += '<div style="max-width:75%;padding:10px 14px;border-radius:' + (isMe ? '16px 16px 4px 16px' : '16px 16px 16px 4px') + ';';
+        html += 'background:' + (isMe ? 'rgba(196,151,74,.18)' : 'rgba(255,255,255,.05)') + ';';
+        html += 'border:1px solid ' + (isMe ? 'rgba(196,151,74,.25)' : 'rgba(196,151,74,.1)') + ';">';
+        if (!isMe) html += '<div style="font-size:11px;font-weight:600;color:rgba(196,151,74,.8);margin-bottom:3px;">' + e(m.full_name || m.username || 'User') + '</div>';
+        html += '<div style="font-size:13px;color:rgba(232,193,122,.88);line-height:1.5;">' + e(m.message) + '</div>';
+        html += '<div style="font-size:9px;color:rgba(232,193,122,.25);margin-top:4px;text-align:right;">' + date + ' ' + time + '</div>';
+        html += '</div></div>';
+      });
+      cont.innerHTML = html;
+      cont.scrollTop = cont.scrollHeight;
+    }
+
+    function sendChat() {
+      var inp = document.getElementById('chatInput');
+      if (!inp || !inp.value.trim() || !cu) return;
+      var msg = {
+        user_id: cu.id,
+        username: cu.username,
+        full_name: cu.full_name,
+        message: inp.value.trim(),
+        created_at: new Date().toISOString()
+      };
+      inp.value = '';
+      post('chat_messages', msg).then(function() {
+        loadChat();
+      }).catch(function() {
+        chatMessages.push(msg);
+        localStorage.setItem('ps_chat', JSON.stringify(chatMessages));
+        renderChat();
+      });
+    }
+
     function attr(t) {
       return String(t == null ? '' : t)
         .replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/'/g,'&#39;')
