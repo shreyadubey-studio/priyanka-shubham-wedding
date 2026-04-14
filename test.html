@@ -211,11 +211,11 @@
     .pc:hover{border-color:rgba(196,151,74,.3);transform:translateY(-1px)}
     .pc.hidden{display:none}
     .pc-num{
-      position:absolute;top:10px;right:10px;width:20px;height:20px;border-radius:50%;
+      width:20px;height:20px;border-radius:50%;
       background:linear-gradient(135deg,#8B6B35,#C4974A);display:flex;align-items:center;justify-content:center;
-      color:#1A0A0C;font-size:9px;font-weight:700
+      color:#1A0A0C;font-size:9px;font-weight:700;flex-shrink:0
     }
-    .pc-song{font-family:'Cormorant Garamond',serif;font-size:17px;color:rgba(232,193,122,.95);margin-bottom:2px;padding-right:28px}
+    .pc-song{font-family:'Cormorant Garamond',serif;font-size:17px;color:rgba(232,193,122,.95);margin-bottom:2px;}
     .pc-cat{font-size:11px;color:rgba(196,151,74,.78);font-weight:600;margin-bottom:8px}
     .pg{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:8px}
     .pf,.pc-dan,.icard,.rcard,.tcard,.scard,.citem{
@@ -401,9 +401,10 @@
     .role-sug-btn{font-size:11px!important;padding:4px 12px!important;border-radius:999px!important;}
 
     /* ---- Song collapsible ---- */
-    .pc-header{display:flex;align-items:center;gap:8px;cursor:pointer;user-select:none;padding-bottom:0;}
+    .pc-header{display:flex;align-items:flex-start;gap:8px;cursor:pointer;user-select:none;padding-bottom:0;}
     .pc-header:active{opacity:.8;}
-    .pc-arrow{font-size:13px;color:rgba(196,151,74,.55);transition:transform .25s;margin-left:auto;flex-shrink:0;width:20px;text-align:center;}
+    .pc-num-col{display:flex;flex-direction:column;align-items:center;gap:4px;flex-shrink:0;}
+    .pc-arrow{font-size:11px;color:rgba(196,151,74,.55);transition:transform .25s;}
     .pc-arrow.open{transform:rotate(180deg);}
     .pc-body{display:none;padding-top:10px;}
     .pc-body.open{display:block;}
@@ -465,16 +466,26 @@
     .hdash-label{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:rgba(196,151,74,.65);margin-bottom:3px;}
     .hdash-count{font-family:'Cormorant Garamond',serif;font-size:22px;color:rgba(232,193,122,.9);}
 
-    /* ---- Suggestion admin controls ---- */
-    .sugg-admin-row{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px;padding-top:8px;border-top:1px solid rgba(196,151,74,.1);}
-    .sugg-done-btn,.sugg-del-btn{cursor:pointer;border-radius:999px;font-size:11px;font-weight:600;padding:4px 10px;border:1px solid rgba(196,151,74,.2);font-family:'Jost',sans-serif;}
-    .sugg-done-btn{background:rgba(46,125,50,.14);border-color:rgba(46,125,50,.25);color:#90EDA0;}
-    .sugg-del-btn{background:rgba(198,40,40,.12);border-color:rgba(198,40,40,.18);color:#efb3b3;}
+    /* ---- Suggestion status controls ---- */
+    .sugg-status-row{display:flex;gap:4px;flex-wrap:wrap;margin-top:6px;padding-top:8px;border-top:1px solid rgba(196,151,74,.1);}
+    .sugg-status-btn{cursor:pointer;border-radius:999px;font-size:10px;font-weight:600;padding:3px 8px;border:1px solid rgba(196,151,74,.2);background:rgba(196,151,74,.06);color:rgba(232,193,122,.5);font-family:'Jost',sans-serif;transition:all .2s;}
+    .sugg-status-btn.active{background:rgba(196,151,74,.2);color:rgba(232,193,122,.92);border-color:rgba(196,151,74,.4);}
+    .sugg-status-btn.discard.active{background:rgba(198,40,40,.15);color:#efb3b3;border-color:rgba(198,40,40,.25);}
+    .sugg-del-btn{cursor:pointer;border-radius:999px;font-size:11px;font-weight:600;padding:4px 10px;border:1px solid rgba(198,40,40,.18);background:rgba(198,40,40,.12);color:#efb3b3;font-family:'Jost',sans-serif;}
     .sugg-comment-inp{flex:1;min-width:140px;background:rgba(255,255,255,.04);border:1px solid rgba(196,151,74,.2);border-radius:8px;padding:6px 10px;font-size:11px;color:rgba(232,193,122,.9);font-family:'Jost',sans-serif;}
     .sugg-save-btn{cursor:pointer;border-radius:999px;font-size:11px;font-weight:600;padding:4px 10px;border:1px solid rgba(196,151,74,.3);background:rgba(196,151,74,.12);color:rgba(232,193,122,.85);font-family:'Jost',sans-serif;}
-    .scard.done{opacity:.55;text-decoration:none;}
+    .scard.done{opacity:.55;}
     .scard.done .sc-tx{text-decoration:line-through;color:rgba(232,193,122,.4);}
+    .scard.progress{border-left:3px solid rgba(196,151,74,.6);}
+    .scard.discarded{opacity:.4;border-left:3px solid rgba(198,40,40,.4);}
     .scard-comment{font-size:11px;color:rgba(196,151,74,.8);font-style:italic;margin-top:6px;padding:6px 8px;background:rgba(196,151,74,.07);border-radius:6px;border-left:2px solid rgba(196,151,74,.3);}
+    /* ---- Role suggestion items inside role cards ---- */
+    .role-sugg-item{display:flex;align-items:center;gap:6px;padding:4px 0;border-bottom:1px solid rgba(196,151,74,.08);flex-wrap:wrap;}
+    .role-sugg-item:last-child{border-bottom:none;}
+    .role-sugg-name{font-size:11px;color:rgba(232,193,122,.88);font-weight:600;}
+    .role-sugg-by{font-size:10px;color:rgba(232,193,122,.35);}
+    .b-sugg-like{background:none;border:none;cursor:pointer;font-size:12px;padding:0 4px;color:rgba(196,151,74,.6);font-family:'Jost',sans-serif;}
+    .b-sugg-like.liked{color:#e87a5a;}
   </style>
 </head>
 <body>
@@ -635,11 +646,6 @@
           <p>Role चुनें, interest दिखाएँ, दूसरों को nominate करें, और support/like 🧡 दे सकते हैं।</p>
         </div>
         <div id="rolesC"><div class="spin">Loading roles…</div></div>
-        <div id="roleSuggestionsPanel" class="rbanner" style="margin-top:14px;margin-bottom:14px;display:none;">
-          <h3>📋 Received Role Suggestions</h3>
-          <p>Suggestions submitted by team members for various roles.</p>
-          <div id="roleSuggestionsList" style="margin-top:10px;"></div>
-        </div>
         <div class="arbox">
           <h4>✦ नई भूमिका जोड़ें</h4>
           <p>अगर कोई role missing हो, admin यहाँ से add कर सकती हैं।</p>
@@ -982,6 +988,7 @@
     var roleSupports = {};
     var localRoleSuggestions = [];
     var localRoleSupports = [];
+    var localSuggLikes = {};
 
     var photoTags = [];
     var sgTags = [];
@@ -1568,9 +1575,11 @@
         var h = '<div class="pc" id="pc-' + p.id + '">';
         /* ── Collapsed header (always visible) ── */
         h += '<div class="pc-header" onclick="toggleSongBody(\'' + ej(p.id) + '\')">';
+        h += '<div class="pc-num-col">';
         h += '<div class="pc-num">' + e(p.seq || '?') + '</div>';
-        h += '<div class="pc-song">' + e(p.song) + '</div>';
         h += '<div class="pc-arrow" id="' + arrowId + '">▼</div>';
+        h += '</div>';
+        h += '<div class="pc-song">' + e(p.song) + '</div>';
         h += '</div>';
         /* ── Collapsible body ── */
         h += '<div class="pc-body" id="' + bodyId + '">';
@@ -1895,6 +1904,8 @@
     =========================== */
     var LS_SUGG_KEY = 'ps_roleSugg_v1';
     var LS_SUP_KEY  = 'ps_roleSupp_v1';
+    var LS_SUGG_LIKES_KEY = 'ps_suggLikes_v1';
+    try { localSuggLikes = JSON.parse(localStorage.getItem(LS_SUGG_LIKES_KEY) || '{}'); } catch(x) { localSuggLikes = {}; }
 
     function toggleRoleSupport(rid, targetUid, targetNm, isMine) {
       if (!cu) return;
@@ -2110,12 +2121,25 @@
             html += '<button class="b-int' + (iM ? ' on' : '') + '" type="button" data-int-rid="' + r.id + '" data-int-mine="' + iM + '">' + (iM ? '\ud83c\udf3c Interested \u2713 (tap to remove)' : '\ud83c\udf3c I\'m Interested') + '</button>';
           }
           if (suggs.length) {
-            html += '<div style="margin-top:8px;"><div style="font-size:9px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(196,151,74,.55);margin-bottom:5px;">Suggested</div><div style="display:flex;flex-wrap:wrap;gap:5px;">';
+            html += '<div style="margin-top:8px;border-top:1px solid rgba(196,151,74,.1);padding-top:8px;">';
+            html += '<div style="font-size:9px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(196,151,74,.55);margin-bottom:6px;">Suggested</div>';
             suggs.forEach(function(s) {
               var nm = s.suggested_name || s.full_name || '';
-              html += '<span style="display:inline-flex;align-items:center;font-size:11px;padding:3px 10px;border-radius:999px;background:rgba(196,151,74,.13);border:1px solid rgba(196,151,74,.28);color:rgba(232,193,122,.88);font-weight:600;">\ud83c\udf1f ' + e(nm) + '</span>';
+              var suggId = s.id || '';
+              var myLikes = localSuggLikes[suggId] || [];
+              var iLiked = cu && myLikes.indexOf(String(cu.id)) !== -1;
+              var likeCount = myLikes.length;
+              html += '<div class="role-sugg-item">';
+              html += '<span class="role-sugg-name">\ud83c\udf1f ' + e(nm) + '</span>';
+              html += '<span class="role-sugg-by">— suggested by ' + e(s.suggested_by || '') + '</span>';
+              if (canInt) {
+                html += '<button class="b-sugg-like' + (iLiked ? ' liked' : '') + '" type="button" onclick="toggleSuggLike(\'' + ej(suggId) + '\')" title="' + (iLiked ? 'Unlike' : 'Like') + '">\ud83e\udde1 ' + likeCount + '</button>';
+              } else if (likeCount > 0) {
+                html += '<span style="font-size:11px;color:rgba(196,151,74,.5);">\ud83e\udde1 ' + likeCount + '</span>';
+              }
+              html += '</div>';
             });
-            html += '</div></div>';
+            html += '</div>';
           }
           if (canInt) {
             html += '<div class="role-suggest-row">';
@@ -2146,33 +2170,20 @@
       });
       cont.innerHTML = html;
       updateDashCount('roles');
-      // Show suggestions panel for admin/member
-      if (cu && cu.role !== 'guest') {
-        var panel = document.getElementById('roleSuggestionsPanel');
-        var list = document.getElementById('roleSuggestionsList');
-        if (panel && list) {
-          var allSugs = [];
-          Object.keys(roleSuggestions).forEach(function(rid) {
-            (roleSuggestions[rid] || []).forEach(function(s) {
-              allSugs.push(s);
-            });
-          });
-          if (allSugs.length > 0) {
-            panel.style.display = 'block';
-            var panelHtml = '';
-            allSugs.forEach(function(s) {
-              panelHtml += '<div style="display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid rgba(196,151,74,.1);">';
-              panelHtml += '<span style="font-size:11px;padding:3px 10px;border-radius:999px;background:rgba(196,151,74,.13);border:1px solid rgba(196,151,74,.28);color:rgba(232,193,122,.88);font-weight:600;">\ud83c\udf1f ' + e(s.suggested_name) + '</span>';
-              panelHtml += '<span style="font-size:11px;color:rgba(232,193,122,.4);">for <strong>' + e(s.role_id) + '</strong></span>';
-              panelHtml += '<span style="font-size:10px;color:rgba(232,193,122,.25);margin-left:auto;">by ' + e(s.suggested_by) + '</span>';
-              panelHtml += '</div>';
-            });
-            list.innerHTML = panelHtml;
-          } else {
-            panel.style.display = 'none';
-          }
-        }
+    }
+
+    function toggleSuggLike(suggId) {
+      if (!cu || cu.role === 'guest') return;
+      if (!localSuggLikes[suggId]) localSuggLikes[suggId] = [];
+      var uid = String(cu.id);
+      var idx = localSuggLikes[suggId].indexOf(uid);
+      if (idx !== -1) {
+        localSuggLikes[suggId].splice(idx, 1);
+      } else {
+        localSuggLikes[suggId].push(uid);
       }
+      try { localStorage.setItem(LS_SUGG_LIKES_KEY, JSON.stringify(localSuggLikes)); } catch(x) {}
+      renderRoles();
     }
 
     function addCustomRole() {
@@ -2395,26 +2406,36 @@
           var dt = new Date(s.created_at), ti = dt.toLocaleDateString('en-IN') + ' ' + dt.toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' });
           var tagged = (s.tags || '').split(',').filter(Boolean).map(function(t) { return '<span class="tpill">@' + e(t.trim()) + '</span>'; }).join(' ');
           var isDone = s.status === 'done';
+          var isProgress = s.status === 'progress';
+          var isDiscarded = s.status === 'discarded';
+          var isTodo = !s.status || s.status === 'todo';
+          var isRoleSugg = (s.tags || '').indexOf('role-suggestion') !== -1;
           var commentHtml = s.admin_note ? '<div class="scard-comment">💬 ' + e(s.admin_note) + '</div>' : '';
-          var adminHtml = '';
-          if (isAdmin) {
-            adminHtml = '<div class="sugg-admin-row">';
-            adminHtml += '<button class="sugg-done-btn" onclick="suggMarkDone(\'' + ej(s.id) + '\',' + (isDone ? 'true' : 'false') + ')">' + (isDone ? '↩️ Undo Done' : '✅ Mark Done') + '</button>';
-            adminHtml += '<button class="sugg-del-btn" onclick="suggDelete(\'' + ej(s.id) + '\')">🗑️ Delete</button>';
-            adminHtml += '<input class="sugg-comment-inp" id="sc-' + s.id + '" placeholder="Add note…" value="' + attr(s.admin_note || '') + '"/>';
-            adminHtml += '<button class="sugg-save-btn" onclick="suggSaveNote(\'' + ej(s.id) + '\')">💬 Save</button>';
-            adminHtml += '</div>';
+          var statusBtns = '';
+          if (cu && cu.role !== 'guest') {
+            statusBtns += '<div class="sugg-status-row">';
+            statusBtns += '<button class="sugg-status-btn' + (isTodo ? ' active' : '') + '" onclick="setSuggStatus(\'' + ej(s.id) + '\',\'todo\')">📋 To Do</button>';
+            statusBtns += '<button class="sugg-status-btn' + (isProgress ? ' active' : '') + '" onclick="setSuggStatus(\'' + ej(s.id) + '\',\'progress\')">🔄 In Progress</button>';
+            statusBtns += '<button class="sugg-status-btn' + (isDone ? ' active' : '') + '" onclick="setSuggStatus(\'' + ej(s.id) + '\',\'done\')">✅ Completed</button>';
+            if (isAdmin) {
+              statusBtns += '<button class="sugg-status-btn discard' + (isDiscarded ? ' active' : '') + '" onclick="setSuggStatus(\'' + ej(s.id) + '\',\'discarded\')">🚫 Discard</button>';
+              statusBtns += '<button class="sugg-del-btn" onclick="suggDelete(\'' + ej(s.id) + '\')">🗑️ Delete</button>';
+              statusBtns += '<input class="sugg-comment-inp" id="sc-' + s.id + '" placeholder="Add note\u2026" value="' + attr(s.admin_note || '') + '"/>';
+              statusBtns += '<button class="sugg-save-btn" onclick="suggSaveNote(\'' + ej(s.id) + '\')">💬 Save</button>';
+            }
+            statusBtns += '</div>';
           }
-          return '<div class="scard' + (isDone ? ' done' : '') + '" id="sc-card-' + s.id + '"><div class="sc-h"><div class="sc-av">' + (s.author || '?').charAt(0).toUpperCase() + '</div><div><div class="sc-au">' + e(s.author || 'Anonymous') + '</div><div class="sc-t">' + ti + '</div></div></div>' +
-            '<div class="sc-tx">' + e(s.text || '') + '</div>' + (tagged ? '<div style="margin-top:4px;">' + tagged + '</div>' : '') + commentHtml + adminHtml + '</div>';
+          var statusClass = isDone ? ' done' : isProgress ? ' progress' : isDiscarded ? ' discarded' : '';
+          var roleBadge = isRoleSugg ? '<span style="font-size:10px;padding:2px 7px;border-radius:999px;background:rgba(196,151,74,.15);border:1px solid rgba(196,151,74,.3);color:rgba(232,193,122,.8);font-weight:600;margin-left:6px;">\ud83c\udf1f Role</span>' : '';
+          return '<div class="scard' + statusClass + '" id="sc-card-' + s.id + '"><div class="sc-h"><div class="sc-av">' + (s.author || '?').charAt(0).toUpperCase() + '</div><div><div class="sc-au">' + e(s.author || 'Anonymous') + roleBadge + '</div><div class="sc-t">' + ti + '</div></div></div>' +
+            '<div class="sc-tx">' + e(s.text || '') + '</div>' + (tagged ? '<div style="margin-top:4px;">' + tagged + '</div>' : '') + commentHtml + statusBtns + '</div>';
         }).join('');
       });
     }
 
-    function suggMarkDone(sid, isDone) {
-      var newStatus = isDone ? null : 'done';
-      patch('suggestions', 'id=eq.' + sid, { status: newStatus }).then(function() {
-        showToast(isDone ? 'Marked as pending.' : '✅ Marked done!');
+    function setSuggStatus(sid, status) {
+      patch('suggestions', 'id=eq.' + sid, { status: status }).then(function() {
+        showToast('Status updated!');
         loadSuggestions();
       });
     }
