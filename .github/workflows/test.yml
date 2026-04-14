@@ -9,6 +9,8 @@ on:
 jobs:
   validate-html:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
       - uses: actions/checkout@v4
       - name: Setup Python
@@ -22,6 +24,8 @@ jobs:
 
   check-links:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
       - uses: actions/checkout@v4
       - name: Check for broken internal references
