@@ -493,7 +493,19 @@
     <div class="cwrap">
       <!-- events -->
       <div class="sec" id="sec-events">
-        <div class="s-ti" style="margin-bottom:18px;">Vivah Utsav — <em>Rasme &amp; Karyakram</em> ✨</div>
+        <div style="text-align:center;margin-bottom:22px;">
+          <div style="font-family:'Cormorant Garamond',serif;font-size:clamp(28px,7vw,42px);font-weight:300;color:rgba(232,193,122,.96);line-height:1.1;">
+            Priyanka <span style="font-style:italic;color:rgba(196,151,74,.75);font-size:0.6em;">&amp;</span> Shubham
+          </div>
+          <div style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:16px;color:rgba(196,151,74,.7);margin-top:4px;">
+            शुभ विवाह ✨
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;justify-content:center;margin-top:8px;">
+            <div style="height:1px;width:40px;background:linear-gradient(90deg,transparent,rgba(196,151,74,.4));"></div>
+            <div style="font-size:9px;color:rgba(196,151,74,.4);letter-spacing:3px;">◆ रस्में और कार्यक्रम ◆</div>
+            <div style="height:1px;width:40px;background:linear-gradient(90deg,rgba(196,151,74,.4),transparent);"></div>
+          </div>
+        </div>
 
         <div class="fbar">
           <div class="f-ti">🔍 गाने खोजें</div>
@@ -806,6 +818,7 @@
         <div style="margin-bottom:6px;"><div class="el">Notes</div><input class="ei" id="ns-notes" placeholder="Any notes…"/></div>
         <div style="margin-bottom:10px;"><div class="el">Event</div>
           <select class="ei" id="ns-ev">
+            <option value="eng">💍 Engagement</option>
             <option value="sangeet">🎉 Sangeet</option>
             <option value="baraat">🐎 Baraat</option>
             <option value="haldi">🌿 Haldi</option>
@@ -1223,12 +1236,9 @@
         if (c.date)  metaHtml += '<div class="ctag">\ud83d\udcc5 ' + e(c.date) + '</div>';
         if (c.time)  metaHtml += '<div class="ctag">\ud83d\udd50 ' + e(c.time) + '</div>';
         if (c.venue) metaHtml += '<div class="ctag g">\ud83d\udccd ' + e(c.venue) + '</div>';
-        var songSection = '';
-        if (cid !== 'eng') {
-          songSection = '<div class="plbl">\ud83c\udfb5 Songs</div><div id="pp-' + cid + '"><div class="spin">Loading\u2026</div></div>';
-          if (canEdit) {
-            songSection += '<div id="apBtn-' + cid + '" style="margin-top:8px;display:none;"><button class="badd" type="button" onclick="openAddSong(\'' + ej(cid) + '\')">+ Add Song</button></div>';
-          }
+        var songSection = '<div class="plbl">\ud83c\udfb5 Songs</div><div id="pp-' + cid + '"><div class="spin">Loading\u2026</div></div>';
+        if (canEdit) {
+          songSection += '<div id="apBtn-' + cid + '" style="margin-top:8px;display:none;"><button class="badd" type="button" onclick="openAddSong(\'' + ej(cid) + '\')">+ Add Song</button></div>';
         }
         var adminActions = '';
         if (isAdmin) {
@@ -1413,7 +1423,7 @@
     }
 
     function loadAllPerfs() {
-      ceremonies.forEach(function(c) { if (c.id !== 'eng') loadPerfs(c.id); });
+      ceremonies.forEach(function(c) { loadPerfs(c.id); });
     }
 
     function loadPerfs(ev) {
@@ -1649,7 +1659,6 @@
       var sv = ((document.getElementById('fInp') || {}).value || '').toLowerCase().trim();
       var tot = 0;
       ceremonies.forEach(function(c) {
-        if (c.id === 'eng') return;
         var el = document.getElementById('pp-' + c.id); if (!el) return;
         var cards = el.querySelectorAll('.pc'), cnt = 0;
         cards.forEach(function(card) {
@@ -1701,14 +1710,17 @@
           get('custom_roles', 'select=*&order=created_at.asc').then(function(d3) {
             customRoles = (d3 || []).filter(function(r) { return !String(r.name || '').startsWith('__del'); });
             get('role_suggestions', 'select=*').then(function(sg) {
+              roleSuggestions = {};
               if (sg && Array.isArray(sg)) {
-                roleSuggestions = {};
                 sg.forEach(function(s) { if (!roleSuggestions[s.role_id]) roleSuggestions[s.role_id] = []; roleSuggestions[s.role_id].push(s); });
-              } else {
-                try { localRoleSuggestions = JSON.parse(localStorage.getItem(LS_SUGG_KEY) || '[]'); } catch(x) { localRoleSuggestions = []; }
-                roleSuggestions = {};
-                localRoleSuggestions.forEach(function(s) { if (!roleSuggestions[s.role_id]) roleSuggestions[s.role_id] = []; roleSuggestions[s.role_id].push(s); });
               }
+              /* always merge local suggestions so offline/fallback entries are shown */
+              try { localRoleSuggestions = JSON.parse(localStorage.getItem(LS_SUGG_KEY) || '[]'); } catch(x) { localRoleSuggestions = []; }
+              localRoleSuggestions.forEach(function(s) {
+                if (!roleSuggestions[s.role_id]) roleSuggestions[s.role_id] = [];
+                var already = roleSuggestions[s.role_id].some(function(x) { return x.suggested_name === s.suggested_name && x.suggested_by === s.suggested_by; });
+                if (!already) roleSuggestions[s.role_id].push(s);
+              });
               get('role_supports', 'select=*').then(function(sp) {
                 if (sp && Array.isArray(sp)) {
                   roleSupports = {};
