@@ -1053,6 +1053,10 @@
           if (inp) inp.type = inp.type === 'password' ? 'text' : 'password';
         });
       });
+      document.getElementById('tl').addEventListener('click', function() { sTab('l'); });
+      document.getElementById('tr').addEventListener('click', function() { sTab('r'); });
+      document.getElementById('loginBtn').addEventListener('click', doLogin);
+      document.getElementById('regBtn').addEventListener('click', doReg);
     })();
 
     (function tryRestore() {
@@ -1075,8 +1079,13 @@
     function sTab(t) {
       document.getElementById('tl').classList.toggle('on', t === 'l');
       document.getElementById('tr').classList.toggle('on', t === 'r');
-      document.getElementById('fL').style.display = t === 'l' ? 'block' : 'none';
-      document.getElementById('fR').style.display = t === 'r' ? 'block' : 'none';
+      if (t === 'l') {
+        document.getElementById('fL').classList.remove('hide');
+        document.getElementById('fR').classList.add('hide');
+      } else {
+        document.getElementById('fL').classList.add('hide');
+        document.getElementById('fR').classList.remove('hide');
+      }
       document.getElementById('lErr').classList.remove('on');
     }
     function showErr(m) {
