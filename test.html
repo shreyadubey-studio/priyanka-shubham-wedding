@@ -184,10 +184,10 @@
     .std{font-size:12px;color:rgba(232,193,122,.38)}
 
     /* bars */
-    .fbar,.sfcard,.rbanner,.arbox,.gup,.dcard,.lkcard,.clcard,.ctcard{
+    .fbar,.sfcard,.arbox,.gup,.dcard,.lkcard,.clcard,.ctcard{
       background:rgba(35,16,16,.65);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(196,151,74,.12);border-radius:15px;
     }
-    .fbar,.sfcard,.rbanner,.arbox,.gup,.dcard,.lkcard,.clcard,.ctcard{padding:14px}
+    .fbar,.sfcard,.arbox,.gup,.dcard,.lkcard,.clcard,.ctcard{padding:14px}
     .f-ti,.r-int-lbl,.ep-lbl,.rcat-lbl,.i-lbl,.ct-eye{
       font-size:10px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:rgba(196,151,74,.67)
     }
@@ -252,8 +252,7 @@
     .erow{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:6px}
 
     /* roles */
-    .rbanner h3{font-family:'Cormorant Garamond',serif;font-size:21px;font-style:italic;font-weight:400;color:rgba(232,193,122,.9);margin-bottom:4px}
-    .rbanner p,.arbox p{font-size:12px;color:rgba(232,193,122,.36);line-height:1.65}
+    .arbox p{font-size:12px;color:rgba(232,193,122,.36);line-height:1.65}
     .rgrid,.tgrid,.igrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
     .rcard{padding:16px;transition:all 0.2s ease}
     .rcard:hover{border-color:rgba(196,151,74,.3);transform:translateY(-1px)}
@@ -632,10 +631,6 @@
         <div class="s-eye">भूमिका</div>
         <div class="s-ti">अपनी <em>भूमिका</em> चुनें</div>
         <div class="s-sub">अपनी भूमिका चुनें ✦</div>
-        <div class="rbanner">
-          <h3>आप इस विवाह को यादगार बनाते हैं ✦</h3>
-          <p>Role चुनें, interest दिखाएँ, दूसरों को nominate करें, और support/like 🧡 दे सकते हैं।</p>
-        </div>
         <div id="rolesC"><div class="spin">Loading roles…</div></div>
         <div class="arbox">
           <h4>✦ नई भूमिका जोड़ें</h4>
@@ -1966,7 +1961,7 @@
           suggList.appendChild(row);
         }
         showToast('\u2705 ' + nm + ' suggested!');
-        setTimeout(loadRoleData, 1500);
+        setTimeout(loadRoleData, 5000);
       });
     }
 
@@ -2524,7 +2519,7 @@
           list.insertBefore(tmp.firstChild, list.firstChild);
         }
         showToast('\u2713 Suggestion submitted!');
-        setTimeout(loadSuggestions, 1500);
+        setTimeout(loadSuggestions, 5000);
       });
     }
 
