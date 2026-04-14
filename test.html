@@ -399,6 +399,82 @@
     /* ---- Suggest person row ---- */
     .role-suggest-row{display:flex;align-items:center;gap:6px;margin-top:8px;flex-wrap:wrap;}
     .role-sug-btn{font-size:11px!important;padding:4px 12px!important;border-radius:999px!important;}
+
+    /* ---- Song collapsible ---- */
+    .pc-header{display:flex;align-items:center;gap:8px;cursor:pointer;user-select:none;padding-bottom:0;}
+    .pc-header:active{opacity:.8;}
+    .pc-arrow{font-size:13px;color:rgba(196,151,74,.55);transition:transform .25s;margin-left:auto;flex-shrink:0;width:20px;text-align:center;}
+    .pc-arrow.open{transform:rotate(180deg);}
+    .pc-body{display:none;padding-top:10px;}
+    .pc-body.open{display:block;}
+    .pc-divider{height:1px;background:rgba(196,151,74,.12);margin-bottom:10px;}
+
+    /* ---- Game cards ---- */
+    .games-lbl{font-family:'Cormorant Garamond',serif;font-size:18px;color:rgba(232,193,122,.9);margin:14px 0 10px;display:flex;align-items:center;gap:7px;}
+    .gcard{background:rgba(46,20,24,.65);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(196,151,74,.12);border-radius:14px;padding:12px 14px;margin-bottom:9px;transition:all 0.2s ease;}
+    .gcard:hover{border-color:rgba(196,151,74,.3);}
+    .gcard-header{display:flex;align-items:center;gap:8px;cursor:pointer;user-select:none;}
+    .gcard-num{width:20px;height:20px;border-radius:50%;background:linear-gradient(135deg,#8B6B35,#C4974A);display:flex;align-items:center;justify-content:center;color:#1A0A0C;font-size:9px;font-weight:700;flex-shrink:0;}
+    .gcard-name{font-family:'Cormorant Garamond',serif;font-size:16px;color:rgba(232,193,122,.95);flex:1;}
+    .gcard-vis{font-size:14px;}
+    .gcard-arrow{font-size:13px;color:rgba(196,151,74,.55);transition:transform .25s;flex-shrink:0;}
+    .gcard-arrow.open{transform:rotate(180deg);}
+    .gcard-body{display:none;padding-top:10px;border-top:1px solid rgba(196,151,74,.12);margin-top:10px;}
+    .gcard-body.open{display:block;}
+    .gcard-field{margin-bottom:6px;font-size:12px;color:rgba(232,193,122,.65);}
+    .gcard-field strong{font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(196,151,74,.6);display:block;margin-bottom:2px;}
+    .gcard-link{display:inline-flex;align-items:center;gap:4px;font-size:11px;padding:4px 9px;border-radius:999px;background:rgba(196,151,74,.1);border:1px solid rgba(196,151,74,.2);text-decoration:none;margin-top:4px;}
+    .gcard-admin-row{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px;padding-top:8px;border-top:1px solid rgba(196,151,74,.1);}
+    .gform{background:#2E1418;border:1px solid rgba(196,151,74,.18);border-top:3px solid rgba(196,151,74,.6);border-radius:12px;padding:12px;margin-top:8px;display:none;}
+    .gform.open{display:block;}
+    .game-add-btn-wrap{margin-top:10px;}
+
+    /* ---- Toast notifications ---- */
+    .toast-notification{
+      position:fixed;bottom:20px;left:50%;transform:translateX(-50%) translateY(0);
+      background:rgba(30,25,18,.96);border:1px solid rgba(196,151,74,.3);
+      color:rgba(232,193,122,.92);padding:12px 24px;border-radius:10px;
+      font-size:13px;z-index:10000;animation:toastIn .3s ease-out;
+      pointer-events:none;white-space:nowrap;max-width:90vw;text-align:center;
+      font-family:'Jost',sans-serif;
+    }
+    @keyframes toastIn{
+      from{opacity:0;transform:translateX(-50%) translateY(20px);}
+      to{opacity:1;transform:translateX(-50%) translateY(0);}
+    }
+
+    /* ---- Login flash ---- */
+    @keyframes goldFlash{
+      0%{box-shadow:0 0 0 0 rgba(196,151,74,.7);}
+      50%{box-shadow:0 0 15px 5px rgba(196,151,74,.4);}
+      100%{box-shadow:0 0 0 0 rgba(196,151,74,0);}
+    }
+    .login-flash{animation:goldFlash .6s ease-out!important;}
+
+    /* ---- Countdown + Hero Dashboard ---- */
+    .h-countdown{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:15px;color:rgba(196,151,74,.78);margin-top:12px;letter-spacing:.04em;}
+    .hero-dash{display:flex;gap:10px;justify-content:center;margin-top:18px;flex-wrap:wrap;}
+    .hdash-card{
+      background:rgba(35,16,16,.7);border:1px solid rgba(196,151,74,.22);
+      border-radius:14px;padding:12px 18px;text-align:center;cursor:pointer;
+      min-width:80px;transition:all .2s;
+    }
+    .hdash-card:hover{border-color:rgba(196,151,74,.5);transform:translateY(-2px);}
+    .hdash-card:active{transform:translateY(0);}
+    .hdash-icon{font-size:20px;margin-bottom:4px;}
+    .hdash-label{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:rgba(196,151,74,.65);margin-bottom:3px;}
+    .hdash-count{font-family:'Cormorant Garamond',serif;font-size:22px;color:rgba(232,193,122,.9);}
+
+    /* ---- Suggestion admin controls ---- */
+    .sugg-admin-row{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px;padding-top:8px;border-top:1px solid rgba(196,151,74,.1);}
+    .sugg-done-btn,.sugg-del-btn{cursor:pointer;border-radius:999px;font-size:11px;font-weight:600;padding:4px 10px;border:1px solid rgba(196,151,74,.2);font-family:'Jost',sans-serif;}
+    .sugg-done-btn{background:rgba(46,125,50,.14);border-color:rgba(46,125,50,.25);color:#90EDA0;}
+    .sugg-del-btn{background:rgba(198,40,40,.12);border-color:rgba(198,40,40,.18);color:#efb3b3;}
+    .sugg-comment-inp{flex:1;min-width:140px;background:rgba(255,255,255,.04);border:1px solid rgba(196,151,74,.2);border-radius:8px;padding:6px 10px;font-size:11px;color:rgba(232,193,122,.9);font-family:'Jost',sans-serif;}
+    .sugg-save-btn{cursor:pointer;border-radius:999px;font-size:11px;font-weight:600;padding:4px 10px;border:1px solid rgba(196,151,74,.3);background:rgba(196,151,74,.12);color:rgba(232,193,122,.85);font-family:'Jost',sans-serif;}
+    .scard.done{opacity:.55;text-decoration:none;}
+    .scard.done .sc-tx{text-decoration:line-through;color:rgba(232,193,122,.4);}
+    .scard-comment{font-size:11px;color:rgba(196,151,74,.8);font-style:italic;margin-top:6px;padding:6px 8px;background:rgba(196,151,74,.07);border-radius:6px;border-left:2px solid rgba(196,151,74,.3);}
   </style>
 </head>
 <body>
@@ -460,7 +536,7 @@
 
   <div id="appWrap">
     <div class="nav">
-      <div class="nav-brand">Vivah Utsav</div>
+      <div class="nav-brand">शुभ विवाह</div>
       <div class="nav-r">
         <div class="nav-pill" id="navPill"></div>
         <div class="nav-lang" onclick="toggleLang()">
@@ -488,6 +564,24 @@
       <div class="h-date">१ – ३ जुलाई २०२५ · रायपुर</div>
       <div class="h-venue">✦ Royal Club, Chhattisgarh ✦</div>
       <div class="h-cta" onclick="goSec('events')"><div>✦ Explore the Wedding</div></div>
+      <div id="heroCountdown" class="h-countdown"></div>
+      <div class="hero-dash" id="heroDash">
+        <div class="hdash-card" onclick="goSec('roles')">
+          <div class="hdash-icon">✋</div>
+          <div class="hdash-label">Roles</div>
+          <div class="hdash-count" id="dashRolesCount">—</div>
+        </div>
+        <div class="hdash-card" onclick="goSec('events')">
+          <div class="hdash-icon">🎵</div>
+          <div class="hdash-label">Songs</div>
+          <div class="hdash-count" id="dashSongsCount">—</div>
+        </div>
+        <div class="hdash-card" onclick="goSec('events')">
+          <div class="hdash-icon">🎮</div>
+          <div class="hdash-label">Games</div>
+          <div class="hdash-count" id="dashGamesCount">—</div>
+        </div>
+      </div>
     </div>
 
     <div class="cwrap">
@@ -894,6 +988,7 @@
     var pgf = null;
     var pen = null;
     var _perfsCache = {};
+    var _gamesCache = {};
 
     var SECS = ['events','roles','team','gallery','suggest','changes','info','chat'];
 
@@ -1076,6 +1171,13 @@
       });
       document.getElementById('tl').addEventListener('click', function() { sTab('l'); });
       document.getElementById('tr').addEventListener('click', function() { sTab('r'); });
+      document.getElementById('loginBtn').addEventListener('click', function() {
+        var btn = document.getElementById('loginBtn');
+        btn.classList.remove('login-flash');
+        void btn.offsetWidth; /* reflow to restart animation */
+        btn.classList.add('login-flash');
+        btn.addEventListener('animationend', function() { btn.classList.remove('login-flash'); }, { once: true });
+      });
       document.getElementById('loginBtn').addEventListener('click', doLogin);
       document.getElementById('regBtn').addEventListener('click', doReg);
     })();
@@ -1180,6 +1282,8 @@
       loadRoleData();
       loadGallery();
       loadChat();
+      startCountdown();
+      updateDashCount('all');
       goSec('events');
       setInterval(function() {
         var evSec = document.getElementById('sec-events');
@@ -1241,6 +1345,20 @@
         if (c.date)  metaHtml += '<div class="ctag">\ud83d\udcc5 ' + e(c.date) + '</div>';
         if (c.time)  metaHtml += '<div class="ctag">\ud83d\udd50 ' + e(c.time) + '</div>';
         if (c.venue) metaHtml += '<div class="ctag g">\ud83d\udccd ' + e(c.venue) + '</div>';
+        var gameSection = '<div class="games-lbl">\ud83c\udfae Games</div><div id="gp-' + cid + '"><div class="spin">Loading\u2026</div></div>';
+        if (isAdmin) {
+          gameSection += '<div class="game-add-btn-wrap"><button class="badd" type="button" onclick="openAddGameForm(\'' + ej(cid) + '\')">➕ Add Game</button>';
+          gameSection += '<div class="gform" id="gadd-' + cid + '">';
+          gameSection += '<div class="erow"><div><div class="el">Name</div><input class="ei" id="gn-' + cid + '" placeholder="Game name"/></div>';
+          gameSection += '<div><div class="el">Seq #</div><input class="ei" id="gq-' + cid + '" type="number" value="1"/></div></div>';
+          gameSection += '<div style="margin-bottom:6px;"><div class="el">Description</div><textarea class="ei" id="gd-' + cid + '" rows="2" placeholder="Game description…" style="resize:vertical;"></textarea></div>';
+          gameSection += '<div style="margin-bottom:6px;"><div class="el">Link (rules/video)</div><input class="ei" id="gl-' + cid + '" placeholder="https://…"/></div>';
+          gameSection += '<div style="margin-bottom:6px;"><div class="el">Props Needed</div><input class="ei" id="gpr-' + cid + '" placeholder="Chairs, speaker…"/></div>';
+          gameSection += '<div style="margin-bottom:10px;"><div class="el">Led by</div><input class="ei" id="glb-' + cid + '" placeholder="Person leading this game"/></div>';
+          gameSection += '<button class="bsave" type="button" onclick="saveNewGame(\'' + ej(cid) + '\')">✓ Save Game</button> ';
+          gameSection += '<button class="bcancel" type="button" onclick="closeAddGameForm(\'' + ej(cid) + '\')">Cancel</button>';
+          gameSection += '</div></div>';
+        }
         var songSection = '<div class="plbl">\ud83c\udfb5 Songs</div><div id="pp-' + cid + '"><div class="spin">Loading\u2026</div></div>';
         if (canEdit) {
           songSection += '<div id="apBtn-' + cid + '" style="margin-top:8px;display:none;"><button class="badd" type="button" onclick="openAddSong(\'' + ej(cid) + '\')">+ Add Song</button></div>';
@@ -1259,6 +1377,7 @@
         html += '<div class="cb" id="cb-' + cid + '">';
         html += '<div class="c-desc">' + e(c.desc || '') + '</div>';
         if (stepsHtml) html += '<div class="stl">OVERVIEW</div>' + stepsHtml;
+        html += gameSection;
         html += songSection;
         html += '<div class="ep-sec"><div class="ep-lbl">PHOTOS</div><div class="ep-grid" id="ep-' + cid + '"></div>';
         html += '<button class="ep-add epb ' + (canEdit ? '' : 'hide') + '" type="button" data-ev="' + ej(cid) + '">\ud83d\udcf7 Add Photo</button></div>';
@@ -1283,6 +1402,7 @@
         });
       }
       loadAllPerfs();
+      loadAllGames();
       loadAllEventPhotos();
     }
 
@@ -1356,7 +1476,7 @@
         var parts = line.split('|');
         return { title: (parts[0] || '').trim(), desc: (parts[1] || '').trim() };
       }).filter(function(s) { return s.title; }) : [];
-      if (!title) { alert('Title is required.'); return; }
+      if (!title) { showToast('Title is required.'); return; }
       var record = { icon: icon, subtitle: sub, title: title, date: date, time: time, venue: venue, sort_order: order, desc: desc, steps: steps, deletable: true };
       if (currentCeremonyEditingId) {
         var cid = currentCeremonyEditingId;
@@ -1373,7 +1493,7 @@
           renderCeremonies();
         }
       } else {
-        if (!slug) { alert('Slug/ID is required for new card.'); return; }
+        if (!slug) { showToast('Slug/ID is required for new card.'); return; }
         record.id = slug;
         if (ceremonySource === 'supabase') {
           post('ceremony_cards', record).then(function() {
@@ -1443,9 +1563,18 @@
       var canEdit = cu && cu.role !== 'guest';
       var isAdmin = cu && cu.role === 'admin';
       el.innerHTML = perfs.map(function(p, idx) {
+        var bodyId = 'pcb-' + p.id;
+        var arrowId = 'pca-' + p.id;
         var h = '<div class="pc" id="pc-' + p.id + '">';
+        /* ── Collapsed header (always visible) ── */
+        h += '<div class="pc-header" onclick="toggleSongBody(\'' + ej(p.id) + '\')">';
         h += '<div class="pc-num">' + e(p.seq || '?') + '</div>';
         h += '<div class="pc-song">' + e(p.song) + '</div>';
+        h += '<div class="pc-arrow" id="' + arrowId + '">▼</div>';
+        h += '</div>';
+        /* ── Collapsible body ── */
+        h += '<div class="pc-body" id="' + bodyId + '">';
+        h += '<div class="pc-divider"></div>';
         h += '<div class="pc-cat">' + e(p.category || '') + '</div>';
         h += '<div class="pg">';
         h += '<div class="pf"><div class="pfl">Dance Lead</div><div class="pfv' + (p.lead ? '' : ' na') + '">' + e(p.lead || 'TBU') + '</div></div>';
@@ -1490,10 +1619,21 @@
           h += '<button class="bcancel" type="button" data-cancel="' + p.id + '">Cancel</button>';
           h += '</div>';
         }
-        h += '</div>';
+        h += '</div>'; /* end pc-body */
+        h += '</div>'; /* end pc */
         return h;
       }).join('');
+      updateDashCount('songs');
       applyFilter();
+    }
+
+    function toggleSongBody(pid) {
+      var body = document.getElementById('pcb-' + pid);
+      var arrow = document.getElementById('pca-' + pid);
+      if (!body) return;
+      var isOpen = body.classList.contains('open');
+      body.classList.toggle('open', !isOpen);
+      if (arrow) arrow.classList.toggle('open', !isOpen);
     }
 
     function saveEdit(id, ev) {
@@ -1517,8 +1657,8 @@
       };
       patch('performances', 'id=eq.' + id, u).then(function() {
         logCh('performances', id, 'update', { song: u.song, status: u.practice_status, event: nev });
-        if (nev !== ev) { loadPerfs(ev); loadPerfs(nev); alert('\u2713 Moved to ' + nev + '!'); }
-        else { loadPerfs(ev); alert('\u2713 Saved!'); }
+        if (nev !== ev) { loadPerfs(ev); loadPerfs(nev); showToast('\u2713 Moved to ' + nev + '!'); }
+        else { loadPerfs(ev); showToast('\u2713 Saved!'); }
       });
     }
 
@@ -1527,7 +1667,7 @@
 
     function saveNewPerf() {
       var song = document.getElementById('ns-song').value.trim();
-      if (!song) { alert('Enter song name!'); return; }
+      if (!song) { showToast('Enter song name!'); return; }
       var tev = document.getElementById('ns-ev').value || 'sangeet';
       var p = {
         id: tev.charAt(0) + Date.now(),
@@ -1552,7 +1692,7 @@
         ['ns-song','ns-cat','ns-seq','ns-dur','ns-lead','ns-dan','ns-link','ns-out','ns-notes'].forEach(function(i) {
           var el = document.getElementById(i); if (el) el.value = '';
         });
-        alert('\u2713 Added!');
+        showToast('\u2713 Added!');
       });
     }
 
@@ -1564,7 +1704,7 @@
       del('performances', 'id=eq.' + id).then(function() {
         logCh('performances', id, 'delete', { id: id, event: ev });
         loadPerfs(ev);
-        alert('\u2713 Song deleted.');
+        showToast('\u2713 Song deleted.');
       });
     }
 
@@ -1597,6 +1737,156 @@
           logCh('performances', id, 'update', { action: 'reorder', event: ev });
           loadPerfs(ev);
         });
+      });
+    }
+
+    /* ===========================
+       GAMES
+    =========================== */
+    var LS_GAMES_KEY = 'ps_games_v1';
+
+    function loadAllGames() {
+      ceremonies.forEach(function(c) { loadGames(c.id); });
+    }
+
+    function loadGames(cid) {
+      var el = document.getElementById('gp-' + cid); if (!el) return;
+      get('games', 'select=*&ceremony_id=eq.' + cid + '&order=seq.asc').then(function(d) {
+        if (d !== null) {
+          renderGames(cid, d || []);
+        } else {
+          /* fallback: localStorage */
+          var all = [];
+          try { all = JSON.parse(localStorage.getItem(LS_GAMES_KEY) || '[]'); } catch(x) {}
+          renderGames(cid, all.filter(function(g) { return g.ceremony_id === cid; }));
+        }
+      });
+    }
+
+    function renderGames(cid, games) {
+      var el = document.getElementById('gp-' + cid); if (!el) return;
+      _gamesCache[cid] = games;
+      var isAdmin = cu && cu.role === 'admin';
+      var visible = games.filter(function(g) { return isAdmin || g.visible; });
+      if (!visible.length) {
+        el.innerHTML = '<div class="empty">' + (isAdmin ? 'No games yet. Add one below.' : 'No games yet.') + '</div>';
+        updateDashCount('games');
+        return;
+      }
+      el.innerHTML = visible.map(function(g) {
+        var bodyId = 'gcb-' + g.id;
+        var arrowId = 'gca-' + g.id;
+        var visIco = g.visible ? '👁️' : '🔒';
+        var h = '<div class="gcard" id="gc-' + g.id + '">';
+        h += '<div class="gcard-header" onclick="toggleGameBody(\'' + ej(g.id) + '\')">';
+        h += '<div class="gcard-num">' + e(g.seq || '?') + '</div>';
+        h += '<div class="gcard-name">' + e(g.name) + '</div>';
+        if (isAdmin) h += '<span class="gcard-vis" title="' + (g.visible ? 'Visible to all' : 'Hidden from others') + '">' + visIco + '</span>';
+        h += '<div class="gcard-arrow" id="' + arrowId + '">▼</div>';
+        h += '</div>';
+        h += '<div class="gcard-body" id="' + bodyId + '">';
+        if (g.description) { h += '<div class="gcard-field"><strong>Description</strong>' + e(g.description) + '</div>'; }
+        if (g.link) { h += '<a class="gcard-link" href="' + e(g.link) + '" target="_blank" rel="noopener">🔗 Link</a>'; }
+        if (g.props) { h += '<div class="gcard-field"><strong>Props Needed</strong>' + e(g.props) + '</div>'; }
+        if (g.led_by) { h += '<div class="gcard-field"><strong>Led By</strong>' + e(g.led_by) + '</div>'; }
+        if (isAdmin) {
+          h += '<div class="gcard-admin-row">';
+          h += '<button class="ebtn" style="font-size:11px;padding:4px 10px;" onclick="toggleGameVisibility(\'' + ej(g.id) + '\',\'' + ej(cid) + '\',' + (g.visible ? 'true' : 'false') + ')">' + (g.visible ? '🔒 Hide' : '👁️ Show') + '</button>';
+          h += '<button class="b-del-r" style="font-size:11px;padding:4px 10px;cursor:pointer;" onclick="deleteGame(\'' + ej(g.id) + '\',\'' + ej(cid) + '\')">🗑️ Delete</button>';
+          h += '</div>';
+        }
+        h += '</div></div>';
+        return h;
+      }).join('');
+      updateDashCount('games');
+    }
+
+    function toggleGameBody(gid) {
+      var body = document.getElementById('gcb-' + gid);
+      var arrow = document.getElementById('gca-' + gid);
+      if (!body) return;
+      var isOpen = body.classList.contains('open');
+      body.classList.toggle('open', !isOpen);
+      if (arrow) arrow.classList.toggle('open', !isOpen);
+    }
+
+    function openAddGameForm(cid) {
+      var f = document.getElementById('gadd-' + cid);
+      if (f) f.classList.toggle('open');
+    }
+
+    function closeAddGameForm(cid) {
+      var f = document.getElementById('gadd-' + cid);
+      if (f) f.classList.remove('open');
+    }
+
+    function saveNewGame(cid) {
+      var nm = (document.getElementById('gn-' + cid) || {value:''}).value.trim();
+      if (!nm) { showToast('Please enter a game name.'); return; }
+      var g = {
+        id: 'gm_' + Date.now(),
+        ceremony_id: cid,
+        name: nm,
+        description: (document.getElementById('gd-' + cid) || {value:''}).value.trim(),
+        link: (document.getElementById('gl-' + cid) || {value:''}).value.trim(),
+        props: (document.getElementById('gpr-' + cid) || {value:''}).value.trim(),
+        led_by: (document.getElementById('glb-' + cid) || {value:''}).value.trim(),
+        seq: parseInt((document.getElementById('gq-' + cid) || {value:'1'}).value) || 1,
+        visible: false,
+        created_at: new Date().toISOString()
+      };
+      post('games', g).then(function(r) {
+        if (r !== null) {
+          showToast('✓ Game added!');
+        } else {
+          /* localStorage fallback */
+          var all = [];
+          try { all = JSON.parse(localStorage.getItem(LS_GAMES_KEY) || '[]'); } catch(x) {}
+          all.push(g);
+          try { localStorage.setItem(LS_GAMES_KEY, JSON.stringify(all)); } catch(x) {}
+          showToast('✓ Game saved locally.');
+        }
+        closeAddGameForm(cid);
+        ['gn-','gd-','gl-','gpr-','glb-'].forEach(function(pfx) {
+          var el = document.getElementById(pfx + cid); if (el) el.value = '';
+        });
+        var seqEl = document.getElementById('gq-' + cid); if (seqEl) seqEl.value = '1';
+        loadGames(cid);
+      });
+    }
+
+    function toggleGameVisibility(gid, cid, currentlyVisible) {
+      var newVal = !currentlyVisible;
+      patch('games', 'id=eq.' + gid, { visible: newVal }).then(function(r) {
+        if (r !== null) {
+          showToast(newVal ? '👁️ Game is now visible to all.' : '🔒 Game hidden from others.');
+          loadGames(cid);
+        } else {
+          /* localStorage fallback */
+          var all = [];
+          try { all = JSON.parse(localStorage.getItem(LS_GAMES_KEY) || '[]'); } catch(x) {}
+          all = all.map(function(g) { return g.id === gid ? Object.assign({}, g, { visible: newVal }) : g; });
+          try { localStorage.setItem(LS_GAMES_KEY, JSON.stringify(all)); } catch(x) {}
+          showToast(newVal ? '👁️ Game is now visible.' : '🔒 Game hidden.');
+          loadGames(cid);
+        }
+      });
+    }
+
+    function deleteGame(gid, cid) {
+      if (!confirm('Delete this game?')) return;
+      del('games', 'id=eq.' + gid).then(function(r) {
+        if (r !== null) {
+          showToast('🗑️ Game deleted.');
+          loadGames(cid);
+        } else {
+          var all = [];
+          try { all = JSON.parse(localStorage.getItem(LS_GAMES_KEY) || '[]'); } catch(x) {}
+          all = all.filter(function(g) { return g.id !== gid; });
+          try { localStorage.setItem(LS_GAMES_KEY, JSON.stringify(all)); } catch(x) {}
+          showToast('🗑️ Game deleted locally.');
+          loadGames(cid);
+        }
       });
     }
 
@@ -1639,7 +1929,7 @@
       if (!cu) return;
       var inp = document.getElementById('rsugInp-' + rid);
       var nm = inp ? inp.value.trim() : '';
-      if (!nm) { alert('Please enter a name to suggest.'); return; }
+      if (!nm) { showToast('Please enter a name to suggest.'); return; }
       var rec = { role_id: rid, suggested_name: nm, suggested_by: cu.full_name || cu.username, user_id: cu.id, created_at: new Date().toISOString() };
       post('role_suggestions', rec).then(function(ok) {
         // Backup: also write to 'suggestions' table so management can see it
@@ -1855,6 +2145,7 @@
         html += '</div>';
       });
       cont.innerHTML = html;
+      updateDashCount('roles');
       // Show suggestions panel for admin/member
       if (cu && cu.role !== 'guest') {
         var panel = document.getElementById('roleSuggestionsPanel');
@@ -1885,17 +2176,17 @@
     }
 
     function addCustomRole() {
-      if (!cu || cu.role !== 'admin') { alert('Admin only.'); return; }
+      if (!cu || cu.role !== 'admin') { showToast('Admin only.'); return; }
       var nm = (document.getElementById('arName').value || '').trim();
       var ds = (document.getElementById('arDesc').value || '').trim();
-      if (!nm) { alert('Please enter a role name.'); return; }
+      if (!nm) { showToast('Please enter a role name.'); return; }
       var id = 'cr_' + Date.now();
       post('custom_roles', { id: id, name: nm, tagline: ds, role_desc: ds, created_at: new Date().toISOString() }).then(function() {
         logCh('custom_roles', id, 'insert', { name: nm });
         document.getElementById('arName').value = '';
         document.getElementById('arDesc').value = '';
         loadRoleData();
-        alert('\u2713 Role added!');
+        showToast('\u2713 Role added!');
       });
     }
 
@@ -2006,12 +2297,12 @@
     }
 
     function submitGPhoto() {
-      if (!_pendingGalleryFile) { alert('No file selected.'); return; }
+      if (!_pendingGalleryFile) { showToast('No file selected.'); return; }
       var cap  = (document.getElementById('gCap').value || '').trim();
       var ev   = (document.getElementById('gEv').value || '');
       var tags = _photoTags.join(',');
       uploadFile(_pendingGalleryFile).then(function(url) {
-        if (!url) { alert('Upload failed.'); return; }
+        if (!url) { showToast('Upload failed.'); return; }
         post('photos', { url: url, caption: cap, event: ev || null, tags: tags, uploaded_by: cu.username, created_at: new Date().toISOString() }).then(function() {
           logCh('photos', url, 'insert', { caption: cap, event: ev });
           cancelGUp();
@@ -2024,7 +2315,7 @@
       var file = event.target.files[0]; if (!file) return;
       var evId = event.target.dataset.evid || '';
       uploadFile(file).then(function(url) {
-        if (!url) { alert('Upload failed.'); return; }
+        if (!url) { showToast('Upload failed.'); return; }
         post('photos', { url: url, caption: '', event: evId || null, uploaded_by: cu.username, created_at: new Date().toISOString() }).then(function() {
           logCh('photos', url, 'insert', { event: evId });
           if (evId) loadEventPhotos(evId);
@@ -2037,11 +2328,11 @@
     function handleAv(event) {
       var file = event.target.files[0]; if (!file || !cu) return;
       uploadFile(file).then(function(url) {
-        if (!url) { alert('Upload failed.'); return; }
+        if (!url) { showToast('Upload failed.'); return; }
         patch('users', 'id=eq.' + cu.id, { avatar_url: url }).then(function() {
           cu.avatar_url = url;
           renderTeam();
-          alert('\u2713 Avatar updated!');
+          showToast('\u2713 Avatar updated!');
         });
       });
     }
@@ -2097,30 +2388,67 @@
     function loadSuggestions() {
       var el = document.getElementById('suggList'); if (!el) return;
       el.innerHTML = '<div class="spin">Loading\u2026</div>';
+      var isAdmin = cu && cu.role === 'admin';
       get('suggestions', 'select=*&order=created_at.desc&limit=40').then(function(d) {
         if (!d || !d.length) { el.innerHTML = '<div class="empty">No suggestions yet. Be the first! \u2736</div>'; return; }
         el.innerHTML = d.map(function(s) {
           var dt = new Date(s.created_at), ti = dt.toLocaleDateString('en-IN') + ' ' + dt.toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' });
           var tagged = (s.tags || '').split(',').filter(Boolean).map(function(t) { return '<span class="tpill">@' + e(t.trim()) + '</span>'; }).join(' ');
-          return '<div class="scard"><div class="sc-h"><div class="sc-av">' + (s.author || '?').charAt(0).toUpperCase() + '</div><div><div class="sc-au">' + e(s.author || 'Anonymous') + '</div><div class="sc-t">' + ti + '</div></div></div>' +
-            '<div class="sc-tx">' + e(s.text || '') + '</div>' + (tagged ? '<div style="margin-top:4px;">' + tagged + '</div>' : '') + '</div>';
+          var isDone = s.status === 'done';
+          var commentHtml = s.admin_note ? '<div class="scard-comment">💬 ' + e(s.admin_note) + '</div>' : '';
+          var adminHtml = '';
+          if (isAdmin) {
+            adminHtml = '<div class="sugg-admin-row">';
+            adminHtml += '<button class="sugg-done-btn" onclick="suggMarkDone(\'' + ej(s.id) + '\',' + (isDone ? 'true' : 'false') + ')">' + (isDone ? '↩️ Undo Done' : '✅ Mark Done') + '</button>';
+            adminHtml += '<button class="sugg-del-btn" onclick="suggDelete(\'' + ej(s.id) + '\')">🗑️ Delete</button>';
+            adminHtml += '<input class="sugg-comment-inp" id="sc-' + s.id + '" placeholder="Add note…" value="' + attr(s.admin_note || '') + '"/>';
+            adminHtml += '<button class="sugg-save-btn" onclick="suggSaveNote(\'' + ej(s.id) + '\')">💬 Save</button>';
+            adminHtml += '</div>';
+          }
+          return '<div class="scard' + (isDone ? ' done' : '') + '" id="sc-card-' + s.id + '"><div class="sc-h"><div class="sc-av">' + (s.author || '?').charAt(0).toUpperCase() + '</div><div><div class="sc-au">' + e(s.author || 'Anonymous') + '</div><div class="sc-t">' + ti + '</div></div></div>' +
+            '<div class="sc-tx">' + e(s.text || '') + '</div>' + (tagged ? '<div style="margin-top:4px;">' + tagged + '</div>' : '') + commentHtml + adminHtml + '</div>';
         }).join('');
+      });
+    }
+
+    function suggMarkDone(sid, isDone) {
+      var newStatus = isDone ? null : 'done';
+      patch('suggestions', 'id=eq.' + sid, { status: newStatus }).then(function() {
+        showToast(isDone ? 'Marked as pending.' : '✅ Marked done!');
+        loadSuggestions();
+      });
+    }
+
+    function suggDelete(sid) {
+      if (!confirm('Delete this suggestion?')) return;
+      del('suggestions', 'id=eq.' + sid).then(function() {
+        showToast('🗑️ Suggestion deleted.');
+        loadSuggestions();
+      });
+    }
+
+    function suggSaveNote(sid) {
+      var inp = document.getElementById('sc-' + sid);
+      var note = inp ? inp.value.trim() : '';
+      patch('suggestions', 'id=eq.' + sid, { admin_note: note }).then(function() {
+        showToast('💬 Note saved!');
+        loadSuggestions();
       });
     }
 
     function submitSugg() {
       var nm = (document.getElementById('sgNm').value || '').trim();
       var tx = (document.getElementById('sgTx').value || '').trim();
-      if (!nm || !tx) { alert('Please enter your name and suggestion.'); return; }
+      if (!nm || !tx) { showToast('Please enter your name and suggestion.'); return; }
       var tags = _sgTags.join(',');
       post('suggestions', { author: nm, text: tx, tags: tags, created_at: new Date().toISOString() }).then(function(r) {
-        if (!r) { alert('Error saving suggestion.'); return; }
+        if (!r) { showToast('Error saving suggestion.'); return; }
         document.getElementById('sgNm').value = '';
         document.getElementById('sgTx').value = '';
         _sgTags = [];
         var sgTgsEl = document.getElementById('sgTgs'); if (sgTgsEl) sgTgsEl.innerHTML = '';
         loadSuggestions();
-        alert('\u2713 Suggestion submitted!');
+        showToast('\u2713 Suggestion submitted!');
       });
     }
 
@@ -2176,7 +2504,7 @@
     function copyLink() {
       var url = (document.getElementById('shareUrl') || {}).textContent || 'https://shreyadubey-studio.github.io/priyanka-shubham-wedding';
       if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(url).then(function() { alert('\u2713 Link copied!'); });
+        navigator.clipboard.writeText(url).then(function() { showToast('\u2713 Link copied!'); });
       } else {
         var ta = document.createElement('textarea');
         ta.value = url;
@@ -2184,7 +2512,7 @@
         ta.select();
         try { document.execCommand('copy'); } catch(x) {}
         document.body.removeChild(ta);
-        alert('\u2713 Link copied!');
+        showToast('\u2713 Link copied!');
       }
     }
 
@@ -2235,7 +2563,7 @@
       if (t.dataset.assignRid) {
         post('role_approvals', { role_id: t.dataset.assignRid, user_id: t.dataset.assignUid, username: t.dataset.assignUn, full_name: t.dataset.assignNm, approved_by: cu.full_name, approved_at: new Date().toISOString() }).then(function() {
           logCh('role_approvals', t.dataset.assignRid, 'insert', { role: t.dataset.assignRid, assigned_to: t.dataset.assignNm });
-          loadRoleData(); alert('\u2713 ' + t.dataset.assignNm + ' assigned!');
+          loadRoleData(); showToast('\u2713 ' + t.dataset.assignNm + ' assigned!');
         });
         return;
       }
@@ -2252,14 +2580,14 @@
         var tg = (document.getElementById('ret-' + id) || {value:''}).value.trim();
         var detEl = document.getElementById('red-' + id);
         var det = detEl ? detEl.value.split('\n').map(function(s) { return s.trim(); }).filter(Boolean) : [];
-        if (!nm) { alert('Name cannot be empty!'); return; }
+        if (!nm) { showToast('Name cannot be empty!'); return; }
         if (isC) {
-          patch('custom_roles', 'id=eq.' + id, { name: nm, tagline: tg, role_desc: det.join(' | ') }).then(function() { loadRoleData(); alert('\u2713 Saved!'); });
+          patch('custom_roles', 'id=eq.' + id, { name: nm, tagline: tg, role_desc: det.join(' | ') }).then(function() { loadRoleData(); showToast('\u2713 Saved!'); });
         } else {
           var rr = ROLES.find(function(x) { return x.id === id; });
           if (rr) { rr.name = nm; rr.tag = tg; if (det.length) rr.det = det; }
           var rfEl = document.getElementById('ref-' + id); if (rfEl) rfEl.classList.remove('open');
-          renderRoles(); alert('\u2713 Updated!');
+          renderRoles(); showToast('\u2713 Updated!');
         }
         return;
       }
@@ -2268,11 +2596,11 @@
         var rid = t.dataset.delR, isCustom = t.dataset.delCustom === 'true';
         del('role_interests', 'role_id=eq.' + rid);
         del('role_approvals', 'role_id=eq.' + rid);
-        if (isCustom) del('custom_roles', 'id=eq.' + rid).then(function() { loadRoleData(); alert('\u2713 Deleted!'); });
+        if (isCustom) del('custom_roles', 'id=eq.' + rid).then(function() { loadRoleData(); showToast('\u2713 Deleted!'); });
         else {
           var idx = ROLES.findIndex(function(r) { return r.id === rid; });
           if (idx > -1) ROLES.splice(idx, 1);
-          loadRoleData(); alert('\u2713 Deleted!');
+          loadRoleData(); showToast('\u2713 Deleted!');
         }
         return;
       }
@@ -2336,6 +2664,69 @@
       return String(t == null ? '' : t)
         .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
         .replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+    }
+
+    /* ===========================
+       TOAST NOTIFICATIONS
+    =========================== */
+    function showToast(msg, duration) {
+      var dur = duration || 3000;
+      var t = document.createElement('div');
+      t.className = 'toast-notification';
+      t.textContent = msg;
+      document.body.appendChild(t);
+      setTimeout(function() {
+        t.style.transition = 'opacity .3s';
+        t.style.opacity = '0';
+        setTimeout(function() { if (t.parentNode) t.parentNode.removeChild(t); }, 350);
+      }, dur);
+    }
+
+    /* ===========================
+       COUNTDOWN TIMER
+    =========================== */
+    var _countdownInterval = null;
+    function startCountdown() {
+      var weddingDate = new Date('2025-07-01T00:00:00+05:30');
+      function update() {
+        var el = document.getElementById('heroCountdown'); if (!el) return;
+        var now = new Date();
+        var diff = weddingDate - now;
+        if (diff <= 0) {
+          el.textContent = '🎊 विवाह संपन्न!';
+          if (_countdownInterval) clearInterval(_countdownInterval);
+          return;
+        }
+        var days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        var hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        el.textContent = days + ' दिन · ' + hours + ' घंटे शेष';
+      }
+      update();
+      if (_countdownInterval) clearInterval(_countdownInterval);
+      _countdownInterval = setInterval(update, 60000);
+    }
+
+    /* ===========================
+       HERO DASHBOARD COUNTS
+    =========================== */
+    function updateDashCount(type) {
+      if (type === 'songs' || type === 'all') {
+        var total = 0;
+        Object.keys(_perfsCache).forEach(function(k) { total += (_perfsCache[k] || []).length; });
+        var el = document.getElementById('dashSongsCount'); if (el) el.textContent = total;
+      }
+      if (type === 'games' || type === 'all') {
+        var isAdmin = cu && cu.role === 'admin';
+        var total = 0;
+        Object.keys(_gamesCache).forEach(function(k) {
+          (_gamesCache[k] || []).forEach(function(g) { if (isAdmin || g.visible) total++; });
+        });
+        var el = document.getElementById('dashGamesCount'); if (el) el.textContent = total;
+      }
+      if (type === 'roles' || type === 'all') {
+        var total = ROLES.length + (customRoles ? customRoles.length : 0);
+        var el = document.getElementById('dashRolesCount'); if (el) el.textContent = total;
+      }
     }
     /* ===========================
        TEAM CHAT
