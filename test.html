@@ -393,6 +393,19 @@
       .ggrid,.ep-grid{grid-template-columns:repeat(3,1fr)}
       .nav-pill{display:none}
     }
+    /* ---- Reorder pill buttons ---- */
+    .preorder-row{display:flex;align-items:center;gap:5px;margin:6px 0 4px 0;flex-wrap:wrap;}
+    .b-seq-up,.b-seq-dn{font-size:11px;padding:3px 10px;border-radius:999px;border:1px solid rgba(196,151,74,.35);background:rgba(196,151,74,.1);color:rgba(232,193,122,.85);cursor:pointer;transition:background .18s,color .18s;font-family:'Jost',sans-serif;line-height:1;}
+    .b-seq-up:hover:not([disabled]),.b-seq-dn:hover:not([disabled]){background:rgba(196,151,74,.28);color:#e8c17a;}
+    .b-seq-up[disabled],.b-seq-dn[disabled]{opacity:.32;cursor:default;}
+    .b-del-perf{font-size:11px;padding:3px 10px;border-radius:6px;cursor:pointer;font-family:'Jost',sans-serif;transition:background .18s;}
+    /* ---- Role support/like button ---- */
+    .b-sup{background:rgba(196,151,74,.08);color:rgba(232,193,122,.65);border:1px solid rgba(196,151,74,.2);border-radius:999px;font-size:11px;padding:2px 8px;cursor:pointer;transition:background .18s,color .18s,transform .14s;font-family:'Jost',sans-serif;margin-left:3px;vertical-align:middle;}
+    .b-sup:hover{background:rgba(196,151,74,.22);color:#e8c17a;transform:scale(1.08);}
+    .b-sup.on{background:rgba(196,80,60,.22);color:#f4a6a0;border-color:rgba(196,80,60,.35);}
+    /* ---- Suggest person row ---- */
+    .role-suggest-row{display:flex;align-items:center;gap:6px;margin-top:8px;flex-wrap:wrap;}
+    .role-sug-btn{font-size:11px!important;padding:4px 12px!important;border-radius:999px!important;}
   </style>
 </head>
 <body>
@@ -535,7 +548,7 @@
         <div class="s-sub">Multiple people किसी भी role में interest दिखा सकते हैं। आप किसी और को suggest भी कर सकते हैं और support/like 🧡 भी दे सकते हैं।</div>
         <div class="rbanner">
           <h3>आप इस विवाह को यादगार बनाते हैं ✦</h3>
-          <p>Role चुनें, interest दिखाएँ, दूसरों को nominate करें, और admin final assignments कर सकेंगी।</p>
+          <p>Role चुनें, interest दिखाएँ, दूसरों को nominate करें, और support/like 🧡 दे सकते हैं।</p>
         </div>
         <div id="rolesC"><div class="spin">Loading roles…</div></div>
         <div class="arbox">
@@ -873,6 +886,7 @@
     var sgTags = [];
     var pgf = null;
     var pen = null;
+    var _perfsCache = {};
 
     var SECS = ['events','roles','team','gallery','suggest','changes','info'];
 
@@ -1409,9 +1423,11 @@
 
     function renderPerfs(ev, perfs) {
       var el = document.getElementById('pp-' + ev); if (!el) return;
+      _perfsCache[ev] = perfs;
       if (!perfs.length) { el.innerHTML = '<div class="empty">No songs yet.</div>'; return; }
       var canEdit = cu && cu.role !== 'guest';
-      el.innerHTML = perfs.map(function(p) {
+      var isAdmin = cu && cu.role === 'admin';
+      el.innerHTML = perfs.map(function(p, idx) {
         var h = '<div class="pc" id="pc-' + p.id + '">';
         h += '<div class="pc-num">' + e(p.seq || '?') + '</div>';
         h += '<div class="pc-song">' + e(p.song) + '</div>';
@@ -1432,6 +1448,13 @@
         if (p.link) h += '<a class="pc-lnk" href="' + e(p.link) + '" target="_blank" rel="noopener">\ud83c\udfac Choreo</a>';
         h += '<span class="pstat ' + (SC[p.practice_status] || 'st') + '">' + (SL[p.practice_status] || '\ud83d\udcdd TBU') + '</span>';
         if (p.updated_by) h += '<div class="pupd">\u270f\ufe0f ' + e(p.updated_by) + '</div>';
+        if (isAdmin) {
+          h += '<div class="preorder-row">';
+          h += '<button class="b-seq-up" type="button" data-up-perf="' + p.id + '" data-up-pev="' + ev + '" title="Move up" ' + (idx === 0 ? 'disabled' : '') + '>\u25b2</button>';
+          h += '<button class="b-seq-dn" type="button" data-dn-perf="' + p.id + '" data-dn-pev="' + ev + '" title="Move down" ' + (idx === perfs.length - 1 ? 'disabled' : '') + '>\u25bc</button>';
+          h += '<button class="b-del-r b-del-perf" type="button" data-del-perf="' + p.id + '" data-del-pev="' + ev + '">\ud83d\uddd1 Delete</button>';
+          h += '</div>';
+        }
         if (canEdit) {
           var evOpts = '';
           ceremonies.forEach(function(c) { evOpts += '<option value="' + ej(c.id) + '"' + (ev === c.id ? ' selected' : '') + '>' + e(c.icon || '') + ' ' + e(c.title) + '</option>'; });
@@ -1515,6 +1538,107 @@
           var el = document.getElementById(i); if (el) el.value = '';
         });
         alert('\u2713 Added!');
+      });
+    }
+
+    /* ===========================
+       PERFORMANCE DELETE & REORDER
+    =========================== */
+    function deletePerf(id, ev) {
+      if (!confirm('Delete this song/performance? This cannot be undone.')) return;
+      del('performances', 'id=eq.' + id).then(function() {
+        logCh('performances', id, 'delete', { id: id, event: ev });
+        loadPerfs(ev);
+        alert('\u2713 Song deleted.');
+      });
+    }
+
+    function movePerfUp(id, ev) {
+      var perfs = (_perfsCache[ev] || []).slice().sort(function(a, b) { return (a.seq || 0) - (b.seq || 0); });
+      var idx = perfs.findIndex(function(p) { return p.id === id; });
+      if (idx <= 0) return;
+      var above = perfs[idx - 1], cur = perfs[idx];
+      var seqA = above.seq != null ? above.seq : idx;
+      var seqC = cur.seq != null ? cur.seq : idx + 1;
+      if (seqA === seqC) { seqA = seqC - 1; }
+      patch('performances', 'id=eq.' + above.id, { seq: seqC }).then(function() {
+        patch('performances', 'id=eq.' + cur.id, { seq: seqA }).then(function() {
+          logCh('performances', id, 'update', { action: 'reorder', event: ev });
+          loadPerfs(ev);
+        });
+      });
+    }
+
+    function movePerfDn(id, ev) {
+      var perfs = (_perfsCache[ev] || []).slice().sort(function(a, b) { return (a.seq || 0) - (b.seq || 0); });
+      var idx = perfs.findIndex(function(p) { return p.id === id; });
+      if (idx < 0 || idx >= perfs.length - 1) return;
+      var below = perfs[idx + 1], cur = perfs[idx];
+      var seqB = below.seq != null ? below.seq : idx + 2;
+      var seqC = cur.seq != null ? cur.seq : idx + 1;
+      if (seqB === seqC) { seqB = seqC + 1; }
+      patch('performances', 'id=eq.' + below.id, { seq: seqC }).then(function() {
+        patch('performances', 'id=eq.' + cur.id, { seq: seqB }).then(function() {
+          logCh('performances', id, 'update', { action: 'reorder', event: ev });
+          loadPerfs(ev);
+        });
+      });
+    }
+
+    /* ===========================
+       ROLE SUPPORT & SUGGEST
+    =========================== */
+    var LS_SUGG_KEY = 'ps_roleSugg_v1';
+    var LS_SUP_KEY  = 'ps_roleSupp_v1';
+
+    function toggleRoleSupport(rid, targetUid, targetNm, isMine) {
+      if (!cu) return;
+      if (isMine) {
+        del('role_supports', 'role_id=eq.' + rid + '&user_id=eq.' + cu.id + '&target_user_id=eq.' + targetUid).then(function(ok) {
+          if (ok !== null) {
+            loadRoleData();
+          } else {
+            localRoleSupports = localRoleSupports.filter(function(s) {
+              return !(s.role_id === rid && s.user_id === cu.id && s.target_user_id === targetUid);
+            });
+            try { localStorage.setItem(LS_SUP_KEY, JSON.stringify(localRoleSupports)); } catch(x) {}
+            loadRoleData();
+          }
+        });
+      } else {
+        var rec = { role_id: rid, user_id: cu.id, username: cu.username, full_name: cu.full_name, target_user_id: targetUid, target_name: targetNm, created_at: new Date().toISOString() };
+        post('role_supports', rec).then(function(ok) {
+          if (ok !== null) {
+            loadRoleData();
+          } else {
+            rec.id = 'ls_' + Date.now();
+            localRoleSupports.push(rec);
+            try { localStorage.setItem(LS_SUP_KEY, JSON.stringify(localRoleSupports)); } catch(x) {}
+            loadRoleData();
+          }
+        });
+      }
+    }
+
+    function submitRoleSuggestion(rid) {
+      if (!cu) return;
+      var inp = document.getElementById('rsugInp-' + rid);
+      var nm = inp ? inp.value.trim() : '';
+      if (!nm) { alert('Please enter a name to suggest.'); return; }
+      var rec = { role_id: rid, suggested_name: nm, suggested_by: cu.full_name || cu.username, user_id: cu.id, created_at: new Date().toISOString() };
+      post('role_suggestions', rec).then(function(ok) {
+        if (ok !== null) {
+          if (inp) inp.value = '';
+          loadRoleData();
+          alert('\u2713 ' + nm + ' suggested!');
+        } else {
+          rec.id = 'ls_' + Date.now();
+          localRoleSuggestions.push(rec);
+          try { localStorage.setItem(LS_SUGG_KEY, JSON.stringify(localRoleSuggestions)); } catch(x) {}
+          if (inp) inp.value = '';
+          loadRoleData();
+          alert('\u2713 ' + nm + ' suggested (saved locally)!');
+        }
       });
     }
 
@@ -1649,13 +1773,29 @@
               html += '</div></div>';
             });
           } else if (!isAdmin && pending.length) {
-            html += '<div class="ichips">' + pending.map(function(i) { return '<span class="ichip' + (i.user_id === cu.id ? ' me' : '') + '">' + e(i.full_name) + '</span>'; }).join('') + '</div>';
+            var supports = roleSupports[r.id] || [];
+            html += '<div class="ichips">';
+            pending.forEach(function(i) {
+              var iSupports = supports.filter(function(s) { return s.target_user_id === i.user_id; });
+              var iSupportedByMe = cu && iSupports.some(function(s) { return s.user_id === cu.id; });
+              html += '<span class="ichip' + (i.user_id === cu.id ? ' me' : '') + '">' + e(i.full_name) + '</span>';
+              if (canInt && cu && i.user_id !== cu.id) {
+                html += '<button class="b-sup' + (iSupportedByMe ? ' on' : '') + '" type="button" data-sup-rid="' + r.id + '" data-sup-uid="' + i.user_id + '" data-sup-nm="' + ej(i.full_name) + '" data-sup-mine="' + iSupportedByMe + '" title="Support this person">\ud83e\udde1 ' + iSupports.length + '</button>';
+              }
+            });
+            html += '</div>';
           }
           if (canInt && !isAdmin) {
             html += '<button class="b-int' + (iM ? ' on' : '') + '" type="button" data-int-rid="' + r.id + '" data-int-mine="' + iM + '">' + (iM ? '\ud83c\udf3c Interested \u2713 (tap to remove)' : '\ud83c\udf3c Interested?') + '</button>';
           }
           if (suggs.length) {
             html += '<div style="margin-top:5px;font-size:10px;color:rgba(196,151,74,.55);">Suggested: ' + suggs.map(function(s) { return e(s.suggested_name || s.full_name || ''); }).join(', ') + '</div>';
+          }
+          if (canInt) {
+            html += '<div class="role-suggest-row">';
+            html += '<input class="ari" type="text" placeholder="\u0915\u093f\u0938\u0940 \u0915\u094b suggest \u0915\u0930\u0947\u0902..." id="rsugInp-' + r.id + '" />';
+            html += '<button class="badd role-sug-btn" type="button" data-sug-rid="' + r.id + '" style="font-size:11px;padding:5px 12px;">\u2795 Suggest</button>';
+            html += '</div>';
           }
           if (isAdmin) {
             html += '<div style="font-size:10px;color:rgba(232,193,122,.28);margin-top:5px;">' + ints.length + ' interested \u00b7 ' + approvals.length + ' assigned</div>';
@@ -2006,6 +2146,14 @@
 
       if (t.dataset.pid) {
         var f = document.getElementById('ef-' + t.dataset.pid); if (f) f.classList.toggle('open'); return;
+      }
+      if (t.dataset.delPerf) { deletePerf(t.dataset.delPerf, t.dataset.delPev); return; }
+      if (t.dataset.upPerf) { movePerfUp(t.dataset.upPerf, t.dataset.upPev); return; }
+      if (t.dataset.dnPerf) { movePerfDn(t.dataset.dnPerf, t.dataset.dnPev); return; }
+      if (t.dataset.sugRid) { submitRoleSuggestion(t.dataset.sugRid); return; }
+      if (t.dataset.supRid) {
+        var isMine = t.dataset.supMine === 'true';
+        toggleRoleSupport(t.dataset.supRid, t.dataset.supUid, t.dataset.supNm, isMine); return;
       }
       if (t.dataset.save) { saveEdit(t.dataset.save, t.dataset.sev); return; }
       if (t.dataset.cancel) {
