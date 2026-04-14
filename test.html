@@ -2400,7 +2400,6 @@
           var statusClass = st === 'in-progress' ? ' in-progress' : st === 'completed' ? ' completed' : st === 'discarded' ? ' discarded' : st === 'done' ? ' done' : '';
           var commentHtml = s.admin_note ? '<div class="scard-comment">💬 ' + e(s.admin_note) + '</div>' : '';
           var ctrlHtml = '';
-          var isMember = cu && (cu.role === 'member' || cu.role === 'admin');
           var canAct = cu && cu.role !== 'guest';
           if (canAct) {
             ctrlHtml = '<div class="sugg-admin-row">';
