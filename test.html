@@ -599,14 +599,6 @@
           <div style="font-family:'Cormorant Garamond',serif;font-size:clamp(28px,7vw,42px);font-weight:300;color:rgba(232,193,122,.96);line-height:1.1;">
             Priyanka <span style="font-style:italic;color:rgba(196,151,74,.75);font-size:0.6em;">&amp;</span> Shubham
           </div>
-          <div style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:16px;color:rgba(196,151,74,.7);margin-top:4px;">
-            शुभ विवाह
-          </div>
-          <div style="display:flex;align-items:center;gap:10px;justify-content:center;margin-top:8px;">
-            <div style="height:1px;width:40px;background:linear-gradient(90deg,transparent,rgba(196,151,74,.4));"></div>
-            <div style="font-size:9px;color:rgba(196,151,74,.4);letter-spacing:3px;">◆ विवाह उत्सव ◆</div>
-            <div style="height:1px;width:40px;background:linear-gradient(90deg,rgba(196,151,74,.4),transparent);"></div>
-          </div>
         </div>
 
         <div class="fbar">
@@ -1947,20 +1939,50 @@
         post('suggestions', backupRec);
         if (ok !== null) {
           if (inp) inp.value = '';
-          loadRoleData();
         } else {
           console.warn('\u26a0\ufe0f role_suggestions table may not exist in Supabase. Suggestion saved to localStorage and backup suggestions table. Create the role_suggestions table in Supabase dashboard to enable full cross-user sharing.');
           rec.id = 'ls_' + Date.now();
           localRoleSuggestions.push(rec);
           try { localStorage.setItem(LS_SUGG_KEY, JSON.stringify(localRoleSuggestions)); } catch(x) {}
           if (inp) inp.value = '';
-          loadRoleData();
         }
-        var statusEl = document.createElement('div');
-        statusEl.style.cssText = 'color:#90EDA0;font-size:11px;padding:4px 0;font-weight:600;';
-        statusEl.textContent = '\u2705 ' + nm + ' suggested! Visible to management team.';
-        if (inp && inp.parentNode) inp.parentNode.appendChild(statusEl);
-        setTimeout(function() { statusEl.remove(); }, 4000);
+        // Instantly append the new suggestion row to the role card
+        var suggList = document.getElementById('rsug-list-' + rid);
+        if (suggList) {
+          suggList.style.display = '';
+          var row = document.createElement('div');
+          row.style.cssText = 'display:flex;align-items:center;gap:8px;padding:5px 0;border-bottom:1px solid rgba(196,151,74,.07);';
+          row.innerHTML = '<span style="font-size:11px;flex:1;min-width:0;color:rgba(232,193,122,.88);font-weight:600;">\ud83c\udf1f ' + e(nm) + '</span>' +
+            '<span style="font-size:10px;color:rgba(232,193,122,.35);">by ' + e(rec.suggested_by) + '</span>' +
+            '<span style="font-size:12px;color:rgba(232,193,122,.35);">\ud83e\udde1 0</span>';
+          var heading = suggList.querySelector('.rsug-heading');
+          if (!heading) {
+            var h = document.createElement('div');
+            h.className = 'rsug-heading';
+            h.style.cssText = 'font-size:9px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(196,151,74,.55);margin-bottom:5px;';
+            h.textContent = 'Suggested';
+            suggList.insertBefore(h, suggList.firstChild);
+          }
+          suggList.appendChild(row);
+        }
+        showToast('\u2705 ' + nm + ' suggested!');
+        setTimeout(loadRoleData, 1500);
+      });
+    }
+
+    function approveRoleSugg(suggId) {
+      if (!cu || cu.role !== 'admin') { showToast('Admin only.'); return; }
+      patch('role_suggestions', 'id=eq.' + suggId, { status: 'approved' }).then(function() {
+        showToast('\u2705 Suggestion approved!');
+        loadRoleData();
+      });
+    }
+
+    function rejectRoleSugg(suggId) {
+      if (!cu || cu.role !== 'admin') { showToast('Admin only.'); return; }
+      patch('role_suggestions', 'id=eq.' + suggId, { status: 'rejected' }).then(function() {
+        showToast('\u274c Suggestion rejected.');
+        loadRoleData();
       });
     }
 
@@ -2127,22 +2149,38 @@
             html += '<button class="b-int' + (iM ? ' on' : '') + '" type="button" data-int-rid="' + r.id + '" data-int-mine="' + iM + '">' + (iM ? '\ud83c\udf3c Interested \u2713 (tap to remove)' : '\ud83c\udf3c I\'m Interested') + '</button>';
           }
           if (suggs.length) {
-            html += '<div style="margin-top:8px;"><div style="font-size:9px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(196,151,74,.55);margin-bottom:5px;">Suggested</div>';
+            html += '<div id="rsug-list-' + r.id + '" style="margin-top:8px;"><div class="rsug-heading" style="font-size:9px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(196,151,74,.55);margin-bottom:5px;">Suggested</div>';
             suggs.forEach(function(s) {
               var nm = s.suggested_name || s.full_name || '';
               var sugSupports = (roleSupports[r.id] || []).filter(function(sp) { return sp.target_user_id === (s.id || s.suggested_name); });
               var sugSupportedByMe = cu && sugSupports.some(function(sp) { return sp.user_id === cu.id; });
-              html += '<div style="display:flex;align-items:center;gap:8px;padding:5px 0;border-bottom:1px solid rgba(196,151,74,.07);">';
+              var isApproved = s.status === 'approved';
+              var isRejected = s.status === 'rejected';
+              var rowStyle = 'display:flex;align-items:center;gap:8px;padding:5px 0;border-bottom:1px solid rgba(196,151,74,.07);';
+              if (isApproved) rowStyle += 'border-left:3px solid #4caf50;padding-left:6px;';
+              if (isRejected) rowStyle += 'opacity:0.4;text-decoration:line-through;';
+              html += '<div style="' + rowStyle + '">';
               html += '<span style="font-size:11px;flex:1;min-width:0;color:rgba(232,193,122,.88);font-weight:600;">\ud83c\udf1f ' + e(nm) + '</span>';
               html += '<span style="font-size:10px;color:rgba(232,193,122,.35);">by ' + e(s.suggested_by || '') + '</span>';
-              if (canInt) {
-                html += '<button class="b-sug-like' + (sugSupportedByMe ? ' on' : '') + '" type="button" data-sug-like-rid="' + ej(r.id) + '" data-sug-like-nm="' + ej(nm) + '" data-sug-like-mine="' + sugSupportedByMe + '" title="Like this suggestion" style="background:none;border:none;cursor:pointer;font-size:13px;padding:2px 6px;border-radius:999px;background:rgba(196,151,74,.1);color:' + (sugSupportedByMe ? '#e8c17a' : 'rgba(232,193,122,.4)') + '">\ud83e\udde1 ' + sugSupports.length + '</button>';
-              } else {
-                html += '<span style="font-size:12px;color:rgba(232,193,122,.35);">\ud83e\udde1 ' + sugSupports.length + '</span>';
+              if (isApproved) {
+                html += '<span style="font-size:10px;color:#4caf50;font-weight:600;">\u2705 Approved</span>';
+              }
+              if (!isRejected) {
+                if (canInt) {
+                  html += '<button class="b-sug-like' + (sugSupportedByMe ? ' on' : '') + '" type="button" data-sug-like-rid="' + ej(r.id) + '" data-sug-like-nm="' + ej(nm) + '" data-sug-like-mine="' + sugSupportedByMe + '" title="Like this suggestion" style="background:none;border:none;cursor:pointer;font-size:13px;padding:2px 6px;border-radius:999px;background:rgba(196,151,74,.1);color:' + (sugSupportedByMe ? '#e8c17a' : 'rgba(232,193,122,.4)') + '">\ud83e\udde1 ' + sugSupports.length + '</button>';
+                } else {
+                  html += '<span style="font-size:12px;color:rgba(232,193,122,.35);">\ud83e\udde1 ' + sugSupports.length + '</span>';
+                }
+              }
+              if (isAdmin && s.id && !isApproved && !isRejected) {
+                html += '<button type="button" data-approve-sugg="' + ej(s.id) + '" style="font-size:10px;padding:3px 7px;background:rgba(76,175,80,.2);border:1px solid rgba(76,175,80,.4);border-radius:5px;cursor:pointer;color:#90EDA0;">\u2705</button>';
+                html += '<button type="button" data-reject-sugg="' + ej(s.id) + '" style="font-size:10px;padding:3px 7px;background:rgba(244,67,54,.15);border:1px solid rgba(244,67,54,.3);border-radius:5px;cursor:pointer;color:rgba(244,67,54,.8);">\u274c</button>';
               }
               html += '</div>';
             });
             html += '</div>';
+          } else {
+            html += '<div id="rsug-list-' + r.id + '" style="margin-top:8px;display:none;"></div>';
           }
           if (canInt) {
             html += '<div class="role-suggest-row">';
@@ -2467,8 +2505,26 @@
         document.getElementById('sgTx').value = '';
         _sgTags = [];
         var sgTgsEl = document.getElementById('sgTgs'); if (sgTgsEl) sgTgsEl.innerHTML = '';
-        loadSuggestions();
+        // Show new card instantly in the list
+        var tagList = tags.split(',').filter(Boolean);
+        var isRoleSugg = tagList.some(function(tt) { return tt.trim() === 'role-suggestion'; });
+        var tagged = tagList.map(function(tt) { return '<span class="tpill">@' + e(tt.trim()) + '</span>'; }).join(' ');
+        var badge = isRoleSugg ? '<span class="role-sugg-badge">\ud83c\udf1f Role</span>' : '';
+        var now = new Date();
+        var ti = now.toLocaleDateString('en-IN') + ' ' + now.toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' });
+        var av = nm.charAt(0).toUpperCase();
+        var cardHtml = '<div class="scard" id="sc-card-new"><div class="sc-h"><div class="sc-av">' + e(av) + '</div><div><div class="sc-au">' + e(nm) + badge + '</div><div class="sc-t">' + ti + '</div></div></div>' +
+          '<div class="sc-tx">' + e(tx) + '</div>' + (tagged ? '<div style="margin-top:4px;">' + tagged + '</div>' : '') + '</div>';
+        var list = document.getElementById('suggList');
+        if (list) {
+          var empty = list.querySelector('.empty');
+          if (empty) list.innerHTML = '';
+          var tmp = document.createElement('div');
+          tmp.innerHTML = cardHtml;
+          list.insertBefore(tmp.firstChild, list.firstChild);
+        }
         showToast('\u2713 Suggestion submitted!');
+        setTimeout(loadSuggestions, 1500);
       });
     }
 
@@ -2563,6 +2619,8 @@
       if (t.dataset.upPerf) { movePerfUp(t.dataset.upPerf, t.dataset.upPev); return; }
       if (t.dataset.dnPerf) { movePerfDn(t.dataset.dnPerf, t.dataset.dnPev); return; }
       if (t.dataset.sugRid) { submitRoleSuggestion(t.dataset.sugRid); return; }
+      if (t.dataset.approveSugg) { approveRoleSugg(t.dataset.approveSugg); return; }
+      if (t.dataset.rejectSugg) { rejectRoleSugg(t.dataset.rejectSugg); return; }
       if (t.dataset.sugLikeRid) {
         if (!cu || cu.role === 'guest') { showToast('Please log in to like.'); return; }
         var isMine = t.dataset.sugLikeMine === 'true';
