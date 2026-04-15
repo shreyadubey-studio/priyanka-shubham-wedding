@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>premium.html</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+Devanagari:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root{
+      --bg:#1C1020;
+      --panel:rgba(42,24,48,.70);
+      --panel-strong:rgba(34,20,40,.88);
+      --panel-soft:rgba(255,255,255,.03);
+      --line:rgba(196,168,130,.16);
+      --line-strong:rgba(196,168,130,.28);
+      --text:rgba(246,239,230,.94);
+      --muted:rgba(246,239,230,.52);
+      --gold:#C4A882;
+      --gold-soft:rgba(196,168,130,.14);
+      --ok:#9ccaa5;
+      --warn:#e2c17e;
+      --danger:#e0a3a3;
+      --shadow:0 18px 48px rgba(0,0,0,.28);
+      --radius:22px;
+      --radius-sm:14px;
+      --nav-h:58px;
+    }
+    *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+    html,body{height:100%}
+    body{
+      font-family:'Inter',sans-serif;
+      background:
+        radial-gradient(1200px 700px at 12% 0%, rgba(196,168,130,.10), transparent 45%),
+        radial-gradient(900px 600px at 100% 18%, rgba(196,168,130,.06), transparent 34%),
+        linear-gradient(180deg,#1C1020 0%, #170c1a 100%);
+      color:var(--text);
+      min-height:100vh;
+      overflow-x:hidden;
+    }
+    button,input,textarea,select{font:inherit}
+    button{cursor:pointer}
+    a{color:inherit;text-decoration:none}
+    .hidden{display:none!important}
+    .glass{
+      background:var(--panel);
+      border:1px solid var(--line);
+      backdrop-filter:blur(18px);
+      -webkit-backdrop-filter:blur(18px);
+      box-shadow:var(--shadow);
+    }
+    .shell{max-width:880px;margin:0 auto;padding:0 16px 96px}
+    .topbar{
+      position:sticky;top:0;z-index:100;
+      height:var(--nav-h);
+      display:flex;align-items:center;justify-content:space-between;
+      padding:0 16px;
+      background:rgba(28,16,32,.76);
+      backdrop-filter:blur(22px);
+      border-bottom:1px solid var(--line);
+    }
+    .brand{font-size:14px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:42vw}
+    .top-actions{display:flex;align-items:center;gap:8px}
+    .top-chip,.ghost-btn,.primary-btn,.inline-btn,.status-btn,.tab-btn,.filter-btn,.mini-btn{
+      border:1px solid var(--line);
+      border-radius:999px;
+      background:var(--gold-soft);
+      color:var(--text);
+      padding:10px 14px;
+      font-size:12px;
+      font-weight:600;
+    }
+    .ghost-btn{background:transparent;color:var(--muted)}
+    .primary-btn{background:linear-gradient(180deg, rgba(196,168,130,.24), rgba(196,168,130,.10)); border-color:var(--line-strong)}
+    .inline-btn,.mini-btn,.status-btn{padding:7px 11px;font-size:11px}
+    .mini-btn{padding:6px 10px}
+    .top-chip{padding:7px 11px;font-size:11px;color:var(--muted);background:transparent}
+    .notify-btn{position:relative}
+    .notify-badge{
+      position:absolute;top:-4px;right:-3px;min-width:16px;height:16px;border-radius:999px;
+      background:var(--gold);color:#1C1020;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;padding:0 4px
+    }
+    .hero{padding:40px 0 22px;text-align:center}
+    .lang-row{display:flex;justify-content:center;margin-bottom:28px}
+    .lang-btn{border:1px solid var(--line);background:transparent;color:var(--muted);padding:7px 11px;border-radius:999px;font-size:11px}
+    .hero-title{font-size:clamp(34px,8vw,64px);font-weight:300;line-height:1.02;letter-spacing:-.04em}
+    .hero-title .and{display:block;font-size:.62em;color:var(--gold);font-weight:300;margin:2px 0}
+    .hero-sub{margin-top:14px;font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--muted)}
+    .hero-date{margin-top:10px;font-size:14px;color:var(--gold)}
+    .login-wrap{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px}
+    .login-card{width:min(420px,100%);padding:30px;border-radius:28px}
+    .tabs{display:flex;gap:6px;background:rgba(255,255,255,.03);border:1px solid var(--line);padding:4px;border-radius:16px;margin:22px 0 16px}
+    .tab-btn{flex:1;padding:10px 12px;background:transparent;color:var(--muted);border:0;border-radius:12px}
+    .tab-btn.active{background:rgba(196,168,130,.16);color:var(--text)}
+    .field{margin-bottom:10px}
+    .input,.textarea,.select{
+      width:100%;background:rgba(16,10,20,.52);border:1px solid var(--line);border-radius:16px;padding:14px 15px;color:var(--text);outline:none
+    }
+    .input::placeholder,.textarea::placeholder{color:rgba(246,239,230,.24)}
+    .hint{font-size:11px;color:var(--muted);margin-top:8px;line-height:1.5}
+    .error{margin-top:12px;padding:12px 14px;border-radius:14px;background:rgba(180,60,60,.14);border:1px solid rgba(220,120,120,.22);color:#f0b3b3;font-size:12px;display:none}
+    .error.show{display:block}
+    .section{display:none;padding-top:16px}
+    .section.active{display:block}
+    .section-head{display:flex;justify-content:space-between;align-items:end;gap:12px;margin-bottom:16px}
+    .eyebrow{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold)}
+    .title{font-size:clamp(24px,4vw,34px);font-weight:300;letter-spacing:-.03em;margin-top:6px}
+    .sub{color:var(--muted);font-size:13px;line-height:1.65;margin-top:8px}
+    .stack{display:grid;gap:12px}
+    .row{
+      border-bottom:1px solid var(--line);
+      display:grid;grid-template-columns:44px 1fr auto;gap:12px;align-items:center;
+      padding:16px 0
+    }
+    .row:first-child{border-top:1px solid var(--line)}
+    .row-num{color:var(--gold);font-size:14px;font-weight:600}
+    .row-title{font-size:16px;font-weight:500;letter-spacing:-.02em}
+    .row-sub{font-size:13px;color:var(--muted);margin-top:4px}
+    .linkish{color:var(--gold);font-size:12px;font-weight:600}
+    .panel{padding:18px;border-radius:22px}
+    .panel + .panel{margin-top:12px}
+    .detail-top{display:flex;justify-content:space-between;gap:12px;align-items:start}
+    .muted{color:var(--muted)}
+    .line{height:1px;background:var(--line);margin:16px 0}
+    .step-list{display:grid;gap:10px}
+    .step-row{padding:12px 0;border-bottom:1px solid rgba(196,168,130,.08)}
+    .step-row:last-child{border-bottom:0}
+    .step-name{font-size:13px;font-weight:600;margin-bottom:4px}
+    .step-text{font-size:12px;color:var(--muted);line-height:1.55}
+    .toolbar{display:flex;gap:8px;overflow:auto;padding-bottom:6px;margin-bottom:16px}
+    .filter-btn{background:transparent;color:var(--muted);white-space:nowrap}
+    .filter-btn.active{background:rgba(196,168,130,.16);color:var(--text)}
+    .song-row,.task-row,.role-row,.team-row,.chat-row,.suggest-row,.note-row{
+      padding:14px 0;border-bottom:1px solid var(--line)
+    }
+    .song-row:first-child,.task-row:first-child,.role-row:first-child,.team-row:first-child,.chat-row:first-child,.suggest-row:first-child{border-top:1px solid var(--line)}
+    .song-head,.task-head,.role-head,.team-head,.chat-head,.suggest-head{display:flex;justify-content:space-between;gap:10px;align-items:start}
+    .song-name,.task-name,.role-name,.team-name{font-size:15px;font-weight:500;letter-spacing:-.01em}
+    .status{font-size:11px;border:1px solid var(--line);border-radius:999px;padding:5px 9px;color:var(--muted);white-space:nowrap}
+    .status.ready{color:var(--ok);border-color:rgba(156,202,165,.26);background:rgba(156,202,165,.08)}
+    .status.progress{color:var(--warn);border-color:rgba(226,193,126,.26);background:rgba(226,193,126,.08)}
+    .status.tbu{color:var(--muted)}
+    .song-meta,.task-meta,.role-meta,.team-meta,.chat-meta,.suggest-meta{font-size:12px;color:var(--muted);line-height:1.6;margin-top:6px}
+    .link-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+    .task-group{padding:18px;border-radius:22px}
+    .task-top{display:flex;justify-content:space-between;gap:12px;align-items:center;margin-bottom:14px}
+    .progress-wrap{width:120px;height:8px;border-radius:999px;background:rgba(255,255,255,.06);overflow:hidden}
+    .progress-fill{height:100%;background:linear-gradient(90deg,var(--gold),rgba(196,168,130,.6))}
+    .task-note{font-size:11px;color:var(--muted);margin-top:4px}
+    .two-col{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .role-actions,.team-actions,.suggest-actions,.chat-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+    .avatar{width:42px;height:42px;border-radius:999px;display:flex;align-items:center;justify-content:center;background:rgba(196,168,130,.12);border:1px solid var(--line);font-size:13px;color:var(--gold);font-weight:600;flex:0 0 auto}
+    .team-head{align-items:center}
+    .composer{position:sticky;bottom:78px;padding:12px;border-radius:20px;margin-top:14px}
+    .composer-row{display:flex;gap:8px;align-items:flex-end}
+    .composer-row .textarea,.composer-row .input{margin:0}
+    .notif-list{display:grid;gap:10px}
+    .notif-item{padding:12px 0;border-bottom:1px solid var(--line)}
+    .notif-item:last-child{border-bottom:0}
+    .small{font-size:11px;color:var(--muted)}
+    .footer-nav{
+      position:fixed;left:0;right:0;bottom:0;z-index:90;
+      border-top:1px solid var(--line);
+      background:rgba(28,16,32,.9);
+      backdrop-filter:blur(20px);
+      overflow:auto;white-space:nowrap;padding:10px 10px 14px
+    }
+    .footer-nav-inner{display:flex;gap:18px;min-width:max-content;padding:0 6px}
+    .nav-link{
+      background:none;border:none;color:var(--muted);padding:0 0 6px;border-bottom:2px solid transparent;font-size:12px;font-weight:600
+    }
+    .nav-link.active{color:var(--text);border-color:var(--gold)}
+    .modal{position:fixed;inset:0;background:rgba(10,8,12,.66);backdrop-filter:blur(10px);display:none;align-items:end;justify-content:center;z-index:300;padding:16px}
+    .modal.open{display:flex}
+    .sheet{width:min(760px,100%);max-height:88vh;overflow:auto;padding:18px;border-radius:26px}
+    .sheet-title{font-size:22px;font-weight:320;letter-spacing:-.03em}
+    .sheet-sub{font-size:13px;color:var(--muted);line-height:1.6;margin-top:8px;margin-bottom:16px}
+    .mention-help{font-size:11px;color:var(--muted);margin-top:8px;line-height:1.5}
+    .skeleton{position:relative;overflow:hidden;background:rgba(255,255,255,.03);border-radius:16px;min-height:68px;border:1px solid var(--line)}
+    .skeleton::after{content:'';position:absolute;inset:0;transform:translateX(-100%);background:linear-gradient(90deg, transparent, rgba(255,255,255,.06), transparent);animation:shimmer 1.4s infinite}
+    @keyframes shimmer{100%{transform:translateX(100%)}}
+    @media (max-width:720px){
+      .two-col{grid-template-columns:1fr}
+      .detail-top,.song-head,.task-head,.role-head,.team-head,.chat-head,.suggest-head{flex-direction:column;align-items:start}
+      .brand{max-width:34vw}
+    }
+  </style>
+</head>
+<body>
+  <div id="loginWrap" class="login-wrap">
+    <div class="login-card glass">
+      <div class="lang-row"><button class="lang-btn" type="button">EN | हि</button></div>
+      <div class="hero-title">Priyanka<span class="and">&</span>Shubham</div>
+      <div class="hero-sub">Vivah Utsav</div>
+      <div class="hero-date">1 – 3 July 2025 · Raipur</div>
+      <div class="tabs">
+        <button id="loginTab" class="tab-btn active" type="button">Login</button>
+        <button id="teamTab" class="tab-btn" type="button">Join Team</button>
+      </div>
+      <div id="loginForm">
+        <div class="field"><input id="loginUsername" class="input" placeholder="Username" /></div>
+        <div class="field"><input id="loginPassword" class="input" type="password" placeholder="Password" /></div>
+        <button id="loginBtn" class="primary-btn" type="button" style="width:100%">Enter</button>
+        <button id="forgotBtn" class="ghost-btn" type="button" style="width:100%;margin-top:8px">Forgot password</button>
+        <button id="guestBtn" class="ghost-btn" type="button" style="width:100%;margin-top:8px">Continue as Guest</button>
+      </div>
+      <div id="teamForm" class="hidden">
+        <div class="field"><input id="teamName" class="input" placeholder="Full Name" /></div>
+        <div class="field"><input id="teamPhone" class="input" placeholder="WhatsApp Number" /></div>
+        <div class="field"><input id="teamUsername" class="input" placeholder="Username" /></div>
+        <div class="field"><input id="teamPassword" class="input" type="password" placeholder="Password" /></div>
+        <div class="field"><input id="teamAccessCode" class="input" type="password" placeholder="Team Password" /></div>
+        <button id="joinBtn" class="primary-btn" type="button" style="width:100%">Join Team</button>
+      </div>
+      <div id="loginError" class="error"></div>
+    </div>
+  </div>
+
+  <div id="appWrap" class="hidden">
+    <div class="topbar">
+      <div class="brand">Priyanka and Shubham</div>
+      <div class="top-actions">
+        <div id="userChip" class="top-chip"></div>
+        <button id="notifBtn" class="ghost-btn notify-btn" type="button">Notifications<span id="notifBadge" class="notify-badge hidden">0</span></button>
+        <button id="whatsAppBtn" class="ghost-btn" type="button">WhatsApp</button>
+        <button id="logoutBtn" class="ghost-btn" type="button">Logout</button>
+      </div>
+    </div>
+
+    <div class="shell">
+      <div class="hero">
+        <div class="hero-title">Priyanka<span class="and">&</span>Shubham</div>
+        <div class="hero-sub">Vivah Utsav</div>
+        <div class="hero-date">1 – 3 July 2025 · Raipur</div>
+      </div>
+
+      <section id="eventsSec" class="section active">
+        <div class="section-head">
+          <div>
+            <div class="eyebrow">Events</div>
+            <div class="title">Wedding sequence</div>
+            <div class="sub">One page per event. Clean order. No clutter.</div>
+          </div>
+        </div>
+        <div id="eventsList" class="stack"></div>
+      </section>
+
+      <section id="eventDetailSec" class="section">
+        <div class="section-head">
+          <div>
+            <div class="eyebrow">Event</div>
+            <div id="eventDetailTitle" class="title">Event detail</div>
+            <div id="eventDetailSub" class="sub"></div>
+          </div>
+          <button id="backToEventsBtn" class="ghost-btn" type="button">Back</button>
+        </div>
+        <div id="eventDetailPanel" class="panel glass"></div>
+      </section>
+
+      <section id="rehearsalSec" class="section">
+        <div class="section-head">
+          <div>
+            <div class="eyebrow">Rehearsal</div>
+            <div class="title">Songs and practice</div>
+            <div class="sub">Filter by event. See dancers, duration, reference, and track.</div>
+          </div>
+        </div>
+        <div id="rehearsalFilters" class="toolbar"></div>
+        <div id="rehearsalList" class="panel glass"></div>
+      </section>
+
+      <section id="planSec" class="section">
+        <div class="section-head">
+          <div>
+            <div class="eyebrow">Plan</div>
+            <div class="title">Preparation by cousin</div>
+            <div class="sub">Grouped planning with progress bars, due dates, and coordination notes.</div>
+          </div>
+          <button id="addTaskBtn" class="primary-btn" type="button">Add Task</button>
+        </div>
+        <div id="planList" class="stack"></div>
+      </section>
+
+      <section id="rolesSec" class="section">
+        <div class="section-head">
+          <div>
+            <div class="eyebrow">Roles</div>
+            <div class="title">Family responsibilities</div>
+            <div class="sub">Interest, assignment, and suggestions stay connected to the same data.</div>
+          </div>
+        </div>
+        <div id="rolesList" class="panel glass"></div>
+      </section>
+
+      <section id="teamSec" class="section">
+        <div class="section-head">
+          <div>
+            <div class="eyebrow">Team</div>
+            <div class="title">Members</div>
+            <div class="sub">The same members and users from your current app.</div>
+          </div>
+        </div>
+        <div id="teamList" class="panel glass"></div>
+      </section>
+
+      <section id="gallerySec" class="section">
+        <div class="section-head">
+          <div>
+            <div class="eyebrow">Gallery</div>
+            <div class="title">Photos</div>
+            <div class="sub">Connected to the same photos table.</div>
+          </div>
+        </div>
+        <div id="galleryList" class="panel glass"></div>
+      </section>
+
+      <section id="suggestSec" class="section">
+        <div class="section-head">
+          <div>
+            <div class="eyebrow">Suggest</div>
+            <div class="title">Suggestions</div>
+            <div class="sub">Mention someone by typing their name after @</div>
+          </div>
+        </div>
+        <div class="panel glass">
+          <div class="field"><input id="suggestAuthor" class="input" placeholder="Your name" /></div>
+          <div class="field"><textarea id="suggestText" class="textarea" rows="4" placeholder="Write a suggestion"></textarea></div>
+          <div class="mention-help">Mention someone below using @name. Example: @shreya or @priyanka</div>
+          <div class="role-actions"><button id="sendSuggestBtn" class="primary-btn" type="button">Send Suggestion</button></div>
+        </div>
+        <div id="suggestList" class="panel glass" style="margin-top:12px"></div>
+      </section>
+
+      <section id="chatSec" class="section">
+        <div class="section-head">
+          <div>
+            <div class="eyebrow">Chat</div>
+            <div class="title">Team chat</div>
+            <div class="sub">Mention someone below using @name. Example: @riya or @shreya</div>
+          </div>
+        </div>
+        <div id="chatList" class="panel glass"></div>
+        <div class="composer glass">
+          <div class="composer-row">
+            <textarea id="chatInput" class="textarea" rows="2" placeholder="Type a message"></textarea>
+            <button id="sendChatBtn" class="primary-btn" type="button">Send</button>
+          </div>
+          <div class="mention-help">Write the name below @ to notify a member.</div>
+        </div>
+      </section>
+
+      <section id="infoSec" class="section">
+        <div class="section-head">
+          <div>
+            <div class="eyebrow">Info</div>
+            <div class="title">Wedding information</div>
+            <div class="sub">Venue, dates, website, and checklist.</div>
+          </div>
+        </div>
+        <div id="infoPanel" class="stack"></div>
+      </section>
+    </div>
+
+    <div class="footer-nav">
+      <div class="footer-nav-inner">
+        <button class="nav-link active" data-target="eventsSec" type="button">Events</button>
+        <button class="nav-link" data-target="rehearsalSec" type="button">Rehearsal</button>
+        <button class="nav-link" data-target="planSec" type="button">Plan</button>
+        <button class="nav-link" data-target="rolesSec" type="button">Roles</button>
+        <button class="nav-link" data-target="teamSec" type="button">Team</button>
+        <button class="nav-link" data-target="gallerySec" type="button">Gallery</button>
+        <button class="nav-link" data-target="suggestSec" type="button">Suggest</button>
+        <button class="nav-link" data-target="chatSec" type="button">Chat</button>
+        <button class="nav-link" data-target="infoSec" type="button">Info</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="forgotModal" class="modal">
+    <div class="sheet glass">
+      <div class="sheet-title">Reset password</div>
+      <div class="sheet-sub">Verify by username and registered WhatsApp number, then set a new password.</div>
+      <div class="field"><input id="forgotUsername" class="input" placeholder="Username" /></div>
+      <div class="field"><input id="forgotPhone" class="input" placeholder="Registered WhatsApp Number" /></div>
+      <div class="field"><input id="forgotNewPassword" class="input" type="password" placeholder="New Password" /></div>
+      <div class="role-actions">
+        <button id="forgotSaveBtn" class="primary-btn" type="button">Set New Password</button>
+        <button class="ghost-btn" data-close="forgotModal" type="button">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="notifModal" class="modal">
+    <div class="sheet glass">
+      <div class="sheet-title">Notifications</div>
+      <div class="sheet-sub">Tagged mentions and alerts.</div>
+      <div id="notifList" class="notif-list"></div>
+      <div class="role-actions">
+        <button id="markNotifReadBtn" class="primary-btn" type="button">Mark all as read</button>
+        <button class="ghost-btn" data-close="notifModal" type="button">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="taskModal" class="modal">
+    <div class="sheet glass">
+      <div class="sheet-title">Add task</div>
+      <div class="sheet-sub">Planning tasks are grouped by member in this premium view.</div>
+      <div class="two-col">
+        <div class="field"><input id="taskOwner" class="input" placeholder="Member name" /></div>
+        <div class="field"><input id="taskTitle" class="input" placeholder="Task title" /></div>
+      </div>
+      <div class="two-col">
+        <div class="field"><input id="taskDue" class="input" placeholder="Due date" /></div>
+        <div class="field"><input id="taskEvent" class="input" placeholder="Event" /></div>
+      </div>
+      <div class="field"><input id="taskNote" class="input" placeholder="Coordination note" /></div>
+      <div class="role-actions">
+        <button id="saveTaskBtn" class="primary-btn" type="button">Save Task</button>
+        <button class="ghost-btn" data-close="taskModal" type="button">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const SB = 'https://fwbbfsfjgmuuzqymxtdv.supabase.co/rest/v1/';
+    const KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmJmc2ZqZ211dXpxeW14dGR2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzYwMTUxMDksImV4cCI6MjA5MTU5MTEwOX0.npnpwd1SirAHyHH1JahMcKyEsvJb5MrPXEzdPAPpC-0';
+    const TEAM_PASSWORD = '4567';
+    const SESSION_KEY = 'premium_session_v2';
+    const TASKS_KEY = 'premium_plan_tasks_v2';
+    const NOTIF_KEY = 'premium_notifications_v2';
+    const WHATSAPP_URL = '';
+
+    let currentUser = null;
+    let ceremonies = [];
+    let performances = [];
+    let users = [];
+    let roleInterests = [];
+    let roleApprovals = [];
+    let customRoles = [];
+    let suggestions = [];
+    let chatMessages = [];
+    let photos = [];
+    let planTasks = [];
+    let currentEventId = null;
+    let rehearsalFilter = 'all';
+
+    const defaultRoles = [
+      {id:'gm1',name:'Groomsman 1',cat:'Wedding Core',tag:'Groom side coordination',det:['Coordinate arrivals','Help with transitions']},
+      {id:'gm2',name:'Groomsman 2',cat:'Wedding Core',tag:'Support and logistics',det:['Support groom team','Coordinate movement']},
+      {id:'gw1',name:'Groomswoman 1',cat:'Wedding Core',tag:'Warm hosting and coordination',det:['Support entries','Guest-facing coordination']},
+      {id:'wel1',name:'Welcome Host',cat:'Guest Experience',tag:'Entrance welcome team',det:['Receive guests','Guide family and VIP guests']},
+      {id:'seat',name:'Seating Coordinator',cat:'Guest Experience',tag:'Manage guest placement',det:['Seating flow','Reserved areas coordination']},
+      {id:'kids',name:'Kids Coordinator',cat:'Guest Experience',tag:'Children flow support',det:['Watch movement around stage','Keep children safe and engaged']},
+      {id:'baraat_lead',name:'Baraat Leader',cat:'Ceremonies',tag:'Lead the baraat procession',det:['Walk at the front','Keep energy and pace']},
+      {id:'mc',name:'MC',cat:'Entertainment',tag:'Host Sangeet and Reception',det:['Prepare script','Keep energy high']},
+      {id:'dance_lead',name:'Dance Lead',cat:'Entertainment',tag:'Coordinate dance performances',det:['Coordinate all dance groups','Manage sequence']},
+      {id:'dj',name:'DJ Coordinator',cat:'Entertainment',tag:'Track handoff',det:['Provide tracks','Ensure transitions']},
+      {id:'reels',name:'Reels and Photos',cat:'Entertainment',tag:'Capture memorable moments',det:['Keep phone charged','Capture key moments']}
+    ];
+
+    function escapeHtml(v){return String(v ?? '').replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));}
+    function headers(){return {'apikey':KEY,'Authorization':'Bearer '+KEY,'Content-Type':'application/json','Prefer':'return=representation'};}
+    async function get(table, query=''){ const r = await fetch(SB+table+(query?('?'+query):''), {headers:{apikey:KEY, Authorization:'Bearer '+KEY}}); return r.ok ? await r.json() : []; }
+    async function post(table, body){ const r = await fetch(SB+table,{method:'POST',headers:headers(),body:JSON.stringify(Array.isArray(body)?body:[body])}); return r.ok ? await r.json() : null; }
+    async function patch(table, query, body){ const r = await fetch(SB+table+'?'+query,{method:'PATCH',headers:headers(),body:JSON.stringify(body)}); return r.ok ? await r.json() : null; }
+
+    function setError(msg){ const el=document.getElementById('loginError'); el.textContent=msg; el.classList.add('show'); }
+    function clearError(){ document.getElementById('loginError').classList.remove('show'); }
+    function showSection(id){
+      document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+      document.querySelectorAll('.nav-link').forEach(b=>b.classList.toggle('active', b.dataset.target===id));
+      window.scrollTo({top:0,behavior:'smooth'});
+    }
+    function openModal(id){ document.getElementById(id).classList.add('open'); }
+    function closeModal(id){ document.getElementById(id).classList.remove('open'); }
+
+    function getNotifications(){ try{return JSON.parse(localStorage.getItem(NOTIF_KEY)||'[]');}catch{return [];} }
+    function setNotifications(arr){ localStorage.setItem(NOTIF_KEY, JSON.stringify(arr)); updateNotifBadge(); }
+    function addNotificationsFromText(text, sourceType, sourceId){
+      if(!text) return;
+      const lowerMap = users.map(u=>({id:u.id,name:(u.full_name||u.username||'').trim(), username:(u.username||'').trim()}));
+      const matches = text.match(/@[a-zA-Z0-9_]+/g) || [];
+      if(!matches.length) return;
+      const all = getNotifications();
+      matches.forEach(token=>{
+        const raw = token.slice(1).toLowerCase();
+        const found = lowerMap.find(u=>u.username.toLowerCase()===raw || u.name.toLowerCase().replace(/\s+/g,'')===raw.replace(/\s+/g,''));
+        if(found){
+          all.unshift({id:'n_'+Date.now()+'_'+Math.random().toString(36).slice(2,7), user_id:found.id, text:text, sourceType, sourceId, read:false, created_at:new Date().toISOString()});
+        }
+      });
+      setNotifications(all.slice(0,200));
+    }
+    function updateNotifBadge(){
+      const badge=document.getElementById('notifBadge');
+      if(!currentUser || currentUser.id==='guest'){ badge.classList.add('hidden'); return; }
+      const cnt=getNotifications().filter(n=>n.user_id===currentUser.id && !n.read).length;
+      badge.textContent=cnt;
+      badge.classList.toggle('hidden', cnt===0);
+    }
+    function renderNotifications(){
+      const list=document.getElementById('notifList');
+      if(!currentUser || currentUser.id==='guest'){ list.innerHTML='<div class="small">No notifications for guests.</div>'; return; }
+      const mine=getNotifications().filter(n=>n.user_id===currentUser.id);
+      if(!mine.length){ list.innerHTML='<div class="small">No notifications yet.</div>'; return; }
+      list.innerHTML=mine.map(n=>`<div class="notif-item"><div style="font-size:13px;line-height:1.55">${escapeHtml(n.text)}</div><div class="small" style="margin-top:6px">${escapeHtml(n.sourceType)} · ${new Date(n.created_at).toLocaleString()}</div></div>`).join('');
+    }
+
+    function saveTasks(){ localStorage.setItem(TASKS_KEY, JSON.stringify(planTasks)); }
+    function loadTasks(){
+      try{ planTasks = JSON.parse(localStorage.getItem(TASKS_KEY)||'[]'); }catch{ planTasks=[]; }
+      if(!planTasks.length && users.length){
+        const seeded = users.slice(0,4).map((u,i)=>({
+          id:'task_'+Date.now()+'_'+i,
+          owner:u.full_name||u.username,
+          title:i===0?'Learn Sangeet choreography':i===1?'Outfit coordination':i===2?'Final rehearsal':'Track confirmation',
+          due:i===0?'20 June':i===1?'25 June':i===2?'30 June':'28 June',
+          event:i===0?'Sangeet':i===1?'Sangeet':i===2?'Sangeet':'Baraat',
+          note:i===1?'Coordinate with family':'',
+          state:i===0?'done':i===1?'progress':'todo'
+        }));
+        planTasks = seeded;
+        saveTasks();
+      }
+    }
+
+    async function restoreSession(){
+      const saved = localStorage.getItem(SESSION_KEY);
+      if(!saved) return;
+      try{
+        const parsed = JSON.parse(saved);
+        if(parsed && parsed.id){
+          if(parsed.id==='guest'){ currentUser={id:'guest', full_name:'Guest', username:'guest', role:'guest'}; return; }
+          const res = await get('users','select=*&id=eq.'+encodeURIComponent(parsed.id));
+          if(res && res[0]) currentUser=res[0];
+        }
+      }catch{}
+    }
+
+    async function login(){
+      clearError();
+      const username=document.getElementById('loginUsername').value.trim().toLowerCase();
+      const password=document.getElementById('loginPassword').value;
+      if(!username || !password) return setError('Enter username and password.');
+      const found = await get('users', 'select=*&username=eq.'+encodeURIComponent(username)+'&password_hash=eq.'+encodeURIComponent(password));
+      if(!found || !found[0]) return setError('Incorrect username or password.');
+      currentUser = found[0];
+      localStorage.setItem(SESSION_KEY, JSON.stringify({id:currentUser.id}));
+      await startApp();
+    }
+
+    async function joinTeam(){
+      clearError();
+      const full_name=document.getElementById('teamName').value.trim();
+      const phone=document.getElementById('teamPhone').value.trim();
+      const username=document.getElementById('teamUsername').value.trim().toLowerCase();
+      const password_hash=document.getElementById('teamPassword').value;
+      const access=document.getElementById('teamAccessCode').value;
+      if(!full_name || !phone || !username || !password_hash || !access) return setError('Fill all fields.');
+      if(access !== TEAM_PASSWORD) return setError('Invalid team access code.');
+      const exists = await get('users','select=id&username=eq.'+encodeURIComponent(username));
+      if(exists && exists[0]) return setError('This username is already taken.');
+      const created = await post('users',{username,password_hash,full_name,phone,role:'member'});
+      if(!created || !created[0]) return setError('Could not create team member.');
+      currentUser = created[0];
+      localStorage.setItem(SESSION_KEY, JSON.stringify({id:currentUser.id}));
+      await startApp();
+    }
+
+    async function resetPassword(){
+      const username=document.getElementById('forgotUsername').value.trim().toLowerCase();
+      const phone=document.getElementById('forgotPhone').value.trim();
+      const password_hash=document.getElementById('forgotNewPassword').value;
+      if(!username || !phone || !password_hash) return;
+      const found = await get('users','select=*&username=eq.'+encodeURIComponent(username)+'&phone=eq.'+encodeURIComponent(phone));
+      if(!found || !found[0]) return alert('Verification failed.');
+      await patch('users','id=eq.'+found[0].id,{password_hash});
+      closeModal('forgotModal');
+      alert('Password updated.');
+    }
+
+    async function loadAll(){
+      const [c,p,u,ri,ra,cr,sg,ch,ph] = await Promise.all([
+        get('ceremony_cards','select=*&order=sort_order.asc'),
+        get('performances','select=*&order=event.asc,seq.asc'),
+        get('users','select=*&order=full_name.asc'),
+        get('role_interests','select=*'),
+        get('role_approvals','select=*'),
+        get('custom_roles','select=*&order=created_at.asc'),
+        get('suggestions','select=*&order=created_at.desc&limit=60'),
+        get('chat_messages','select=*&order=created_at.asc&limit=100'),
+        get('photos','select=*&order=created_at.desc&limit=90')
+      ]);
+      ceremonies = c || [];
+      performances = p || [];
+      users = (u || []).filter(x=>x.role!=='guest');
+      roleInterests = ri || [];
+      roleApprovals = ra || [];
+      customRoles = cr || [];
+      suggestions = sg || [];
+      chatMessages = ch || [];
+      photos = ph || [];
+      loadTasks();
+    }
+
+    function sortedCeremonies(){ return [...ceremonies].sort((a,b)=>(a.sort_order||0)-(b.sort_order||0)); }
+    function eventLabel(id){ const found=ceremonies.find(c=>c.id===id); return found ? found.title : id; }
+    function eventSongs(id){ return performances.filter(p=>String(p.event).toLowerCase()===String(id).toLowerCase()).sort((a,b)=>(a.seq||0)-(b.seq||0)); }
+    function sameName(a,b){ return String(a||'').trim().toLowerCase()===String(b||'').trim().toLowerCase(); }
+
+    function renderEvents(){
+      const list=document.getElementById('eventsList');
+      const rows=sortedCeremonies().map((c,i)=>`<div class="panel glass"><div class="row" data-open-event="${escapeHtml(c.id)}"><div class="row-num">${i+1}</div><div><div class="row-title">${escapeHtml(c.title||'')}</div><div class="row-sub">${escapeHtml(c.subtitle||'')} · ${escapeHtml(c.date||'')} · ${escapeHtml(c.time||'')} · ${escapeHtml(c.venue||'')}</div></div><div class="linkish">Open</div></div></div>`).join('');
+      list.innerHTML=rows || '<div class="panel glass"><div class="small">No events found.</div></div>';
+    }
+
+    function openEventDetail(id){
+      currentEventId=id;
+      const c=ceremonies.find(x=>x.id===id); if(!c) return;
+      document.getElementById('eventDetailTitle').textContent = c.title || 'Event';
+      document.getElementById('eventDetailSub').textContent = [c.subtitle,c.date,c.time,c.venue].filter(Boolean).join(' · ');
+      const songs = eventSongs(id);
+      const steps = Array.isArray(c.steps)?c.steps:[];
+      const stepHtml = steps.length ? `<div class="line"></div><div class="eyebrow">Steps</div><div class="step-list">${steps.map(s=>`<div class="step-row"><div class="step-name">${escapeHtml(s.title||'')}</div><div class="step-text">${escapeHtml(s.desc||'')}</div></div>`).join('')}</div>` : '';
+      const songHtml = songs.length ? songs.map(s=>`<div class="song-row"><div class="song-head"><div><div class="song-name">${escapeHtml(s.seq||'')} · ${escapeHtml(s.song||'')}</div><div class="song-meta">${escapeHtml(s.dancers||'TBU')} · ${escapeHtml(s.duration||'')} ${s.duration?'min':''}</div></div><div class="status ${mapStatusClass(s.practice_status)}">${escapeHtml(mapStatusLabel(s.practice_status))}</div></div><div class="link-row">${s.link?`<a class="inline-btn" href="${escapeHtml(s.link)}" target="_blank" rel="noopener">Reference</a>`:''}${s.link2?`<a class="inline-btn" href="${escapeHtml(s.link2)}" target="_blank" rel="noopener">Track</a>`:''}</div></div>`).join('') : '<div class="small">No songs yet.</div>';
+      document.getElementById('eventDetailPanel').innerHTML = `
+        <div class="detail-top">
+          <div>
+            <div style="font-size:15px;line-height:1.7">${escapeHtml(c.desc||'')}</div>
+          </div>
+          <div class="status">Songs ${songs.length}</div>
+        </div>
+        ${stepHtml}
+        <div class="line"></div>
+        <div class="eyebrow">Songs</div>
+        <div>${songHtml}</div>
+      `;
+      showSection('eventDetailSec');
+    }
+
+    function mapStatusClass(v){ if(v==='ready') return 'ready'; if(v==='progress') return 'progress'; return 'tbu'; }
+    function mapStatusLabel(v){ if(v==='ready') return 'Ready'; if(v==='progress') return 'In Progress'; if(v==='notstarted') return 'Not Started'; return 'TBU'; }
+
+    function renderRehearsal(){
+      const filterWrap=document.getElementById('rehearsalFilters');
+      const ids=['all',...sortedCeremonies().map(c=>c.id)];
+      filterWrap.innerHTML = ids.map(id=>`<button class="filter-btn ${rehearsalFilter===id?'active':''}" data-filter-event="${escapeHtml(id)}" type="button">${id==='all'?'All':escapeHtml(eventLabel(id))}</button>`).join('');
+      let rows = performances.slice().sort((a,b)=>{
+        if(a.event===b.event) return (a.seq||0)-(b.seq||0);
+        const ai = sortedCeremonies().findIndex(c=>c.id===a.event); const bi = sortedCeremonies().findIndex(c=>c.id===b.event);
+        return ai-bi;
+      });
+      if(rehearsalFilter!=='all') rows = rows.filter(r=>String(r.event).toLowerCase()===String(rehearsalFilter).toLowerCase());
+      const list=document.getElementById('rehearsalList');
+      if(!rows.length){ list.innerHTML='<div class="small">No songs found.</div>'; return; }
+      let current='';
+      list.innerHTML = rows.map(r=>{
+        const heading = r.event!==current ? `<div class="eyebrow" style="margin-top:${current?18:0}px;margin-bottom:8px">${escapeHtml(eventLabel(r.event))}</div>` : '';
+        current=r.event;
+        return `${heading}<div class="song-row"><div class="song-head"><div><div class="song-name">${escapeHtml(r.seq||'')} ${escapeHtml(r.song||'')}</div><div class="song-meta">Dancers ${escapeHtml(r.dancers||'TBU')}<br>Duration ${escapeHtml(r.duration||'2–3')} min</div></div><div class="status ${mapStatusClass(r.practice_status)}">${escapeHtml(mapStatusLabel(r.practice_status))}</div></div><div class="link-row">${r.link?`<a class="inline-btn" href="${escapeHtml(r.link)}" target="_blank" rel="noopener">Reference Video</a>`:''}${r.link2?`<a class="inline-btn" href="${escapeHtml(r.link2)}" target="_blank" rel="noopener">Practice Track</a>`:''}</div></div>`;
+      }).join('');
+    }
+
+    function renderPlan(){
+      const list=document.getElementById('planList');
+      const grouped={};
+      planTasks.forEach(t=>{ if(!grouped[t.owner]) grouped[t.owner]=[]; grouped[t.owner].push(t); });
+      const owners = Object.keys(grouped);
+      if(!owners.length){ list.innerHTML='<div class="panel glass"><div class="small">No planning tasks yet.</div></div>'; return; }
+      list.innerHTML = owners.map(owner=>{
+        const items=grouped[owner];
+        const done=items.filter(i=>i.state==='done').length;
+        const progress=items.filter(i=>i.state==='progress').length;
+        const percent=Math.round(((done + progress*0.5)/Math.max(items.length,1))*100);
+        return `<div class="task-group glass"><div class="task-top"><div><div class="task-name">${escapeHtml(owner)}</div><div class="task-note">${items.length} tasks</div></div><div><div class="progress-wrap"><div class="progress-fill" style="width:${percent}%"></div></div><div class="small" style="margin-top:6px;text-align:right">${percent}%</div></div></div>${items.map(t=>`<div class="task-row"><div class="task-head"><div><div class="task-name">${escapeHtml(t.title)}</div><div class="task-meta">${escapeHtml(t.event||'')} · by ${escapeHtml(t.due||'')}</div>${t.note?`<div class="task-note">${escapeHtml(t.note)}</div>`:''}</div><div class="status ${t.state==='done'?'ready':t.state==='progress'?'progress':'tbu'}">${t.state==='done'?'Done':t.state==='progress'?'In Progress':'To Do'}</div></div></div>`).join('')}</div>`;
+      }).join('');
+    }
+
+    function renderRoles(){
+      const allRoles = [...defaultRoles, ...customRoles.map(r=>({id:r.id,name:r.name,cat:'Family Added',tag:r.tagline||r.role_desc||'',det:[r.role_desc||'']}))];
+      const grouped={};
+      allRoles.forEach(r=>{ if(!grouped[r.cat]) grouped[r.cat]=[]; grouped[r.cat].push(r); });
+      const list=document.getElementById('rolesList');
+      list.innerHTML = Object.keys(grouped).map(cat=>`<div style="padding-bottom:16px"><div class="eyebrow" style="margin-bottom:8px">${escapeHtml(cat)}</div>${grouped[cat].map(r=>{
+        const pending = roleInterests.filter(i=>i.role_id===r.id);
+        const assigned = roleApprovals.filter(a=>a.role_id===r.id);
+        const interestedByMe = currentUser && pending.some(i=>i.user_id===currentUser.id);
+        return `<div class="role-row"><div class="role-head"><div><div class="role-name">${escapeHtml(r.name)}</div><div class="role-meta">${escapeHtml(r.tag||'')}</div></div></div><div class="role-meta">${(r.det||[]).map(d=>escapeHtml(d)).join(' · ')}</div><div class="role-actions">${currentUser && currentUser.id!=='guest'?`<button class="mini-btn" data-role-interest="${escapeHtml(r.id)}" type="button">${interestedByMe?'Remove interest':'I am interested'}</button>`:''}</div>${pending.length?`<div class="role-meta">Interested ${escapeHtml(pending.map(p=>p.full_name).join(', '))}</div>`:''}${assigned.length?`<div class="role-meta">Assigned ${escapeHtml(assigned.map(a=>a.full_name).join(', '))}</div>`:''}</div>`;
+      }).join('')}</div>`).join('') || '<div class="small">No roles found.</div>';
+    }
+
+    function renderTeam(){
+      const list=document.getElementById('teamList');
+      if(!users.length){ list.innerHTML='<div class="small">No members found.</div>'; return; }
+      list.innerHTML = users.map(u=>{
+        const initials = (u.full_name||u.username||'?').split(' ').map(x=>x[0]).join('').slice(0,2).toUpperCase();
+        const assignedIds = roleApprovals.filter(a=>a.user_id===u.id).map(a=>a.role_id);
+        const roleNames = [...defaultRoles, ...customRoles.map(r=>({id:r.id,name:r.name}))].filter(r=>assignedIds.includes(r.id)).map(r=>r.name);
+        return `<div class="team-row"><div class="team-head"><div style="display:flex;gap:12px;align-items:center"><div class="avatar">${escapeHtml(initials)}</div><div><div class="team-name">${escapeHtml(u.full_name||u.username)}</div><div class="team-meta">${escapeHtml(u.phone||'')}</div></div></div><div class="status">${escapeHtml(u.role||'member')}</div></div>${roleNames.length?`<div class="team-meta">${escapeHtml(roleNames.join(', '))}</div>`:''}</div>`;
+      }).join('');
+    }
+
+    function renderGallery(){
+      const list=document.getElementById('galleryList');
+      if(!photos.length){ list.innerHTML='<div class="small">No photos found.</div>'; return; }
+      list.innerHTML = `<div class="two-col">${photos.slice(0,24).map(p=>`<div class="panel" style="padding:0;overflow:hidden"><img src="${escapeHtml(p.url)}" alt="" style="width:100%;aspect-ratio:1;object-fit:cover;display:block"><div style="padding:10px 12px"><div class="small">${escapeHtml(p.caption||eventLabel(p.event)||'Photo')}</div></div></div>`).join('')}</div>`;
+    }
+
+    function renderSuggestions(){
+      const list=document.getElementById('suggestList');
+      if(!suggestions.length){ list.innerHTML='<div class="small">No suggestions yet.</div>'; return; }
+      list.innerHTML = suggestions.map(s=>`<div class="suggest-row"><div class="suggest-head"><div><div class="team-name">${escapeHtml(s.author||'Anonymous')}</div><div class="suggest-meta">${new Date(s.created_at).toLocaleString()}</div></div></div><div style="font-size:13px;line-height:1.65;margin-top:8px">${escapeHtml(s.text||'')}</div></div>`).join('');
+    }
+
+    function renderChat(){
+      const list=document.getElementById('chatList');
+      if(!chatMessages.length){ list.innerHTML='<div class="small">No messages yet.</div>'; return; }
+      list.innerHTML = chatMessages.map(m=>`<div class="chat-row"><div class="chat-head"><div><div class="team-name">${escapeHtml(m.full_name||m.username||'User')}</div><div class="chat-meta">${new Date(m.created_at).toLocaleString()}</div></div></div><div style="font-size:13px;line-height:1.65;margin-top:8px">${escapeHtml(m.message||'')}</div></div>`).join('');
+      list.scrollTop = list.scrollHeight;
+    }
+
+    function renderInfo(){
+      const panel=document.getElementById('infoPanel');
+      panel.innerHTML = `
+        <div class="panel glass"><div class="eyebrow">Venue</div><div class="title" style="font-size:24px;margin-top:8px">Royal Club</div><div class="sub">Raipur, Chhattisgarh</div></div>
+        <div class="two-col">
+          <div class="panel glass"><div class="eyebrow">Dates</div><div class="title" style="font-size:24px;margin-top:8px">1–3 July</div><div class="sub">Three-day celebration</div></div>
+          <div class="panel glass"><div class="eyebrow">Events</div><div class="title" style="font-size:24px;margin-top:8px">${ceremonies.length}</div><div class="sub">Sequence-corrected event pages</div></div>
+        </div>
+        <div class="panel glass"><div class="eyebrow">Website</div><div class="sub" style="margin-top:10px">https://shreyadubey-studio.github.io/priyanka-shubham-wedding</div></div>
+      `;
+    }
+
+    async function sendSuggestion(){
+      const author = document.getElementById('suggestAuthor').value.trim() || (currentUser?.full_name || currentUser?.username || 'Guest');
+      const text = document.getElementById('suggestText').value.trim();
+      if(!text) return;
+      const created_at = new Date().toISOString();
+      const res = await post('suggestions',{author,text,tags:'',created_at});
+      addNotificationsFromText(text,'suggestion',res&&res[0]?res[0].id:'local');
+      document.getElementById('suggestText').value='';
+      suggestions = await get('suggestions','select=*&order=created_at.desc&limit=60');
+      renderSuggestions(); updateNotifBadge();
+    }
+
+    async function sendChat(){
+      const message = document.getElementById('chatInput').value.trim();
+      if(!message || !currentUser) return;
+      const payload={user_id:currentUser.id, username:currentUser.username, full_name:currentUser.full_name, message, created_at:new Date().toISOString()};
+      await post('chat_messages',payload);
+      addNotificationsFromText(message,'chat','chat');
+      document.getElementById('chatInput').value='';
+      chatMessages = await get('chat_messages','select=*&order=created_at.asc&limit=100');
+      renderChat(); updateNotifBadge();
+    }
+
+    async function toggleRoleInterest(roleId){
+      if(!currentUser || currentUser.id==='guest') return;
+      const mine = roleInterests.find(r=>r.role_id===roleId && r.user_id===currentUser.id);
+      if(mine){
+        await fetch(SB+'role_interests?role_id=eq.'+encodeURIComponent(roleId)+'&user_id=eq.'+encodeURIComponent(currentUser.id), {method:'DELETE', headers:{apikey:KEY, Authorization:'Bearer '+KEY}});
+      } else {
+        await post('role_interests',{role_id:roleId,user_id:currentUser.id,username:currentUser.username,full_name:currentUser.full_name});
+      }
+      roleInterests = await get('role_interests','select=*');
+      renderRoles();
+    }
+
+    function renderNotifBadgeAndUser(){
+      document.getElementById('userChip').textContent = currentUser?.full_name || currentUser?.username || 'Guest';
+      updateNotifBadge();
+    }
+
+    async function startApp(){
+      document.getElementById('loginWrap').classList.add('hidden');
+      document.getElementById('appWrap').classList.remove('hidden');
+      await loadAll();
+      renderNotifBadgeAndUser();
+      renderEvents();
+      renderRehearsal();
+      renderPlan();
+      renderRoles();
+      renderTeam();
+      renderGallery();
+      renderSuggestions();
+      renderChat();
+      renderInfo();
+      renderNotifications();
+      showSection('eventsSec');
+    }
+
+    document.getElementById('loginTab').addEventListener('click',()=>{document.getElementById('loginTab').classList.add('active');document.getElementById('teamTab').classList.remove('active');document.getElementById('loginForm').classList.remove('hidden');document.getElementById('teamForm').classList.add('hidden');clearError();});
+    document.getElementById('teamTab').addEventListener('click',()=>{document.getElementById('teamTab').classList.add('active');document.getElementById('loginTab').classList.remove('active');document.getElementById('teamForm').classList.remove('hidden');document.getElementById('loginForm').classList.add('hidden');clearError();});
+    document.getElementById('loginBtn').addEventListener('click', login);
+    document.getElementById('joinBtn').addEventListener('click', joinTeam);
+    document.getElementById('guestBtn').addEventListener('click', async ()=>{ currentUser={id:'guest',full_name:'Guest',username:'guest',role:'guest'}; localStorage.setItem(SESSION_KEY, JSON.stringify({id:'guest'})); await startApp(); });
+    document.getElementById('forgotBtn').addEventListener('click',()=>openModal('forgotModal'));
+    document.getElementById('forgotSaveBtn').addEventListener('click', resetPassword);
+    document.getElementById('logoutBtn').addEventListener('click',()=>{ localStorage.removeItem(SESSION_KEY); currentUser=null; location.reload(); });
+    document.getElementById('notifBtn').addEventListener('click',()=>{ renderNotifications(); openModal('notifModal'); });
+    document.getElementById('markNotifReadBtn').addEventListener('click',()=>{ if(!currentUser) return; const next=getNotifications().map(n=>n.user_id===currentUser.id?({...n,read:true}):n); setNotifications(next); renderNotifications(); });
+    document.getElementById('whatsAppBtn').addEventListener('click',()=>{ if(WHATSAPP_URL) window.open(WHATSAPP_URL,'_blank'); else alert('Add your WhatsApp group link in premium.html by setting WHATSAPP_URL.'); });
+    document.getElementById('backToEventsBtn').addEventListener('click',()=>showSection('eventsSec'));
+    document.getElementById('sendSuggestBtn').addEventListener('click', sendSuggestion);
+    document.getElementById('sendChatBtn').addEventListener('click', sendChat);
+    document.getElementById('chatInput').addEventListener('keydown',e=>{ if(e.key==='Enter' && !e.shiftKey){ e.preventDefault(); sendChat(); } });
+    document.getElementById('addTaskBtn').addEventListener('click',()=>openModal('taskModal'));
+    document.getElementById('saveTaskBtn').addEventListener('click',()=>{
+      const owner=document.getElementById('taskOwner').value.trim();
+      const title=document.getElementById('taskTitle').value.trim();
+      if(!owner || !title) return;
+      const due=document.getElementById('taskDue').value.trim();
+      const event=document.getElementById('taskEvent').value.trim();
+      const note=document.getElementById('taskNote').value.trim();
+      planTasks.unshift({id:'task_'+Date.now(), owner, title, due, event, note, state:'todo'});
+      saveTasks(); renderPlan(); addNotificationsFromText(note,'planning','plan'); closeModal('taskModal');
+      ['taskOwner','taskTitle','taskDue','taskEvent','taskNote'].forEach(id=>document.getElementById(id).value='');
+    });
+
+    document.addEventListener('click', async (e)=>{
+      const openEvent = e.target.closest('[data-open-event]');
+      if(openEvent){ openEventDetail(openEvent.dataset.openEvent); return; }
+      const nav = e.target.closest('.nav-link');
+      if(nav){ showSection(nav.dataset.target); return; }
+      const closeBtn = e.target.closest('[data-close]');
+      if(closeBtn){ closeModal(closeBtn.dataset.close); return; }
+      const filter = e.target.closest('[data-filter-event]');
+      if(filter){ rehearsalFilter = filter.dataset.filterEvent; renderRehearsal(); return; }
+      const roleBtn = e.target.closest('[data-role-interest]');
+      if(roleBtn){ await toggleRoleInterest(roleBtn.dataset.roleInterest); return; }
+      if(e.target.classList.contains('modal')) closeModal(e.target.id);
+    });
+
+    (async function init(){
+      await restoreSession();
+      if(currentUser) await startApp();
+    })();
+  </script>
+</body>
+</html>
