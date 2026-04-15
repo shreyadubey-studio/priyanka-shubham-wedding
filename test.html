@@ -389,12 +389,12 @@
     /* ---- Reorder pill buttons ---- */
     .preorder-row{display:flex;align-items:center;gap:5px;margin:6px 0 4px 0;flex-wrap:wrap;}
     .b-seq-up,.b-seq-dn{font-size:11px;padding:3px 10px;border-radius:999px;border:1px solid rgba(155,123,184,.35);background:rgba(155,123,184,.1);color:rgba(61,43,79,.85);cursor:pointer;transition:background .18s,color .18s;font-family:'Jost',sans-serif;line-height:1;}
-    .b-seq-up:hover:not([disabled]),.b-seq-dn:hover:not([disabled]){background:rgba(155,123,184,.28);color:#e8c17a;}
+    .b-seq-up:hover:not([disabled]),.b-seq-dn:hover:not([disabled]){background:rgba(155,123,184,.28);color:#9B7BB8;}
     .b-seq-up[disabled],.b-seq-dn[disabled]{opacity:.32;cursor:default;}
     .b-del-perf{font-size:11px;padding:3px 10px;border-radius:6px;cursor:pointer;font-family:'Jost',sans-serif;transition:background .18s;}
     /* ---- Role support/like button ---- */
     .b-sup{background:rgba(155,123,184,.08);color:rgba(61,43,79,.65);border:1px solid rgba(155,123,184,.2);border-radius:999px;font-size:11px;padding:2px 8px;cursor:pointer;transition:background .18s,color .18s,transform .14s;font-family:'Jost',sans-serif;margin-left:3px;vertical-align:middle;}
-    .b-sup:hover{background:rgba(155,123,184,.22);color:#e8c17a;transform:scale(1.08);}
+    .b-sup:hover{background:rgba(155,123,184,.22);color:#9B7BB8;transform:scale(1.08);}
     .b-sup.on{background:rgba(196,80,60,.22);color:#f4a6a0;border-color:rgba(196,80,60,.35);}
     /* ---- Suggest person row ---- */
     .role-suggest-row{display:flex;align-items:center;gap:6px;margin-top:8px;flex-wrap:wrap;}
@@ -2174,7 +2174,7 @@
               }
               if (!isRejected) {
                 if (canInt) {
-                  html += '<button class="b-sug-like' + (sugSupportedByMe ? ' on' : '') + '" type="button" data-sug-like-rid="' + ej(r.id) + '" data-sug-like-nm="' + ej(nm) + '" data-sug-like-mine="' + sugSupportedByMe + '" title="Like this suggestion" style="background:none;border:none;cursor:pointer;font-size:13px;padding:2px 6px;border-radius:999px;background:rgba(155,123,184,.1);color:' + (sugSupportedByMe ? '#e8c17a' : 'rgba(61,43,79,.4)') + '">\ud83e\udde1 ' + sugSupports.length + '</button>';
+                  html += '<button class="b-sug-like' + (sugSupportedByMe ? ' on' : '') + '" type="button" data-sug-like-rid="' + ej(r.id) + '" data-sug-like-nm="' + ej(nm) + '" data-sug-like-mine="' + sugSupportedByMe + '" title="Like this suggestion" style="background:none;border:none;cursor:pointer;font-size:13px;padding:2px 6px;border-radius:999px;background:rgba(155,123,184,.1);color:' + (sugSupportedByMe ? '#9B7BB8' : 'rgba(61,43,79,.4)') + '">\ud83e\udde1 ' + sugSupports.length + '</button>';
                 } else {
                   html += '<span style="font-size:12px;color:rgba(61,43,79,.35);">\ud83e\udde1 ' + sugSupports.length + '</span>';
                 }
