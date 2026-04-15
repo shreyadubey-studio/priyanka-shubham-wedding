@@ -102,7 +102,7 @@
       border-bottom:1px solid rgba(196,151,74,.14);
       display:flex;align-items:center;justify-content:space-between;padding:0 14px;
     }
-    .nav-brand{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:18px;color:rgba(232,193,122,.86)}
+    .nav-brand{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:15px;color:rgba(232,193,122,.86);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
     .nav-r{display:flex;align-items:center;gap:6px}
     .nav-pill{
       max-width:110px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
@@ -543,7 +543,7 @@
 
   <div id="appWrap">
     <div class="nav">
-      <div class="nav-brand">शुभ विवाह</div>
+      <div class="nav-brand">Priyanka &amp; Shubham · शुभ विवाह</div>
       <div class="nav-r">
         <div class="nav-pill" id="navPill"></div>
         <div class="nav-lang" onclick="toggleLang()">
@@ -556,7 +556,7 @@
     </div>
 
 
-    <div class="hero" id="heroSec">
+    <div class="hero" id="heroSec" style="display:none">
       <div class="h-eye">एक यादगार विवाह उत्सव</div>
       <div class="h-names">
         <span class="h-bride">Priyanka</span>
@@ -594,11 +594,6 @@
     <div class="cwrap">
       <!-- events -->
       <div class="sec" id="sec-events">
-        <div style="text-align:center;margin-bottom:22px;">
-          <div style="font-family:'Cormorant Garamond',serif;font-size:clamp(28px,7vw,42px);font-weight:300;color:rgba(232,193,122,.96);line-height:1.1;">
-            Priyanka <span style="font-style:italic;color:rgba(196,151,74,.75);font-size:0.6em;">&amp;</span> Shubham
-          </div>
-        </div>
 
         <div class="fbar">
           <div class="f-ti" onclick="toggleFilterBar()" style="cursor:pointer;display:flex;align-items:center;gap:6px;">🔍 गाने खोजें <span id="fbarArrow" style="font-size:11px;transition:transform .25s;">▶</span></div>
@@ -1589,12 +1584,14 @@
         if (p.link) h += '<a class="pc-lnk" href="' + e(p.link) + '" target="_blank" rel="noopener">\ud83c\udfac Choreo</a>';
         h += '<span class="pstat ' + (SC[p.practice_status] || 'st') + '">' + (SL[p.practice_status] || '\ud83d\udcdd TBU') + '</span>';
         if (p.updated_by) h += '<div class="pupd">\u270f\ufe0f ' + e(p.updated_by) + '</div>';
-        if (isAdmin) {
+        if (canEdit) {
           h += '<div class="preorder-row">';
-          h += '<button class="b-seq-up" type="button" data-up-perf="' + p.id + '" data-up-pev="' + ev + '" title="Move up" ' + (idx === 0 ? 'disabled' : '') + '>\u25b2</button>';
-          h += '<button class="b-seq-dn" type="button" data-dn-perf="' + p.id + '" data-dn-pev="' + ev + '" title="Move down" ' + (idx === perfs.length - 1 ? 'disabled' : '') + '>\u25bc</button>';
-          h += '<button class="b-del-r b-del-perf" type="button" data-del-perf="' + p.id + '" data-del-pev="' + ev + '">\ud83d\uddd1 Delete</button>';
+          h += '<button class="b-seq-up" type="button" data-up-perf="' + p.id + '" data-up-pev="' + ev + '" title="Move up" ' + (idx === 0 ? 'disabled' : '') + '>▲</button>';
+          h += '<button class="b-seq-dn" type="button" data-dn-perf="' + p.id + '" data-dn-pev="' + ev + '" title="Move down" ' + (idx === perfs.length - 1 ? 'disabled' : '') + '>▼</button>';
           h += '</div>';
+        }
+        if (isAdmin) {
+          h += '<button class="b-del-r b-del-perf" type="button" data-del-perf="' + p.id + '" data-del-pev="' + ev + '">🗑 Delete</button>';
         }
         if (canEdit) {
           var evOpts = '';
