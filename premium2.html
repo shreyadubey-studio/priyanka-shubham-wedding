@@ -148,7 +148,7 @@
     .task-note{font-size:11px;color:var(--muted);margin-top:4px}
     .two-col{display:grid;grid-template-columns:1fr 1fr;gap:12px}
     .role-actions,.team-actions,.suggest-actions,.chat-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
-    .avatar{width:42px;height:42px;border-radius:999px;display:flex;align-items:center;justify-content:center;background:rgba(196,168,130,.12);border:1px solid var(--line);font-size:13px;color:var(--gold);font-weight:600;flex:0 0 auto}
+    .avatar{width:42px;height:42px;border-radius:999px;display:flex;align-items:center;justify-content:center;background:rgba(196,168,130,.12);border:1px solid var(--line);font-size:13px;color:var(--g[...]
     .team-head{align-items:center}
     .composer{position:sticky;bottom:78px;padding:12px;border-radius:20px;margin-top:14px}
     .composer-row{display:flex;gap:8px;align-items:flex-end}
@@ -176,7 +176,7 @@
     .sheet-sub{font-size:13px;color:var(--muted);line-height:1.6;margin-top:8px;margin-bottom:16px}
     .mention-help{font-size:11px;color:var(--muted);margin-top:8px;line-height:1.5}
     .skeleton{position:relative;overflow:hidden;background:rgba(255,255,255,.03);border-radius:16px;min-height:68px;border:1px solid var(--line)}
-    .skeleton::after{content:'';position:absolute;inset:0;transform:translateX(-100%);background:linear-gradient(90deg, transparent, rgba(255,255,255,.06), transparent);animation:shimmer 1.4s infinite}
+    .skeleton::after{content:'';position:absolute;inset:0;transform:translateX(-100%);background:linear-gradient(90deg, transparent, rgba(255,255,255,.06), transparent);animation:shimmer 1.4s infinite[...]
     @keyframes shimmer{100%{transform:translateX(100%)}}
     @media (max-width:720px){
       .two-col{grid-template-columns:1fr}
@@ -423,7 +423,7 @@
 
   <script>
     const SB = 'https://fwbbfsfjgmuuzqymxtdv.supabase.co/rest/v1/';
-    const KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmJmc2ZqZ211dXpxeW14dGR2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzYwMTUxMDksImV4cCI6MjA5MTU5MTEwOX0.npnpwd1SirAHyHH1JahMcKyEsvJb5MrPXEzdPAPpC-0';
+    const KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmJmc2ZqZ211dXpxeW14dGR2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzYwMTUxMDksImV4cCI6MjA5MTU5MTEwOX0.npnpwd1SirAHyHH1JahMcKyEsvJb5MrPXEzdPA[...]';
     const TEAM_PASSWORD = '4567';
     const SESSION_KEY = 'premium_session_v2';
     const TASKS_KEY = 'premium_plan_tasks_v2';
@@ -504,7 +504,7 @@
       if(!currentUser || currentUser.id==='guest'){ list.innerHTML='<div class="small">No notifications for guests.</div>'; return; }
       const mine=getNotifications().filter(n=>n.user_id===currentUser.id);
       if(!mine.length){ list.innerHTML='<div class="small">No notifications yet.</div>'; return; }
-      list.innerHTML=mine.map(n=>`<div class="notif-item"><div style="font-size:13px;line-height:1.55">${escapeHtml(n.text)}</div><div class="small" style="margin-top:6px">${escapeHtml(n.sourceType)} · ${new Date(n.created_at).toLocaleString()}</div></div>`).join('');
+      list.innerHTML=mine.map(n=>`<div class="notif-item"><div style="font-size:13px;line-height:1.55">${escapeHtml(n.text)}</div><div class="small" style="margin-top:6px">${escapeHtml(n.sourceType)} [...]
     }
 
     function saveTasks(){ localStorage.setItem(TASKS_KEY, JSON.stringify(planTasks)); }
@@ -561,7 +561,15 @@
       if(access !== TEAM_PASSWORD) return setError('Invalid team access code.');
       const exists = await get('users','select=id&username=eq.'+encodeURIComponent(username));
       if(exists && exists[0]) return setError('This username is already taken.');
-      const created = await post('users',{username,password_hash,full_name,phone,role:'member'});
+      // <--- FIX: include team_access_code in the inserted row so RLS WITH CHECK will pass
+      const created = await post('users',{
+        username,
+        password_hash,
+        full_name,
+        phone,
+        role: 'member',
+        team_access_code: access
+      });
       if(!created || !created[0]) return setError('Could not create team member.');
       currentUser = created[0];
       localStorage.setItem(SESSION_KEY, JSON.stringify({id:currentUser.id}));
@@ -611,7 +619,7 @@
 
     function renderEvents(){
       const list=document.getElementById('eventsList');
-      const rows=sortedCeremonies().map((c,i)=>`<div class="panel glass"><div class="row" data-open-event="${escapeHtml(c.id)}"><div class="row-num">${i+1}</div><div><div class="row-title">${escapeHtml(c.title||'')}</div><div class="row-sub">${escapeHtml(c.subtitle||'')} · ${escapeHtml(c.date||'')} · ${escapeHtml(c.time||'')} · ${escapeHtml(c.venue||'')}</div></div><div class="linkish">Open</div></div></div>`).join('');
+      const rows=sortedCeremonies().map((c,i)=>`<div class="panel glass"><div class="row" data-open-event="${escapeHtml(c.id)}"><div class="row-num">${i+1}</div><div><div class="row-title">${escapeHtm[...]
       list.innerHTML=rows || '<div class="panel glass"><div class="small">No events found.</div></div>';
     }
 
@@ -622,8 +630,8 @@
       document.getElementById('eventDetailSub').textContent = [c.subtitle,c.date,c.time,c.venue].filter(Boolean).join(' · ');
       const songs = eventSongs(id);
       const steps = Array.isArray(c.steps)?c.steps:[];
-      const stepHtml = steps.length ? `<div class="line"></div><div class="eyebrow">Steps</div><div class="step-list">${steps.map(s=>`<div class="step-row"><div class="step-name">${escapeHtml(s.title||'')}</div><div class="step-text">${escapeHtml(s.desc||'')}</div></div>`).join('')}</div>` : '';
-      const songHtml = songs.length ? songs.map(s=>`<div class="song-row"><div class="song-head"><div><div class="song-name">${escapeHtml(s.seq||'')} · ${escapeHtml(s.song||'')}</div><div class="song-meta">${escapeHtml(s.dancers||'TBU')} · ${escapeHtml(s.duration||'')} ${s.duration?'min':''}</div></div><div class="status ${mapStatusClass(s.practice_status)}">${escapeHtml(mapStatusLabel(s.practice_status))}</div></div><div class="link-row">${s.link?`<a class="inline-btn" href="${escapeHtml(s.link)}" target="_blank" rel="noopener">Reference</a>`:''}${s.link2?`<a class="inline-btn" href="${escapeHtml(s.link2)}" target="_blank" rel="noopener">Track</a>`:''}</div></div>`).join('') : '<div class="small">No songs yet.</div>';
+      const stepHtml = steps.length ? `<div class="line"></div><div class="eyebrow">Steps</div><div class="step-list">${steps.map(s=>`<div class="step-row"><div class="step-name">${escapeHtml(s.title|[...]
+      const songHtml = songs.length ? songs.map(s=>`<div class="song-row"><div class="song-head"><div><div class="song-name">${escapeHtml(s.seq||'')} · ${escapeHtml(s.song||'')}</div><div class="song[...]
       document.getElementById('eventDetailPanel').innerHTML = `
         <div class="detail-top">
           <div>
@@ -645,7 +653,7 @@
     function renderRehearsal(){
       const filterWrap=document.getElementById('rehearsalFilters');
       const ids=['all',...sortedCeremonies().map(c=>c.id)];
-      filterWrap.innerHTML = ids.map(id=>`<button class="filter-btn ${rehearsalFilter===id?'active':''}" data-filter-event="${escapeHtml(id)}" type="button">${id==='all'?'All':escapeHtml(eventLabel(id))}</button>`).join('');
+      filterWrap.innerHTML = ids.map(id=>`<button class="filter-btn ${rehearsalFilter===id?'active':''}" data-filter-event="${escapeHtml(id)}" type="button">${id==='all'?'All':escapeHtml(eventLabel(id[...]
       let rows = performances.slice().sort((a,b)=>{
         if(a.event===b.event) return (a.seq||0)-(b.seq||0);
         const ai = sortedCeremonies().findIndex(c=>c.id===a.event); const bi = sortedCeremonies().findIndex(c=>c.id===b.event);
@@ -658,7 +666,7 @@
       list.innerHTML = rows.map(r=>{
         const heading = r.event!==current ? `<div class="eyebrow" style="margin-top:${current?18:0}px;margin-bottom:8px">${escapeHtml(eventLabel(r.event))}</div>` : '';
         current=r.event;
-        return `${heading}<div class="song-row"><div class="song-head"><div><div class="song-name">${escapeHtml(r.seq||'')} ${escapeHtml(r.song||'')}</div><div class="song-meta">Dancers ${escapeHtml(r.dancers||'TBU')}<br>Duration ${escapeHtml(r.duration||'2–3')} min</div></div><div class="status ${mapStatusClass(r.practice_status)}">${escapeHtml(mapStatusLabel(r.practice_status))}</div></div><div class="link-row">${r.link?`<a class="inline-btn" href="${escapeHtml(r.link)}" target="_blank" rel="noopener">Reference Video</a>`:''}${r.link2?`<a class="inline-btn" href="${escapeHtml(r.link2)}" target="_blank" rel="noopener">Practice Track</a>`:''}</div></div>`;
+        return `${heading}<div class="song-row"><div class="song-head"><div><div class="song-name">${escapeHtml(r.seq||'')} ${escapeHtml(r.song||'')}</div><div class="song-meta">Dancers ${escapeHtml(r[...]
       }).join('');
     }
 
@@ -673,7 +681,7 @@
         const done=items.filter(i=>i.state==='done').length;
         const progress=items.filter(i=>i.state==='progress').length;
         const percent=Math.round(((done + progress*0.5)/Math.max(items.length,1))*100);
-        return `<div class="task-group glass"><div class="task-top"><div><div class="task-name">${escapeHtml(owner)}</div><div class="task-note">${items.length} tasks</div></div><div><div class="progress-wrap"><div class="progress-fill" style="width:${percent}%"></div></div><div class="small" style="margin-top:6px;text-align:right">${percent}%</div></div></div>${items.map(t=>`<div class="task-row"><div class="task-head"><div><div class="task-name">${escapeHtml(t.title)}</div><div class="task-meta">${escapeHtml(t.event||'')} · by ${escapeHtml(t.due||'')}</div>${t.note?`<div class="task-note">${escapeHtml(t.note)}</div>`:''}</div><div class="status ${t.state==='done'?'ready':t.state==='progress'?'progress':'tbu'}">${t.state==='done'?'Done':t.state==='progress'?'In Progress':'To Do'}</div></div></div>`).join('')}</div>`;
+        return `<div class="task-group glass"><div class="task-top"><div><div class="task-name">${escapeHtml(owner)}</div><div class="task-note">${items.length} tasks</div></div><div><div class="progr[...]
       }).join('');
     }
 
@@ -686,7 +694,7 @@
         const pending = roleInterests.filter(i=>i.role_id===r.id);
         const assigned = roleApprovals.filter(a=>a.role_id===r.id);
         const interestedByMe = currentUser && pending.some(i=>i.user_id===currentUser.id);
-        return `<div class="role-row"><div class="role-head"><div><div class="role-name">${escapeHtml(r.name)}</div><div class="role-meta">${escapeHtml(r.tag||'')}</div></div></div><div class="role-meta">${(r.det||[]).map(d=>escapeHtml(d)).join(' · ')}</div><div class="role-actions">${currentUser && currentUser.id!=='guest'?`<button class="mini-btn" data-role-interest="${escapeHtml(r.id)}" type="button">${interestedByMe?'Remove interest':'I am interested'}</button>`:''}</div>${pending.length?`<div class="role-meta">Interested ${escapeHtml(pending.map(p=>p.full_name).join(', '))}</div>`:''}${assigned.length?`<div class="role-meta">Assigned ${escapeHtml(assigned.map(a=>a.full_name).join(', '))}</div>`:''}</div>`;
+        return `<div class="role-row"><div class="role-head"><div><div class="role-name">${escapeHtml(r.name)}</div><div class="role-meta">${escapeHtml(r.tag||'')}</div></div></div><div class="role-me[...]
       }).join('')}</div>`).join('') || '<div class="small">No roles found.</div>';
     }
 
@@ -697,26 +705,26 @@
         const initials = (u.full_name||u.username||'?').split(' ').map(x=>x[0]).join('').slice(0,2).toUpperCase();
         const assignedIds = roleApprovals.filter(a=>a.user_id===u.id).map(a=>a.role_id);
         const roleNames = [...defaultRoles, ...customRoles.map(r=>({id:r.id,name:r.name}))].filter(r=>assignedIds.includes(r.id)).map(r=>r.name);
-        return `<div class="team-row"><div class="team-head"><div style="display:flex;gap:12px;align-items:center"><div class="avatar">${escapeHtml(initials)}</div><div><div class="team-name">${escapeHtml(u.full_name||u.username)}</div><div class="team-meta">${escapeHtml(u.phone||'')}</div></div></div><div class="status">${escapeHtml(u.role||'member')}</div></div>${roleNames.length?`<div class="team-meta">${escapeHtml(roleNames.join(', '))}</div>`:''}</div>`;
+        return `<div class="team-row"><div class="team-head"><div style="display:flex;gap:12px;align-items:center"><div class="avatar">${escapeHtml(initials)}</div><div><div class="team-name">${escape[...]
       }).join('');
     }
 
     function renderGallery(){
       const list=document.getElementById('galleryList');
       if(!photos.length){ list.innerHTML='<div class="small">No photos found.</div>'; return; }
-      list.innerHTML = `<div class="two-col">${photos.slice(0,24).map(p=>`<div class="panel" style="padding:0;overflow:hidden"><img src="${escapeHtml(p.url)}" alt="" style="width:100%;aspect-ratio:1;object-fit:cover;display:block"><div style="padding:10px 12px"><div class="small">${escapeHtml(p.caption||eventLabel(p.event)||'Photo')}</div></div></div>`).join('')}</div>`;
+      list.innerHTML = `<div class="two-col">${photos.slice(0,24).map(p=>`<div class="panel" style="padding:0;overflow:hidden"><img src="${escapeHtml(p.url)}" alt="" style="width:100%;aspect-ratio:1;o[...]
     }
 
     function renderSuggestions(){
       const list=document.getElementById('suggestList');
       if(!suggestions.length){ list.innerHTML='<div class="small">No suggestions yet.</div>'; return; }
-      list.innerHTML = suggestions.map(s=>`<div class="suggest-row"><div class="suggest-head"><div><div class="team-name">${escapeHtml(s.author||'Anonymous')}</div><div class="suggest-meta">${new Date(s.created_at).toLocaleString()}</div></div></div><div style="font-size:13px;line-height:1.65;margin-top:8px">${escapeHtml(s.text||'')}</div></div>`).join('');
+      list.innerHTML = suggestions.map(s=>`<div class="suggest-row"><div class="suggest-head"><div><div class="team-name">${escapeHtml(s.author||'Anonymous')}</div><div class="suggest-meta">${new Date[...]
     }
 
     function renderChat(){
       const list=document.getElementById('chatList');
       if(!chatMessages.length){ list.innerHTML='<div class="small">No messages yet.</div>'; return; }
-      list.innerHTML = chatMessages.map(m=>`<div class="chat-row"><div class="chat-head"><div><div class="team-name">${escapeHtml(m.full_name||m.username||'User')}</div><div class="chat-meta">${new Date(m.created_at).toLocaleString()}</div></div></div><div style="font-size:13px;line-height:1.65;margin-top:8px">${escapeHtml(m.message||'')}</div></div>`).join('');
+      list.innerHTML = chatMessages.map(m=>`<div class="chat-row"><div class="chat-head"><div><div class="team-name">${escapeHtml(m.full_name||m.username||'User')}</div><div class="chat-meta">${new Da[...]
       list.scrollTop = list.scrollHeight;
     }
 
@@ -726,7 +734,7 @@
         <div class="panel glass"><div class="eyebrow">Venue</div><div class="title" style="font-size:24px;margin-top:8px">Royal Club</div><div class="sub">Raipur, Chhattisgarh</div></div>
         <div class="two-col">
           <div class="panel glass"><div class="eyebrow">Dates</div><div class="title" style="font-size:24px;margin-top:8px">1–3 July</div><div class="sub">Three-day celebration</div></div>
-          <div class="panel glass"><div class="eyebrow">Events</div><div class="title" style="font-size:24px;margin-top:8px">${ceremonies.length}</div><div class="sub">Sequence-corrected event pages</div></div>
+          <div class="panel glass"><div class="eyebrow">Events</div><div class="title" style="font-size:24px;margin-top:8px">${ceremonies.length}</div><div class="sub">Sequence-corrected event pages</[...]
         </div>
         <div class="panel glass"><div class="eyebrow">Website</div><div class="sub" style="margin-top:10px">https://shreyadubey-studio.github.io/priyanka-shubham-wedding</div></div>
       `;
@@ -790,17 +798,17 @@
       showSection('eventsSec');
     }
 
-    document.getElementById('loginTab').addEventListener('click',()=>{document.getElementById('loginTab').classList.add('active');document.getElementById('teamTab').classList.remove('active');document.getElementById('loginForm').classList.remove('hidden');document.getElementById('teamForm').classList.add('hidden');clearError();});
-    document.getElementById('teamTab').addEventListener('click',()=>{document.getElementById('teamTab').classList.add('active');document.getElementById('loginTab').classList.remove('active');document.getElementById('teamForm').classList.remove('hidden');document.getElementById('loginForm').classList.add('hidden');clearError();});
+    document.getElementById('loginTab').addEventListener('click',()=>{document.getElementById('loginTab').classList.add('active');document.getElementById('teamTab').classList.remove('active');document[...]
+    document.getElementById('teamTab').addEventListener('click',()=>{document.getElementById('teamTab').classList.add('active');document.getElementById('loginTab').classList.remove('active');document.[...]
     document.getElementById('loginBtn').addEventListener('click', login);
     document.getElementById('joinBtn').addEventListener('click', joinTeam);
-    document.getElementById('guestBtn').addEventListener('click', async ()=>{ currentUser={id:'guest',full_name:'Guest',username:'guest',role:'guest'}; localStorage.setItem(SESSION_KEY, JSON.stringify({id:'guest'})); await startApp(); });
+    document.getElementById('guestBtn').addEventListener('click', async ()=>{ currentUser={id:'guest',full_name:'Guest',username:'guest',role:'guest'}; localStorage.setItem(SESSION_KEY, JSON.stringify[...]
     document.getElementById('forgotBtn').addEventListener('click',()=>openModal('forgotModal'));
     document.getElementById('forgotSaveBtn').addEventListener('click', resetPassword);
     document.getElementById('logoutBtn').addEventListener('click',()=>{ localStorage.removeItem(SESSION_KEY); currentUser=null; location.reload(); });
     document.getElementById('notifBtn').addEventListener('click',()=>{ renderNotifications(); openModal('notifModal'); });
-    document.getElementById('markNotifReadBtn').addEventListener('click',()=>{ if(!currentUser) return; const next=getNotifications().map(n=>n.user_id===currentUser.id?({...n,read:true}):n); setNotifications(next); renderNotifications(); });
-    document.getElementById('whatsAppBtn').addEventListener('click',()=>{ if(WHATSAPP_URL) window.open(WHATSAPP_URL,'_blank'); else alert('Add your WhatsApp group link in premium.html by setting WHATSAPP_URL.'); });
+    document.getElementById('markNotifReadBtn').addEventListener('click',()=>{ if(!currentUser) return; const next=getNotifications().map(n=>n.user_id===currentUser.id?({...n,read:true}):n); setNotifi[...]
+    document.getElementById('whatsAppBtn').addEventListener('click',()=>{ if(WHATSAPP_URL) window.open(WHATSAPP_URL,'_blank'); else alert('Add your WhatsApp group link in premium.html by setting WHATS[...]
     document.getElementById('backToEventsBtn').addEventListener('click',()=>showSection('eventsSec'));
     document.getElementById('sendSuggestBtn').addEventListener('click', sendSuggestion);
     document.getElementById('sendChatBtn').addEventListener('click', sendChat);
